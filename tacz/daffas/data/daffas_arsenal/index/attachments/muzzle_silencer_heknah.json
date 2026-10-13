@@ -1,0 +1,7 @@
+{
+  "hidden": true,
+  "name": "daffas_arsenal.attachment.muzzle_silencer_heknah.name",
+  "display": "daffas_arsenal:muzzle_silencer_heknah_display",
+  "data": "daffas_arsenal:muzzle_silencer_heknah_data",
+  "type": "muzzle"
+}

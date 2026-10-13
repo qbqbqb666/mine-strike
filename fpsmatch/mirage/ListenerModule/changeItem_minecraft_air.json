@@ -1,0 +1,12 @@
+{
+  "defaultItem": {
+    "id": "minecraft:air",
+    "Count": 0
+  },
+  "defaultCost": 350,
+  "changedItem": {
+    "id": "minecraft:air",
+    "Count": 0
+  },
+  "changedCost": 340
+}

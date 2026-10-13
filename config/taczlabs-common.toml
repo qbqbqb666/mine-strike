@@ -1,0 +1,5 @@
+
+[FUNCTION]
+	#Trying shoot during sprinting will stop sprint and shoot instead of no effect.
+	"FIX Sprinting Shoot" = true
+

@@ -1,0 +1,15 @@
+{
+  "defaultItem": {
+    "id": "minecraft:air",
+    "Count": 0
+  },
+  "defaultCost": 1000,
+  "changedItem": {
+    "id": "lrarmor:joker_armed_helmet",
+    "Count": 1,
+    "tag": {
+      "Damage": 0
+    }
+  },
+  "changedCost": 350
+}

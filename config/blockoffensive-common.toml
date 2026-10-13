@@ -1,0 +1,50 @@
+
+[login]
+	#Show Login Message
+	showLoginMessage = true
+
+["step sound"]
+	#Teammate Muffled Step Volume
+	#Range: 0.0 ~ 10.0
+	teammateMuffledStepVolume = 0.05
+	#Teammate Step Volume
+	#Range: 0.0 ~ 10.0
+	teammateStepVolume = 0.15
+	#Enemy Muffled Step Volume
+	#Range: 0.0 ~ 10.0
+	enemyMuffledStepVolume = 0.4
+	#Enemy Step Volume
+	#Range: 0.0 ~ 10.0
+	enemyStepVolume = 1.2
+
+[c4]
+	#Fuse Time
+	#Range: 1 ~ 3200
+	"Fuse Time" = 800
+	#Explosion Radius
+	#Range: 10 ~ 300
+	"Explosion Radius" = 40
+
+[inGameRules]
+	#Whether players keep their inventory after death
+	keepInventory = true
+	#Whether players respawn immediately without showing the death screen
+	immediateRespawn = true
+	#Whether the daylight cycle and moon phases progress
+	daylightCycle = false
+	#Whether the weather can change naturally
+	weatherCycle = false
+	#Whether mobs can spawn naturally
+	mobSpawning = false
+	#Whether players regenerate health naturally when hunger is full
+	naturalRegeneration = false
+	#Whether to set game difficulty to Hard
+	hardDifficulty = true
+
+["web server"]
+	#Web server enabled
+	webServerEnabled = false
+	#Web server port
+	#Range: 1 ~ 65535
+	webServerPort = 8080
+

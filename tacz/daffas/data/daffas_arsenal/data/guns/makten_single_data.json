@@ -1,0 +1,108 @@
+{
+  "ammo": "tacz:45acp",
+  "ammo_amount": 30,
+  "bolt": "open_bolt",
+  "rpm": 900,
+  "bullet": {
+    "life": 0.4,
+    "bullet_amount": 1,
+    "damage": 7,
+    "tracer_count_interval": 0,
+    "extra_damage": {
+      "armor_ignore": 0.20,
+      "head_shot_multiplier": 1.5,
+      "damage_adjust": [
+        {"distance": 10, "damage": 7},
+        {"distance": 20, "damage": 6.6},
+        {"distance": 30, "damage": 6.2},
+        {"distance": 40, "damage": 5.8},
+        {"distance": 50, "damage": 5.4},
+        {"distance": 60, "damage": 5.0},
+        {"distance": 70, "damage": 4.3},
+        {"distance": "infinite", "damage": 3.2}
+      ]
+    },
+    "speed": 150,
+    "gravity": 0.05,
+    "knockback": 0,
+    "friction": 0.02,
+    "ignite": false,
+    "pierce": 1
+  },
+  "weight": 2.84,
+  "movement_speed": {
+    "base": 0.0,
+    "aim": -0.24,
+    "reload": -0.24
+  },
+  "reload": {
+    "type": "magazine",
+    "feed": {
+      "empty": 2.21,
+      "tactical": 2.21
+    },
+    "cooldown": {
+      "empty": 3.6458,
+      "tactical": 2.9583
+    }
+  },
+  "draw_time": 0.5833,
+  "put_away_time": 0.6,
+  "aim_time": 0.11,
+  "sprint_time": 0.2,
+  "fire_mode": [
+    "auto"
+  ],
+  "burst_data": {
+    "continuous_shoot": true,
+    "count": 2,
+    "bpm": 1200,
+    "min_interval": 0.1
+  },
+  "recoil": {
+    "pitch": [
+      {"time": 0.05, "value": [1, 2]},
+      {"time": 0.4, "value": [0.1, 0.1]},
+      {"time": 0.5, "value": [0, 0]}
+    ],
+    "yaw": [
+      {"time": 0.05, "value": [-2.5, 3]},
+      {"time": 0.4, "value": [0.1, 0.1]},
+      {"time": 0.5, "value": [0, 0]}
+    ]
+  },
+  "melee": {
+
+    "distance": 0,
+
+
+    "cooldown": 0,
+
+    "default": {
+
+      "animation_type": "melee_stock",
+
+      "distance": 2,
+
+      "range_angle": 40,
+
+      "cooldown": 1,
+
+      "damage": 1,
+
+      "knockback": 0.5,
+
+      "prep": 0.1
+    }
+  },
+  "inaccuracy": {
+    "stand": 6,
+    "move": 7,
+    "sneak": 5,
+    "lie": 4,
+    "aim": 1
+  },
+  "allow_attachment_types": [
+    "muzzle"
+  ]
+}

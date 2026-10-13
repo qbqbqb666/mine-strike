@@ -1,0 +1,37 @@
+#Default C4 Timer Duration (20)
+#Range: 0 ~ 60
+defaultC4TimerDuration = 40
+#Min C4 Timer Duration (10)
+#Range: 0 ~ 60
+minC4TimerDuration = 40
+#Max C4 Timer Duration (60)
+#Range: 5 ~ 60
+maxC4TimerDuration = 40
+#Length of C4 code (It's HIGHLY recommended not to modify this in existing worlds) (6)
+#Range: > 1
+c4CodeLength = 6
+#C4 Explosion Power (15)
+#Range: > 0
+c4ExplosionPower = 15
+#Determines whether the C4 explosion uses MOB behavior.
+#If set to MOB, the C4 explosion will not destroy blocks if the gamerule mobGriefing is set to false. (false)
+c4UsesMob = false
+#Mine Explosion Power (5)
+#Range: > 0
+mineExplosionPower = 5
+#Determines whether the mine explosion of mine uses MOB behavior.
+#If set to MOB, the mine explosion will not destroy blocks if the gamerule mobGriefing is set to false. (false)
+mineUsesMob = false
+#Bomb Explosion Power (10)
+#Range: > 0
+bombExplosionPower = 10
+#Determines whether the bomb explosion of mine uses MOB behavior.
+#If set to MOB, the bomb explosion will not destroy blocks if the gamerule mobGriefing is set to false. (false)
+bombUsesMob = false
+#Detonator Range (50)
+#Range: > 0
+detonatorRange = 50
+#Detonator Max Connected Bombs (10)
+#Range: 1 ~ 99
+detonatorMaxConnectedBombs = 10
+

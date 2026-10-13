@@ -1,0 +1,2426 @@
+{
+	sdmversion: "1.0.0"
+	shopName: ""
+	shopUUID: [I;
+		-2057943197
+		397231395
+		-1331480584
+		-2029577367
+	]
+	shopTabs: [
+		{
+			tabEntry: [ ]
+			icon: {
+				id: "minecraft:barrier"
+				Count: 1b
+			}
+			shopTabUUID: [I;
+				-69828577
+				714885878
+				-1599407072
+				-594663851
+			]
+			title: "Counter-Terrorist Shop"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						-206692437
+						-1758838449
+						-1342719088
+						643635875
+					]
+					entryPrice: 200L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								AttachmentMUZZLE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "mcs2:usp_silencer"
+									}
+								}
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "mcs2:cs_usp"
+								GunCurrentAmmoCount: 12
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						1834281782
+						658984493
+						-1107457447
+						583322534
+					]
+					entryPrice: 300L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "daffas_arsenal:p99_nohak"
+								GunCurrentAmmoCount: 15
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1575792193
+						1003766803
+						-1879071725
+						-1956308393
+					]
+					entryPrice: 450L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "tacz:p320"
+								GunCurrentAmmoCount: 12
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						129346897
+						-1179825613
+						-1540811899
+						-560246563
+					]
+					entryPrice: 550L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "daffas_arsenal:hk45"
+								GunCurrentAmmoCount: 14
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1720100072
+						1858031005
+						-1182528495
+						-1846245900
+					]
+					entryPrice: 700L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "mcs2:cs_deagle"
+								GunCurrentAmmoCount: 7
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "SEMI"
+					GunId: "mcs2:cs_deagle"
+					GunCurrentAmmoCount: 7
+				}
+			}
+			shopTabUUID: [I;
+				105447947
+				995574551
+				-1625226842
+				234544528
+			]
+			title: "Pistols"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						-1272062971
+						-961919583
+						-1509170114
+						-666203549
+					]
+					entryPrice: 1100L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "tacz:uzi"
+								GunCurrentAmmoCount: 20
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						708317586
+						589448510
+						-1470679695
+						-1484845855
+					]
+					entryPrice: 1300L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "daffas_arsenal:harpa9"
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1057737309
+						-410956602
+						-1109102951
+						91769247
+					]
+					entryPrice: 1650L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "maxstuff:hk_mp5sd"
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-903628908
+						306465738
+						-1266680690
+						1482128297
+					]
+					entryPrice: 2560L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "ronmc:p90"
+								GunCurrentAmmoCount: 50
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						1340491040
+						440289731
+						-1420928802
+						381697671
+					]
+					entryPrice: 2650L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "suffuse:pp19"
+								GunCurrentAmmoCount: 64
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "AUTO"
+					GunId: "suffuse:pp19"
+					GunCurrentAmmoCount: 64
+				}
+			}
+			shopTabUUID: [I;
+				-520990528
+				-755415146
+				-1098731555
+				296640360
+			]
+			title: "SMGs"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						2123445135
+						1214794800
+						-1394531329
+						2104476285
+					]
+					entryPrice: 1950L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "BURST"
+								GunId: "rainforest:famas"
+								GunCurrentAmmoCount: 25
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						832097965
+						-860403315
+						-1996243817
+						1066248631
+					]
+					entryPrice: 2900L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "mcs2:cs_m4a4"
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1813857437
+						843467883
+						-1811085150
+						-758907031
+					]
+					entryPrice: 2900L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								AttachmentMUZZLE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "mcs2:m4a1s_silencer"
+									}
+								}
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "mcs2:cs_m4a1s"
+								GunCurrentAmmoCount: 20
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						81617752
+						950224653
+						-1251123757
+						-1299720629
+					]
+					entryPrice: 3300L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "maxstuff:aug_a2"
+								AttachmentSCOPE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "tacz:scope_acog_ta31"
+									}
+								}
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						291417564
+						552616453
+						-2113580186
+						89100051
+					]
+					entryPrice: 1850L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "daffas_arsenal:ssg69"
+								AttachmentSCOPE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "daffas_arsenal:scope_ssg69"
+									}
+								}
+								GunCurrentAmmoCount: 5
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						824043038
+						-607432972
+						-1385253552
+						1618114779
+					]
+					entryPrice: 4750L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "mcs2:cs_awp"
+								AttachmentSCOPE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										ZoomNumber: 2
+										AttachmentId: "mcs2:awp_scope"
+									}
+								}
+								GunCurrentAmmoCount: 5
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "AUTO"
+					GunId: "mcs2:cs_m4a1s"
+					GunCurrentAmmoCount: 20
+				}
+			}
+			shopTabUUID: [I;
+				-1235433240
+				-1762113131
+				-1299671317
+				-892340024
+			]
+			title: "Rifles"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						1094484232
+						1729578542
+						-1652142072
+						1330668908
+					]
+					entryPrice: 1200L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "tacz:db_long"
+								GunCurrentAmmoCount: 2
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						1850288938
+						1768900134
+						-1101085141
+						-619895150
+					]
+					entryPrice: 1650L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "maxstuff:m870t"
+								GunCurrentAmmoCount: 5
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1244714301
+						-780123763
+						-1794588743
+						-435222458
+					]
+					entryPrice: 2000L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "ronmc:m1014"
+								GunCurrentAmmoCount: 7
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-483605996
+						349589064
+						-2017300906
+						1153142814
+					]
+					entryPrice: 5150L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								AttachmentEXTENDED_MAG: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "tacz:extended_mag_2"
+									}
+								}
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "tacz:m249"
+								GunCurrentAmmoCount: 150
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "AUTO"
+					GunId: "tacz:m249"
+					GunCurrentAmmoCount: 75
+				}
+			}
+			shopTabUUID: [I;
+				1355367666
+				-1424143483
+				-2127751923
+				-2139337435
+			]
+			title: "Heavy"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						-590083520
+						553340854
+						-1790116968
+						1497081011
+					]
+					entryPrice: 300L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "fallout:x26"
+								GunCurrentAmmoCount: 1
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-869263524
+						1268729255
+						-1750196157
+						-553844444
+					]
+					entryPrice: 500L
+					entryType: {
+						itemStack: {
+							id: "lrarmor:joker_armed_helmet"
+							Count: 1b
+							tag: {
+								Damage: 0
+								Enchantments: [{
+									lvl: 1s
+									id: "bulletarmorenchant:bullet_proof"
+								}]
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1102705825
+						-327397970
+						-1568350765
+						2200534
+					]
+					entryPrice: 500L
+					entryType: {
+						itemStack: {
+							id: "lrarmor:atf_vest_chestplate"
+							Count: 1b
+							tag: {
+								Damage: 0
+								Enchantments: [{
+									lvl: 1s
+									id: "bulletarmorenchant:bullet_proof"
+								}]
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1719796558
+						33704663
+						-2072199372
+						-755258989
+					]
+					entryPrice: 100L
+					entryType: {
+						itemStack: {
+							id: "homyatos_explosives:wire_cutters"
+							Count: 1b
+							tag: {
+								Damage: 0
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						1649204813
+						927156168
+						-1647800292
+						-697527236
+					]
+					entryPrice: 0L
+					entryType: {
+						itemStack: {
+							id: "homyatos_explosives:screwdriver"
+							Count: 1b
+							tag: {
+								Damage: 0
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "lrarmor:joker_armed_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			shopTabUUID: [I;
+				2121281490
+				-167489606
+				-1591453579
+				65731357
+			]
+			title: "Extras + Armor"
+		}
+		{
+			tabEntry: [ ]
+			icon: {
+				id: "minecraft:barrier"
+				Count: 1b
+			}
+			shopTabUUID: [I;
+				-471740605
+				-72987437
+				-1181268879
+				869661316
+			]
+			title: "Terrorist Shop"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						-1961976882
+						24331892
+						-2010385245
+						430627615
+					]
+					entryPrice: 200L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "mcs2:cs_glock"
+								GunCurrentAmmoCount: 20
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						1501706880
+						381370381
+						-1904964517
+						1760456997
+					]
+					entryPrice: 300L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "daffas_arsenal:p99_nohak"
+								GunCurrentAmmoCount: 15
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						397948026
+						-2014231504
+						-1721759785
+						-485809242
+					]
+					entryPrice: 450L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "tacz:p320"
+								GunCurrentAmmoCount: 12
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1542879739
+						2009219531
+						-1154836774
+						-1138359332
+					]
+					entryPrice: 525L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								RepairCost: 0
+								GunId: "suffuse:tec9"
+								display: {
+									Name: "{\"text\":\"Tec9\"}"
+								}
+								GunFireMode: "SEMI"
+								GunCurrentAmmoCount: 16
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						321009271
+						-1507114360
+						-1533953839
+						1885437564
+					]
+					entryPrice: 700L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "mcs2:cs_deagle"
+								GunCurrentAmmoCount: 7
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "SEMI"
+					GunId: "suffuse:tec9"
+					GunCurrentAmmoCount: 16
+				}
+			}
+			shopTabUUID: [I;
+				-695581421
+				320553035
+				-1543535877
+				792084230
+			]
+			title: "Pistols"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						-718280907
+						1251953794
+						-1973240333
+						835330775
+					]
+					entryPrice: 1100L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "tacz:uzi"
+								GunCurrentAmmoCount: 20
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						1073419856
+						593120854
+						-1172851509
+						548836026
+					]
+					entryPrice: 1300L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 0b
+								GunId: "daffas_arsenal:makten_single"
+								display: {
+									Name: "{\"italic\":false,\"translate\":\"daffas_arsenal.gun.makten_single\"}"
+								}
+								AttachmentMUZZLE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "tacz:muzzle_compensator_trident"
+									}
+								}
+								GunFireMode: "AUTO"
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1619661358
+						-967619226
+						-1985643529
+						1530959962
+					]
+					entryPrice: 1650L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "maxstuff:mp7"
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						405960042
+						1471302642
+						-1457397450
+						-1732056103
+					]
+					entryPrice: 2560L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "ronmc:p90"
+								GunCurrentAmmoCount: 50
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						1304012317
+						-505920180
+						-1528068048
+						1566018227
+					]
+					entryPrice: 2650L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "suffuse:pp19"
+								GunCurrentAmmoCount: 64
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "AUTO"
+					GunId: "daffas_arsenal:makten_single"
+					GunCurrentAmmoCount: 30
+				}
+			}
+			shopTabUUID: [I;
+				-506598599
+				-69448746
+				-1633817489
+				-201293037
+			]
+			title: "SMGs"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						-1421342285
+						-998880016
+						-1278593059
+						-2112483880
+					]
+					entryPrice: 1900L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								RepairCost: 0
+								GunId: "suffuse:qbu191"
+								display: {
+									Name: "{\"text\":\"Galil AR\"}"
+								}
+								GunFireMode: "AUTO"
+								GunCurrentAmmoCount: 35
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1580828095
+						1667386918
+						-1509531715
+						-45282081
+					]
+					entryPrice: 2700L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "mcs2:cs_ak"
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						39369364
+						1458521730
+						-1683864067
+						308018427
+					]
+					entryPrice: 3200L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								RepairCost: 0
+								GunId: "tacz:g36k"
+								AttachmentSCOPE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										ZoomNumber: 4
+										AttachmentId: "daffas_arsenal:scope_m2ampon2"
+									}
+								}
+								display: {
+									Name: "{\"text\":\"SG-553\"}"
+								}
+								GunFireMode: "AUTO"
+								GunCurrentAmmoCount: 30
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-926645705
+						-894613321
+						-2107294567
+						-162282774
+					]
+					entryPrice: 1850L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "daffas_arsenal:ssg69"
+								AttachmentSCOPE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "daffas_arsenal:scope_ssg69"
+									}
+								}
+								GunCurrentAmmoCount: 5
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						776268884
+						555894332
+						-1406082810
+						139409263
+					]
+					entryPrice: 4750L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "mcs2:cs_awp"
+								AttachmentSCOPE: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "mcs2:awp_scope"
+									}
+								}
+								GunCurrentAmmoCount: 5
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "AUTO"
+					GunId: "mcs2:cs_ak"
+					GunCurrentAmmoCount: 30
+				}
+			}
+			shopTabUUID: [I;
+				-1409420983
+				1709785893
+				-2096175127
+				1999391728
+			]
+			title: "Rifles"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						142694517
+						-207469893
+						-1418875877
+						-1576397589
+					]
+					entryPrice: 1200L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "tacz:db_long"
+								GunCurrentAmmoCount: 2
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1909000526
+						-268681154
+						-1309682328
+						-1015805934
+					]
+					entryPrice: 1650L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "tacz:m870"
+								GunCurrentAmmoCount: 5
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1255008186
+						-1732686196
+						-1377746511
+						369955018
+					]
+					entryPrice: 2000L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "ronmc:m1014"
+								GunCurrentAmmoCount: 7
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						2084663160
+						-1034795946
+						-1446079022
+						-1272779599
+					]
+					entryPrice: 5150L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								AttachmentEXTENDED_MAG: {
+									id: "tacz:attachment"
+									Count: 1b
+									tag: {
+										AttachmentId: "tacz:extended_mag_2"
+									}
+								}
+								HasBulletInBarrel: 1b
+								GunFireMode: "AUTO"
+								GunId: "tacz:m249"
+								GunCurrentAmmoCount: 150
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:modern_kinetic_gun"
+				Count: 1b
+				tag: {
+					HasBulletInBarrel: 1b
+					GunFireMode: "AUTO"
+					GunId: "tacz:m249"
+					GunCurrentAmmoCount: 75
+				}
+			}
+			shopTabUUID: [I;
+				7148646
+				-548846074
+				-1294868456
+				1045329817
+			]
+			title: "Heavy"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						800894357
+						859916986
+						-1682862261
+						948534108
+					]
+					entryPrice: 300L
+					entryType: {
+						itemStack: {
+							id: "tacz:modern_kinetic_gun"
+							Count: 1b
+							tag: {
+								HasBulletInBarrel: 1b
+								GunFireMode: "SEMI"
+								GunId: "fallout:x26"
+								GunCurrentAmmoCount: 1
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-619990258
+						-1797110117
+						-1332422021
+						289457251
+					]
+					entryPrice: 500L
+					entryType: {
+						itemStack: {
+							id: "lrarmor:sniper_helmet"
+							Count: 1b
+							tag: {
+								Damage: 0
+								Enchantments: [{
+									lvl: 2s
+									id: "bulletarmorenchant:bullet_proof"
+								}]
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-74445486
+						-472956074
+						-1864031810
+						-1690080525
+					]
+					entryPrice: 500L
+					entryType: {
+						itemStack: {
+							id: "lrarmor:sniper_chestplate"
+							Count: 1b
+							tag: {
+								Damage: 0
+								Enchantments: [{
+									lvl: 2s
+									id: "bulletarmorenchant:bullet_proof"
+								}]
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-947884349
+						1192117230
+						-1924659736
+						370127518
+					]
+					entryPrice: 150L
+					entryType: {
+						itemStack: {
+							id: "homyatos_explosives:c4"
+							Count: 1b
+							tag: { }
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "lrarmor:sniper_helmet"
+				Count: 1b
+				tag: {
+					Damage: 0
+				}
+			}
+			shopTabUUID: [I;
+				735397238
+				-1374860928
+				-1667139165
+				-1313005494
+			]
+			title: "Extras + Armor"
+		}
+		{
+			tabEntry: [ ]
+			icon: {
+				id: "minecraft:barrier"
+				Count: 1b
+			}
+			shopTabUUID: [I;
+				670694960
+				-1142011117
+				-2082708349
+				1670040183
+			]
+			title: "Extras"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						-603318255
+						-2003809510
+						-1457868504
+						-1025143759
+					]
+					entryPrice: 0L
+					entryType: {
+						itemStack: {
+							id: "tacz:ammo_box"
+							Count: 1b
+							tag: {
+								AllTypeCreative: 1b
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-62537943
+						714949525
+						-1378965688
+						179113213
+					]
+					entryPrice: 0L
+					entryType: {
+						itemStack: {
+							id: "superbwarfare:taser_electrode"
+							Count: 10b
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "tacz:ammo_box"
+				Count: 1b
+				tag: {
+					AllTypeCreative: 1b
+				}
+			}
+			shopTabUUID: [I;
+				-56001248
+				742278691
+				-1314772172
+				362775722
+			]
+			title: "Ammo"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						57094965
+						-945271389
+						-1149985828
+						-970268700
+					]
+					entryPrice: 200L
+					entryType: {
+						itemStack: {
+							id: "csgrenades:flashbang"
+							Count: 3b
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1016083548
+						-2094250798
+						-1882786095
+						2128275950
+					]
+					entryPrice: 300L
+					entryType: {
+						itemStack: {
+							id: "csgrenades:hegrenade"
+							Count: 3b
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-84149898
+						-1013035679
+						-2116277591
+						1882502675
+					]
+					entryPrice: 300L
+					entryType: {
+						itemStack: {
+							id: "csgrenades:smokegrenade"
+							Count: 2b
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						-1171667592
+						-1920646393
+						-1417087136
+						2088696844
+					]
+					entryPrice: 400L
+					entryType: {
+						itemStack: {
+							id: "csgrenades:molotov"
+							Count: 1b
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+				{
+					entryUUID: [I;
+						612967663
+						1100630647
+						-1107672340
+						1218743934
+					]
+					entryPrice: 50L
+					entryType: {
+						itemStack: {
+							id: "csgrenades:decoy"
+							Count: 1b
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						moneyID: "base_money"
+						shopSellerTypeID: "money"
+					}
+				}
+			]
+			icon: {
+				id: "lrtactical:throwable"
+				Count: 1b
+				tag: {
+					ThrowableId: "lrtactical:m67"
+				}
+			}
+			shopTabUUID: [I;
+				-640487531
+				-1382202708
+				-2141339978
+				2055624853
+			]
+			title: "Grenades"
+		}
+		{
+			tabEntry: [
+				{
+					entryUUID: [I;
+						127382677
+						-1550365846
+						-1589406924
+						-828222757
+					]
+					entryPrice: 10L
+					entryType: {
+						itemStack: {
+							id: "csgobox:csgo_box"
+							Count: 1b
+							tag: {
+								BoxItemInfo: {
+									drop: 0.0f
+									random: [I;
+										2
+										5
+										6
+										20
+										625
+									]
+									name: "Case 1 (pistols)"
+									grade5: ["{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_ak_abyssal_apparition\",\"GunCurrentAmmoCount\":30}}"]
+									grade4: ["{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_glock_moonrise\",\"GunCurrentAmmoCount\":20}}"]
+									grade3: ["{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_usp_whiteout\",\"GunCurrentAmmoCount\":12}}"]
+									grade2: [
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_glock_dragon_tattoo\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_usp_royal_blue\",\"GunCurrentAmmoCount\":12}}"
+									]
+									grade1: [
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_glock_bunsen_burner\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_glock_high_beam\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_glock_candy_apple\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_glock_reactor\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_usp_stainless\",\"GunCurrentAmmoCount\":12}}"
+									]
+									key: "csgobox:csgo_key0"
+									entity: ["minecraft:zombie"]
+								}
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						item: {
+							id: "minecraft:diamond"
+							Count: 1b
+						}
+						shopSellerTypeID: "item"
+					}
+				}
+				{
+					entryUUID: [I;
+						-379761935
+						568018189
+						-1382357947
+						1421507984
+					]
+					entryPrice: 10L
+					entryType: {
+						itemStack: {
+							id: "csgobox:csgo_box"
+							Count: 1b
+							tag: {
+								BoxItemInfo: {
+									drop: 0.0f
+									random: [I;
+										2
+										5
+										6
+										20
+										625
+									]
+									name: "AR Case 2"
+									grade5: [
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_printstream\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_chantico_fire\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_ak_asiimov\",\"GunCurrentAmmoCount\":30}}"
+									]
+									grade4: [
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_atomic_alloy\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_ak_abyssal_apparition\",\"GunCurrentAmmoCount\":30}}"
+									]
+									grade3: [
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_emphorosaur_s\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_ak_fire_serpent\",\"GunCurrentAmmoCount\":30}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_ak_vulcan\",\"GunCurrentAmmoCount\":30}}"
+									]
+									grade2: [
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_nitro\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_knight\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_ak_elite_build\",\"GunCurrentAmmoCount\":30}}"
+									]
+									grade1: [
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_hot_rod\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_m4a1s_blue_phosphor\",\"GunCurrentAmmoCount\":20}}"
+										"{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"AUTO\",\"GunId\":\"mcs2:cs_ak_green_laminate\",\"GunCurrentAmmoCount\":30}}"
+									]
+									key: "csgobox:csgo_key0"
+									entity: ["minecraft:zombie"]
+								}
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						item: {
+							id: "minecraft:diamond"
+							Count: 1b
+						}
+						shopSellerTypeID: "item"
+					}
+				}
+				{
+					entryUUID: [I;
+						1257918352
+						1768902043
+						-1193003139
+						641947278
+					]
+					entryPrice: 10L
+					entryType: {
+						itemStack: {
+							id: "csgobox:csgo_box"
+							Count: 1b
+							tag: {
+								BoxItemInfo: {
+									drop: 0.0f
+									random: [I;
+										2
+										5
+										6
+										20
+										625
+									]
+									name: "Snipers"
+									grade4: ["{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_awp_dragon_lore\",\"GunCurrentAmmoCount\":5}}"]
+									grade2: ["{\"id\":\"tacz:modern_kinetic_gun\",\"Count\":1,\"tag\":{\"HasBulletInBarrel\":1,\"GunFireMode\":\"SEMI\",\"GunId\":\"mcs2:cs_awp_fade\",\"GunCurrentAmmoCount\":5}}"]
+									key: "csgobox:csgo_key0"
+									entity: ["minecraft:zombie"]
+								}
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						item: {
+							id: "minecraft:diamond"
+							Count: 1b
+						}
+						shopSellerTypeID: "item"
+					}
+				}
+				{
+					entryUUID: [I;
+						-269991494
+						-1915076026
+						-1264170659
+						-1896494517
+					]
+					entryPrice: 20L
+					entryType: {
+						itemStack: {
+							id: "csgobox:csgo_box"
+							Count: 1b
+							tag: {
+								BoxItemInfo: {
+									drop: 0.0f
+									random: [I;
+										2
+										5
+										6
+										20
+										625
+									]
+									name: "Knife Box 1"
+									grade5: ["{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:talon\"}}"]
+									grade3: [
+										"{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:bayonet\"}}"
+										"{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:stiletto\"}}"
+									]
+									grade2: [
+										"{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:skeleton\"}}"
+										"{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:push\"}}"
+									]
+									grade1: [
+										"{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:karambit\"}}"
+										"{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:butterfly\"}}"
+										"{\"id\":\"lrtactical:melee\",\"Count\":1,\"tag\":{\"MeleeWeaponId\":\"cs2_wt:tactical\"}}"
+									]
+									key: "csgobox:csgo_key0"
+									entity: ["minecraft:zombie"]
+								}
+							}
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						item: {
+							id: "minecraft:diamond"
+							Count: 1b
+						}
+						shopSellerTypeID: "item"
+					}
+				}
+				{
+					entryUUID: [I;
+						-6209379
+						-1549775417
+						-2053462831
+						-1870485082
+					]
+					entryPrice: 5L
+					entryType: {
+						itemStack: {
+							id: "csgobox:csgo_key0"
+							Count: 1b
+						}
+						shopEntryTypeID: "shopItemEntryType"
+					}
+					entryCount: 1
+					isSell: 0b
+					icon: {
+						id: "minecraft:barrier"
+						Count: 1b
+					}
+					shopSeller: {
+						item: {
+							id: "minecraft:diamond"
+							Count: 1b
+						}
+						shopSellerTypeID: "item"
+					}
+				}
+			]
+			icon: {
+				id: "csgobox:csgo_box"
+				Count: 1b
+				tag: {
+					BoxItemInfo: {
+						drop: 0.12f
+						random: [I;
+							2
+							5
+							6
+							20
+							625
+						]
+						name: "Weapons Supply Box"
+						grade5: [
+							"{\"id\":\"minecraft:netherite_sword\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:netherite_axe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:netherite_pickaxe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:netherite_shovel\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:netherite_hoe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+						]
+						grade4: [
+							"{\"id\":\"minecraft:diamond_axe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:diamond_sword\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+						]
+						grade3: [
+							"{\"id\":\"minecraft:diamond_shovel\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:diamond_pickaxe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:diamond_hoe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+						]
+						grade2: [
+							"{\"id\":\"minecraft:golden_sword\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:golden_axe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:golden_axe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:golden_pickaxe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:golden_shovel\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+						]
+						grade1: [
+							"{\"id\":\"minecraft:stone_sword\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:iron_axe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:iron_shovel\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:iron_pickaxe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:iron_axe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:iron_hoe\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+							"{\"id\":\"minecraft:iron_sword\",\"Count\":1,\"tag\":{\"Damage\":0}}"
+						]
+						key: "csgobox:csgo_key0"
+						entity: [
+							"minecraft:zombie"
+							"minecraft:skeleton"
+						]
+					}
+				}
+			}
+			shopTabUUID: [I;
+				907274758
+				1750287625
+				-1487831230
+				-1010590924
+			]
+			title: "Cases"
+		}
+	]
+}

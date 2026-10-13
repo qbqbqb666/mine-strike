@@ -1,0 +1,57 @@
+
+[drops]
+	#比赛时主武器可拾取数量
+	#Number of main weapons that can be picked up during the competition
+	#Range: 0 ~ 10
+	MainWeaponCount = 1
+	#比赛时副武器可拾取数量
+	#Number of secondary weapons that can be picked up during the competition
+	#Range: 0 ~ 10
+	SecondaryCount = 1
+	#比赛时投掷物可拾取数量
+	#Number of throwable that can be picked up during the competition
+	#Range: 0 ~ 10
+	ThrowableCount = 4
+	#比赛时RPG品类(刀包用)可拾取数量
+	#The number of weapons that can be picked up when the weapon type is RPG (knife) during the competition
+	#Range: 0 ~ 10
+	ThirdWeaponCount = 1
+
+[throwable]
+	#闪光弹致盲生效半径
+	#Effective blinding radius of flash bombs
+	#Range: 0 ~ 48
+	FlashBombRadius = 48
+	#手雷爆炸生效半径
+	#Effective explosion radius of grenades
+	#Range: 0 ~ 10
+	GrenadeRadius = 3
+	#手雷投掷后多久爆炸 (tick)
+	#Delay before grenade detonation after being thrown (ticks)
+	#20 ticks = 1 second
+	#Range: 0 ~ 200
+	GrenadeFuseTime = 30
+	#手雷的爆炸伤害
+	#Explosion damage of grenades
+	#Range: 0 ~ 9999
+	GrenadeDamage = 20
+	#燃烧弹投掷后多久自毁 (tick)
+	#Self-destruct delay of incendiary grenades after being thrown (ticks)
+	#20 ticks = 1 second
+	#Range: 0 ~ 200
+	IncendiaryGrenadeOutTime = 40
+	#燃烧弹激活后的存活时间 (tick)
+	#Survival time after activation of incendiary grenade (ticks)
+	#20 ticks = 1 second
+	#Range: 0 ~ 400
+	IncendiaryGrenadeLivingTime = 140
+	#燃烧弹的伤害
+	#Damage value of incendiary grenades
+	#Range: 0 ~ 9999
+	IncendiaryGrenadeDamage = 2
+	#烟雾弹激活后的存活时间 (tick)
+	#Survival time after smoke bomb activation (ticks)
+	#20 ticks = 1 second
+	#Range: 0 ~ 900
+	SmokeShellLivingTime = 300
+

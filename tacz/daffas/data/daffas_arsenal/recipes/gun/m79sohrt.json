@@ -1,0 +1,33 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/gold"
+      },
+      "count": 12
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 70
+    },
+    {
+      "item": {
+        "tag": "forge:gems/lapis"
+      },
+      "count": 5
+    },
+    {
+      "item": {
+        "tag": "minecraft:logs"
+      },
+      "count": 11
+    }
+  ],
+  "result": {
+    "type": "gun",
+    "id": "daffas_arsenal:m79sohrt"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

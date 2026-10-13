@@ -1,0 +1,10 @@
+{
+  "singleplayer": {
+    "dust2": true
+  },
+  "multiplayer": {
+    "3675f4b2-4d32-4533-8e12-bec1d94d8900": true,
+    "8302ee0b-b699-494f-accf-875e1b8896bb": true,
+    "b1dfffad-c0e5-4f4d-99d9-06032e6091e6": true
+  }
+}

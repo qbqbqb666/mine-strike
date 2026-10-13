@@ -1,0 +1,12 @@
+{
+  "defaultItem": {
+    "id": "minecraft:apple",
+    "Count": 1
+  },
+  "defaultCost": 50,
+  "changedItem": {
+    "id": "minecraft:golden_apple",
+    "Count": 1
+  },
+  "changedCost": 300
+}

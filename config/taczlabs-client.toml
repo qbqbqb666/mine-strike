@@ -1,0 +1,100 @@
+
+[HUD]
+	#New Crosshair of TaCZ:Labs.
+	"Enable TaCZ:Labs Crosshair" = false
+	#Max spread radius, range 0 ~ 50, default 30.
+	#Range: 0 ~ 50
+	"Crosshair Max Spread" = 20
+	#Speed of crosshair anim. range 10 ~ 30, default 20.
+	#Range: 10 ~ 30
+	"Anim Speed" = 20
+	#If enable Shooting Judder
+	"Shooting Judder" = true
+	#Real: Follows the actual firearm spread
+	#Virtual: moving*2, sneaking*0.7, lying*0.5
+	#Speed: Moving based on player speed, sneaking*0.7, lying*0.5
+	#Allowed Values: REAL, VIRTUAL, SPEED
+	"Spread Rules" = "REAL"
+
+	[HUD."Global Settings"]
+		#Crosshair RGBA HEX color, format: 0xAARRGGBB.
+		#Range: > -2147483648
+		"Crosshair Color" = -419430452
+		#Range: 0 ~ 255
+		A = 230
+		#Range: 0 ~ 255
+		R = 255
+		#Range: 0 ~ 255
+		G = 255
+		#Range: 0 ~ 255
+		B = 204
+		#Shadow alpha of crosshair, range 0 ~ 255, default 128.
+		#Range: 0 ~ 255
+		"Shadow Alpha" = 128
+		#Shadow offset of crosshair, range 1 ~ 6, default 1 .
+		#Range: 0 ~ 3
+		"Shadow Offset" = 1
+
+["Local Settings"]
+
+	["Local Settings"."Crosshair Type"]
+		#Crosshair of Pistol
+		#Allowed Values: CROSSHAIR, RECT, RIGHT_ANGLE, ARC, RULER, POINT, TACZ
+		Pistol = "RIGHT_ANGLE"
+		#Crosshair of Sub-Machine Gun
+		#Allowed Values: CROSSHAIR, RECT, RIGHT_ANGLE, ARC, RULER, POINT, TACZ
+		"Sub-Machine Gun" = "CROSSHAIR"
+		#Crosshair of Rifle
+		#Allowed Values: CROSSHAIR, RECT, RIGHT_ANGLE, ARC, RULER, POINT, TACZ
+		Rifle = "CROSSHAIR"
+		#Crosshair of Machine Gun
+		#Allowed Values: CROSSHAIR, RECT, RIGHT_ANGLE, ARC, RULER, POINT, TACZ
+		"Machine Gun" = "CROSSHAIR"
+		#Crosshair of Sniper
+		#Allowed Values: CROSSHAIR, RECT, RIGHT_ANGLE, ARC, RULER, POINT, TACZ
+		Sniper = "CROSSHAIR"
+		#Crosshair of Shotgun
+		#Allowed Values: CROSSHAIR, RECT, RIGHT_ANGLE, ARC, RULER, POINT, TACZ
+		Shotgun = "RECT"
+		#Crosshair of Heavy Weapon
+		#Allowed Values: CROSSHAIR, RECT, RIGHT_ANGLE, ARC, RULER, POINT, TACZ
+		"Heavy Weapon" = "RECT"
+		#Crosshair Dot Style
+		#Allowed Values: RECT, CIRCLE
+		"Dot Style" = "RECT"
+
+	["Local Settings"."Crosshair Properties"]
+		#Radius of crosshair, range 0 ~ 10, default 5 .
+		#Range: 0 ~ 10
+		"Crosshair Radius" = 5
+		#Length of crosshair, range 1 ~ 20, default 6 .
+		#Range: 1 ~ 20
+		"Crosshair Length" = 6
+		#Width of crosshair, range 1 ~ 10, default 2 .
+		#Range: 1 ~ 10
+		"Crosshair Width" = 1
+		#Radius of rect crosshair, range 0 ~ 20, default 12 .
+		#Range: 0 ~ 20
+		"Rect Crosshair Radius" = 10
+		#Length of rect crosshair, range 1 ~ 20, default 6 .
+		#Range: 1 ~ 20
+		"Rect Crosshair Length" = 6
+		#Width of rect crosshair, range 1 ~ 10, default 1 .
+		#Range: 1 ~ 10
+		"Rect Crosshair Width" = 1
+		#Radius of right angle crosshair, range 0 ~ 10, default 4 .
+		#Range: 0 ~ 10
+		"Right Angle Crosshair Radius" = 4
+		#Width of right angle crosshair, range 1 ~ 5, default 1 .
+		#Range: 1 ~ 5
+		"Right Angle Crosshair Width" = 1
+		#Radius of arc crosshair, range 0 ~ 20, default 8 .
+		#Range: 0 ~ 20
+		"Arc Crosshair Radius" = 8
+		#Length of arc crosshair, range 1 ~ 20, default 6 .
+		#Range: 1 ~ 20
+		"Arc Crosshair Length" = 6
+		#Width of arc crosshair, range 1 ~ 10, default 2 .
+		#Range: 1 ~ 10
+		"Arc Crosshair Width" = 1
+

@@ -1,0 +1,18 @@
+
+["kill message"]
+	#Kill message enabled
+	hudEnabled = true
+	#Kill message position
+	#Range: 1 ~ 4
+	hudPosition = 2
+	#Per message show time
+	#Range: 1 ~ 60
+	messageShowTime = 5
+	#Max show count
+	#Range: 1 ~ 10
+	maxShowCount = 5
+
+["kill icon"]
+	#Kill icon enabled
+	killIconEnabled = true
+

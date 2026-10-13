@@ -1,0 +1,28 @@
+{
+  "materials": [
+    {
+      "item": {
+        "tag": "forge:ingots/gold"
+      },
+      "count": 10
+    },
+    {
+      "item": {
+        "tag": "forge:ingots/iron"
+      },
+      "count": 50
+    },
+    {
+      "item": {
+        "tag": "forge:gems/lapis"
+      },
+      "count": 8
+    }
+
+  ],
+  "result": {
+    "type": "gun",
+    "id": "daffas_arsenal:hk45_sup"
+  },
+  "type": "tacz:gun_smith_table_crafting"
+}

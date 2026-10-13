@@ -1,0 +1,353 @@
+---- Minecraft Crash Report ----
+// Embeddium instance tainted by mods: [oculus]
+// Please do not reach out for Embeddium support without removing these mods first.
+// -------
+// There are four lights!
+
+Time: 2026-04-07 13:21:01
+Description: Initializing game
+
+net.minecraftforge.fml.ModLoadingException: BlockOffensive (blockoffensive) encountered an error during the common_setup event phase
+§7java.lang.NoClassDefFoundError: club/pisquad/minecraft/csgrenades/registery/ModItems
+	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:125) ~[javafmllanguage-1.20.1-47.4.0.jar%23274!/:?] {}
+	at net.minecraftforge.fml.ModLoader.lambda$postEvent$29(ModLoader.java:326) ~[fmlcore-1.20.1-47.4.0.jar%23273!/:?] {}
+	at java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {re:mixin}
+	at net.minecraftforge.fml.ModList.forEachModInOrder(ModList.java:227) ~[fmlcore-1.20.1-47.4.0.jar%23273!/:?] {}
+	at net.minecraftforge.fml.ModLoader.postEvent(ModLoader.java:326) ~[fmlcore-1.20.1-47.4.0.jar%23273!/:?] {}
+	at net.minecraftforge.client.ForgeHooksClient.onRegisterKeyMappings(ForgeHooksClient.java:957) ~[forge-1.20.1-47.4.0-universal.jar%23277!/:?] {re:mixin,re:classloading}
+	at net.minecraftforge.client.ForgeHooksClient.initClientHooks(ForgeHooksClient.java:1275) ~[forge-1.20.1-47.4.0-universal.jar%23277!/:?] {re:mixin,re:classloading}
+	at net.minecraft.client.Minecraft.<init>(Minecraft.java:544) ~[client-1.20.1-20230612.114412-srg.jar%23272!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+	at net.minecraft.client.main.Main.main(Main.java:182) ~[forge-47.4.0.jar:?] {re:classloading,pl:runtimedistcleaner:A}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?] {}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?] {}
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?] {}
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?] {}
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:111) ~[fmlloader-1.20.1-47.4.0.jar:?] {}
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.clientService(CommonLaunchHandler.java:99) ~[fmlloader-1.20.1-47.4.0.jar:?] {}
+	at net.minecraftforge.fml.loading.targets.CommonClientLaunchHandler.lambda$makeService$0(CommonClientLaunchHandler.java:25) ~[fmlloader-1.20.1-47.4.0.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:108) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:78) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?] {}
+Caused by: java.lang.NoClassDefFoundError: club/pisquad/minecraft/csgrenades/registery/ModItems
+	at com.phasetranscrystal.blockoffensive.compat.CounterStrikeGrenadesCompat.registerKillIcon(CounterStrikeGrenadesCompat.java:19) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.screen.hud.CSDeathMessageHud.<init>(CSDeathMessageHud.java:59) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.screen.hud.CSGameHud.<init>(CSGameHud.java:47) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.screen.hud.CSGameHud.<clinit>(CSGameHud.java:45) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.BOClientBootstrap.onClientSetup(BOClientBootstrap.java:38) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.__BOClientBootstrap_onClientSetup_RegisterKeyMappingsEvent.invoke(.dynamic) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading,pl:eventbus:B}
+	at net.minecraftforge.eventbus.ASMEventHandler.invoke(ASMEventHandler.java:73) ~[eventbus-6.0.5.jar%2387!/:?] {}
+	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:315) ~[eventbus-6.0.5.jar%2387!/:?] {}
+	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:296) ~[eventbus-6.0.5.jar%2387!/:?] {}
+	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:121) ~[javafmllanguage-1.20.1-47.4.0.jar%23274!/:?] {}
+	... 23 more
+Caused by: java.lang.ClassNotFoundException: club.pisquad.minecraft.csgrenades.registery.ModItems
+	at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[?:?] {}
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?] {}
+	at cpw.mods.cl.ModuleClassLoader.loadClass(ModuleClassLoader.java:137) ~[securejarhandler-2.1.10.jar:?] {}
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?] {}
+	at cpw.mods.cl.ModuleClassLoader.loadClass(ModuleClassLoader.java:137) ~[securejarhandler-2.1.10.jar:?] {}
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:525) ~[?:?] {}
+	at com.phasetranscrystal.blockoffensive.compat.CounterStrikeGrenadesCompat.registerKillIcon(CounterStrikeGrenadesCompat.java:19) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.screen.hud.CSDeathMessageHud.<init>(CSDeathMessageHud.java:59) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.screen.hud.CSGameHud.<init>(CSGameHud.java:47) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.screen.hud.CSGameHud.<clinit>(CSGameHud.java:45) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.BOClientBootstrap.onClientSetup(BOClientBootstrap.java:38) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading}
+	at com.phasetranscrystal.blockoffensive.client.__BOClientBootstrap_onClientSetup_RegisterKeyMappingsEvent.invoke(.dynamic) ~[blockoffensive-1.20.1-forge-official-1.2.5.1.jar%23215!/:1.20.1-forge-official-1.2.5.1] {re:classloading,pl:eventbus:B}
+	at net.minecraftforge.eventbus.ASMEventHandler.invoke(ASMEventHandler.java:73) ~[eventbus-6.0.5.jar%2387!/:?] {}
+	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:315) ~[eventbus-6.0.5.jar%2387!/:?] {}
+	at net.minecraftforge.eventbus.EventBus.post(EventBus.java:296) ~[eventbus-6.0.5.jar%2387!/:?] {}
+	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:121) ~[javafmllanguage-1.20.1-47.4.0.jar%23274!/:?] {}
+	... 23 more
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Suspected Mod: 
+	BlockOffensive (blockoffensive), Version: 1.2.5.1
+		at TRANSFORMER/blockoffensive@1.2.5.1/com.phasetranscrystal.blockoffensive.compat.CounterStrikeGrenadesCompat.registerKillIcon(CounterStrikeGrenadesCompat.java:19)
+Stacktrace:
+	at net.minecraftforge.fml.javafmlmod.FMLModContainer.acceptEvent(FMLModContainer.java:125) ~[javafmllanguage-1.20.1-47.4.0.jar%23274!/:?] {}
+	at net.minecraftforge.fml.ModLoader.lambda$postEvent$29(ModLoader.java:326) ~[fmlcore-1.20.1-47.4.0.jar%23273!/:?] {}
+	at java.lang.Iterable.forEach(Iterable.java:75) ~[?:?] {re:mixin}
+	at net.minecraftforge.fml.ModList.forEachModInOrder(ModList.java:227) ~[fmlcore-1.20.1-47.4.0.jar%23273!/:?] {}
+	at net.minecraftforge.fml.ModLoader.postEvent(ModLoader.java:326) ~[fmlcore-1.20.1-47.4.0.jar%23273!/:?] {}
+	at net.minecraftforge.client.ForgeHooksClient.onRegisterKeyMappings(ForgeHooksClient.java:957) ~[forge-1.20.1-47.4.0-universal.jar%23277!/:?] {re:mixin,re:classloading}
+	at net.minecraftforge.client.ForgeHooksClient.initClientHooks(ForgeHooksClient.java:1275) ~[forge-1.20.1-47.4.0-universal.jar%23277!/:?] {re:mixin,re:classloading}
+	at net.minecraft.client.Minecraft.<init>(Minecraft.java:544) ~[client-1.20.1-20230612.114412-srg.jar%23272!/:?] {re:mixin,pl:accesstransformer:B,pl:runtimedistcleaner:A,re:classloading,pl:accesstransformer:B,pl:mixin:A,pl:runtimedistcleaner:A}
+-- Initialization --
+Details:
+	Modules: 
+		ADVAPI32.dll:Advanced Windows 32 Base API:10.0.19041.5678 (WinBuild.160101.0800):Microsoft Corporation
+		COMCTL32.dll:User Experience Controls Library:6.10 (WinBuild.160101.0800):Microsoft Corporation
+		CRYPT32.dll:Crypto API32:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		CRYPTBASE.dll:Base cryptographic API DLL:10.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		CRYPTSP.dll:Cryptographic Service Provider API:10.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		ColorAdapterClient.dll:Microsoft Color Adapter Client:10.0.19041.5129 (WinBuild.160101.0800):Microsoft Corporation
+		CoreMessaging.dll:Microsoft CoreMessaging Dll:10.0.19041.5915:Microsoft Corporation
+		CoreUIComponents.dll:Microsoft Core UI Components Dll:10.0.19041.3636:Microsoft Corporation
+		DBGHELP.DLL:Windows Image Helper:10.0.19041.5848 (WinBuild.160101.0800):Microsoft Corporation
+		DEVOBJ.dll:Device Information Set DLL:10.0.19041.5794 (WinBuild.160101.0800):Microsoft Corporation
+		DNSAPI.dll:DNS Client API DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		GDI32.dll:GDI Client DLL:10.0.19041.7058 (WinBuild.160101.0800):Microsoft Corporation
+		GLU32.dll:OpenGL Utility Library DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		IMM32.DLL:Multi-User Windows IMM32 API Client DLL:10.0.19041.6157 (WinBuild.160101.0800):Microsoft Corporation
+		IPHLPAPI.DLL:IP Helper API:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		KERNEL32.DLL:Windows NT BASE API Client DLL:10.0.19041.6807 (WinBuild.160101.0800):Microsoft Corporation
+		KERNELBASE.dll:Windows NT BASE API Client DLL:10.0.19041.6807 (WinBuild.160101.0800):Microsoft Corporation
+		MMDevApi.dll:MMDevice API:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		MSASN1.dll:ASN.1 Runtime APIs:10.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		MSCTF.dll:MSCTF Server DLL:10.0.19041.5848 (WinBuild.160101.0800):Microsoft Corporation
+		MpOav.dll:IOfficeAntiVirus Module:4.18.26020.6 (cd0aebd7c18a68cd2e3af14a117b45b178d088f4):Microsoft Corporation
+		NLAapi.dll:Network Location Awareness 2:10.0.19041.7058 (WinBuild.160101.0800):Microsoft Corporation
+		NSI.dll:NSI User-mode interface DLL:10.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		NTASN1.dll:Microsoft ASN.1 API:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		OLEAUT32.dll:OLEAUT32.DLL:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		OpenAL.dll:Main implementation library:1.21.1:
+		POWRPROF.dll:Power Profile Helper DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		PROPSYS.dll:Microsoft Property System:7.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		PSAPI.DLL:Process Status Helper:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		RPCRT4.dll:Remote Procedure Call Runtime:10.0.19041.6807 (WinBuild.160101.0800):Microsoft Corporation
+		SETUPAPI.dll:Windows Setup API:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		SHCORE.dll:SHCORE:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		SHELL32.dll:Windows Shell Common Dll:10.0.19041.5678 (WinBuild.160101.0800):Microsoft Corporation
+		UMPDC.dll
+		USER32.dll:Multi-User Windows USER API Client DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		USERENV.dll:Userenv:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		VCRUNTIME140.dll:Microsoft® C Runtime Library:14.38.33135.0:Microsoft Corporation
+		VERSION.dll:Version Checking and File Installation Libraries:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		WINHTTP.dll:Windows HTTP Services:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		WINMM.dll:MCI API DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		WINTRUST.dll:Microsoft Trust Verification APIs:10.0.19041.6456 (WinBuild.160101.0800):Microsoft Corporation
+		WS2_32.dll:Windows Socket 2.0 32-Bit DLL:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		Wldp.dll:Windows Lockdown Policy:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		amsi.dll:Anti-Malware Scan Interface:10.0.19041.4355 (WinBuild.160101.0800):Microsoft Corporation
+		apphelp.dll:Application Compatibility Client Library:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		atiadlxx.dll:ADL:7.21.30.1444:Advanced Micro Devices, Inc.
+		atig6pxx.dll:atiglpxx.dll:8.14.01.6564:Advanced Micro Devices, Inc. 
+		atig6txx.dll:atigktxx.dll:8.14.01.6564:Advanced Micro Devices, Inc. 
+		atio6axx.dll:AMD OpenGL driver:8.14.11000.14761:Advanced Micro Devices, Inc.
+		awt.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		bcrypt.dll:Windows Cryptographic Primitives Library:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		bcryptPrimitives.dll:Windows Cryptographic Primitives Library:10.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		cfgmgr32.dll:Configuration Manager DLL:10.0.19041.3996 (WinBuild.160101.0800):Microsoft Corporation
+		clbcatq.dll:COM+ Configuration Catalog:2001.12.10941.16384 (WinBuild.160101.0800):Microsoft Corporation
+		combase.dll:Microsoft COM for Windows:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		dbgcore.DLL:Windows Core Debugging Helpers:10.0.19041.5794 (WinBuild.160101.0800):Microsoft Corporation
+		dhcpcsvc.DLL:DHCP Client Service:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		dhcpcsvc6.DLL:DHCPv6 Client:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		dinput8.dll:Microsoft DirectInput:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		dwmapi.dll:Microsoft Desktop Window Manager API:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		dxcore.dll:DXCore:10.0.19041.5794 (WinBuild.160101.0800):Microsoft Corporation
+		dxva2.dll:DirectX Video Acceleration 2.0 DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		extnet.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		fontmanager.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		freetype.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		fwpuclnt.dll:FWP/IPsec User-Mode API:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		gdi32full.dll:GDI Client DLL:10.0.19041.7058 (WinBuild.160101.0800):Microsoft Corporation
+		glfw.dll:GLFW 3.4.0 DLL:3.4.0:GLFW
+		icm32.dll:Microsoft Color Management Module (CMM):10.0.19041.5129 (WinBuild.160101.0800):Microsoft Corporation
+		inputhost.dll:InputHost:10.0.19041.5794 (WinBuild.160101.0800):Microsoft Corporation
+		java.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		javaw.exe:OpenJDK Platform binary:17.0.15.0:Microsoft
+		jemalloc.dll
+		jimage.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		jli.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		jna15227471881492080621.dll:JNA native library:6.1.4:Java(TM) Native Access (JNA)
+		jsvml.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		jvm.dll:OpenJDK 64-Bit server VM:17.0.15.0:Microsoft
+		kernel.appcore.dll:AppModel API Host:10.0.19041.3758 (WinBuild.160101.0800):Microsoft Corporation
+		lwjgl.dll
+		lwjgl_opengl.dll
+		lwjgl_stb.dll
+		management.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		management_ext.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		mscms.dll:Microsoft Color Matching System DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		msvcp140.dll:Microsoft® C Runtime Library:14.38.33135.0:Microsoft Corporation
+		msvcp_win.dll:Microsoft® C Runtime Library:10.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		msvcrt.dll:Windows NT CRT DLL:7.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		mswsock.dll:Microsoft Windows Sockets 2.0 Service Provider:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		napinsp.dll:E-mail Naming Shim Provider:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		ncrypt.dll:Windows NCrypt Router:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		net.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		nio.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		ntdll.dll:NT Layer DLL:10.0.19041.4842 (WinBuild.160101.0800):Microsoft Corporation
+		ntmarta.dll:Windows NT MARTA provider:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		ole32.dll:Microsoft OLE for Windows:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		opengl32.dll:OpenGL Client DLL:10.0.19041.5794 (WinBuild.160101.0800):Microsoft Corporation
+		pdh.dll:Windows Performance Data Helper DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		perfos.dll:Windows System Performance Objects DLL:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		pnrpnsp.dll:PNRP Name Space Provider:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		profapi.dll:User Profile Basic API:10.0.19041.6033 (WinBuild.160101.0800):Microsoft Corporation
+		rasadhlp.dll:Remote Access AutoDial Helper:10.0.19041.6926 (WinBuild.160101.0800):Microsoft Corporation
+		rsaenh.dll:Microsoft Enhanced Cryptographic Provider:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		sechost.dll:Host for SCM/SDDL/LSA Lookup APIs:10.0.19041.6807 (WinBuild.160101.0800):Microsoft Corporation
+		shlwapi.dll:Shell Light-weight Utility Library:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		sunmscapi.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		textinputframework.dll:"TextInputFramework.DYNLINK":10.0.19041.6926 (WinBuild.160101.0800):Microsoft Corporation
+		ucrtbase.dll:Microsoft® C Runtime Library:10.0.19041.6809 (WinBuild.160101.0800):Microsoft Corporation
+		uxtheme.dll:Microsoft UxTheme Library:10.0.19041.4529 (WinBuild.160101.0800):Microsoft Corporation
+		vcruntime140_1.dll:Microsoft® C Runtime Library:14.38.33135.0:Microsoft Corporation
+		verify.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+		win32u.dll:Win32u:10.0.19041.7058 (WinBuild.160101.0800):Microsoft Corporation
+		windows.storage.dll:Microsoft WinRT Storage API:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		winrnr.dll:LDAP RnR Provider DLL:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		wintypes.dll:Windows Base Types DLL:10.0.19041.3636 (WinBuild.160101.0800):Microsoft Corporation
+		wshbth.dll:Windows Sockets Helper DLL:10.0.19041.5848 (WinBuild.160101.0800):Microsoft Corporation
+		xinput1_4.dll:Microsoft Common Controller API:10.0.19041.1 (WinBuild.160101.0800):Microsoft Corporation
+		zip.dll:OpenJDK Platform binary:17.0.15.0:Microsoft
+Stacktrace:
+	at net.minecraft.client.main.Main.main(Main.java:182) ~[forge-47.4.0.jar:?] {re:classloading,pl:runtimedistcleaner:A}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?] {}
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[?:?] {}
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?] {}
+	at java.lang.reflect.Method.invoke(Method.java:569) ~[?:?] {}
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.runTarget(CommonLaunchHandler.java:111) ~[fmlloader-1.20.1-47.4.0.jar:?] {}
+	at net.minecraftforge.fml.loading.targets.CommonLaunchHandler.clientService(CommonLaunchHandler.java:99) ~[fmlloader-1.20.1-47.4.0.jar:?] {}
+	at net.minecraftforge.fml.loading.targets.CommonClientLaunchHandler.lambda$makeService$0(CommonClientLaunchHandler.java:25) ~[fmlloader-1.20.1-47.4.0.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandlerDecorator.launch(LaunchServiceHandlerDecorator.java:30) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:53) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.LaunchServiceHandler.launch(LaunchServiceHandler.java:71) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.Launcher.run(Launcher.java:108) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.Launcher.main(Launcher.java:78) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:26) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.modlauncher.BootstrapLaunchConsumer.accept(BootstrapLaunchConsumer.java:23) ~[modlauncher-10.0.9.jar:?] {}
+	at cpw.mods.bootstraplauncher.BootstrapLauncher.main(BootstrapLauncher.java:141) ~[bootstraplauncher-1.1.2.jar:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.20.1
+	Minecraft Version ID: 1.20.1
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 17.0.15, Microsoft
+	Java VM Version: OpenJDK 64-Bit Server VM (mixed mode), Microsoft
+	Memory: 414978912 bytes (395 MiB) / 1761607680 bytes (1680 MiB) up to 17112760320 bytes (16320 MiB)
+	CPUs: 6
+	Processor Vendor: GenuineIntel
+	Processor Name: Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz
+	Identifier: Intel64 Family 6 Model 158 Stepping 10
+	Microarchitecture: Coffee Lake
+	Frequency (GHz): 3.00
+	Number of physical packages: 1
+	Number of physical CPUs: 6
+	Number of logical CPUs: 6
+	Graphics card #0 name: Radeon Pro 560X
+	Graphics card #0 vendor: Advanced Micro Devices, Inc. (0x1002)
+	Graphics card #0 VRAM (MB): 4095.00
+	Graphics card #0 deviceId: 0x67ef
+	Graphics card #0 versionInfo: DriverVersion=30.0.13045.22003
+	Memory slot #0 capacity (MB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 2.67
+	Memory slot #0 type: DDR4
+	Memory slot #1 capacity (MB): 16384.00
+	Memory slot #1 clockSpeed (GHz): 2.67
+	Memory slot #1 type: DDR4
+	Virtual memory max (MB): 37820.28
+	Virtual memory used (MB): 21539.13
+	Swap memory total (MB): 5174.11
+	Swap memory used (MB): 238.92
+	JVM Flags: 4 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xss1M -Xmx16320m -Xms256m
+	Loaded Shaderpack: (off)
+	Launched Version: forge-47.4.0
+	Backend library: LWJGL version 3.3.1 build 7
+	Backend API: Radeon Pro 560X GL version 4.6.14761 Core Profile Forward-Compatible Context FireGL 21.30.45.22 30.0.13045.22003, ATI Technologies Inc.
+	Window size: <not initialized>
+	GL Caps: Using framebuffer using OpenGL 3.2
+	GL debug messages: 
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'forge'
+	Type: Client (map_client.txt)
+	CPU: 6x Intel(R) Core(TM) i5-8500 CPU @ 3.00GHz
+	ModLauncher: 10.0.9+10.0.9+main.dcd20f30
+	ModLauncher launch target: forgeclient
+	ModLauncher naming: srg
+	ModLauncher services: 
+		mixin-0.8.5.jar mixin PLUGINSERVICE 
+		eventbus-6.0.5.jar eventbus PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.0.jar slf4jfixer PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.0.jar object_holder_definalize PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.0.jar runtime_enum_extender PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.0.jar capability_token_subclass PLUGINSERVICE 
+		accesstransformers-8.0.4.jar accesstransformer PLUGINSERVICE 
+		fmlloader-1.20.1-47.4.0.jar runtimedistcleaner PLUGINSERVICE 
+		modlauncher-10.0.9.jar mixin TRANSFORMATIONSERVICE 
+		modlauncher-10.0.9.jar fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		minecraft@1.0
+		kotlinforforge@4.12.0
+		javafml@null
+		lowcodefml@null
+	Mod List: 
+		SmartBrainLib-forge-1.20.1-1.15.jar               |SmartBrainLib                 |smartbrainlib                 |1.15                |COMMON_SET|Manifest: NOSIGNATURE
+		Explosion-Overhaul-0.2.3.0-forge-.jar             |Explosion Overhaul: A new leve|explosionoverhaul             |0.2.3.0-forge       |COMMON_SET|Manifest: NOSIGNATURE
+		geckolib-forge-1.20.1-4.8.3.jar                   |GeckoLib 4                    |geckolib                      |4.8.3               |COMMON_SET|Manifest: NOSIGNATURE
+		player-animation-lib-forge-1.0.2-rc1+1.20.jar     |Player Animator               |playeranimator                |1.0.2-rc1+1.20      |COMMON_SET|Manifest: NOSIGNATURE
+		taczaddon-1.20.1-1.1.7.jar                        |TACZ-addon                    |taczaddon                     |1.1.7               |COMMON_SET|Manifest: NOSIGNATURE
+		sdm_economy-forge-1.20.1-1.7.2.jar                |SDM Economy                   |sdm_economy                   |1.20.1-1.7.2        |COMMON_SET|Manifest: NOSIGNATURE
+		jei-1.20.1-forge-15.20.0.112.jar                  |Just Enough Items             |jei                           |15.20.0.112         |COMMON_SET|Manifest: NOSIGNATURE
+		xaerolib-forge-1.20.1-1.1.0.jar                   |XaeroLib                      |xaerolib                      |1.1.0               |COMMON_SET|Manifest: NOSIGNATURE
+		tacz-1.20.1-1.1.7-hotfix2.jar                     |Timeless & Classics Guns: Zero|tacz                          |1.1.7-hotfix2       |COMMON_SET|Manifest: NOSIGNATURE
+		csgrenade-1.20.1-1.5.0-prerelease.jar             |Counter Strike Grenades       |csgrenades                    |1.20.1-1.5.0-prerele|COMMON_SET|Manifest: NOSIGNATURE
+		Ping-Wheel-1.12.1-forge-1.20.1.jar                |Ping Wheel                    |pingwheel                     |1.12.1              |COMMON_SET|Manifest: NOSIGNATURE
+		sdm_ui_lib-forge-1.20.1-1.8.3.jar                 |SDM UI Lib                    |sdm_ui_lib                    |1.20.1-1.8.3        |COMMON_SET|Manifest: NOSIGNATURE
+		tacz-tweaks-2.13.1-all.jar                        |TaCZ Tweaks                   |tacztweaks                    |2.13.1              |COMMON_SET|Manifest: NOSIGNATURE
+		EpheroLib-1.20.1-FORGE-1.2.0.jar                  |BOZOID                        |epherolib                     |0.1.2               |COMMON_SET|Manifest: NOSIGNATURE
+		fpsmatch-1.20.1-forge-official-1.2.5.jar          |FPSMatch                      |fpsmatch                      |1.2.5               |COMMON_SET|Manifest: NOSIGNATURE
+		Forgematica-0.1.13-mc1.20.1.jar                   |Forgematica                   |forgematica                   |0.1.13-mc1.20.1     |COMMON_SET|Manifest: NOSIGNATURE
+		superbwarfare-1.20.1-0.8.8-final-6a6b54795.jar    |Superb Warfare                |superbwarfare                 |0.8.8               |COMMON_SET|Manifest: NOSIGNATURE
+		taczlabs-1.20.1-1.1.6.jar                         |TaCZ:Labs                     |taczlabs                      |1.1.6               |COMMON_SET|Manifest: NOSIGNATURE
+		CameraOverhaul-v2.0.6-forge+mc[1.20.0-1.20.5].jar |CameraOverhaul                |cameraoverhaul                |2.0.6-forge+mc.1.20.|COMMON_SET|Manifest: NOSIGNATURE
+		cloth-config-11.1.136-forge.jar                   |Cloth Config v10 API          |cloth_config                  |11.1.136            |COMMON_SET|Manifest: NOSIGNATURE
+		forge-1.20.1-47.4.0-universal.jar                 |Forge                         |forge                         |47.4.0              |COMMON_SET|Manifest: 84:ce:76:e8:45:35:e4:0e:63:86:df:47:59:80:0f:67:6c:c1:5f:6e:5f:4d:b3:54:47:1a:9f:7f:ed:5e:f2:90
+		embeddium-0.3.31+mc1.20.1.jar                     |Embeddium                     |embeddium                     |0.3.31+mc1.20.1     |COMMON_SET|Manifest: NOSIGNATURE
+		homyatos_explosives-0.9.6-1.20-1.20.1.jar         |Homyatos' Explosives          |homyatos_explosives           |0.9.6               |COMMON_SET|Manifest: NOSIGNATURE
+		corpse-forge-1.20.1-1.0.23.jar                    |Corpse                        |corpse                        |1.20.1-1.0.23       |COMMON_SET|Manifest: NOSIGNATURE
+		bulletarmorenchant-1.0-1.20.1 chineseadd.jar      |Bullet Armor Enchant          |bulletarmorenchant            |1.0-1.20.1          |COMMON_SET|Manifest: NOSIGNATURE
+		daffas_arsenal-3.3.0.jar                          |Daffa's Arsenal               |daffas_arsenal                |3.3.0               |COMMON_SET|Manifest: NOSIGNATURE
+		client-1.20.1-20230612.114412-srg.jar             |Minecraft                     |minecraft                     |1.20.1              |COMMON_SET|Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		bloodbits-2.0.1-forge-1.20.1.jar                  |Blood Bits                    |bloodbits                     |2.0.1               |COMMON_SET|Manifest: NOSIGNATURE
+		FPSboost-1.20.1.jar                               |FPSBoost                      |fpsboostremake                |2.0                 |COMMON_SET|Manifest: NOSIGNATURE
+		voicechat-forge-1.20.1-2.6.15.jar                 |Simple Voice Chat             |voicechat                     |1.20.1-2.6.15       |COMMON_SET|Manifest: NOSIGNATURE
+		sound-physics-remastered-forge-1.20.1-1.5.1.jar   |Sound Physics Remastered      |sound_physics_remastered      |1.20.1-1.5.1        |COMMON_SET|Manifest: NOSIGNATURE
+		mcs2_gunpack-1.0.6.jar                            |MCS2 Gun Pack                 |mcs2_gunpack                  |1.0.6               |COMMON_SET|Manifest: NOSIGNATURE
+		mixinsquared-forge-0.3.3.jar                      |MixinSquared                  |mixinsquared                  |0.3.3               |COMMON_SET|Manifest: NOSIGNATURE
+		MaFgLib-0.1.14-mc1.20.1.jar                       |MaFgLib                       |mafglib                       |0.1.14-mc1.20.1     |COMMON_SET|Manifest: NOSIGNATURE
+		lrarmor-1.20.1-0.1.4.4.jar                        |LesRaisinsArmor               |lrarmor                       |0.1.4.4             |COMMON_SET|Manifest: NOSIGNATURE
+		CreativeCore_FORGE_v2.12.35_mc1.20.1.jar          |CreativeCore                  |creativecore                  |2.12.35             |COMMON_SET|Manifest: NOSIGNATURE
+		lrtactical-1.20.1-0.3.0.jar                       |LesRaisins Tactical Equipments|lrtactical                    |0.3.0               |COMMON_SET|Manifest: NOSIGNATURE
+		kffmod-4.12.0.jar                                 |Kotlin For Forge              |kotlinforforge                |4.12.0              |COMMON_SET|Manifest: NOSIGNATURE
+		csgobox-2.0.1.jar                                 |CS2 Box                       |csgobox                       |2.0.1               |COMMON_SET|Manifest: NOSIGNATURE
+		TCTcore-1.20.1.jar                                |tctcore                       |tctcore                       |2.2                 |COMMON_SET|Manifest: NOSIGNATURE
+		seriousplayeranimations-1.1.1.jar                 |Serious Player Animations     |seriousplayeranimations       |1.1.1               |COMMON_SET|Manifest: NOSIGNATURE
+		curios-forge-5.14.1+1.20.1.jar                    |Curios API                    |curios                        |5.14.1+1.20.1       |COMMON_SET|Manifest: NOSIGNATURE
+		xaerominimap-forge-1.20.1-25.3.10.jar             |Xaero's Minimap               |xaerominimap                  |25.3.10             |COMMON_SET|Manifest: NOSIGNATURE
+		oculus-mc1.20.1-1.8.0.jar                         |Oculus                        |oculus                        |1.8.0               |COMMON_SET|Manifest: NOSIGNATURE
+		endlessammo-1.2.0.jar                             |TACZAddonTemplate             |endlessammo                   |1.2.0               |COMMON_SET|Manifest: NOSIGNATURE
+		collective-1.20.1-8.13.jar                        |Collective                    |collective                    |8.13                |COMMON_SET|Manifest: NOSIGNATURE
+		WaT 0.2.3.jar                                     |Ready or Not TaCZ Pack        |ronmc                         |0.2.3               |COMMON_SET|Manifest: NOSIGNATURE
+		tacz_npc-1.2.0.jar                                |[Tacz] NPCs                   |tacz_npc                      |1.0.0               |COMMON_SET|Manifest: NOSIGNATURE
+		ModernxlSurvival_1.3.2_v1.20.1.jar                |Modernxl_II                   |modernxl_ii                   |1.3.2               |COMMON_SET|Manifest: NOSIGNATURE
+		blockoffensive-1.20.1-forge-official-1.2.5.1.jar  |BlockOffensive                |blockoffensive                |1.2.5.1             |COMMON_SET|Manifest: NOSIGNATURE
+		MCS2-Knifepack-free-1.0.0 (1).jar                 |MCS2 Knifepack                |mcs2_knifepack_free           |1.0.0               |COMMON_SET|Manifest: NOSIGNATURE
+		mcqoy-0.4.1+forge-1.20.jar                        |Barebones McQoy               |mcqoy                         |0.4.1+forge-1.20    |COMMON_SET|Manifest: NOSIGNATURE
+		e4mc-forge-6.1.0.jar                              |e4mc                          |e4mc                          |6.1.0               |COMMON_SET|Manifest: NOSIGNATURE
+		architectury-9.2.14-forge.jar                     |Architectury                  |architectury                  |9.2.14              |COMMON_SET|Manifest: NOSIGNATURE
+		ftb-library-forge-2001.2.12.jar                   |FTB Library                   |ftblibrary                    |2001.2.12           |COMMON_SET|Manifest: NOSIGNATURE
+		sdmshoprework-forge-1.20.1-6.11-pre.jar           |SDM Shop Rework               |sdmshoprework                 |1.20.1-6.11-pre     |COMMON_SET|Manifest: NOSIGNATURE
+		yuushya-1.20.1-forge-2.2.3.jar                    |Yuushya                       |yuushya                       |2.2.3               |COMMON_SET|Manifest: NOSIGNATURE
+		ferritecore-6.0.1-forge.jar                       |Ferrite Core                  |ferritecore                   |6.0.1               |COMMON_SET|Manifest: 41:ce:50:66:d1:a0:05:ce:a1:0e:02:85:9b:46:64:e0:bf:2e:cf:60:30:9a:fe:0c:27:e0:63:66:9a:84:ce:8a
+		yet_another_config_lib_v3-3.6.6+1.20.1-forge.jar  |YetAnotherConfigLib           |yet_another_config_lib_v3     |3.6.6+1.20.1-forge  |COMMON_SET|Manifest: NOSIGNATURE
+		ModernUI-Forge-1.20.1-3.12.0.1-universal.jar      |Modern UI                     |modernui                      |3.12.0.1            |COMMON_SET|Manifest: 01:c4:52:25:b1:6e:5f:ac:fe:88:35:7e:cf:65:2f:69:1d:56:db:2b:93:f8:dd:7c:93:47:04:8c:e4:22:13:91
+		tacz_fallout-0.1.0.jar                            |Fallout Gunpack               |tacz_fallout                  |0.1.0               |COMMON_SET|Manifest: NOSIGNATURE
+		maxstuff-1.8.1.jar                                |Maxstuff                      |maxstuff                      |1.8.1               |COMMON_SET|Manifest: NOSIGNATURE
+	Crash Report UUID: 792b4a77-1b4a-41f0-b616-cb48d970934c
+	FML: 47.4
+	Forge: net.minecraftforge:47.4.0

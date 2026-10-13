@@ -1,0 +1,1737 @@
+{
+  "bombAreas": [
+    {
+      "Position1": [
+        -275,
+        38,
+        -244
+      ],
+      "Position2": [
+        -287,
+        42,
+        -236
+      ]
+    },
+    {
+      "Position1": [
+        -267,
+        24,
+        -242
+      ],
+      "Position2": [
+        -278,
+        27,
+        -234
+      ]
+    },
+    {
+      "Position1": [
+        -275,
+        37,
+        -244
+      ],
+      "Position2": [
+        -287,
+        42,
+        -236
+      ]
+    }
+  ],
+  "blastTeam": "cs_nuke_t",
+  "matchEndPoint": {
+    "Dimension": "minecraft:overworld",
+    "Position": [
+      -173,
+      4,
+      -176
+    ],
+    "Yaw": 0.0,
+    "Pitch": 0.0
+  },
+  "shops": {
+    "ct": {
+      "mapName": "nuke",
+      "defaultMoney": 800,
+      "shopData": {
+        "EQUIPMENT": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "lrarmor:atf_vest_chestplate",
+              "Count": 1,
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "defaultCost": 650
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "lrarmor:joker_armed_helmet",
+              "Count": 1,
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "defaultCost": 350
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 0,
+                "HasBulletInBarrel": 1,
+                "GunId": "fallout:x26",
+                "MaxDummyAmmo": 0,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 1
+              }
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "blockoffensive:bomb_disposal_kit",
+              "Count": 1
+            },
+            "defaultCost": 400
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:air",
+              "Count": 0
+            },
+            "defaultCost": 0
+          }
+        ],
+        "MID_RANK": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 32,
+                "HasBulletInBarrel": 1,
+                "GunId": "maxstuff:m870t",
+                "MaxDummyAmmo": 32,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 5
+              }
+            },
+            "defaultCost": 1050
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 41,
+                "HasBulletInBarrel": 1,
+                "GunId": "ronmc:m1014",
+                "MaxDummyAmmo": 41,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 7
+              }
+            },
+            "defaultCost": 2000
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 90,
+                "HasBulletInBarrel": 1,
+                "GunId": "daffas_arsenal:harpa9",
+                "MaxDummyAmmo": 90,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 1300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 90,
+                "HasBulletInBarrel": 1,
+                "GunId": "maxstuff:hk_mp5sd",
+                "MaxDummyAmmo": 90,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 1400
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 100,
+                "HasBulletInBarrel": 1,
+                "GunId": "ronmc:p90",
+                "MaxDummyAmmo": 100,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 50
+              }
+            },
+            "defaultCost": 2350
+          }
+        ],
+        "PISTOL": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 24,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_usp",
+                "AttachmentMUZZLE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "mcs2:usp_silencer"
+                  }
+                },
+                "MaxDummyAmmo": 24,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 12
+              }
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 26,
+                "HasBulletInBarrel": 1,
+                "GunId": "tacz:p320",
+                "MaxDummyAmmo": 26,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 12
+              }
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 80,
+                "HasBulletInBarrel": 1,
+                "GunId": "ronmc:57usg",
+                "MaxDummyAmmo": 80,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 20
+              }
+            },
+            "defaultCost": 500
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 35,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_deagle",
+                "MaxDummyAmmo": 35,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 7
+              }
+            },
+            "defaultCost": 700
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:air",
+              "Count": 0
+            },
+            "defaultCost": 0
+          }
+        ],
+        "RIFLE": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 75,
+                "HasBulletInBarrel": 1,
+                "GunId": "rainforest:famas",
+                "MaxDummyAmmo": 75,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 25
+              }
+            },
+            "defaultCost": 1950
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 80,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_m4a1s",
+                "AttachmentMUZZLE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "mcs2:m4a1s_silencer"
+                  }
+                },
+                "MaxDummyAmmo": 80,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 20
+              }
+            },
+            "defaultCost": 2900
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 90,
+                "HasBulletInBarrel": 1,
+                "GunId": "maxstuff:aug_a2",
+                "AttachmentSCOPE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "tacz:scope_acog_ta31"
+                  }
+                },
+                "MaxDummyAmmo": 90,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 3300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 65,
+                "AttachmentEXTENDED_MAG": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "tacz:sniper_extended_mag_3"
+                  }
+                },
+                "HasBulletInBarrel": 1,
+                "GunId": "daffas_arsenal:ssg69",
+                "AttachmentSCOPE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "daffas_arsenal:scope_ssg69"
+                  }
+                },
+                "MaxDummyAmmo": 65,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 5
+              }
+            },
+            "defaultCost": 1700
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 35,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_awp",
+                "AttachmentSCOPE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "mcs2:awp_scope"
+                  }
+                },
+                "MaxDummyAmmo": 35,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 5
+              }
+            },
+            "defaultCost": 4750
+          }
+        ],
+        "THROWABLE": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:flashbang",
+              "Count": 1
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:hegrenade",
+              "Count": 1
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:smokegrenade",
+              "Count": 1
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:incendiary",
+              "Count": 1
+            },
+            "defaultCost": 400
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:decoy",
+              "Count": 1
+            },
+            "defaultCost": 50
+          }
+        ]
+      }
+    },
+    "t": {
+      "mapName": "nuke",
+      "defaultMoney": 800,
+      "shopData": {
+        "EQUIPMENT": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "lrarmor:attacker_chestplate",
+              "Count": 1,
+              "tag": {
+                "Damage": 0
+              }
+            },
+            "defaultCost": 650
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "lrarmor:sniper_helmet",
+              "Count": 1,
+              "tag": {
+                "Damage": 0,
+                "Enchantments": [
+                  {
+                    "lvl": 1,
+                    "id": "bulletarmorenchant:bullet_proof"
+                  }
+                ]
+              }
+            },
+            "defaultCost": 350
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 0,
+                "HasBulletInBarrel": 1,
+                "GunId": "fallout:x26",
+                "MaxDummyAmmo": 0,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 1
+              }
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:air",
+              "Count": 0
+            },
+            "defaultCost": 0
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:air",
+              "Count": 0
+            },
+            "defaultCost": 0
+          }
+        ],
+        "MID_RANK": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 37,
+                "HasBulletInBarrel": 1,
+                "GunId": "tacz:m870",
+                "MaxDummyAmmo": 37,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 5
+              }
+            },
+            "defaultCost": 1050
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 41,
+                "HasBulletInBarrel": 1,
+                "GunId": "ronmc:m1014",
+                "MaxDummyAmmo": 41,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 7
+              }
+            },
+            "defaultCost": 2000
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 90,
+                "HasBulletInBarrel": 1,
+                "GunId": "daffas_arsenal:makten_single",
+                "AttachmentMUZZLE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "tacz:muzzle_compensator_trident"
+                  }
+                },
+                "MaxDummyAmmo": 90,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 1050
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 126,
+                "HasBulletInBarrel": 1,
+                "GunId": "suffuse:pp19",
+                "MaxDummyAmmo": 126,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 64
+              }
+            },
+            "defaultCost": 1400
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 100,
+                "HasBulletInBarrel": 1,
+                "GunId": "ronmc:p90",
+                "MaxDummyAmmo": 100,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 50
+              }
+            },
+            "defaultCost": 2350
+          }
+        ],
+        "PISTOL": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 80,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_glock",
+                "MaxDummyAmmo": 80,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 20
+              }
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 26,
+                "HasBulletInBarrel": 1,
+                "GunId": "tacz:p320",
+                "MaxDummyAmmo": 26,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 12
+              }
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 45,
+                "HasBulletInBarrel": 1,
+                "RepairCost": 0,
+                "GunId": "suffuse:tec9",
+                "display": {
+                  "Name": "{\"text\":\"Tec9\"}"
+                },
+                "MaxDummyAmmo": 45,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 16
+              }
+            },
+            "defaultCost": 500
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 35,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_deagle",
+                "MaxDummyAmmo": 35,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 7
+              }
+            },
+            "defaultCost": 700
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:air",
+              "Count": 0
+            },
+            "defaultCost": 0
+          }
+        ],
+        "RIFLE": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 105,
+                "HasBulletInBarrel": 1,
+                "RepairCost": 0,
+                "GunId": "suffuse:qbu191",
+                "display": {
+                  "Name": "{\"text\":\"Budget Galil\"}"
+                },
+                "MaxDummyAmmo": 105,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 35
+              }
+            },
+            "defaultCost": 1800
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 90,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_ak",
+                "MaxDummyAmmo": 90,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 2700
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 90,
+                "HasBulletInBarrel": 1,
+                "GunId": "ronmc:g36c",
+                "AttachmentSCOPE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "daffas_arsenal:scope_m2ampon2"
+                  }
+                },
+                "MaxDummyAmmo": 90,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 3000
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 65,
+                "AttachmentEXTENDED_MAG": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "tacz:sniper_extended_mag_3"
+                  }
+                },
+                "HasBulletInBarrel": 1,
+                "GunId": "daffas_arsenal:ssg69",
+                "AttachmentSCOPE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "daffas_arsenal:scope_ssg69"
+                  }
+                },
+                "MaxDummyAmmo": 65,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 5
+              }
+            },
+            "defaultCost": 1700
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 35,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_awp",
+                "AttachmentSCOPE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "mcs2:awp_scope"
+                  }
+                },
+                "MaxDummyAmmo": 35,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 5
+              }
+            },
+            "defaultCost": 4750
+          }
+        ],
+        "THROWABLE": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:flashbang",
+              "Count": 1
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:hegrenade",
+              "Count": 1
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:smokegrenade",
+              "Count": 1
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:molotov",
+              "Count": 1
+            },
+            "defaultCost": 400
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "csgrenades:decoy",
+              "Count": 1
+            },
+            "defaultCost": 50
+          }
+        ]
+      }
+    }
+  },
+  "startKits": {
+    "cs_nuke_t": [
+      {
+        "id": "tacz:modern_kinetic_gun",
+        "Count": 1,
+        "tag": {
+          "DummyAmmo": 80,
+          "HasBulletInBarrel": 1,
+          "GunId": "mcs2:cs_glock",
+          "MaxDummyAmmo": 80,
+          "GunFireMode": "SEMI",
+          "GunCurrentAmmoCount": 20
+        }
+      },
+      {
+        "id": "lrtactical:melee",
+        "Count": 1,
+        "tag": {
+          "MeleeWeaponId": "mcs2:t_knife"
+        }
+      },
+      {
+        "id": "lrarmor:sniper_leggings",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      {
+        "id": "lrarmor:sniper_boots",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      }
+    ],
+    "cs_nuke_ct": [
+      {
+        "id": "lrtactical:melee",
+        "Count": 1,
+        "tag": {
+          "MeleeWeaponId": "mcs2:ct_knife"
+        }
+      },
+      {
+        "id": "lrarmor:atf_vest_boots",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      {
+        "id": "lrarmor:atf_vest_leggings",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      {
+        "id": "tacz:modern_kinetic_gun",
+        "Count": 1,
+        "tag": {
+          "DummyAmmo": 24,
+          "HasBulletInBarrel": 1,
+          "GunId": "mcs2:cs_usp",
+          "AttachmentMUZZLE": {
+            "id": "tacz:attachment",
+            "Count": 1,
+            "tag": {
+              "AttachmentId": "mcs2:usp_silencer"
+            }
+          },
+          "MaxDummyAmmo": 24,
+          "GunFireMode": "SEMI",
+          "GunCurrentAmmoCount": 12
+        }
+      }
+    ]
+  },
+  "mapName": "nuke",
+  "mapArea": {
+    "Position1": [
+      -327,
+      1,
+      -119
+    ],
+    "Position2": [
+      -224,
+      71,
+      -321
+    ]
+  },
+  "serverLevel": "minecraft:overworld",
+  "spawnpoints": {
+    "ct": [
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -282
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -281
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -280
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -279
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -278
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -277
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -276
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -275
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -290,
+          40,
+          -274
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -282
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -281
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -280
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -279
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -278
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -277
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -276
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -275
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -289,
+          40,
+          -274
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -282
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -281
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -280
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -279
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -278
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -277
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -276
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -275
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -288,
+          40,
+          -274
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -282
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -281
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -280
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -279
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -278
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -277
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -276
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -275
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -287,
+          40,
+          -274
+        ],
+        "Yaw": 60.180935,
+        "Pitch": 91.7793
+      }
+    ],
+    "t": [
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -180
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -179
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -178
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -177
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -176
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -175
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -174
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -275,
+          38,
+          -173
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -180
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -179
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -178
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -177
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -176
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -175
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -174
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -274,
+          38,
+          -173
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -180
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -179
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -178
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -177
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -176
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -175
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -174
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -273,
+          38,
+          -173
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -180
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -179
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -178
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -177
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -176
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -175
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -174
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -272,
+          38,
+          -173
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -271,
+          38,
+          -180
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -271,
+          38,
+          -179
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -271,
+          38,
+          -178
+        ],
+        "Yaw": 63.78681,
+        "Pitch": -172.67957
+      }
+    ]
+  }
+}
