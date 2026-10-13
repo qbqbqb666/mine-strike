@@ -36,7 +36,7 @@
       "jdk.naming.dns/com.sun.jndi.dns=java.naming"
     ]
   },
-  "id" : "CS2 (2.3)",
+  "id" : "mine-strike",
   "inheritsFrom" : "1.20.1",
   "libraries" : [
     {
