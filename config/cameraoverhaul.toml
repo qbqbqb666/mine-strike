@@ -1,73 +1,73 @@
-# Metadata, do not modify.
+# 元数据，请勿修改。
 # Default: 0
 configVersion = 3
 
 [general]
 
-	# Toggles all of the mod's features.
+	# 切换所有模组功能的开关。
 	# Default: true
 	enabled = true
-	# Disable this to make the mod's effects exclusive to first-person view.
+	# 禁用此项可使模组效果仅限于第一人称视角。
 	# Default: true
 	enableInThirdPerson = true
 	# How smooth should transitions between contextual profiles such as walking and swimming be.
 	# Default: 0.1
 	contextTransitionSmoothing = 0.1
-	# Sensitivity of the camera roll rotation caused by turning around horizontally.
+	# 由水平转向引起的相机滚动旋转的敏感度。
 	# Default: 1.0
 	turningRollAccumulation = 1.0
-	# Maximum strength of the camera roll rotation caused by turning around horizontally.
+	# 由水平转向引起的相机滚动旋转的最大强度。
 	# Default: 1.25
 	turningRollIntensity = 1.25
-	# Smoothness of the decay of the camera roll rotation caused by turning around horizontally.
+	# 由水平转向引起的相机滚动旋转衰减的平滑度。
 	# Default: 1.0
 	turningRollSmoothing = 1.0
-	# Strength of smooth random sway that kicks in when the player idles for enough time.
+	# 当玩家闲置足够时间后触发的平滑随机晃动的强度。
 	# Default: 0.6
 	cameraSwayIntensity = 0.6
-	# Frequency of smooth random sway that kicks in when the player idles for enough time.
+	# 当玩家闲置足够时间后触发的平滑随机晃动的频率。
 	# Default: 0.16
 	cameraSwayFrequency = 0.16
-	# Amount of time that the player must idle for before smooth random sway starts to fade-in.
+	# 玩家必须闲置多长时间后平滑随机晃动才会开始淡入。
 	# Default: 0.15
 	cameraSwayFadeInDelay = 0.15
-	# Amount of time it takes for smooth random sway to fade-in after the player idles for enough time.
+	# 玩家闲置足够时间后，平滑随机晃动完成淡入所需的时间。
 	# Default: 5.0
 	cameraSwayFadeInLength = 5.0
-	# Amount of time it takes for smooth random sway to fade-out when the player starts moving after idling.
+	# 当玩家在闲置后开始移动时，平滑随机晃动完成淡出所需的时间。
 	# Default: 0.75
 	cameraSwayFadeOutLength = 0.75
-	# Maximum strength of all screen shaking effects.
+	# 所有屏幕晃动效果的最大强度。
 	# Default: 2.5
 	screenShakesMaxIntensity = 2.5
-	# Speed at which screen shaking rotations change direction or oscillate.
+	# 屏幕晃动旋转改变方向或振荡的速度。
 	# Default: 6.0
 	screenShakesMaxFrequency = 6.0
-	# A [0..1] value linked to the strength of screen shaking caused by explosions.
+	# 一个 [0..1] 的值，与爆炸引起的屏幕晃动强度相关。
 	# Default: 1.0
 	explosionTrauma = 1.0
-	# A [0..1] value linked to the strength of screen shaking caused by lightning bolt-tied thunder.
+	# 一个 [0..1] 的值，与闪电引发的雷声引起的屏幕晃动强度相关。
 	# Default: 0.05
 	thunderTrauma = 0.05
-	# A [0..1] value linked to the strength of screen shaking caused by any actions that swing the player's arm. Best kept very low.
+	# 一个 [0..1] 的值，与任何摆动玩家手臂的动作引起的屏幕晃动强度相关。最好保持非常低的值。
 	# Default: 0.03
 	handSwingTrauma = 0.03
 
 [walking]
 
-	# Strength of the camera roll rotation caused by strafing, or sideway horizontal velocity.
+	# 由平移（侧向水平移动）引起的相机滚动旋转的强度。
 	# Default: 10.0
 	strafingRollFactor = 10.0
-	# Strength of camera pitch rotations caused by moving forward or backwards.
+	# 由前后移动引起的相机俯仰旋转的强度。
 	# Default: 7.0
 	forwardVelocityPitchFactor = 7.0
-	# Strength of camera pitch rotations caused by vertical velocity.
+	# 由垂直移动引起的相机俯仰旋转的强度。
 	# Default: 2.5
 	verticalVelocityPitchFactor = 2.5
-	# Smoothness of camera pitch & roll rotations caused by moving horizontally.
+	# 由水平移动引起的相机俯仰和滚动旋转的平滑度。
 	# Default: 1.0
 	horizontalVelocitySmoothingFactor = 1.0
-	# Smoothness of camera pitch rotations caused by moving vertically.
+	# 由垂直移动引起的相机俯仰旋转的平滑度。
 	# Default: 1.0
 	verticalVelocitySmoothingFactor = 1.0
 	# Controls global interpolation of the camera's pitch & yaw. Does not affect gameplay (aim).
@@ -76,19 +76,19 @@ configVersion = 3
 
 [sprinting]
 
-	# Strength of the camera roll rotation caused by strafing, or sideway horizontal velocity.
+	# 由平移（侧向水平移动）引起的相机滚动旋转的强度。
 	# Default: 12.5
 	strafingRollFactor = 12.5
-	# Strength of camera pitch rotations caused by moving forward or backwards.
+	# 由前后移动引起的相机俯仰旋转的强度。
 	# Default: 9.5
 	forwardVelocityPitchFactor = 9.5
-	# Strength of camera pitch rotations caused by vertical velocity.
+	# 由垂直移动引起的相机俯仰旋转的强度。
 	# Default: 2.5
 	verticalVelocityPitchFactor = 2.5
-	# Smoothness of camera pitch & roll rotations caused by moving horizontally.
+	# 由水平移动引起的相机俯仰和滚动旋转的平滑度。
 	# Default: 1.0
 	horizontalVelocitySmoothingFactor = 1.0
-	# Smoothness of camera pitch rotations caused by moving vertically.
+	# 由垂直移动引起的相机俯仰旋转的平滑度。
 	# Default: 1.0
 	verticalVelocitySmoothingFactor = 1.0
 	# Controls global interpolation of the camera's pitch & yaw. Does not affect gameplay (aim).
@@ -97,19 +97,19 @@ configVersion = 3
 
 [swimming]
 
-	# Strength of the camera roll rotation caused by strafing, or sideway horizontal velocity.
+	# 由平移（侧向水平移动）引起的相机滚动旋转的强度。
 	# Default: -30.0
 	strafingRollFactor = -30.0
-	# Strength of camera pitch rotations caused by moving forward or backwards.
+	# 由前后移动引起的相机俯仰旋转的强度。
 	# Default: 21.0
 	forwardVelocityPitchFactor = 21.0
-	# Strength of camera pitch rotations caused by vertical velocity.
+	# 由垂直移动引起的相机俯仰旋转的强度。
 	# Default: 7.5
 	verticalVelocityPitchFactor = 7.5
-	# Smoothness of camera pitch & roll rotations caused by moving horizontally.
+	# 由水平移动引起的相机俯仰和滚动旋转的平滑度。
 	# Default: 1.0
 	horizontalVelocitySmoothingFactor = 1.0
-	# Smoothness of camera pitch rotations caused by moving vertically.
+	# 由垂直移动引起的相机俯仰旋转的平滑度。
 	# Default: 1.0
 	verticalVelocitySmoothingFactor = 1.0
 	# Controls global interpolation of the camera's pitch & yaw. Does not affect gameplay (aim).
@@ -118,19 +118,19 @@ configVersion = 3
 
 [flying]
 
-	# Strength of the camera roll rotation caused by strafing, or sideway horizontal velocity.
+	# 由平移（侧向水平移动）引起的相机滚动旋转的强度。
 	# Default: -10.0
 	strafingRollFactor = -10.0
-	# Strength of camera pitch rotations caused by moving forward or backwards.
+	# 由前后移动引起的相机俯仰旋转的强度。
 	# Default: 7.0
 	forwardVelocityPitchFactor = 7.0
-	# Strength of camera pitch rotations caused by vertical velocity.
+	# 由垂直移动引起的相机俯仰旋转的强度。
 	# Default: 2.5
 	verticalVelocityPitchFactor = 2.5
-	# Smoothness of camera pitch & roll rotations caused by moving horizontally.
+	# 由水平移动引起的相机俯仰和滚动旋转的平滑度。
 	# Default: 1.0
 	horizontalVelocitySmoothingFactor = 1.0
-	# Smoothness of camera pitch rotations caused by moving vertically.
+	# 由垂直移动引起的相机俯仰旋转的平滑度。
 	# Default: 1.0
 	verticalVelocitySmoothingFactor = 1.0
 	# Controls global interpolation of the camera's pitch & yaw. Does not affect gameplay (aim).
@@ -139,19 +139,19 @@ configVersion = 3
 
 [mounts]
 
-	# Strength of the camera roll rotation caused by strafing, or sideway horizontal velocity.
+	# 由平移（侧向水平移动）引起的相机滚动旋转的强度。
 	# Default: 20.0
 	strafingRollFactor = 20.0
-	# Strength of camera pitch rotations caused by moving forward or backwards.
+	# 由前后移动引起的相机俯仰旋转的强度。
 	# Default: 3.5
 	forwardVelocityPitchFactor = 3.5
-	# Strength of camera pitch rotations caused by vertical velocity.
+	# 由垂直移动引起的相机俯仰旋转的强度。
 	# Default: 2.5
 	verticalVelocityPitchFactor = 2.5
-	# Smoothness of camera pitch & roll rotations caused by moving horizontally.
+	# 由水平移动引起的相机俯仰和滚动旋转的平滑度。
 	# Default: 1.0
 	horizontalVelocitySmoothingFactor = 1.0
-	# Smoothness of camera pitch rotations caused by moving vertically.
+	# 由垂直移动引起的相机俯仰旋转的平滑度。
 	# Default: 1.0
 	verticalVelocitySmoothingFactor = 1.0
 	# Controls global interpolation of the camera's pitch & yaw. Does not affect gameplay (aim).
@@ -160,19 +160,19 @@ configVersion = 3
 
 [vehicles]
 
-	# Strength of the camera roll rotation caused by strafing, or sideway horizontal velocity.
+	# 由平移（侧向水平移动）引起的相机滚动旋转的强度。
 	# Default: 5.0
 	strafingRollFactor = 5.0
-	# Strength of camera pitch rotations caused by moving forward or backwards.
+	# 由前后移动引起的相机俯仰旋转的强度。
 	# Default: 3.5
 	forwardVelocityPitchFactor = 3.5
-	# Strength of camera pitch rotations caused by vertical velocity.
+	# 由垂直移动引起的相机俯仰旋转的强度。
 	# Default: 5.0
 	verticalVelocityPitchFactor = 5.0
-	# Smoothness of camera pitch & roll rotations caused by moving horizontally.
+	# 由水平移动引起的相机俯仰和滚动旋转的平滑度。
 	# Default: 1.0
 	horizontalVelocitySmoothingFactor = 1.0
-	# Smoothness of camera pitch rotations caused by moving vertically.
+	# 由垂直移动引起的相机俯仰旋转的平滑度。
 	# Default: 1.0
 	verticalVelocitySmoothingFactor = 1.0
 	# Controls global interpolation of the camera's pitch & yaw. Does not affect gameplay (aim).

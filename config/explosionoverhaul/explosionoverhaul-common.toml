@@ -82,10 +82,10 @@
 	#WARNING: When asynchronous and multi-threaded mode is enabled - destruction of VS objects - does not work.
 	enableAsyncCrater = true
 	#Maximum number of threads for off-thread crater geometry precomputation.
-	#0 = Auto (use all available: 6)
+	#0 = Auto (use all available: 10)
 	#1 = Single-threaded
-	#2-6 = Custom thread count for this system
-	#Range: 0 ~ 6
+	#2-10 = Custom thread count for this system
+	#Range: 0 ~ 10
 	craterMaxThreads = 0
 	#Maximum number of blocks to evaluate/apply per server tick when building a crater.
 	#Higher values complete faster but can cause small TPS dips.
@@ -200,16 +200,16 @@
 		enableAmbientCaveDust = true
 
 #Settings for chunk scanning and block indexing system.
-#System detected: 6 CPU threads available
+#System detected: 10 CPU threads available
 #Configuration ranges are automatically adjusted for your system
 [Scan]
 	#Maximum number of threads to use for chunk scanning.
-	#Available range for your system: 0-6 threads
-	#0 = Auto-detect (recommended): uses all 6 available threads
+	#Available range for your system: 0-10 threads
+	#0 = Auto-detect (recommended): uses all 10 available threads
 	#1 = Single-threaded (slowest but safest)
-	#2-6 = Custom thread count for this system
-	#Your system supports up to 6 concurrent threads
-	#Range: 0 ~ 6
+	#2-10 = Custom thread count for this system
+	#Your system supports up to 10 concurrent threads
+	#Range: 0 ~ 10
 	maxScanThreads = 0
 	#How much CPU power to use for chunk scanning (1-100%).
 	#100% = Maximum speed, uses all available threads intensively
