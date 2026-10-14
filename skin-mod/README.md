@@ -147,3 +147,55 @@ verify.py 新增 MatchVotesTest，覆盖未选边玩家、单边/单人/人数�
 最终提示词：
 
 > Generate a NEW wide 16:9 Minecraft voxel game menu background. Reference image is STYLE REFERENCE ONLY: match bright warm sandy block-built Counter Strike desert map, blue sky, crisp Minecraft pixel textures, cubic character anatomy, polished in-game rendering. Different coherent location: sunlit desert alley courtyard with low sandstone walls, a modest wooden double door and crates, not the same arch or A graffiti. Left 70 percent is open uncluttered scenery for menu overlays, no text/UI. On far RIGHT 25 percent place one full-body adult male Minecraft blocky terrorist character facing camera, boots visible with margin, similar size to the reference character, brown jacket, pale shirt, dark trousers and scarf. His anatomical RIGHT arm hangs vertically relaxed at his side (viewer's left); his anatomical LEFT hand holds a blocky AK resting over his LEFT shoulder (viewer's right), barrel angled up safely. Slightly tilted square head, defiant fierce scowling face, cigarette held in corner of mouth, small curl of smoke. Character stands entirely within rightmost quarter leaving generous blank space to left. No counterterrorist, no extra people, no logos, no words, no interface. Preserve exact requested pose.
+
+
+## 地图基准与回合恢复
+
+没有保存/更新基准的界面按钮。只提供原版管理员权限等级 2 的指令：
+
+```text
+/minestrike baseline save
+/minestrike baseline status
+```
+
+`save` 用于首次保存和后续更新：先进入对应存档，结束比赛，完成地图编辑，离开载具，再执行。
+保存期间不要修改地图，等待聊天中的“地图基准保存完成”。每个存档独立保存。
+`status` 显示当前地图、是否有基准、保存/恢复任务状态及完整文件路径。
+单人 1.20.1 可通过“对局域网开放 → 允许作弊”取得指令权限；独立服务器由 OP 执行。
+
+文件位于实际服务端当前存档内部的 `mine-strike-data/map-baselines/`，地图名经 URL-safe Base64 编码后加 `.nbt`。
+例如 Dust2 为 `ZHVzdDI.nbt`。文件包含压缩 NBT：版本、地图名、维度、三维区域、方块状态调色板、
+含空气的完整方块索引、方块实体 NBT（例如箱内物品）和持久实体 NBT。
+更新采用临时文件写入后替换；上一份保留为 `.nbt.previous`。JAR 更新不会覆盖这些文件。
+
+恢复范围严格采用当前 FPSMatch 的 `mapArea` 三维坐标，不恢复整个存档、天气或游戏规则。
+新增建筑必须处于该范围内；需要更高、更大的战场时，先按实际玩法调整比赛区域，再重新保存基准。
+普通方块建筑统一恢复。普通实体及支持标准实体 NBT 的模组对象重新生成；Superb Warfare 原载具的
+Health、Energy、Inventory 等由该模组自身 NBT 序列化处理，具体型号仍需游戏内测试。
+玩家、临时掉落物、弹药抛射物和 C4 不纳入初始实体基准。基准载具必须无人乘坐。
+
+每场比赛和每个小回合开始前都读取基准；分批加载区块、清理新增对象、恢复方块/容器及初始实体。
+完成前暂停原比赛 tick，并禁止玩家干扰保存/恢复。恢复前玩家下车并传送到原比赛结束点；
+完成后才进入原装备发放、出生点传送和开局流程。临时加载区块会释放，原强制加载区块保持原样。
+未保存基准时不能准备开赛，会提示保存指令；不自动记录任何基准。
+
+地图内出现的实体带持久比赛标记，移出比赛范围的已加载对象也会清理；旧对象所在区块以后才加载时，
+按恢复代次拒绝旧对象回到游戏。更新基准后新一轮按更新后的快照恢复。
+恢复期间取消该维度 Explosion Overhaul 的旧异步挖坑任务，并清理区域内残留方块/流体计划 tick。
+该功能不处理其他模组在外部数据库、独立物理世界等处存储的状态；后续新增此类模组需针对适配。
+恢复失败不会继续开始新回合，聊天和服务器日志会显示原因。
+
+### 验收步骤
+
+1. 重启并进入已编辑好的比赛存档；比赛未运行时执行 `save`，等待完成，用 `status` 确认路径。
+2. 测试前记录一段墙、一块原空气位置、一只箱子的内容和一辆无人载具的初始位置/状态。
+3. 破坏墙，在原空气处放方块，改变箱内物品，新增载具或移动初始载具。
+4. 所有人选边准备：恢复完成后检查墙补回、新方块清除、箱内物品及初始载具恢复。
+5. 比赛中再次破坏/新增，进入下个小回合后重复检查；旧掉落物及新增载具不应残留。
+6. 把新增载具移出比赛区域后测试重置；对卸载区块的对象，返回并重新加载该区块确认旧对象不再出现。
+7. 结束比赛，再执行 `save` 更新，确认后续恢复采用新基准，上一版文件仍存在。
+
+自动检测新增 BaselineDataTest，验证区域索引、边界隔离、压缩存储、空气/方块/容器/载具 NBT 保留、
+更新生效、上一版备份、非法索引/格式/过大区域拒绝以及失败不覆盖有效基准。
+verify.py 同时核查 startGame / startNewRound / BaseMap.mapTick 的接入目标。
+自动检测没有启动真实 Forge 世界，不能替代上述地形、载具、多人及性能验收。

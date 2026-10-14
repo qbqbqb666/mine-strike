@@ -53,6 +53,7 @@ public final class MatchLobby {
                 (int) online.values().stream().filter("ct"::equals).count(), votes.ready(id), votes.ending(id), message);
         SkinNetwork.sendLobby(player, SkinCatalog.JSON.toJson(state));
     }
+    public static void notifyAll(String message) { broadcast(message); }
     private static void broadcast(String message) {
         if (FPSMCore.initialized()) for (ServerPlayer player : FPSMCore.getInstance().getServer().m_6846_().m_11314_())
             send(player, message);
@@ -61,6 +62,7 @@ public final class MatchLobby {
         CSGameMap map = refresh();
         if (action.equals("status")) { send(player, ""); return; }
         if (map == null) { send(player, "当前存档没有唯一的 CS 比赛配置。"); return; }
+        if (MapBaseline.busy(map)) { send(player, "地图正在保存或恢复，请稍候。"); return; }
         String message = "";
         UUID id = player.m_20148_();
         switch (action) {
@@ -77,6 +79,7 @@ public final class MatchLobby {
                 if (map.isStart) { send(player, "比赛已开始。"); return; }
                 String team = roster(map).get(id);
                 if (!"t".equals(team) && !"ct".equals(team)) { send(player, "请先选择阵营。"); return; }
+                if (!MapBaseline.exists(map)) { send(player, "尚未保存地图基准，请管理员执行 /minestrike baseline save。"); return; }
                 votes.toggleReady(id);
                 message = votes.ready(id) ? "已准备。" : "已取消准备。";
             }
@@ -91,10 +94,11 @@ public final class MatchLobby {
         broadcast(outcome.isEmpty() ? message : outcome);
     }
     private static String evaluate(CSGameMap map) {
-        if (map == null) return "";
+        if (map == null || MapBaseline.busy(map)) return "";
         if (!map.isStart && votes.allReady()) {
             managed.add(map);
             map.startGame();
+            if (MapBaseline.busy(map)) return "正在恢复地图，完成后开始比赛。";
             if (!map.isStart) {
                 managed.remove(map); votes.clear(); refresh();
                 return "开赛失败，请检查出生点和服务器日志。";

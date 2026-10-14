@@ -21,7 +21,7 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
@@ -68,3 +68,11 @@ with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
     background = jar.read("assets/minestrike_skins/textures/gui/match-background.png")
     assert background.startswith(b"\x89PNG\r\n\x1a\n")
 print("PASS: lobby automatic-start, single-side elimination, shared-spawn and team-capacity integration targets; match background")
+
+assert "public void startNewRound();" in bytecode
+base_code = subprocess.run(["javap", "-classpath", classpath, "-c", "-p",
+                           "com.phasetranscrystal.fpsmatch.core.map.BaseMap"], capture_output=True, text=True, check=True).stdout
+assert "public final void mapTick();" in base_code
+with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
+    assert "BaseMapMixin" in json.loads(jar.read("minestrike-skins.mixins.json"))["mixins"]
+print("PASS: match-start/round-start reset and suspended map-tick integration targets")
