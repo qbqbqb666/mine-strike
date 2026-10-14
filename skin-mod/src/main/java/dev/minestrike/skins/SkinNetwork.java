@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 public final class SkinNetwork {
     private static final int MAX_JSON = 65536;
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "1", "1"::equals, "1"::equals);
+            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "2", "2"::equals, "2"::equals);
 
     public record Request(boolean save, String choices) {
         public static void encode(Request value, FriendlyByteBuf buf) {
@@ -56,12 +56,41 @@ public final class SkinNetwork {
         }
     }
 
+    public record LobbyAction(String action) {
+        public static void encode(LobbyAction value, FriendlyByteBuf buf) { buf.m_130072_(value.action, 16); }
+        public static LobbyAction decode(FriendlyByteBuf buf) { return new LobbyAction(buf.m_130136_(16)); }
+        public static void handle(LobbyAction value, Supplier<NetworkEvent.Context> supplier) {
+            NetworkEvent.Context context = supplier.get();
+            context.enqueueWork(() -> {
+                ServerPlayer player = context.getSender();
+                if (player != null) MatchLobby.action(player, value.action);
+            });
+            context.setPacketHandled(true);
+        }
+    }
+    public record LobbyState(String json) {
+        public static void encode(LobbyState value, FriendlyByteBuf buf) { buf.m_130072_(value.json, 4096); }
+        public static LobbyState decode(FriendlyByteBuf buf) { return new LobbyState(buf.m_130136_(4096)); }
+        public static void handle(LobbyState value, Supplier<NetworkEvent.Context> supplier) {
+            NetworkEvent.Context context = supplier.get();
+            context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> SkinClient.acceptLobby(value)));
+            context.setPacketHandled(true);
+        }
+    }
+
     public static void init() {
         CHANNEL.registerMessage(0, Request.class, Request::encode, Request::decode, Request::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(1, State.class, State::encode, State::decode, State::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        CHANNEL.registerMessage(2, LobbyAction.class, LobbyAction::encode, LobbyAction::decode, LobbyAction::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        CHANNEL.registerMessage(3, LobbyState.class, LobbyState::encode, LobbyState::decode, LobbyState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+    }
+
+    public static void sendLobby(ServerPlayer player, String json) {
+        CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), new LobbyState(json));
     }
 
     public static void send(ServerPlayer player, State state) {
         CHANNEL.send(PacketDistributor.PLAYER.with(() -> player), state);
+        MatchLobby.send(player, "");
     }
 }

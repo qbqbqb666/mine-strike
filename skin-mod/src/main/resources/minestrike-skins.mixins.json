@@ -3,6 +3,6 @@
   "minVersion": "0.8",
   "package": "dev.minestrike.skins.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["CSGameMapMixin"],
+  "mixins": ["CSGameMapMixin", "BaseTeamMixin"],
   "injectors": {"defaultRequire": 1}
 }

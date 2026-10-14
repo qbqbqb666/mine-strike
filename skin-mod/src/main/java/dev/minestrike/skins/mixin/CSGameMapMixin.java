@@ -1,6 +1,7 @@
 package dev.minestrike.skins.mixin;
 
 import dev.minestrike.skins.MineStrikeSkins;
+import dev.minestrike.skins.MatchLobby;
 import com.phasetranscrystal.blockoffensive.map.CSGameMap;
 import com.phasetranscrystal.fpsmatch.core.map.BaseTeam;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,14 +12,26 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = CSGameMap.class, remap = false)
 public abstract class CSGameMapMixin {
-    @Inject(method = "startGame", at = @At("HEAD"), remap = false)
-    private void skinsStart(CallbackInfo ci) { MineStrikeSkins.begin((CSGameMap) (Object) this); }
+    @Inject(method = "startGame", at = @At("HEAD"), cancellable = true, remap = false)
+    private void skinsStart(CallbackInfo ci) {
+        CSGameMap map = (CSGameMap) (Object) this;
+        if (!MatchLobby.allowStart(map)) { ci.cancel(); return; }
+        MineStrikeSkins.begin(map);
+    }
 
     @Inject(method = "startGame", at = @At("TAIL"), remap = false)
     private void skinsStarted(CallbackInfo ci) { MineStrikeSkins.updateMatchClients((CSGameMap) (Object) this); }
 
     @Inject(method = "resetGame", at = @At("TAIL"), remap = false)
-    private void skinsEnd(CallbackInfo ci) { MineStrikeSkins.end((CSGameMap) (Object) this); }
+    private void skinsEnd(CallbackInfo ci) { MineStrikeSkins.end((CSGameMap) (Object) this); MatchLobby.reset((CSGameMap) (Object) this); }
+
+    @Inject(method = "autoStartLogic", at = @At("HEAD"), cancellable = true, remap = false)
+    private void lobbyAutoStart(CallbackInfo ci) { ci.cancel(); }
+
+    @Inject(method = {"checkRoundVictory", "checkBlastingVictory"}, at = @At("HEAD"), cancellable = true, remap = false)
+    private void lobbySingleSide(CallbackInfo ci) {
+        if (MatchLobby.singleSided((CSGameMap) (Object) this)) ci.cancel();
+    }
 
     @Redirect(method = "lambda$giveAllPlayersKits$73", at = @At(value = "INVOKE",
             target = "Lnet/minecraft/world/item/ItemStack;m_41777_()Lnet/minecraft/world/item/ItemStack;", remap = false), remap = false)

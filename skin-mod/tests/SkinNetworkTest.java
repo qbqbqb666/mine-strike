@@ -14,6 +14,12 @@ public class SkinNetworkTest {
             SkinNetwork.State state = new SkinNetwork.State("{\"groups\":[]}", request.choices(), true, false, "本局外观已锁定。");
             SkinNetwork.State.encode(state, stateBytes);
             if (!state.equals(SkinNetwork.State.decode(stateBytes))) throw new AssertionError("Chinese text and lock state round trip");
+            SkinNetwork.LobbyAction action = new SkinNetwork.LobbyAction("ready");
+            requestBytes.clear(); SkinNetwork.LobbyAction.encode(action, requestBytes);
+            if (!action.equals(SkinNetwork.LobbyAction.decode(requestBytes))) throw new AssertionError("Lobby action round trip");
+            SkinNetwork.LobbyState lobby = new SkinNetwork.LobbyState("{\"total\":3,\"readyCount\":2,\"message\":\"等待全员准备\"}");
+            stateBytes.clear(); SkinNetwork.LobbyState.encode(lobby, stateBytes);
+            if (!lobby.equals(SkinNetwork.LobbyState.decode(stateBytes))) throw new AssertionError("Lobby state round trip");
             boolean rejected = false;
             try { SkinNetwork.Request.encode(new SkinNetwork.Request(true, "x".repeat(8193)), requestBytes); }
             catch (EncoderException e) { rejected = true; }

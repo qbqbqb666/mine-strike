@@ -21,7 +21,7 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
@@ -56,3 +56,15 @@ assert single_kit in interface
 single_body = interface.split(single_kit, 1)[1].split("\n  private ", 1)[0]
 assert "Inventory.m_6211_:()V" in single_body, "Kit application must clear inventory before recoloring issued items"
 print("PASS: skin.txt coverage, resources, Java 17, initial/death/team-switch kit integration targets")
+
+for target in ["private void autoStartLogic();", "public void checkRoundVictory();", "public void checkBlastingVictory();"]:
+    assert target in bytecode, "Lobby integration target changed: " + target
+team_code = subprocess.run(["javap", "-classpath", classpath, "-c", "-p",
+                           "com.phasetranscrystal.fpsmatch.core.map.BaseTeam"], capture_output=True, text=True, check=True).stdout
+for target in ["public boolean randomSpawnPoints();", "public int getPlayerLimit();", "public int getRemainingLimit();"]:
+    assert target in team_code, "Team integration target changed: " + target
+with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
+    assert "BaseTeamMixin" in json.loads(jar.read("minestrike-skins.mixins.json"))["mixins"]
+    background = jar.read("assets/minestrike_skins/textures/gui/match-background.png")
+    assert background.startswith(b"\x89PNG\r\n\x1a\n")
+print("PASS: lobby automatic-start, single-side elimination, shared-spawn and team-capacity integration targets; match background")

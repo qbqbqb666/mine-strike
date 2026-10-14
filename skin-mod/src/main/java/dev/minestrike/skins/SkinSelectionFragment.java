@@ -23,6 +23,13 @@ import me.xjqsh.lrtactical.api.LrTacticalAPI;
 import java.util.*;
 
 public final class SkinSelectionFragment extends Fragment {
+    private boolean matchPage;
+    private MatchLobby.State lobby;
+    private LinearLayout skinPane, matchPane;
+    private PixelTile skinTab, matchTab, roomInfo, teamT, teamCT, readyInfo, readyButton, endInfo, endButton, lobbyMessage;
+    private ScrollView matchViewport;
+    private ImageView background;
+    private View leftSpace, rightSpace;
     private final SkinCatalog catalog;
     private final Map<String, String> selected;
     private boolean locked;
@@ -38,7 +45,8 @@ public final class SkinSelectionFragment extends Fragment {
     private PixelTile confirm;
     private final Map<String, PixelTile> tabs = new LinkedHashMap<>();
 
-    public SkinSelectionFragment(SkinCatalog catalog, Map<String, String> choices, boolean locked, String message) {
+    public SkinSelectionFragment(SkinCatalog catalog, Map<String, String> choices, boolean locked, String message, MatchLobby.State lobby) {
+        this.lobby = lobby;
         this.catalog = catalog;
         this.selected = new LinkedHashMap<>(choices);
         this.locked = locked;
@@ -55,9 +63,15 @@ public final class SkinSelectionFragment extends Fragment {
         stone.setColor(0x66D9D4C8);
         stone.setStroke(panel.dp(2), 0xA6514C42);
         panel.setBackground(stone);
-        PixelTile title = tile(context, "皮肤选择", null, false, null);
-        title.largeText = true;
-        panel.addView(title, new LinearLayout.LayoutParams(-1, panel.dp(34)));
+        LinearLayout navigation = row(context);
+        skinTab = tile(context, "皮肤选择", null, true, null);
+        matchTab = tile(context, "比赛阶段", null, true, null);
+        skinTab.setOnClickListener(v -> showPage(false));
+        matchTab.setOnClickListener(v -> showPage(true));
+        navigation.addView(skinTab, cell(navigation, 38, 1));
+        navigation.addView(matchTab, cell(navigation, 38, 1));
+        panel.addView(navigation, new LinearLayout.LayoutParams(-1, panel.dp(46)));
+        skinPane = column(context);
         LinearLayout categories = row(context);
         for (SkinCatalog.Group group : catalog.groups) {
             PixelTile tab = tile(context, group.name, null, true, null);
@@ -65,7 +79,7 @@ public final class SkinSelectionFragment extends Fragment {
             tabs.put(group.key, tab);
             categories.addView(tab, cell(categories, 40, 1));
         }
-        panel.addView(categories, new LinearLayout.LayoutParams(-1, panel.dp(48)));
+        skinPane.addView(categories, new LinearLayout.LayoutParams(-1, panel.dp(48)));
         LinearLayout body = row(context);
         LinearLayout left = column(context);
         preview = tile(context, "", null, false, null);
@@ -87,9 +101,9 @@ public final class SkinSelectionFragment extends Fragment {
         LinearLayout.LayoutParams sideParams = new LinearLayout.LayoutParams(0, -1, 1);
         sideParams.setMargins(body.dp(10), 0, 0, 0);
         body.addView(right, sideParams);
-        panel.addView(body, new LinearLayout.LayoutParams(-1, 0, 1));
+        skinPane.addView(body, new LinearLayout.LayoutParams(-1, 0, 1));
         status = tile(context, "", null, false, null);
-        panel.addView(status, new LinearLayout.LayoutParams(-1, panel.dp(22)));
+        skinPane.addView(status, new LinearLayout.LayoutParams(-1, panel.dp(22)));
         LinearLayout actions = row(context);
         PixelTile close = tile(context, "返回游戏", null, true, null);
         close.setOnClickListener(v -> Minecraft.m_91087_().execute(() -> Minecraft.m_91087_().m_91152_(null)));
@@ -103,19 +117,46 @@ public final class SkinSelectionFragment extends Fragment {
         });
         actions.addView(close, cell(actions, 44, 1));
         actions.addView(confirm, cell(actions, 44, 1));
-        panel.addView(actions, new LinearLayout.LayoutParams(-1, panel.dp(48)));
+        skinPane.addView(actions, new LinearLayout.LayoutParams(-1, panel.dp(48)));
+        panel.addView(skinPane, new LinearLayout.LayoutParams(-1, 0, 1));
+        matchViewport = new ScrollView(context);
+        matchPane = column(context);
+        roomInfo = tile(context, "", null, false, matchViewport);
+        matchPane.addView(roomInfo, new LinearLayout.LayoutParams(-1, panel.dp(30)));
+        matchPane.addView(tile(context, "选择阵营", null, false, matchViewport), new LinearLayout.LayoutParams(-1, panel.dp(26)));
+        LinearLayout sides = row(context);
+        teamT = tile(context, "T 土匪", null, true, matchViewport);
+        teamCT = tile(context, "CT 反恐", null, true, matchViewport);
+        teamT.setOnClickListener(v -> lobbyAction("t"));
+        teamCT.setOnClickListener(v -> lobbyAction("ct"));
+        sides.addView(teamT, cell(sides, 42, 1)); sides.addView(teamCT, cell(sides, 42, 1));
+        matchPane.addView(sides, new LinearLayout.LayoutParams(-1, panel.dp(50)));
+        matchPane.addView(tile(context, "游戏准备", null, false, matchViewport), new LinearLayout.LayoutParams(-1, panel.dp(26)));
+        readyInfo = tile(context, "", null, false, matchViewport);
+        matchPane.addView(readyInfo, new LinearLayout.LayoutParams(-1, panel.dp(32)));
+        readyButton = tile(context, "准备游戏", null, true, matchViewport);
+        readyButton.setOnClickListener(v -> lobbyAction("ready"));
+        matchPane.addView(readyButton, new LinearLayout.LayoutParams(-1, panel.dp(42)));
+        matchPane.addView(tile(context, "发起结束游戏", null, false, matchViewport), new LinearLayout.LayoutParams(-1, panel.dp(26)));
+        endInfo = tile(context, "", null, false, matchViewport);
+        matchPane.addView(endInfo, new LinearLayout.LayoutParams(-1, panel.dp(32)));
+        endButton = tile(context, "发起结束游戏", null, true, matchViewport);
+        endButton.setOnClickListener(v -> lobbyAction("end"));
+        matchPane.addView(endButton, new LinearLayout.LayoutParams(-1, panel.dp(42)));
+        lobbyMessage = tile(context, "", null, false, matchViewport);
+        matchPane.addView(lobbyMessage, new LinearLayout.LayoutParams(-1, panel.dp(36)));
+        PixelTile back = tile(context, "返回游戏", null, true, matchViewport);
+        back.setOnClickListener(v -> Minecraft.m_91087_().execute(() -> Minecraft.m_91087_().m_91152_(null)));
+        matchPane.addView(back, new LinearLayout.LayoutParams(-1, panel.dp(42)));
+        matchViewport.addView(matchPane, new ViewGroup.LayoutParams(-1, -2));
+        matchViewport.setVisibility(View.GONE);
+        panel.addView(matchViewport, new LinearLayout.LayoutParams(-1, 0, 1));
         FrameLayout outer = new FrameLayout(context);
-        ImageView background = new ImageView(context) {
+        background = new ImageView(context) {
             @Override
             protected void onSizeChanged(int width, int height, int oldWidth, int oldHeight) {
                 super.onSizeChanged(width, height, oldWidth, oldHeight);
-                var drawable = getDrawable();
-                if (drawable == null) return;
-                float scale = Math.max((float) width / drawable.getIntrinsicWidth(),
-                        (float) height / drawable.getIntrinsicHeight());
-                Matrix matrix = new Matrix();
-                matrix.setScaleTranslate(scale, scale, 0, (height - drawable.getIntrinsicHeight() * scale) / 2);
-                setImageMatrix(matrix);
+                fitBackground(width, height);
             }
         };
         ImageDrawable backdrop = new ImageDrawable("minestrike_skins", "gui/skin-background.png");
@@ -124,13 +165,63 @@ public final class SkinSelectionFragment extends Fragment {
         background.setScaleType(ImageView.ScaleType.MATRIX);
         outer.addView(background, new FrameLayout.LayoutParams(-1, -1));
         LinearLayout foreground = row(context);
-        foreground.addView(new View(context), new LinearLayout.LayoutParams(0, -1, 26));
+        leftSpace = new View(context);
+        rightSpace = new View(context);
+        foreground.addView(leftSpace, new LinearLayout.LayoutParams(0, -1, 26));
         foreground.addView(panel, new LinearLayout.LayoutParams(0, -1, 74));
+        foreground.addView(rightSpace, new LinearLayout.LayoutParams(0, -1, 0));
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(-1, -1, Gravity.CENTER);
         params.setMargins(outer.dp(12), outer.dp(12), outer.dp(12), outer.dp(12));
         outer.addView(foreground, params);
         refresh();
+        refreshLobby();
+        skinTab.chosen = true;
         return outer;
+    }
+
+    private void fitBackground(int width, int height) {
+        var drawable = background.getDrawable();
+        if (drawable == null || width <= 0 || height <= 0) return;
+        float scale = Math.max((float) width / drawable.getIntrinsicWidth(), (float) height / drawable.getIntrinsicHeight());
+        Matrix matrix = new Matrix();
+        matrix.setScaleTranslate(scale, scale, matchPage ? width - drawable.getIntrinsicWidth() * scale : 0,
+                (height - drawable.getIntrinsicHeight() * scale) / 2);
+        background.setImageMatrix(matrix);
+    }
+    private void showPage(boolean match) {
+        matchPage = match;
+        skinPane.setVisibility(match ? View.GONE : View.VISIBLE);
+        matchViewport.setVisibility(match ? View.VISIBLE : View.GONE);
+        skinTab.chosen = !match; matchTab.chosen = match;
+        leftSpace.setLayoutParams(new LinearLayout.LayoutParams(0, -1, match ? 0 : 26));
+        rightSpace.setLayoutParams(new LinearLayout.LayoutParams(0, -1, match ? 26 : 0));
+        ImageDrawable backdrop = new ImageDrawable("minestrike_skins", match ? "gui/match-background.png" : "gui/skin-background.png");
+        backdrop.setFilter(false); background.setImageDrawable(backdrop);
+        fitBackground(background.getWidth(), background.getHeight());
+        if (match) lobbyAction("status");
+    }
+    private void lobbyAction(String action) {
+        Minecraft.m_91087_().execute(() -> SkinNetwork.CHANNEL.sendToServer(new SkinNetwork.LobbyAction(action)));
+    }
+    public void receiveLobby(MatchLobby.State state) { lobby = state; refreshLobby(); }
+    private void refreshLobby() {
+        if (roomInfo == null) return;
+        boolean available = lobby != null && lobby.available();
+        boolean started = available && lobby.started();
+        String team = lobby == null ? "" : lobby.team();
+        roomInfo.label = available ? "当前比赛：" + lobby.map() + (started ? "  游戏中" : "  等待准备") : "当前存档没有 CS 比赛配置";
+        teamT.label = "T 土匪" + (available ? "  " + lobby.tCount() + " 人" : "");
+        teamCT.label = "CT 反恐" + (available ? "  " + lobby.ctCount() + " 人" : "");
+        teamT.chosen = team.equals("t"); teamCT.chosen = team.equals("ct");
+        teamT.setEnabled(available && !started); teamCT.setEnabled(available && !started);
+        readyInfo.label = lobby == null ? "同步中" : "服务器人数：" + lobby.total() + (started ? "  比赛进行中" : "  已准备：" + lobby.readyCount());
+        readyButton.label = started ? "比赛进行中" : lobby != null && lobby.ready() ? "取消准备" : "准备游戏";
+        readyButton.chosen = lobby != null && lobby.ready();
+        readyButton.setEnabled(available && !started && (team.equals("t") || team.equals("ct")));
+        endInfo.label = !started ? "比赛开始后可发起结束" : "结束同意：" + lobby.endCount() + " / " + lobby.total();
+        endButton.label = lobby != null && lobby.ending() ? "撤回结束同意" : lobby != null && lobby.endCount() > 0 ? "同意结束游戏" : "发起结束游戏";
+        endButton.chosen = lobby != null && lobby.ending(); endButton.setEnabled(started);
+        if (lobby != null && !lobby.message().isEmpty()) lobbyMessage.label = lobby.message();
     }
 
     public void receive(Map<String, String> choices, boolean locked, String message) {
@@ -241,7 +332,7 @@ public final class SkinSelectionFragment extends Fragment {
         }
         public void onSurfaceChanged(int width, int height) { this.width = width; this.height = height; }
         public void onDraw(GuiGraphics graphics, int mouseX, int mouseY, float tick, double guiScale, float alpha) {
-            if (width <= 0 || height <= 0) return;
+            if (!isShown() || width <= 0 || height <= 0) return;
             if (clip != null) {
                 int[] own = new int[2], viewport = new int[2];
                 getLocationInWindow(own);
