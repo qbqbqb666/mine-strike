@@ -203,6 +203,17 @@ public final class MineStrikeSkins {
         return stack;
     }
 
+    public static void applyIssuedKits(CSGameMap map, ServerPlayer player) {
+        Map<String, String> chosen = choices(map, player.m_20148_());
+        var inventory = player.m_150109_();
+        for (int slot = 0; slot < inventory.m_6643_(); slot++) {
+            ItemStack original = inventory.m_8020_(slot);
+            if (!original.m_41619_()) inventory.m_6836_(slot, apply(original, chosen));
+        }
+        player.f_36095_.m_6199_(inventory);
+        player.f_36095_.m_38946_();
+    }
+
     public static boolean available(SkinCatalog.Group group, String id) {
         if ("GunId".equals(group.tag)) {
             return com.tacz.guns.api.TimelessAPI.getCommonGunIndex(new ResourceLocation(id)).isPresent();

@@ -1,6 +1,7 @@
 from pathlib import Path
 import argparse
 import os
+import shutil
 import subprocess
 import zipfile
 
@@ -14,6 +15,8 @@ if not patched.is_file():
     raise SystemExit("Missing installed Forge 47.4.0 client runtime: " + str(patched))
 jars = [patched] + sorted(args.libraries.rglob("*.jar")) + sorted((pack / "mods").glob("*.jar"))
 classes = root / "build/classes"
+if classes.exists():
+    shutil.rmtree(classes)
 classes.mkdir(parents=True, exist_ok=True)
 sources = sorted((root / "src/main/java").rglob("*.java"))
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-classpath",

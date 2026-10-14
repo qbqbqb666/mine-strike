@@ -25,4 +25,12 @@ public abstract class CSGameMapMixin {
     private ItemStack skinsKit(ItemStack original, ServerPlayer player, BaseTeam team) {
         return MineStrikeSkins.apply(original, MineStrikeSkins.choices((CSGameMap) (Object) this, player.m_20148_()));
     }
+
+    @Redirect(method = "lambda$cleanupMap$66", at = @At(value = "INVOKE",
+            target = "Lcom/phasetranscrystal/blockoffensive/map/CSGameMap;givePlayerKits(Lnet/minecraft/server/level/ServerPlayer;)V",
+            remap = false), remap = false, require = 2)
+    private void skinsRespawnKits(CSGameMap map, ServerPlayer player) {
+        map.givePlayerKits(player);
+        MineStrikeSkins.applyIssuedKits(map, player);
+    }
 }
