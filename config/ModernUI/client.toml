@@ -181,7 +181,7 @@
 	fontRegistrationList = []
 	#Whether to use Google Noto Color Emoji, otherwise grayscale emoji (faster).
 	#See Unicode 15.0 specification for details on how this affects text layout.
-	useColorEmoji = true
+	useColorEmoji = false
 	#When enabled, text layout uses fractional metrics with no font hinting and applies sub-pixel positioning.
 	#When disabled, text layout uses integer metrics with full font hinting.
 	linearMetrics = true
