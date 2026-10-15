@@ -1,3 +1,4 @@
+import dev.minestrike.skins.BombHud;
 import org.spongepowered.asm.service.*;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.launch.platform.container.*;
@@ -63,7 +64,32 @@ public class ShopMixinTest {
             if (!(instruction instanceof FrameNode)) instruction.accept(visitor);
         var text = new StringWriter(); printer.print(new PrintWriter(text)); return text.toString();
     }
+    private static String withoutReceiverPlumbing(MethodNode method) {
+        return methodCode(method).replaceAll("(?m)^    (ALOAD|ASTORE) [0-9]+\\R|^    SWAP\\R", "");
+    }
     public static void main(String[] args)throws Exception {
+        int total = 900;
+        double lastRate = 0;
+        for (double remaining = total; remaining > 0; remaining -= .25) {
+            double phase = BombHud.cycles(remaining, total);
+            double next = BombHud.cycles(remaining - .01, total);
+            double rate = (next - phase) / (.01 / 20);
+            if (rate < lastRate - 1e-5 || rate < .79 || rate > 3.21)
+                throw new AssertionError("Bomb pulse must accelerate continuously with the actual fuse");
+            lastRate = rate;
+            float pulse = BombHud.pulse(remaining, total);
+            if (!Float.isFinite(pulse) || pulse < 0 || pulse > 1) throw new AssertionError("Invalid pulse brightness");
+        }
+        if (BombHud.cycles(total + 20, total) != 0
+                || BombHud.cycles(0, 0) != 0)
+            throw new AssertionError("Bomb animation bounds");
+        if (!BombHud.visible("--:--", true, false, -1, 300, total)
+                || BombHud.visible("00:30", true, false, 600, 300, total)
+                || BombHud.visible("--:--", true, true, -1, 300, total)
+                || BombHud.visible("--:--", false, false, -1, 300, total)
+                || BombHud.visible("--:--", true, false, -1, 0, total))
+            throw new AssertionError("Bomb icon must only replace an active planted timer");
+        System.out.println("PASS: fuse-driven pulse acceleration, brightness bounds and planted/finished/reset visibility");
         MixinBootstrap.init();
         MixinEnvironment.getDefaultEnvironment().setSide(MixinEnvironment.Side.CLIENT);
         MixinEnvironment.getDefaultEnvironment().setOption(MixinEnvironment.Option.DEBUG_VERIFY,true);
@@ -136,7 +162,22 @@ public class ShopMixinTest {
             for (MethodNode method : original.methods) {
                 MethodNode actual = result.methods.stream().filter(m -> m.name.equals(method.name) && m.desc.equals(method.desc))
                         .findFirst().orElseThrow();
-                if (!method.name.equals(changed) && !methodCode(method).equals(methodCode(actual)))
+                if (entity && method.name.equals("setFuse")) {
+                    int recipients = 0;
+                    for (AbstractInsnNode instruction : actual.instructions) if (instruction instanceof MethodInsnNode call
+                            && call.name.contains("minestrike$timerRecipients")) {
+                        recipients++;
+                        actual.instructions.set(call, new MethodInsnNode(Opcodes.INVOKEVIRTUAL,
+                                prefix.replace('.', '/') + "fpsmatch/core/map/MapTeams", "getSpecPlayers", "()Ljava/util/List;", false));
+                    }
+                    if (recipients != 1 || !withoutReceiverPlumbing(method).equals(withoutReceiverPlumbing(actual)))
+                        throw new AssertionError("Fuse sync must only change recipients, never fuse values or cadence");
+                    MethodNode recipientHook = result.methods.stream().filter(m -> m.name.contains("minestrike$timerRecipients")).findFirst().orElseThrow();
+                    boolean allPlayers = false;
+                    for (AbstractInsnNode instruction : recipientHook.instructions) if (instruction instanceof MethodInsnNode call
+                            && call.name.equals("getJoinedPlayersWithSpec")) allPlayers = true;
+                    if (!allPlayers) throw new AssertionError("Fuse packets must reach both teams and spectators");
+                } else if (!method.name.equals(changed) && !methodCode(method).equals(methodCode(actual)))
                     throw new AssertionError("C4 audio changed unrelated method: " + method.name);
                 if (method.name.equals(changed)) {
                     int hooks = 0, positional = 0;
@@ -149,6 +190,29 @@ public class ShopMixinTest {
                 }
             }
         }
+        String overlayTarget = prefix + "blockoffensive.client.screen.hud.CSGameOverlay";
+        ClassNode originalOverlay = new ClassNode(), actualOverlay = new ClassNode();
+        new ClassReader(resource(overlayTarget)).accept(originalOverlay, 0);
+        new ClassReader(transformer.transformClassBytes(overlayTarget, overlayTarget, resource(overlayTarget))).accept(actualOverlay, 0);
+        for (MethodNode method : originalOverlay.methods) {
+            MethodNode actual = actualOverlay.methods.stream().filter(m -> m.name.equals(method.name) && m.desc.equals(method.desc)).findFirst().orElseThrow();
+            if (!method.name.equals("render")) {
+                if (!methodCode(method).equals(methodCode(actual))) throw new AssertionError("C4 HUD changed unrelated overlay method: " + method.name);
+                continue;
+            }
+            int hooks = 0;
+            for (AbstractInsnNode instruction : actual.instructions) if (instruction instanceof MethodInsnNode call
+                    && call.name.contains("minestrike$bombIcon")) hooks++;
+            if (hooks == 0) throw new AssertionError("C4 HUD timer drawing hook missing");
+        }
+        MethodNode iconHook = actualOverlay.methods.stream().filter(m -> m.name.contains("minestrike$bombIcon")).findFirst().orElseThrow();
+        boolean fallback = false, icon = false;
+        for (AbstractInsnNode instruction : iconHook.instructions) if (instruction instanceof MethodInsnNode call) {
+            if (call.owner.equals("net/minecraft/client/gui/GuiGraphics") && call.name.equals("m_280056_")) fallback = true;
+            if (call.owner.equals("dev/minestrike/skins/BombHud") && call.name.equals("draw")) icon = true;
+        }
+        if (!fallback || !icon) throw new AssertionError("C4 overlay must preserve original text outside planted state");
+        System.out.println("PASS: real C4 HUD Mixin, ordinary text fallback, all-player fuse sync with original values/cadence");
         ClassNode baseMap = new ClassNode(); new ClassReader(resource(prefix + "fpsmatch.core.map.BaseMap")).accept(baseMap, 0);
         MethodNode broadcast = baseMap.methods.stream().filter(m -> m.name.equals("sendPacketToAllPlayer")).findFirst().orElseThrow();
         boolean spectators = false;

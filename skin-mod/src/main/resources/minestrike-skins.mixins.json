@@ -19,7 +19,8 @@
     "ShopBundleSlotMixin",
     "ShopDeployItemMixin",
     "BombAudioMixin$Plant",
-    "BombAudioMixin$Beep"
+    "BombAudioMixin$Beep",
+    "BombHudMixin$Fuse"
   ],
   "injectors": {
     "defaultRequire": 1
@@ -39,6 +40,7 @@
     "CombatReflectionMixin",
     "TaczBulletTrailMixin",
     "SuperbBulletTrailMixin",
-    "BombAudioMixin$Clear"
+    "BombAudioMixin$Clear",
+    "BombHudMixin$Overlay"
   ]
 }
