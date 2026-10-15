@@ -1,5 +1,10 @@
 import dev.minestrike.skins.BaselineData;
 import dev.minestrike.skins.MapBaseline;
+import dev.minestrike.skins.MoneyCommands;
+import com.phasetranscrystal.fpsmatch.core.shop.ShopData;
+import com.mojang.brigadier.StringReader;
+import com.mojang.brigadier.tree.ArgumentCommandNode;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.nbt.*;
 import java.nio.file.*;
@@ -20,6 +25,28 @@ public class BaselineDataTest {
         var permission = net.minecraft.commands.CommandSourceStack.class.getDeclaredField("f_81291_"); permission.setAccessible(true);
         permission.setInt(source, 1); check(!command.canUse(source), "Non-admin baseline access rejected");
         permission.setInt(source, 2); check(command.canUse(source), "Admin baseline restore available");
+        MoneyCommands.commands(new net.minecraftforge.event.RegisterCommandsEvent(dispatcher, null, null));
+        check(dispatcher.getRoot().getChild("minestrike").getChild("baseline") == command, "Money command registration preserves baseline branch");
+        var money = dispatcher.getRoot().getChild("minestrike").getChild("money");
+        permission.setInt(source, 1); check(!money.canUse(source), "Non-admin money access rejected");
+        permission.setInt(source, 2); check(money.canUse(source), "Admin money command available");
+        var players = (ArgumentCommandNode<?, ?>) money.getChild("add").getChild("players");
+        check(players.getType() instanceof net.minecraft.commands.arguments.EntityArgument, "Native player/selector argument registered");
+        var amount = (ArgumentCommandNode<?, ?>) players.getChild("amount");
+        check(amount.getCommand() != null, "Money command execution registered");
+        amount.getType().parse(new StringReader("12500"));
+        amount.getType().parse(new StringReader("2147483647"));
+        for (String invalid : List.of("0", "-1", "2147483648")) {
+            boolean rejected = false;
+            try { amount.getType().parse(new StringReader(invalid)); } catch (CommandSyntaxException expected) { rejected = true; }
+            check(rejected, "Reject invalid money amount: " + invalid);
+        }
+        var funds = (ShopData<?>) unsafe.allocateInstance(ShopData.class);
+        var balance = ShopData.class.getDeclaredField("money"); balance.setAccessible(true); balance.setInt(funds, 800);
+        check(MoneyCommands.addMoney(funds, 12500) == 12500 && funds.getMoney() == 13300, "Native shop funds increase");
+        check(MoneyCommands.addMoney(funds, Integer.MAX_VALUE) == 2700 && funds.getMoney() == 16000, "Native cap retained without integer overflow");
+        check(MoneyCommands.addMoney(funds, 12500) == 0 && funds.getMoney() == 16000, "Money cap remains stable");
+        System.out.println("PASS: money command registration, existing baseline branch, admin permission, selectors, amounts and native capped funds");
         var bounds = new BaselineData.Bounds(-17, 4, -2, 3, 2, 4);
         Set<String> positions = new HashSet<>();
         for (int i = 0; i < bounds.volume(); i++) {

@@ -21,6 +21,13 @@ public final class ShopBundles {
     public record Receipt(List<InventoryPlan.Stack> items) {}
     public record View(int column, int row, int count, boolean refundable) {}
 
+    public static CompoundTag ammoTag(CompoundTag original) {
+        if (original == null) return null;
+        CompoundTag tag = original.m_6426_();
+        for (String key : List.of(RoundItems.ONLY, RoundItems.EPOCH, RECEIPT, PART)) tag.m_128473_(key);
+        return tag.m_128456_() ? null : tag;
+    }
+
     public static boolean isBundle(ShopSlot slot) {
         CompoundTag tag = slot.process().m_41783_();
         return tag != null && !tag.m_128437_(ITEMS, 10).isEmpty();

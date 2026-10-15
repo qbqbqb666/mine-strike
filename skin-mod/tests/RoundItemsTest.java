@@ -1,4 +1,5 @@
 import dev.minestrike.skins.RoundItems;
+import dev.minestrike.skins.ShopBundles;
 import net.minecraft.nbt.*;
 import java.io.*;
 import java.util.*;
@@ -6,6 +7,23 @@ import java.util.*;
 public class RoundItemsTest {
     private static void check(boolean value, String message) { if (!value) throw new AssertionError(message); }
     public static void main(String[] args) throws Exception {
+        CompoundTag ammo = new CompoundTag(); ammo.m_128359_("ShellType", "AA");
+        CompoundTag payload = new CompoundTag(); payload.m_128405_("Power", 7); ammo.m_128365_("Payload", payload);
+        CompoundTag marked = ammo.m_6426_();
+        marked.m_128379_(RoundItems.ONLY, true); marked.m_128359_(RoundItems.EPOCH, "round-1");
+        marked.m_128359_("MineStrikeBundleReceipt", "purchase-1"); marked.m_128405_("MineStrikeBundlePart", 3);
+        CompoundTag intact = marked.m_6426_();
+        check(!marked.equals(ammo) && ShopBundles.ammoTag(marked).equals(ammo), "Reproduce strict-NBT ammo mismatch and ignore only issued markers");
+        check(marked.equals(intact), "Comparison must not modify expiry/refund markers on real ammunition");
+        marked.m_128359_("ShellType", "HE");
+        check(!ShopBundles.ammoTag(marked).equals(ammo), "Different projectile metadata remains incompatible");
+        marked.m_128359_("ShellType", "AA"); marked.m_128405_("MineStrikeOtherData", 2);
+        check(!ShopBundles.ammoTag(marked).equals(ammo), "Unknown metadata must not be stripped by prefix");
+        CompoundTag flags = new CompoundTag(); flags.m_128379_(RoundItems.ONLY, true);
+        check(ShopBundles.ammoTag(flags) == null && ShopBundles.ammoTag(new CompoundTag()) == null && ShopBundles.ammoTag(null) == null,
+                "Metadata-only and empty tags normalize to untagged ammo");
+        check(RoundItems.expired(intact, Set.of()), "Ammo remains subject to round cleanup after comparison");
+        System.out.println("PASS: ammo marker mismatch regression, exact-key normalization, nested metadata and original refund/expiry preservation");
         Set<String> active = new HashSet<>(List.of("map-a-round-1", "map-b-round-1"));
         CompoundTag normal = new CompoundTag(); normal.m_128359_("GunId", "tacz:ak47");
         CompoundTag before = normal.m_6426_();

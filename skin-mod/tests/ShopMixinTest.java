@@ -131,6 +131,31 @@ public class ShopMixinTest {
         for(String target:targets){String name=prefix+target;byte[] before=resource(name),after=transformer.transformClassBytes(name,name,before);
             if(Arrays.equals(before,after))throw new AssertionError("Mixin did not apply: "+name);transformed.put(name,after);
         }
+        String ammoTarget = "com.atsuishio.superbwarfare.data.gun.AmmoConsumer";
+        ClassNode originalAmmo = new ClassNode(), actualAmmo = new ClassNode();
+        new ClassReader(resource(ammoTarget)).accept(originalAmmo, 0);
+        new ClassReader(transformer.transformClassBytes(ammoTarget, ammoTarget, resource(ammoTarget))).accept(actualAmmo, 0);
+        for (MethodNode method : originalAmmo.methods) {
+            MethodNode actual = actualAmmo.methods.stream().filter(m -> m.name.equals(method.name) && m.desc.equals(method.desc)).findFirst().orElseThrow();
+            if (!method.name.equals("isAmmoItem")) {
+                if (!methodCode(method).equals(methodCode(actual))) throw new AssertionError("Ammo compatibility changed native count/consumption/reload method: " + method.name);
+                continue;
+            }
+            int hooks = 0;
+            for (AbstractInsnNode instruction : actual.instructions) if (instruction instanceof MethodInsnNode call
+                    && call.name.contains("minestrike$ammo")) hooks++;
+            if (hooks != 1) throw new AssertionError("Ammo comparison hook must apply exactly once");
+        }
+        MethodNode ammoHook = actualAmmo.methods.stream().filter(m -> m.name.contains("minestrike$ammo")).findFirst().orElseThrow();
+        int nativeComparisons = 0, copies = 0, normalized = 0;
+        for (AbstractInsnNode instruction : ammoHook.instructions) if (instruction instanceof MethodInsnNode call) {
+            if (call.owner.equals("com/atsuishio/superbwarfare/tools/MinecraftUtil") && call.name.equals("isSameItemStack")) nativeComparisons++;
+            if (call.owner.equals("net/minecraft/world/item/ItemStack") && call.name.equals("m_41777_")) copies++;
+            if (call.owner.equals("dev/minestrike/skins/ShopBundles") && call.name.equals("ammoTag")) normalized++;
+            if (Set.of("m_41774_", "m_41764_", "m_41620_").contains(call.name)) throw new AssertionError("Ammo comparison must not consume or change stack counts");
+        }
+        if (nativeComparisons != 2 || copies != 2 || normalized != 2) throw new AssertionError("Ammo compatibility must retain native matching and normalize only copies");
+        System.out.println("PASS: real ammo Mixin; native count/consume/withdraw methods unchanged; comparison operates on copies only");
         String containerTarget = "com.atsuishio.superbwarfare.block.ContainerBlock";
         ClassNode originalContainer = new ClassNode(), actualContainer = new ClassNode();
         new ClassReader(resource(containerTarget)).accept(originalContainer, 0);

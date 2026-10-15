@@ -2,6 +2,28 @@
 
 适用于本包 Minecraft 1.20.1、Forge 47.4.0、FPSMatch 1.2.5、BlockOffensive 1.2.5.1。
 
+## 管理员增加比赛资金
+
+需要管理员权限等级 2，目标必须已在进行中的 CS 比赛中拥有个人商店：
+
+```mcfunction
+/minestrike money add @s 12500
+/minestrike money add 玩家名 5000
+/minestrike money add @a 12500
+```
+
+金额为正整数，沿用 FPSMatch 的 16000 余额上限，反馈实际增加金额与新余额，并立即同步原资金数据包。未参赛、没有个人商店或正在恢复基准的玩家跳过并提示原因。资金仍随原比赛规则重置，命令不修改开局金额、商店价格或地图基准。服务端／房主需要新版自制模组；默认验证后备份并同步 PCL。
+
+## Superb Warfare 比赛弹药兼容（2026-10-16）
+
+LAV-AD 配套的 `small_shell_aa` 与 `medium_anti_air_missile` 类型符合原载具数据，但商店发放时会附带本局清理及整套退款的 NBT。Superb Warfare 0.8.9 的 `AmmoConsumer.isAmmoItem` 使用 `MinecraftUtil.isSameItemStack` 严格比较 NBT，导致这些带标记的弹药与原弹药模板不匹配。
+
+`VehicleAmmoMixin` 只接入该弹药匹配入口：先使用原比较；失败且物品类型相同时，在副本中移除 `MineStrikeRoundOnly`、`MineStrikeIssuedRound`、`MineStrikeBundleReceipt`、`MineStrikeBundlePart` 再使用原比较。实际库存物品不删除或修改标记，弹药其他 NBT、物品类型及能力数据仍由原比较约束，其他未知 `MineStrike` 字段也不忽略。此入口由 Superb Warfare 多种武器共用，除 LAV-AD 外也兼容使用相同比赛标记的该模组弹药，不修改全局物品相等规则。
+
+不改变原弹量、装填时间、扣弹、弹丸和伤害。装填消耗原库存，未消耗物品继续支持原回合清理与退款检查；已经消耗的配套弹药仍按原整套退款规则处理，不凭空补发。旧比赛物品无需重购去标记，安装补丁后可按新匹配使用，但仍受本轮有效性检查。
+
+自动验证复现“业务 NBT 相同、仅四项标记不同”的不匹配，检查规范化只操作副本、空标签处理、不同弹种和嵌套数据保持区分、未知字段保留、原物品仍可过期清理；真实 Mixin 引擎检查原匹配入口接入一次，其余原计数／扣弹／回收方法保持原样。自动检查未启动世界；需重启后实测比赛购买的 64 发炮弹和 4 枚导弹装填／射击时数量下降，错误弹药不被接受，并检查下一回合清理、整套退款及普通模式弹药。默认验证后备份并同步 PCL，房主／服务器也需同版自制模组。
+
 ## 安装与操作
 
 1. 关闭游戏，把 `mods/mine-strike-skins-0.1.0.jar` 复制到实际启动的版本目录的 `mods`。

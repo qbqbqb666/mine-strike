@@ -22,7 +22,8 @@
     "BombAudioMixin$Beep",
     "BombHudMixin$Fuse",
     "BombDamageMixin",
-    "ContainerToolMixin"
+    "ContainerToolMixin",
+    "VehicleAmmoMixin"
   ],
   "injectors": {
     "defaultRequire": 1
