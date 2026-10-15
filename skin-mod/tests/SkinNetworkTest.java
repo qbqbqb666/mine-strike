@@ -20,6 +20,26 @@ public class SkinNetworkTest {
             SkinNetwork.LobbyState lobby = new SkinNetwork.LobbyState("{\"total\":3,\"readyCount\":2,\"message\":\"等待全员准备\"}");
             stateBytes.clear(); SkinNetwork.LobbyState.encode(lobby, stateBytes);
             if (!lobby.equals(SkinNetwork.LobbyState.decode(stateBytes))) throw new AssertionError("Lobby state round trip");
+            stateBytes.clear();
+            SkinNetwork.ShopShape shape = new SkinNetwork.ShopShape(new int[]{8,4,7,5,5,0});
+            SkinNetwork.ShopShape.encode(shape,stateBytes);
+            if (!java.util.Arrays.equals(shape.counts(),SkinNetwork.ShopShape.decode(stateBytes).counts())) throw new AssertionError("Independent counts round trip");
+            requestBytes.clear();
+            var edit = new SkinNetwork.ShopEditAction(7,"delete",5,20);
+            SkinNetwork.ShopEditAction.encode(edit,requestBytes);
+            if (!edit.equals(SkinNetwork.ShopEditAction.decode(requestBytes))) throw new AssertionError("Independent delete request");
+            requestBytes.clear();
+            var save = new SkinNetwork.ShopSave(3,"神秘武器 · 测试",16000,120,-1,2,true);
+            SkinNetwork.ShopSave.encode(save,requestBytes);
+            if (!save.equals(SkinNetwork.ShopSave.decode(requestBytes))) throw new AssertionError("Item name and fields round trip");
+            requestBytes.clear();
+            var pick = new SkinNetwork.ShopPick(4,35);
+            SkinNetwork.ShopPick.encode(pick,requestBytes);
+            if (!pick.equals(SkinNetwork.ShopPick.decode(requestBytes))) throw new AssertionError("Inventory selection round trip");
+            requestBytes.clear();
+            var back = new SkinNetwork.ShopBack(4);
+            SkinNetwork.ShopBack.encode(back,requestBytes);
+            if (!back.equals(SkinNetwork.ShopBack.decode(requestBytes))) throw new AssertionError("Back request round trip");
             boolean rejected = false;
             try { SkinNetwork.Request.encode(new SkinNetwork.Request(true, "x".repeat(8193)), requestBytes); }
             catch (EncoderException e) { rejected = true; }

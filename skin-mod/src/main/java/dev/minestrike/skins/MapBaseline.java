@@ -111,6 +111,26 @@ public final class MapBaseline {
                     try { job = new Job(map, true, false); message("正在保存当前地图基准，请勿修改地图。"); return 1; }
                     catch (Exception e) { context.getSource().m_81352_(Component.m_237113_("无法保存基准：" + e.getMessage())); return 0; }
                 }))
+                .then(Commands.m_82127_("restore").executes(context -> {
+                    CSGameMap map = MatchLobby.map();
+                    if (map == null || map.isStart || job != null) {
+                        context.getSource().m_81352_(Component.m_237113_("需要唯一的 CS 地图，且比赛及保存/恢复任务均未运行。")); return 0;
+                    }
+                    if (!exists(map)) {
+                        context.getSource().m_81352_(Component.m_237113_("当前地图尚未保存基准，无法恢复。")); return 0;
+                    }
+                    try {
+                        job = new Job(map, false, false, false);
+                        for (var player : map.getServerLevel().m_7654_().m_6846_().m_11314_()) player.m_8127_();
+                        map.teleportPlayerToMatchEndPoint();
+                        MatchLobby.reset(map);
+                        message("正在恢复地图基准，完成后保持未开赛状态。"); return 1;
+                    } catch (Exception e) {
+                        if (job != null) { job.release(); job = null; }
+                        MineStrikeSkins.LOG.error("Cannot start manual map restore", e);
+                        context.getSource().m_81352_(Component.m_237113_("无法恢复基准：" + e.getMessage())); return 0;
+                    }
+                }))
                 .then(Commands.m_82127_("status").executes(context -> {
                     CSGameMap map = MatchLobby.map();
                     String text = map == null ? "当前存档没有唯一 CS 地图。" : "地图：" + map.getMapName() + "，" +
@@ -119,7 +139,7 @@ public final class MapBaseline {
                 }))));
     }
     private static final class Job {
-        final CSGameMap map; final ServerLevel level; final boolean saving, round;
+        final CSGameMap map; final ServerLevel level; final boolean saving, round, resumeGame;
         final BaselineData.Bounds bounds; final int[] blocks; final Path destination;
         final ListTag palette = new ListTag(), tiles = new ListTag(), entities = new ListTag();
         final Map<BlockState, Integer> ids = new HashMap<>();
@@ -129,7 +149,10 @@ public final class MapBaseline {
         BaselineData data; List<BlockState> states;
         int index, phase, cx, cz, tileIndex; boolean chunksLoaded, entityDelay;
         Job(CSGameMap map, boolean saving, boolean round) {
-            this.map = map; this.level = map.getServerLevel(); this.saving = saving; this.round = round;
+            this(map, saving, round, true);
+        }
+        Job(CSGameMap map, boolean saving, boolean round, boolean resumeGame) {
+            this.map = map; this.level = map.getServerLevel(); this.saving = saving; this.round = round; this.resumeGame = resumeGame;
             destination = file(map);
             bounds = bounds(map); blocks = saving ? new int[bounds.volume()] : null;
             cx = bounds.x() >> 4; cz = bounds.z() >> 4;
@@ -270,6 +293,10 @@ public final class MapBaseline {
             if (!active.step()) return;
             active.release(); job = null;
             if (active.saving) message("地图基准保存完成：" + file(active.map));
+            else if (!active.resumeGame) {
+                MatchLobby.reset(active.map);
+                message("地图基准恢复完成，当前未开赛。");
+            }
             else {
                 resuming = active.map;
                 try { if (active.round) active.map.startNewRound(); else active.map.startGame(); }

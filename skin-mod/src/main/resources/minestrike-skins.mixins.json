@@ -3,6 +3,25 @@
   "minVersion": "0.8",
   "package": "dev.minestrike.skins.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": ["CSGameMapMixin", "BaseTeamMixin", "BaseMapMixin"],
-  "injectors": {"defaultRequire": 1}
+  "mixins": [
+    "CSGameMapMixin",
+    "BaseTeamMixin",
+    "BaseMapMixin",
+    "ShopDataMixin",
+    "FPSMShopMixin",
+    "ShopEditorContainerMixin",
+    "ShopEditorAccess",
+    "ShopOpenEditorMixin",
+    "ShopToolOpenMixin",
+    "ShopCategoryMixin",
+    "ShopSlotMenuAccess",
+    "ShopSlotMenuMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "ShopEditorScreenFactoryMixin",
+    "ShopPurchaseOpenMixin"
+  ]
 }

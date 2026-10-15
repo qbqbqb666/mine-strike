@@ -1,4 +1,6 @@
 import dev.minestrike.skins.BaselineData;
+import dev.minestrike.skins.MapBaseline;
+import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.nbt.*;
 import java.nio.file.*;
 import java.util.*;
@@ -6,6 +8,18 @@ import java.util.*;
 public class BaselineDataTest {
     static void check(boolean value, String message) { if (!value) throw new AssertionError(message); }
     public static void main(String[] args) throws Exception {
+        var dispatcher = new CommandDispatcher<net.minecraft.commands.CommandSourceStack>();
+        MapBaseline.commands(new net.minecraftforge.event.RegisterCommandsEvent(dispatcher, null, null));
+        var command = dispatcher.getRoot().getChild("minestrike").getChild("baseline");
+        for (String operation : List.of("save", "restore", "status"))
+            check(command.getChild(operation) != null && command.getChild(operation).getCommand() != null,
+                    "Registered baseline operation: " + operation);
+        var unsafeField = sun.misc.Unsafe.class.getDeclaredField("theUnsafe"); unsafeField.setAccessible(true);
+        var unsafe = (sun.misc.Unsafe) unsafeField.get(null);
+        var source = (net.minecraft.commands.CommandSourceStack) unsafe.allocateInstance(net.minecraft.commands.CommandSourceStack.class);
+        var permission = net.minecraft.commands.CommandSourceStack.class.getDeclaredField("f_81291_"); permission.setAccessible(true);
+        permission.setInt(source, 1); check(!command.canUse(source), "Non-admin baseline access rejected");
+        permission.setInt(source, 2); check(command.canUse(source), "Admin baseline restore available");
         var bounds = new BaselineData.Bounds(-17, 4, -2, 3, 2, 4);
         Set<String> positions = new HashSet<>();
         for (int i = 0; i < bounds.volume(); i++) {
@@ -56,6 +70,6 @@ public class BaselineDataTest {
             rejected = false; try { new BaselineData.Bounds(0, 0, 0, 1000, 1000, 1000); } catch (IllegalArgumentException expected) { rejected = true; }
             check(rejected, "Oversized region rejected");
         } finally { try (var files = Files.walk(directory)) { for (Path p : files.sorted(Comparator.reverseOrder()).toList()) Files.delete(p); } }
-        System.out.println("PASS: region isolation/indexing, compressed baseline, air/blocks, containers, vehicle NBT, atomic update, previous backup, invalid-data protection");
+        System.out.println("PASS: save/restore/status command registration and permission level 2; region isolation/indexing, compressed baseline, air/blocks, containers, vehicle NBT, atomic update, previous backup, invalid-data protection");
     }
 }

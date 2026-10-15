@@ -21,7 +21,7 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
@@ -76,3 +76,54 @@ assert "public final void mapTick();" in base_code
 with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
     assert "BaseMapMixin" in json.loads(jar.read("minestrike-skins.mixins.json"))["mixins"]
 print("PASS: match-start/round-start reset and suspended map-tick integration targets")
+
+
+def inspect_class(name):
+    return subprocess.run(["javap", "-classpath", classpath, "-c", "-p", name],
+                          capture_output=True, text=True, check=True).stdout
+
+editor = inspect_class("com.phasetranscrystal.fpsmatch.common.client.screen.EditorShopContainer")
+constructor = editor.split("public com.phasetranscrystal.fpsmatch.common.client.screen.EditorShopContainer(int, net.minecraft.world.entity.player.Inventory, net.minecraft.world.item.ItemStack);", 1)[1].split("private void addPlayerInventory", 1)[0]
+assert constructor.count("// Method getAllSlots:()Ljava/util/List;") == 1
+assert constructor.count("// class net/minecraftforge/items/SlotItemHandler") == 1
+assert constructor.count("iconst_5") == 4, "Editor row/column/index constants changed"
+assert "sipush        163" in constructor
+assert "bipush        24" in editor.split("public void m_150399_", 1)[1].split("public void m_6877_", 1)[0]
+assert "private final net.minecraft.world.item.ItemStack guiItemStack;" in editor
+slot_editor = inspect_class("com.phasetranscrystal.fpsmatch.common.client.screen.EditShopSlotMenu")
+assert "irem" in slot_editor and "idiv" in slot_editor and "replaceDefaultShopData" in slot_editor
+opener = inspect_class("com.phasetranscrystal.fpsmatch.common.packet.shop.OpenEditorC2SPacket")
+assert "private static void handleOpenEditor(net.minecraft.server.level.ServerPlayer);" in opener
+tool = inspect_class("com.phasetranscrystal.fpsmatch.common.item.ShopEditTool")
+tool_use = tool.split(" m_7203_(", 1)[1].split("public static void onLeftClickEmpty", 1)[0]
+assert tool_use.count("Method net/minecraftforge/network/NetworkHooks.openScreen:") == 1
+tool_mixin = inspect_class("dev.minestrike.skins.mixin.ShopToolOpenMixin")
+assert "Method net/minecraft/world/entity/player/Player.m_21120_:" in tool_mixin
+assert "Method dev/minestrike/skins/ShopExpansion.prepareTool:" in tool_mixin
+category = inspect_class("com.phasetranscrystal.blockoffensive.map.shop.ItemType")
+assert "ItemType[] $VALUES;" in category
+assert "private com.phasetranscrystal.blockoffensive.map.shop.ItemType(int, boolean);" in category
+bar = inspect_class("com.phasetranscrystal.blockoffensive.client.screen.CSGameShopScreen$TypeBarLayout")
+assert bar.split("public void", 1)[0].count("iconst_5") == 1
+window = inspect_class("com.phasetranscrystal.blockoffensive.client.screen.CSGameShopScreen$WindowLayout")
+assert window.count("// float 550.0f") == 1
+screen = inspect_class("com.phasetranscrystal.blockoffensive.client.screen.CSGameShopScreen")
+assert "public static float calculateScaleFactor(int, int);" in screen
+registration = inspect_class("com.phasetranscrystal.fpsmatch.common.client.screen.VanillaGuiRegister")
+assert registration.count("Method net/minecraft/client/gui/screens/MenuScreens.m_96206_:") == 2
+with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
+    config = json.loads(jar.read("minestrike-skins.mixins.json"))
+    for mixin in ["ShopDataMixin", "FPSMShopMixin", "ShopEditorContainerMixin", "ShopEditorAccess", "ShopOpenEditorMixin", "ShopToolOpenMixin", "ShopCategoryMixin", "ShopSlotMenuAccess", "ShopSlotMenuMixin"]:
+        assert mixin in config["mixins"]
+    for mixin in ["ShopEditorScreenFactoryMixin", "ShopPurchaseOpenMixin"]:
+        assert mixin in config["client"]
+print("PASS: exact shop row, edit-index, pre-open sync, screen registration and client-only mixin targets")
+
+services = tests / "META-INF/services"
+services.mkdir(parents=True, exist_ok=True)
+(services / "org.spongepowered.asm.service.IMixinService").write_text("ShopMixinTest$Service\n")
+(services / "org.spongepowered.asm.service.IGlobalPropertyService").write_text("ShopMixinTest$Properties\n")
+mixin_runtime = [args.libraries / "org/spongepowered/mixin/0.8.5/mixin-0.8.5.jar"]
+mixin_runtime += sorted((args.libraries / "org/ow2/asm").glob("*/9.7.1/*.jar"))
+mixin_classpath = os.pathsep.join([str(tests), str(root / "src/main/resources"), *map(str, mixin_runtime), classpath])
+subprocess.run(["java", "-ea", "-cp", mixin_classpath, "ShopMixinTest"], cwd=runtime, check=True)
