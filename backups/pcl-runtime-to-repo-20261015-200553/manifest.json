@@ -1,0 +1,281 @@
+{
+  "source": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike",
+  "destination": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike",
+  "status": "verified",
+  "files": [
+    {
+      "path": "config/voicechat/voicechat-client.properties",
+      "created": false,
+      "previous_sha256": "6c2e7303cf5643485531d6d122726a1ec6877d53b90fb06fdae050d3ddb3c5ac",
+      "pcl_sha256": "e61a807440646ee16063a255ff05bb86a0d7bb55b958f466c26a80613a22471e",
+      "bytes": 5068
+    },
+    {
+      "path": "fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "created": false,
+      "previous_sha256": "70dc8e88fefb8b8ab554dbfe5814f0c064f0590f68e46eae3d682e40b750ac8a",
+      "pcl_sha256": "10b090f79b282550bcbefde34259866e7f85fc956eaa5eb83e065d5d086ebfe1",
+      "bytes": 40788
+    },
+    {
+      "path": "mine-strike-data/player-skins/a21860d4-f26c-3c22-ad65-d63592e1698f.json",
+      "created": true,
+      "previous_sha256": null,
+      "pcl_sha256": "6efa88dc2ffe6e0aece04c44baa2db1a48f821dcdfd09b73ecf5b4c40f542c70",
+      "bytes": 136
+    },
+    {
+      "path": "mine-strike-data/player-skins/b34260e8-45b6-38f3-ad99-a7144aab73e4.json",
+      "created": true,
+      "previous_sha256": null,
+      "pcl_sha256": "90af130eb73006d50b45fd19a741c1ea64dcb1cae770b7e2b409c054321bb052",
+      "bytes": 166
+    },
+    {
+      "path": "options.txt",
+      "created": false,
+      "previous_sha256": "45a0a47fe62f472b0da5f4f1b6d9db9efd5e055edb7fd27cf9c59f7577f75c38",
+      "pcl_sha256": "d896abb761c0c840d9282aee034dbe81f76c7335246cfa8b15cc95212709b087",
+      "bytes": 9660
+    },
+    {
+      "path": "saves/dust2/DIM-1/data/raids.dat",
+      "created": false,
+      "previous_sha256": "2b62ab4661703428469fd777e66cd491522c034773e3e194b8a5c9c7b0126ec0",
+      "pcl_sha256": "76223587d04c517d957c33bcf3fd4237271327c4735e8edd22714d269eb789f2",
+      "bytes": 90
+    },
+    {
+      "path": "saves/dust2/DIM1/data/raids_end.dat",
+      "created": false,
+      "previous_sha256": "2b62ab4661703428469fd777e66cd491522c034773e3e194b8a5c9c7b0126ec0",
+      "pcl_sha256": "76223587d04c517d957c33bcf3fd4237271327c4735e8edd22714d269eb789f2",
+      "bytes": 90
+    },
+    {
+      "path": "saves/dust2/advancements/a21860d4-f26c-3c22-ad65-d63592e1698f.json",
+      "created": false,
+      "previous_sha256": "f36f3d909561c09746a24c6915f04b4ad457608eb74b661cd68c063241dee7c8",
+      "pcl_sha256": "484872efb55ce2280e0c030a41fbce0974ee4ea2a855476fe0ca3ddb50fd5d72",
+      "bytes": 9544
+    },
+    {
+      "path": "saves/dust2/advancements/b34260e8-45b6-38f3-ad99-a7144aab73e4.json",
+      "created": false,
+      "previous_sha256": "97a4e84c641675d89f1eef481bcd38ba71536e087dbd15a8dc14de0b25f5ec43",
+      "pcl_sha256": "80c7e13f8131c3e0408de9f4c8b5bbbab29622e8d932770fde3c6ca027cf089e",
+      "bytes": 9658
+    },
+    {
+      "path": "saves/dust2/data/geckolib_id_cache.dat",
+      "created": false,
+      "previous_sha256": "1a966fe164de160b7762b881d992044bbe874b15a75586d2ad4a4037ab148c6a",
+      "pcl_sha256": "1ef6121d7c66b9d53d0bdc9a55081fdec8fa992c67bfa318a57550a3f2c5f197",
+      "bytes": 62
+    },
+    {
+      "path": "saves/dust2/data/raids.dat",
+      "created": false,
+      "previous_sha256": "61d83162cb9034497bde4681de5b5e2e2024c6506d2c809da72525372a033652",
+      "pcl_sha256": "43f7f2153fa0dd250d8ae70513a82eec5348627e2e212ca79a51f5298b93a784",
+      "bytes": 90
+    },
+    {
+      "path": "saves/dust2/data/random_sequences.dat",
+      "created": false,
+      "previous_sha256": "02723530b9262feb67944341d734747462a2429dfd45fa3143c8966c341d89f8",
+      "pcl_sha256": "4c0b5e87da8498415799b69d00751694e9c59827a9695abfdac6d47ad2fa69c9",
+      "bytes": 2638
+    },
+    {
+      "path": "saves/dust2/data/scoreboard.dat",
+      "created": false,
+      "previous_sha256": "8af6050cb17fd342872ec6daafb4cdc15bf6a7c4819a078f00ba47f2f99e4aec",
+      "pcl_sha256": "394242e8678f2e825907bc1c24c3c4591ff34e09c9fac64f0aeb2a8b81f730f4",
+      "bytes": 835
+    },
+    {
+      "path": "saves/dust2/data/superbwarfare_chunk_pos.dat",
+      "created": true,
+      "previous_sha256": null,
+      "pcl_sha256": "88617094b96b4c0d783054605598d40b2d87b3a2bda230caf21a931633eacab4",
+      "bytes": 56
+    },
+    {
+      "path": "saves/dust2/entities/r.-1.-1.mca",
+      "created": false,
+      "previous_sha256": "23b8bb1184ebfdf854bc15d54afa7e5a0b5d6f2c247a6354f8346abf9b64a902",
+      "pcl_sha256": "27564edc629bd2f456d7f333696a1175156ec1680c5e352865d31ad9cf8b98c4",
+      "bytes": 61440
+    },
+    {
+      "path": "saves/dust2/entities/r.-1.0.mca",
+      "created": false,
+      "previous_sha256": "16ddff96f33ae51307854ddee890ea6739de9fc9c5c8960aad20ff3d01424091",
+      "pcl_sha256": "389a79b737ff640a28126e7079a9158bcd15a3be774189a03cef4ab56c8728ca",
+      "bytes": 57344
+    },
+    {
+      "path": "saves/dust2/entities/r.0.-1.mca",
+      "created": false,
+      "previous_sha256": "bf342c0a9696fbc03ce7b6254cb30fc23b15c6cf99a19a7bc0c82018b32b0673",
+      "pcl_sha256": "bde40b5cc46422a0940db88ac91777855f4b3c77c71b3688ee45e711779f724e",
+      "bytes": 86016
+    },
+    {
+      "path": "saves/dust2/entities/r.0.0.mca",
+      "created": false,
+      "previous_sha256": "ba31815098db0dea464adb0a79d6e7c4c1d773ebb5996d836116b4c676fe3a2f",
+      "pcl_sha256": "b3a12084b7d88fd5c1d4eafe7dd2ab07d8f07aab3af7298ce7d7c5ee282b0741",
+      "bytes": 167936
+    },
+    {
+      "path": "saves/dust2/level.dat",
+      "created": false,
+      "previous_sha256": "aaa1dcdcd0a43500596a4822646c6b62dea68224ceb76dc24b42ccaa408e9a5c",
+      "pcl_sha256": "5adcffb08ed3d0c5e616b653dd3c9b78736a9937e3a1a30d079b3913260ca2ba",
+      "bytes": 159478
+    },
+    {
+      "path": "saves/dust2/level.dat_old",
+      "created": false,
+      "previous_sha256": "c370cded0d63943e26aede32acad0c047e7c72475871b3a01a303a65143c5f48",
+      "pcl_sha256": "36b9b68000ab12cee8ed640812afb8f98ca241b2c0e7633c9dcea2a581ce5d36",
+      "bytes": 161914
+    },
+    {
+      "path": "saves/dust2/mine-strike-data/map-baselines/ZHVzdDI.nbt",
+      "created": true,
+      "previous_sha256": null,
+      "pcl_sha256": "8024994e212c54221a75e434cb1766fe746c63d3e1c050fac19e6bd4d41c2913",
+      "bytes": 142628
+    },
+    {
+      "path": "saves/dust2/mine-strike-data/map-baselines/ZHVzdDI.nbt.previous",
+      "created": true,
+      "previous_sha256": null,
+      "pcl_sha256": "d0941dc875c8a5b54efde6ef3174cb38a45c9c0f1e3029fefdd9a6506e50c566",
+      "bytes": 142632
+    },
+    {
+      "path": "saves/dust2/mine-strike-data/map-baselines/generation.txt",
+      "created": true,
+      "previous_sha256": null,
+      "pcl_sha256": "90337f7495b30bf7b340767a111717ec28a9539b1f897f4b91c0c3e304004c9b",
+      "bytes": 36
+    },
+    {
+      "path": "saves/dust2/playerdata/a21860d4-f26c-3c22-ad65-d63592e1698f.dat",
+      "created": false,
+      "previous_sha256": "b3735578d394afef9e292a1be1005b128d4e5ba6d4b19c11a7166d44008daa11",
+      "pcl_sha256": "2b86f5adb81b4eeed83122b0ba48bd9cf6271a2c67c4b1e1257b3f6285814cd0",
+      "bytes": 1892
+    },
+    {
+      "path": "saves/dust2/playerdata/a21860d4-f26c-3c22-ad65-d63592e1698f.dat_old",
+      "created": false,
+      "previous_sha256": "92a19ef3aa1862a354372ef0d6f63d7b899589be940fb7254f86940941a7d037",
+      "pcl_sha256": "d150f72cebaae47675074a7abbdd8d3ca8fbba30f69df94d5530a89c35170c98",
+      "bytes": 2049
+    },
+    {
+      "path": "saves/dust2/playerdata/b34260e8-45b6-38f3-ad99-a7144aab73e4.dat",
+      "created": false,
+      "previous_sha256": "c289e62e3b29c2fd2d4ee01b4f7d7e7ebc517c8bb5f3aa7b312c1223bd0ed39a",
+      "pcl_sha256": "3edd400fc701b6d95661c602dddf0ff8690201732d4cfbeca5a7cf3ee3a38246",
+      "bytes": 5143
+    },
+    {
+      "path": "saves/dust2/playerdata/b34260e8-45b6-38f3-ad99-a7144aab73e4.dat_old",
+      "created": false,
+      "previous_sha256": "d1d326f593cd030987b5717e27770641d47202d70961f509263aab3ed2b6b1c1",
+      "pcl_sha256": "572aa450b3e88b93f9d7b64d128e52e3cf06a30526ffbd88e7247bf1a7c5bfe4",
+      "bytes": 7402
+    },
+    {
+      "path": "saves/dust2/poi/r.0.0.mca",
+      "created": false,
+      "previous_sha256": "9a650b594896d658f667d10006fcd39e486fa8fe9b25fa5c66c73bc7f9d45dcd",
+      "pcl_sha256": "f31ad8daa7024b629eadd3d68c279a5d6a5f9c3a1d5fe38fb341b71a2c2ec79a",
+      "bytes": 45056
+    },
+    {
+      "path": "saves/dust2/region/r.-1.-1.mca",
+      "created": false,
+      "previous_sha256": "3077325497c6ac5cda57f4db10f47163d73c681368a88560f7bb531f340fd02f",
+      "pcl_sha256": "07d3cdaace019b8f768759db9b125441555f2bc32a6e6351a157ef2ee17ac041",
+      "bytes": 4206592
+    },
+    {
+      "path": "saves/dust2/region/r.-1.-2.mca",
+      "created": false,
+      "previous_sha256": "e85923132fe0de477a8e68d3124e957f22632f99c04eea24cff4b145ea6c1e13",
+      "pcl_sha256": "d91faf1f79b7302c718804d2a28657ab120303bd54adca7a980bf927c722ffa5",
+      "bytes": 1982464
+    },
+    {
+      "path": "saves/dust2/region/r.-1.0.mca",
+      "created": false,
+      "previous_sha256": "074fe478498442074e0949b99cac28d7341d9baae4506e1a8117b0dccb5de6ce",
+      "pcl_sha256": "61e6c7cf63cb241b0fab18385e51f838e33ab265e0c4e5b2713e17257d26ee4f",
+      "bytes": 4206592
+    },
+    {
+      "path": "saves/dust2/region/r.-1.1.mca",
+      "created": false,
+      "previous_sha256": "58add8d28cd26a82f03057d864fe8c66f61b228227913d8bcab9d4eaefac6324",
+      "pcl_sha256": "ac9ea5a02bd204967e5e9672220da862e1a91c900e60b1b7fa0394f766583b2d",
+      "bytes": 843776
+    },
+    {
+      "path": "saves/dust2/region/r.0.-1.mca",
+      "created": false,
+      "previous_sha256": "c609c6be1821f9c829265d9e7702f4609e1a4b5bf6534d807a4eb2aec28680c3",
+      "pcl_sha256": "25aa58f02ab447fc0144f149c212356ae9cf8a48cf8292a0fef3e04375c8b5fb",
+      "bytes": 4239360
+    },
+    {
+      "path": "saves/dust2/region/r.0.-2.mca",
+      "created": false,
+      "previous_sha256": "dd71e7bd46f387cdc82066cb622c526bfa35b488670c0de0be6df64dbeeced84",
+      "pcl_sha256": "3c715048e0648e151204a25ae62deccfae28503fa173d2fee09570494ad1f2b6",
+      "bytes": 3977216
+    },
+    {
+      "path": "saves/dust2/region/r.0.0.mca",
+      "created": false,
+      "previous_sha256": "2964b61941822ef094454eb276625708c67302e3e1c28fa046e40da3c6145c6c",
+      "pcl_sha256": "ea43b7a1b235d9e3419327efdc1d51204434f159be88f71aaee495f8e0530920",
+      "bytes": 4399104
+    },
+    {
+      "path": "saves/dust2/region/r.0.1.mca",
+      "created": false,
+      "previous_sha256": "dbd517947a31a977a8238ccaac1b9a8f095176d92349c2c1cce16f491db7350d",
+      "pcl_sha256": "74ae77e99a560009b90933ecba870150dc393d827e7e87f383b59cec361416e2",
+      "bytes": 1556480
+    },
+    {
+      "path": "saves/dust2/region/r.1.-1.mca",
+      "created": false,
+      "previous_sha256": "f5bcfbcfabf0977ca490a3010b3dc399382ed1a29eba3916ca6632608da5d35b",
+      "pcl_sha256": "d16be053d3e95559724c33e1a6920175d16417dea1851bad8155a465416ccb29",
+      "bytes": 1191936
+    },
+    {
+      "path": "saves/dust2/stats/a21860d4-f26c-3c22-ad65-d63592e1698f.json",
+      "created": false,
+      "previous_sha256": "df5ba05b48d4fa6d413380b9fbbb94a7b61e9cd5fb4b8383cbb700b24bf54112",
+      "pcl_sha256": "83ca99c06da2da34f8ec445605e91e61f43047d264d1ff436e934dbf4bfe2ff2",
+      "bytes": 1278
+    },
+    {
+      "path": "saves/dust2/stats/b34260e8-45b6-38f3-ad99-a7144aab73e4.json",
+      "created": false,
+      "previous_sha256": "e21cef9da5a49934fd8a33c30bbe9426f1dff80439ec8614259971743d6818a3",
+      "pcl_sha256": "48bf735000d7652c8e73bc5e0f1b17fa1dae5d9e90af1d3f23de0edf9160c762",
+      "bytes": 1532
+    }
+  ],
+  "excluded": "logs, crash-reports, caches, formatting-only settings, source, original mods"
+}
