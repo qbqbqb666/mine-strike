@@ -6,7 +6,7 @@
 已检查仓库与 PCL 的模组、配置、日志及相关 JAR 字节码。初始 Git 工作区干净。
 初次排查仅新增本记录。随后用户明确选择脚步单变量测试：已备份并仅将仓库 `config/sound_physics_remastered/soundphysics.properties` 中的 `sound_direction_evaluation` 从 true 改为 false。备份位于 `backups/audio-direction-test-<时间>/soundphysics.properties`。
 首次修改已逐字节验证仓库有效配置只有该值变化。随后用户明确授权同步 PCL，已备份到 `backups/pcl-audio-direction-test-20261015-220459/soundphysics.properties`，并仅将 PCL 对应参数从 true 改为 false；逐字节验证其余内容保留。没有修改源码、JAR、地图或发布包，没有提交或推送。
-本次为测试配置；PCL 需完整重启游戏后验收听感。关闭该项会影响所有受此功能处理的游戏声源，不局限于脚步；音量、距离、遮挡、混响和枪声转换保持原值。
+用户游戏听感反馈：关闭反射方向重算后仍未改善。随后用户明确要求恢复对照基线，已将仓库及 PCL 的 `sound_direction_evaluation` 均恢复为 true，并逐字节验证没有改变其他配置。回退前配置备份位于 `backups/audio-direction-rollback-20261015-221853/`，原备份和排查记录保留。PCL 需完整重启游戏后使用恢复值。
 未找到磁盘上的 AGENTS.md，遵循用户在对话中提供的规则。
 
 ## 已确认的事实

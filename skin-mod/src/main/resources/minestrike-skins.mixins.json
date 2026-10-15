@@ -27,6 +27,13 @@
     "ShopPurchaseOpenMixin",
     "TeamRadarMixin",
     "TeamRadarTrackerMixin",
-    "TeamRadarTrackerReaderMixin"
+    "TeamRadarTrackerReaderMixin",
+    "CombatSoundEngineMixin",
+    "CombatChannelMixin",
+    "CombatLibraryMixin",
+    "TaczAudioMixin",
+    "TaczAudioPacketMixin",
+    "VehicleAudioMixin",
+    "CombatReflectionMixin"
   ]
 }

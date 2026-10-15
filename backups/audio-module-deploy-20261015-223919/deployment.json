@@ -1,0 +1,12 @@
+{
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "new_sha256": "3ddbed0ade7f9b6ac41e93a6b8e5280f5fdfd5692fecf86ba077c7452558ba19",
+  "previous_sha256": {
+    "repository": "5bcbcbe75b479a327282e2aa9d35187f892754ed9487704354b90ffdcaad3e2c",
+    "pcl": "5bcbcbe75b479a327282e2aa9d35187f892754ed9487704354b90ffdcaad3e2c"
+  },
+  "targets": {
+    "repository": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+    "pcl": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar"
+  }
+}

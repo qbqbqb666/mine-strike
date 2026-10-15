@@ -92,6 +92,33 @@ public class ShopMixinTest {
             int expected = radarTarget.endsWith(".RadarRenderer") ? 2 : 1;
             if (filters != expected) throw new AssertionError("Missing radar render/track path: " + radarTarget);
         }
+        for (String audioTarget : List.of("net.minecraft.client.sounds.SoundEngine", "com.mojang.blaze3d.audio.Channel",
+                "com.mojang.blaze3d.audio.Library", "com.tacz.guns.client.sound.GunSoundInstance",
+                "com.tacz.guns.client.sound.SoundPlayManager",
+                "com.atsuishio.superbwarfare.client.sound.VehicleSoundInstance", "com.sonicether.soundphysics.SoundPhysics")) {
+            byte[] before = resource(audioTarget), after = transformer.transformClassBytes(audioTarget, audioTarget, before);
+            if (Arrays.equals(before, after)) throw new AssertionError("Audio Mixin did not apply: " + audioTarget);
+            ClassNode node = new ClassNode(); new ClassReader(after).accept(node, 0);
+            if (audioTarget.endsWith(".SoundEngine")) {
+                int binds = 0, gains = 0;
+                for (MethodNode method : node.methods) for (AbstractInsnNode instruction : method.instructions)
+                    if (instruction instanceof MethodInsnNode call && call.owner.equals("dev/minestrike/skins/CombatAudio")) {
+                        if (call.name.equals("bind")) binds++;
+                        if (call.name.equals("gain")) gains++;
+                    }
+                if (binds != 2 || gains != 2) throw new AssertionError("Missing static/streaming or initial/tick audio paths");
+            }
+            if (audioTarget.endsWith(".Channel")) {
+                MethodNode play = node.methods.stream().filter(method -> method.name.equals("m_83672_")).findFirst().orElseThrow();
+                boolean beforePlay = false;
+                for (AbstractInsnNode instruction : play.instructions) if (instruction instanceof MethodInsnNode call) {
+                    if (call.name.contains("minestrike$play")) beforePlay = true;
+                    if (call.owner.equals("org/lwjgl/openal/AL10") && call.name.equals("alSourcePlay") && !beforePlay)
+                        throw new AssertionError("Combat source setup must precede the first audio samples");
+                }
+            }
+        }
+        System.out.println("PASS: real audio Mixin transformation, first-sample setup, streaming and tick gain paths");
         ClassNode slotNode = new ClassNode();
         new ClassReader(transformed.get(prefix + "fpsmatch.core.shop.slot.ShopSlot")).accept(slotNode, 0);
         if (!slotNode.interfaces.contains("dev/minestrike/skins/ShopBundles$SlotState")) throw new AssertionError("Receipt state interface missing");

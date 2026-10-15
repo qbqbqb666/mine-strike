@@ -318,3 +318,61 @@ verify.py 同时核查 startGame / startNewRound / BaseMap.mapTick 的接入目�
 - Dust2 T/CT 的 Superb Warfare RPG 商品均为 8000；`GunData.Ammo=1`、`VirtualAmmo=1`，购买时总计 2 发。装填状态同步设为非空、击锤打开，其他商品属性保留。
 - RPG 使用 Superb Warfare 的原生弹药逻辑，不使用 TaCZ 虚拟弹药字段。背包里额外的兼容弹药仍可按原模组逻辑补给。
 - 发布包及同步后的 Dust2 JSON 使用 ASCII Unicode 转义，字段值保持不变，避免 Java 17 不同默认编码导致地图读取失败。
+
+## 竞技音频模块（候选版，2026-10-15）
+
+模块集成在原自制 JAR 中，仍为 0.1.0、协议 8，不修改原模组 JAR、不新增网络消息。
+本次交付为 `skin-mod/build/libs/mine-strike-skins-0.1.0.jar`。2026-10-15 经用户授权，已备份并替换仓库 `mods` 和 PCL 的同名自制 JAR，两处 SHA-256 均为 `3ddbed0ade7f9b6ac41e93a6b8e5280f5fdfd5692fecf86ba077c7452558ba19`；备份位于 `backups/audio-module-deploy-20261015-223919/`。未重新打包发布，实际听感待用户验收。
+原反射方向测试已恢复，两处 Sound Physics 配置仍保持 `sound_direction_evaluation=true`。
+
+首次使用此候选 JAR 启动客户端时生成 `config/mine-strike-audio-client.toml`。所有设置修改后完整重启 Minecraft，确保 HRTF、现有声源和衰减状态一起重新初始化。无新增按键或界面。
+
+| 配置 | 默认值 | 作用 |
+|---|---|---|
+| enabled | true | 模块总开关；false 时恢复原声音处理路径 |
+| preferHrtf | true | 请求原版 OpenAL 的 HRTF，不写入 options.txt；设备实际启用状态记录在日志 |
+| directPosition | true | 选中的脚步、远处枪声和载具保留真实声源位置，覆盖 Sound Physics 的反射位置 |
+| spatializeStereo | true | 使用 AL_SOFT_source_spatialize 对远处双声道声源进行空间化；有距离时由 OpenAL 下混为单声道再做双耳定位，不改音频资源或缓存 |
+| adjustAttenuation | true | 启用脚步范围和远处 TaCZ 枪声衰减调整 |
+| footstepRange | 32.0 | 客户端脚步最小衰减范围；保留原队友/敌人音量差，不扩大服务端发送范围 |
+| taczFalloffExponent | 1.0 | TaCZ 远处开火按线性下降，范围沿用该枪声包原值；原逻辑为平方下降 |
+| footstepVolume / gunVolume | 1.0 / 1.0 | 独立响度乘数，不通过放大原始音量间接改变传播范围 |
+| vehicleVolume | 0.7 | 降低远处引擎、履带等连续声音对战斗声的掩盖；自己乘坐的载具排除 |
+| dryCombatSounds | true | 去除选中脚步和远处枪声的辅助混响发送，保留直接声的遮挡滤波；引擎不做此处理 |
+| limitShotTails | true | 针对能识别射手的 TaCZ 枪声限制旧尾音；不同玩家、不同声音分开计数 |
+| maxShotTails | 3 | 旧尾音软上限，150 毫秒内的攻击声不裁剪，新枪声不因上限而拒绝播放 |
+| diagnostics | false | 输出声音请求、声源开始及 TaCZ 已收到的声音包信息，用于定位遗漏环节 |
+
+定位与空间化覆盖玩家类别的原版方块脚步、TaCZ 的 shoot/silence 类远处声音，以及 Superb Warfare 的第三人称/远处枪声、LAV-AD 开火和引擎/履带等声音。语音、菜单、换弹、第一人称枪声及自己乘坐的载具不走这些单独的处理规则。HRTF 是设备级请求，不局限于某一种声音。
+
+声音实例不替换，不改变 TickableSoundInstance 的身份、tick、暂停、停止或循环逻辑；载具继续由原模组更新坐标。混音增益施加在原声音分类音量之后，分类静音不会被重新放大。辅助混响和位置在原声学计算完成后按已登记的声源处理；以实际 OpenAL 上下文（含线程本地上下文）和声源编号配对，避免游戏与语音 context 的同号声源互相影响。声源销毁和退出世界时清理登记。
+
+TaCZ 的例子：基础音量为 1、范围 64 时，32 格处从原来的 0.25 改为 0.5，48 格从 0.0625 改为 0.25，64 格仍为 0。消音枪声仍使用它原来的范围，不统一扩成普通枪的范围。Superb Warfare 保留原来的传播及衰减曲线，第一版处理其方向、空间化、辅助混响和独立响度；没有证据时不统一重写该模组的远/极远声层。
+
+只有 TaCZ 声音实例当前能可靠取得射手身份，因此尾音限制首先适用于 TaCZ。未可靠标识射手的 Superb Warfare 枪声不按坐标猜测合并，不跨玩家删声，也不截断载具循环。原模组原有的并发上限仍然存在。
+
+### 自动验证
+
+仍运行：
+
+```sh
+python3 skin-mod/verify.py --libraries "/Users/qbqb/Library/Application Support/minecraft/libraries"
+```
+
+新增 AudioPolicyTest 覆盖声音分类、第一人称/换弹排除、距离曲线单调性、消音范围边界、静音保持，以及不同射手/武器的尾音隔离、攻击声保留和清理。
+真实 Mixin 引擎检查 Forge 47.4.0 SoundEngine 的缓冲/流式播放两条路径、起始/持续响度、Channel 首次 alSourcePlay 前的设置、Library HRTF、TaCZ 构造和收到声音包的入口、Superb Warfare 载具身份、Sound Physics 处理回调。
+macOS 额外加载已安装的 OpenAL 原生库进行 SOFT_loopback 离线渲染，检验双声道空间化、转身 180°、24/32 格衰减以及恢复默认空间化，不播放到实际耳机。其他平台此离线原生测试会明确跳过，Java/字节码检查继续执行。
+
+自动检查没有启动 Forge 世界，不代表耳机听感、所有模组联合运行或服务器远处声音发送已经验收。
+
+### 双人游戏验收
+
+1. 关闭游戏，备份旧自制 JAR 后安装候选 JAR。其他音频模组及其配置保持原样。启动后核对日志 `[audio] OpenAL HRTF` 的实际状态：1 表示启用，-1 表示扩展不支持，其他状态需按原生状态继续排查。
+2. 总开关 enabled=false 与 true 分别完整重启做对照；之后每次仅改变一个模块开关。
+3. 在同一地面、同一队伍关系下，另一玩家于固定位置走动；分别在 4/8/16/24/32 格监听，原地转身 180° 后方向应正确交换。再用现有墙体测试遮挡；不保存地图基准。
+4. 分别测试默认 AK、第三人称素材为双声道的枪、消音枪、Superb Warfare RPG、LAV-AD 与移动载具。区分自己开火和另一玩家开火，按 16/32/48/64 格记录方向、响度和可闻性。
+5. 两个敌人在不同方向同时开火，再加入载具引擎和移动脚步。检查每个敌人新开火的攻击声仍保留，同一人的旧尾音减少；检查引擎随车移动、熄火/离车/断线后能正常停止。
+6. 检查语音、自己的第一人称枪声、换弹、分类音量为 0 时静音，以及退出重进、F3+T 资源重载、声音设备重载。
+7. 如果仍有远处枪声消失，打开 diagnostics：TaCZ packet 行确认客户端处理到包，loaded=false 表示本机尚未加载射手实体，原模组会提前返回；packet 有但 request/source 无时排查枪包解析或加载。没有 packet 日志只能作为未进入该处理入口的线索，不能单独证明服务端未发送。第一版不伪造未收到的位置或枪声。
+
+回退：将模块 enabled=false 并完整重启，或恢复备份的自制 JAR。现有 Sound Physics 的无效混响亮度参数问题仍单独记录，本模块未改写该配置，也不声称已经解决所有声音异常。

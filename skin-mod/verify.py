@@ -21,7 +21,7 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", []), ("AudioPolicyTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
@@ -129,3 +129,4 @@ mixin_runtime = [args.libraries / "org/spongepowered/mixin/0.8.5/mixin-0.8.5.jar
 mixin_runtime += sorted((args.libraries / "org/ow2/asm").glob("*/9.7.1/*.jar"))
 mixin_classpath = os.pathsep.join([str(tests), str(root / "src/main/resources"), *map(str, mixin_runtime), classpath])
 subprocess.run(["java", "-ea", "-cp", mixin_classpath, "ShopMixinTest"], cwd=runtime, check=True)
+subprocess.run(["python3", str(root / "tests/audio_openal.py"), "--libraries", str(args.libraries)], check=True)

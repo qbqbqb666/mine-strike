@@ -33,6 +33,8 @@ public final class MineStrikeSkins {
     private static final Map<CSGameMap, Map<UUID, Map<String, String>>> matches = new IdentityHashMap<>();
 
     public MineStrikeSkins() {
+        net.minecraftforge.fml.ModLoadingContext.get().registerConfig(
+                net.minecraftforge.fml.config.ModConfig.Type.CLIENT, AudioConfig.SPEC, "mine-strike-audio-client.toml");
         SkinNetwork.init();
         MinecraftForge.EVENT_BUS.register(this);
     }
