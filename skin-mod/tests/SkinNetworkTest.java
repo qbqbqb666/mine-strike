@@ -64,6 +64,14 @@ public class SkinNetworkTest {
             var deployable = new SkinNetwork.ShopDeployable(4, 35, true);
             SkinNetwork.ShopDeployable.encode(deployable, requestBytes);
             if (!deployable.equals(SkinNetwork.ShopDeployable.decode(requestBytes))) throw new AssertionError("Per-item deployment request round trip");
+            stateBytes.clear();
+            var radar = new SkinNetwork.RadarState(true, java.util.List.of(java.util.UUID.randomUUID(), java.util.UUID.randomUUID()));
+            SkinNetwork.RadarState.encode(radar, stateBytes);
+            if (!radar.equals(SkinNetwork.RadarState.decode(stateBytes))) throw new AssertionError("Server teammate UUID list round trip");
+            stateBytes.clear(); stateBytes.writeBoolean(true); stateBytes.writeInt(1025);
+            boolean oversizedRadar = false;
+            try { SkinNetwork.RadarState.decode(stateBytes); } catch (IllegalArgumentException e) { oversizedRadar = true; }
+            if (!oversizedRadar) throw new AssertionError("Reject oversized radar state");
             boolean rejected = false;
             try { SkinNetwork.Request.encode(new SkinNetwork.Request(true, "x".repeat(8193)), requestBytes); }
             catch (EncoderException e) { rejected = true; }

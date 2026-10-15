@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 public final class SkinNetwork {
     private static final int MAX_JSON = 65536;
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "7", "7"::equals, "7"::equals);
+            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "8", "8"::equals, "8"::equals);
 
     public record Request(boolean save, String choices) {
         public static void encode(Request value, FriendlyByteBuf buf) {
@@ -169,6 +169,23 @@ public final class SkinNetwork {
         }
     }
 
+    public record RadarState(boolean restricted, List<UUID> teammates) {
+        public static void encode(RadarState state, FriendlyByteBuf b) {
+            if (state.teammates.size() > 1024) throw new IllegalArgumentException("雷达队伍人数过多。");
+            b.writeBoolean(state.restricted); b.writeInt(state.teammates.size());
+            for (UUID id : state.teammates) { b.writeLong(id.getMostSignificantBits()); b.writeLong(id.getLeastSignificantBits()); }
+        }
+        public static RadarState decode(FriendlyByteBuf b) {
+            boolean restricted = b.readBoolean(); int count = b.readInt();
+            if (count < 0 || count > 1024) throw new IllegalArgumentException("雷达队伍人数无效。");
+            List<UUID> teammates = new ArrayList<>();
+            for (int i = 0; i < count; i++) teammates.add(new UUID(b.readLong(), b.readLong()));
+            return new RadarState(restricted, teammates);
+        }
+        public static void handle(RadarState state, Supplier<NetworkEvent.Context> supplier) {
+            var c = supplier.get(); c.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> TeamRadarClient.accept(state))); c.setPacketHandled(true);
+        }
+    }
     public static void init() {
         CHANNEL.registerMessage(0, Request.class, Request::encode, Request::decode, Request::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(1, State.class, State::encode, State::decode, State::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
@@ -185,6 +202,7 @@ public final class SkinNetwork {
         CHANNEL.registerMessage(12, ShopBundleView.class, ShopBundleView::encode, ShopBundleView::decode, ShopBundleView::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
         CHANNEL.registerMessage(13, ShopRoundOnly.class, ShopRoundOnly::encode, ShopRoundOnly::decode, ShopRoundOnly::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(14, ShopDeployable.class, ShopDeployable::encode, ShopDeployable::decode, ShopDeployable::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        CHANNEL.registerMessage(15, RadarState.class, RadarState::encode, RadarState::decode, RadarState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
     }
 
     public static void sendShopShape(ServerPlayer player, int[] counts) {

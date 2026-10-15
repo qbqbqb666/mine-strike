@@ -5,6 +5,7 @@ import dev.minestrike.skins.MatchLobby;
 import dev.minestrike.skins.MapBaseline;
 import dev.minestrike.skins.RoundItems;
 import dev.minestrike.skins.ShopDeployments;
+import dev.minestrike.skins.TeamRadar;
 import com.phasetranscrystal.blockoffensive.map.CSGameMap;
 import com.phasetranscrystal.fpsmatch.core.map.BaseTeam;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,7 +25,7 @@ public abstract class CSGameMapMixin {
     }
 
     @Inject(method = "startGame", at = @At("TAIL"), remap = false)
-    private void skinsStarted(CallbackInfo ci) { MineStrikeSkins.updateMatchClients((CSGameMap) (Object) this); }
+    private void skinsStarted(CallbackInfo ci) { MineStrikeSkins.updateMatchClients((CSGameMap) (Object) this); TeamRadar.sync(); }
 
     @Inject(method = "startNewRound", at = @At("HEAD"), cancellable = true, remap = false)
     private void baselineRound(CallbackInfo ci) {
@@ -40,7 +41,7 @@ public abstract class CSGameMapMixin {
     private void baselineCancel(CallbackInfo ci) { ShopDeployments.end((CSGameMap) (Object) this); RoundItems.end((CSGameMap) (Object) this); MapBaseline.cancel((CSGameMap) (Object) this); }
 
     @Inject(method = "resetGame", at = @At("TAIL"), remap = false)
-    private void skinsEnd(CallbackInfo ci) { MineStrikeSkins.end((CSGameMap) (Object) this); MatchLobby.reset((CSGameMap) (Object) this); }
+    private void skinsEnd(CallbackInfo ci) { MineStrikeSkins.end((CSGameMap) (Object) this); MatchLobby.reset((CSGameMap) (Object) this); TeamRadar.sync(); }
 
     @Inject(method = "autoStartLogic", at = @At("HEAD"), cancellable = true, remap = false)
     private void lobbyAutoStart(CallbackInfo ci) { ci.cancel(); }

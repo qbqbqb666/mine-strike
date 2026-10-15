@@ -24,6 +24,9 @@
   },
   "client": [
     "ShopEditorScreenFactoryMixin",
-    "ShopPurchaseOpenMixin"
+    "ShopPurchaseOpenMixin",
+    "TeamRadarMixin",
+    "TeamRadarTrackerMixin",
+    "TeamRadarTrackerReaderMixin"
   ]
 }

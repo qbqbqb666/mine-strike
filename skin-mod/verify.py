@@ -21,7 +21,7 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
@@ -117,7 +117,7 @@ with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
     config = json.loads(jar.read("minestrike-skins.mixins.json"))
     for mixin in ["ShopDataMixin", "ShopBundleSlotMixin", "ShopDeployItemMixin", "FPSMShopMixin", "ShopEditorContainerMixin", "ShopEditorAccess", "ShopOpenEditorMixin", "ShopToolOpenMixin", "ShopCategoryMixin", "ShopSlotMenuAccess", "ShopSlotMenuMixin"]:
         assert mixin in config["mixins"]
-    for mixin in ["ShopEditorScreenFactoryMixin", "ShopPurchaseOpenMixin"]:
+    for mixin in ["ShopEditorScreenFactoryMixin", "ShopPurchaseOpenMixin", "TeamRadarMixin", "TeamRadarTrackerMixin", "TeamRadarTrackerReaderMixin"]:
         assert mixin in config["client"]
 print("PASS: exact shop row, edit-index, pre-open sync, screen registration and client-only mixin targets")
 

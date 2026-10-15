@@ -80,6 +80,18 @@ public class ShopMixinTest {
             for (AbstractInsnNode instruction : method.instructions) if (instruction instanceof MethodInsnNode call
                     && call.owner.startsWith("dev/minestrike")) throw new AssertionError("Deployment must not grant block destruction");
         }
+        for (String radarTarget : List.of("xaero.hud.minimap.radar.render.element.RadarRenderer",
+                "xaero.hud.minimap.player.tracker.PlayerTrackerMinimapElementRenderer",
+                "xaero.hud.minimap.player.tracker.PlayerTrackerMinimapElementReader")) {
+            byte[] before = resource(radarTarget), after = transformer.transformClassBytes(radarTarget, radarTarget, before);
+            if (Arrays.equals(before, after)) throw new AssertionError("Team radar Mixin did not apply: " + radarTarget);
+            ClassNode node = new ClassNode(); new ClassReader(after).accept(node, 0);
+            int filters = 0;
+            for (MethodNode method : node.methods) for (AbstractInsnNode instruction : method.instructions)
+                if (instruction instanceof MethodInsnNode call && call.owner.equals("dev/minestrike/skins/TeamRadarClient") && call.name.equals("hidden")) filters++;
+            int expected = radarTarget.endsWith(".RadarRenderer") ? 2 : 1;
+            if (filters != expected) throw new AssertionError("Missing radar render/track path: " + radarTarget);
+        }
         ClassNode slotNode = new ClassNode();
         new ClassReader(transformed.get(prefix + "fpsmatch.core.shop.slot.ShopSlot")).accept(slotNode, 0);
         if (!slotNode.interfaces.contains("dev/minestrike/skins/ShopBundles$SlotState")) throw new AssertionError("Receipt state interface missing");
@@ -112,6 +124,6 @@ public class ShopMixinTest {
             throw new AssertionError("Existing goods, order and independent lengths must remain intact");
         expansion.getMethod("validate",Map.class,int.class).invoke(null,legacy,6);
         System.out.println("PASS: legacy five-category upgrade preserves existing goods and independent lengths; new category starts empty");
-        System.out.println("PASS: real Mixin application on twelve shop/round/adventure targets; sixth enum initialization and valueOf persistence key");
+        System.out.println("PASS: real Mixin application on fifteen shop/round/adventure/radar targets; sixth enum initialization and valueOf persistence key");
     }
 }
