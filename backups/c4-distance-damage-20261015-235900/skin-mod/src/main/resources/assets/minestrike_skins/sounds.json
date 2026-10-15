@@ -1,0 +1,10 @@
+{
+  "c4_planted_loud": {
+    "subtitle": "sounds.blockoffensive.c4.planted",
+    "sounds": [{"name": "minestrike_skins:c4_planted_loud", "stream": false}]
+  },
+  "c4_beep_loud": {
+    "subtitle": "sounds.blockoffensive.c4.beep",
+    "sounds": [{"name": "minestrike_skins:c4_beep_loud", "stream": false, "attenuation_distance": 96}]
+  }
+}

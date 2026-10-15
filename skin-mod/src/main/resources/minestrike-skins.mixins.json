@@ -20,7 +20,8 @@
     "ShopDeployItemMixin",
     "BombAudioMixin$Plant",
     "BombAudioMixin$Beep",
-    "BombHudMixin$Fuse"
+    "BombHudMixin$Fuse",
+    "BombDamageMixin"
   ],
   "injectors": {
     "defaultRequire": 1

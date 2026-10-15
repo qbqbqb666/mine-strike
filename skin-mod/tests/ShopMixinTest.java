@@ -1,4 +1,7 @@
 import dev.minestrike.skins.BombHud;
+import dev.minestrike.skins.BombAudio;
+import dev.minestrike.skins.BombDamage;
+import com.google.gson.JsonParser;
 import org.spongepowered.asm.service.*;
 import org.spongepowered.asm.launch.MixinBootstrap;
 import org.spongepowered.asm.launch.platform.container.*;
@@ -68,6 +71,30 @@ public class ShopMixinTest {
         return methodCode(method).replaceAll("(?m)^    (ALOAD|ASTORE) [0-9]+\\R|^    SWAP\\R", "");
     }
     public static void main(String[] args)throws Exception {
+        for (float health : new float[]{20, 40, 100}) {
+            float previous = Float.POSITIVE_INFINITY;
+            for (double distance = 0; distance < 56; distance += .125) {
+                float damage = BombDamage.amount(distance, health);
+                if (!Float.isFinite(damage) || damage <= 0 || damage >= previous)
+                    throw new AssertionError("C4 damage must decrease strictly with distance");
+                previous = damage;
+                if (distance <= 8 && damage * .2f * .85f < health)
+                    throw new AssertionError("Near C4 must be lethal after ordinary armor and 15% heavy armor reduction");
+            }
+            if (BombDamage.RANGE != 56 || BombDamage.amount(56, health) != 0 || BombDamage.amount(80, health) != 0
+                    || BombDamage.amount(40, health) <= 0 || BombDamage.amount(48, health) <= 0
+                    || BombDamage.amount(0, health) != health * 10
+                    || Math.abs(BombDamage.amount(22.4, health) / health - 3.6f) > .0001f)
+                throw new AssertionError("C4 range/health scaling changed");
+        }
+        if (BombDamage.amount(Double.NaN, 20) != 0 || BombDamage.amount(-1, 20) != 0 || BombDamage.amount(0, 0) != 0)
+            throw new AssertionError("Invalid C4 geometry/health");
+        try (var in = ShopMixinTest.class.getClassLoader().getResourceAsStream("assets/minestrike_skins/sounds.json")) {
+            var sounds = JsonParser.parseReader(new InputStreamReader(in, java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+            int range = sounds.getAsJsonObject("c4_beep_loud").getAsJsonArray("sounds").get(0).getAsJsonObject().get("attenuation_distance").getAsInt();
+            if (range != 40 || BombAudio.BEEP_RANGE != 40) throw new AssertionError("C4 send and attenuation ranges must both be 40 blocks");
+        }
+        System.out.println("PASS: C4 monotonic damage, unchanged peak, close armor margin, 56-block boundary and 40-block beep range");
         int total = 900;
         double lastRate = 0;
         for (double remaining = total; remaining > 0; remaining -= .25) {
@@ -146,6 +173,42 @@ public class ShopMixinTest {
                 throw new AssertionError("Trail observation must retain every original tick call: " + bulletTarget);
         }
         System.out.println("PASS: TaCZ/Superb trail Mixin injection retains original projectile tick calls");
+        String explosionTarget = "net.minecraft.world.level.Explosion";
+        ClassNode originalExplosion = new ClassNode(), actualExplosion = new ClassNode();
+        new ClassReader(resource(explosionTarget)).accept(originalExplosion, 0);
+        new ClassReader(transformer.transformClassBytes(explosionTarget, explosionTarget, resource(explosionTarget))).accept(actualExplosion, 0);
+        for (MethodNode method : originalExplosion.methods) {
+            MethodNode actual = actualExplosion.methods.stream().filter(m -> m.name.equals(method.name) && m.desc.equals(method.desc)).findFirst().orElseThrow();
+            if (!method.name.equals("m_46061_")) {
+                if (!methodCode(method).equals(methodCode(actual))) throw new AssertionError("C4 damage changed unrelated explosion method: " + method.name);
+                continue;
+            }
+            List<String> originalCalls = new ArrayList<>(), actualCalls = new ArrayList<>();
+            for (AbstractInsnNode instruction : method.instructions) if (instruction instanceof MethodInsnNode call)
+                originalCalls.add(call.owner + "." + call.name + call.desc);
+            int redirects = 0;
+            for (AbstractInsnNode instruction : actual.instructions) if (instruction instanceof MethodInsnNode call) {
+                if (call.name.contains("minestrike$c4Damage")) {
+                    redirects++;
+                    actualCalls.add("net/minecraft/world/entity/Entity.m_6469_(Lnet/minecraft/world/damagesource/DamageSource;F)Z");
+                } else actualCalls.add(call.owner + "." + call.name + call.desc);
+            }
+            if (redirects != 1 || !originalCalls.equals(actualCalls)) throw new AssertionError("C4 must replace one hurt call and preserve native explosion flow");
+        }
+        MethodNode damageHook = actualExplosion.methods.stream().filter(m -> m.name.contains("minestrike$c4Damage")).findFirst().orElseThrow();
+        Set<String> guards = new HashSet<>(); int nativeHurt = 0, policy = 0;
+        for (AbstractInsnNode instruction : damageHook.instructions) {
+            if (instruction instanceof TypeInsnNode type && type.getOpcode() == Opcodes.INSTANCEOF) guards.add(type.desc);
+            if (instruction instanceof MethodInsnNode call) {
+                if (call.owner.equals("dev/minestrike/skins/BombDamage") && call.name.equals("amount")) policy++;
+                if (call.owner.equals("net/minecraft/world/entity/Entity") && call.name.equals("m_6469_")) nativeHurt++;
+                if (Set.of("m_21153_", "m_6667_").contains(call.name)) throw new AssertionError("C4 must use native damage, never assign health or force death");
+            }
+        }
+        if (nativeHurt != 1 || policy != 1 || !guards.contains(prefix.replace('.', '/') + "blockoffensive/entity/CompositionC4Entity")
+                || !guards.contains("net/minecraft/server/level/ServerPlayer"))
+            throw new AssertionError("C4 damage must be restricted to C4/server players and use one native hurt call");
+        System.out.println("PASS: real C4 explosion Mixin, single native damage call, C4/player guards and unchanged explosion flow");
         ClassNode trailNode = new ClassNode(); new ClassReader(resource("dev.minestrike.skins.BulletTrails")).accept(trailNode, 0);
         for (MethodNode method : trailNode.methods) for (AbstractInsnNode instruction : method.instructions)
             if (instruction instanceof MethodInsnNode call && call.owner.startsWith("net/minecraft/world/")

@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 public final class BombAudio {
     public static final String PLANTED = "blockoffensive:planted", BEEP = "blockoffensive:beep";
     public static final String LOUD_PLANTED = "minestrike_skins:c4_planted_loud", LOUD_BEEP = "minestrike_skins:c4_beep_loud";
-    public static final float BEEP_RANGE = 96;
+    public static final float BEEP_RANGE = 40;
 
     @Mod.EventBusSubscriber(modid = MineStrikeSkins.ID, value = Dist.CLIENT)
     public static final class Client {

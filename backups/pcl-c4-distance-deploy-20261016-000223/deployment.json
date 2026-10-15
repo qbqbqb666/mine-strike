@@ -1,0 +1,9 @@
+{
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/pcl-c4-distance-deploy-20261016-000223/mine-strike-skins-0.1.0.jar",
+  "previous_sha256": "a3fe976d0944bac5e9d598e150faa4b418a9c2000a2c823fbc938eb7a80494ea",
+  "installed_sha256": "7dcf2196504a4b8b467353388ab4cd56fb129645b9af818450c839f5cc536d42",
+  "beep_range_blocks": 32,
+  "c4_damage_range_blocks": 40,
+  "release_updated": false
+}

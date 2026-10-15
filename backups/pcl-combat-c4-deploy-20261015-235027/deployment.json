@@ -1,0 +1,14 @@
+{
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/pcl-combat-c4-deploy-20261015-235027/mine-strike-skins-0.1.0.jar",
+  "previous_sha256": "3ddbed0ade7f9b6ac41e93a6b8e5280f5fdfd5692fecf86ba077c7452558ba19",
+  "installed_sha256": "a3fe976d0944bac5e9d598e150faa4b418a9c2000a2c823fbc938eb7a80494ea",
+  "features": [
+    "combat audio",
+    "bullet trails",
+    "C4 audio",
+    "C4 HUD pulse"
+  ],
+  "repository_mods_synced": false,
+  "release_updated": false
+}

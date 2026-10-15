@@ -1,0 +1,13 @@
+{
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/c4-range-56-20261016-001220/pcl-mine-strike-skins-0.1.0.jar",
+  "sha256": "fec93e16013e7b172aa8c915207c67a6c14e90f833e991c350782f1f479179f3",
+  "beep_range_blocks": 40,
+  "c4_damage_range_blocks": 56,
+  "damage_peak_multiplier": 10,
+  "synced_pcl": true,
+  "synced_repository_mods": false,
+  "release_updated": false,
+  "gameplay_verified": false
+}

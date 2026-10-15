@@ -5,6 +5,6 @@
   },
   "c4_beep_loud": {
     "subtitle": "sounds.blockoffensive.c4.beep",
-    "sounds": [{"name": "minestrike_skins:c4_beep_loud", "stream": false, "attenuation_distance": 96}]
+    "sounds": [{"name": "minestrike_skins:c4_beep_loud", "stream": false, "attenuation_distance": 40}]
   }
 }
