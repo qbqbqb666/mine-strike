@@ -309,6 +309,12 @@ verify.py 同时核查 startGame / startNewRound / BaseMap.mapTick 的接入目�
 
 ### LAV-AD 血量调整（2026-10-15）
 
-- 当前 Superb Warfare 0.8.9 的 LAV-AD 默认最大血量为 300；自制模组仅针对 `superbwarfare:lav_ad`，使用原模组的实例 Override 将最大血量改为 75。
-- 商店载具箱展开及已有载具重新加载时生效。保留载具原有受损比例，不在每次加载时继续除以 4；维修上限也为 75。其他实例 Override、武器、装甲、弹药、能量及其他车型保持原值。
+- 当前 Superb Warfare 0.8.9 的 LAV-AD 默认最大血量为 300；自制模组仅针对 `superbwarfare:lav_ad`，使用原模组的实例 Override 将最大血量改为 150（v0.5.1 从先前的 75 翻倍）。
+- 商店载具箱展开及已有载具重新加载时生效。保留载具原有受损比例，不在每次加载时继续翻倍；维修上限也为 150。其他实例 Override、武器、装甲、弹药、能量及其他车型保持原值。
 - 使用原模组的载具数据同步与保存机制，不修改 Superb Warfare 原 JAR、商店配置或地图基准，通信协议仍为 8。更新自制 JAR 后重启游戏，实际部署及维修显示仍需游戏内验收。
+
+### v0.5.1 商品数值
+
+- Dust2 T/CT 的 Superb Warfare RPG 商品均为 8000；`GunData.Ammo=1`、`VirtualAmmo=1`，购买时总计 2 发。装填状态同步设为非空、击锤打开，其他商品属性保留。
+- RPG 使用 Superb Warfare 的原生弹药逻辑，不使用 TaCZ 虚拟弹药字段。背包里额外的兼容弹药仍可按原模组逻辑补给。
+- 发布包及同步后的 Dust2 JSON 使用 ASCII Unicode 转义，字段值保持不变，避免 Java 17 不同默认编码导致地图读取失败。

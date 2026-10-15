@@ -1,0 +1,32 @@
+[
+  {
+    "root": "repository",
+    "path": "fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+    "sha256": "10b090f79b282550bcbefde34259866e7f85fc956eaa5eb83e065d5d086ebfe1"
+  },
+  {
+    "root": "pcl",
+    "path": "fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+    "sha256": "10b090f79b282550bcbefde34259866e7f85fc956eaa5eb83e065d5d086ebfe1"
+  },
+  {
+    "root": "repository",
+    "path": "mods/mine-strike-skins-0.1.0.jar",
+    "sha256": "ee91f589ab4e3e527133b18e2407b7f57f47fab5a19401923773ba3ef990afda"
+  },
+  {
+    "root": "pcl",
+    "path": "mods/mine-strike-skins-0.1.0.jar",
+    "sha256": "ee91f589ab4e3e527133b18e2407b7f57f47fab5a19401923773ba3ef990afda"
+  },
+  {
+    "root": "repository",
+    "path": "skin-mod/src/main/java/dev/minestrike/skins/LavAdHealth.java",
+    "sha256": "8508462d9620170c2d4d5df663ae6b676076d877fd904261cd7141f172d675c8"
+  },
+  {
+    "root": "repository",
+    "path": "skin-mod/README.md",
+    "sha256": "ad946baa882ed0bbaeecf87dcf5a032700db083712e9bc90dc5b90f58063827b"
+  }
+]

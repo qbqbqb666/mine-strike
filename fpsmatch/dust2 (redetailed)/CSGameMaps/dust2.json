@@ -115,7 +115,7 @@
                   "Ammo": 1
                 },
                 "display": {
-                  "Name": "{\"text\":\"[电击枪]\"}"
+                  "Name": "{\"text\":\"[\u7535\u51fb\u67aa]\"}"
                 },
                 "Attachments": {}
               }
@@ -143,20 +143,22 @@
                 "GeckoLibID": 183,
                 "Perks": {},
                 "GunData": {
-                  "IsEmpty": 1,
-                  "CloseHammer": 1,
+                  "IsEmpty": 0,
+                  "CloseHammer": 0,
                   "CloseStrike": 1,
                   "UUID": [
                     -1533363128,
                     235683949,
                     -1777344490,
                     -1028155844
-                  ]
+                  ],
+                  "Ammo": 1,
+                  "VirtualAmmo": 1
                 },
                 "Attachments": {}
               }
             },
-            "defaultCost": 5600
+            "defaultCost": 8000
           },
           {
             "maxBuyCount": 1,
@@ -275,7 +277,7 @@
                 "HasBulletInBarrel": 1,
                 "GunId": "suffuse:python",
                 "display": {
-                  "Name": "{\"text\":\"[R8左轮手枪]\"}"
+                  "Name": "{\"text\":\"[R8\u5de6\u8f6e\u624b\u67aa]\"}"
                 },
                 "MaxDummyAmmo": 18,
                 "GunFireMode": "SEMI",
@@ -332,7 +334,7 @@
                   "id": "superbwarfare:container"
                 },
                 "display": {
-                  "Name": "{\"text\":\"[LAV-AD 防空车]\"}"
+                  "Name": "{\"text\":\"[LAV-AD \u9632\u7a7a\u8f66]\"}"
                 },
                 "MineStrikeRoundOnly": 1
               }
@@ -718,7 +720,7 @@
                   "Ammo": 1
                 },
                 "display": {
-                  "Name": "{\"text\":\"电击枪\"}"
+                  "Name": "{\"text\":\"\u7535\u51fb\u67aa\"}"
                 },
                 "Attachments": {}
               }
@@ -736,20 +738,22 @@
                 "GeckoLibID": 183,
                 "Perks": {},
                 "GunData": {
-                  "IsEmpty": 1,
-                  "CloseHammer": 1,
+                  "IsEmpty": 0,
+                  "CloseHammer": 0,
                   "CloseStrike": 1,
                   "UUID": [
                     -1533363128,
                     235683949,
                     -1777344490,
                     -1028155844
-                  ]
+                  ],
+                  "Ammo": 1,
+                  "VirtualAmmo": 1
                 },
                 "Attachments": {}
               }
             },
-            "defaultCost": 5600
+            "defaultCost": 8000
           },
           {
             "maxBuyCount": 1,
@@ -865,7 +869,7 @@
                 "HasBulletInBarrel": 1,
                 "GunId": "suffuse:python",
                 "display": {
-                  "Name": "{\"text\":\"[R8 左轮手枪]\"}"
+                  "Name": "{\"text\":\"[R8 \u5de6\u8f6e\u624b\u67aa]\"}"
                 },
                 "MaxDummyAmmo": 18,
                 "GunFireMode": "SEMI",
@@ -922,7 +926,7 @@
                   "id": "superbwarfare:container"
                 },
                 "display": {
-                  "Name": "{\"text\":\"[LAV-AD 防空车]\"}"
+                  "Name": "{\"text\":\"[LAV-AD \u9632\u7a7a\u8f66]\"}"
                 },
                 "MineStrikeRoundOnly": 1
               }
@@ -1069,7 +1073,7 @@
                 "HeatAmount": 0,
                 "GunId": "tacz:minigun",
                 "display": {
-                  "Name": "{\"text\":\"[加特林]\"}"
+                  "Name": "{\"text\":\"[\u52a0\u7279\u6797]\"}"
                 },
                 "MaxDummyAmmo": 270,
                 "GunFireMode": "AUTO",

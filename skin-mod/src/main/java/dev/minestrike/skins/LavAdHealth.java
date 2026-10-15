@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = MineStrikeSkins.ID)
 public final class LavAdHealth {
-    private static final float MAX_HEALTH = 75f;
+    private static final float MAX_HEALTH = 150f;
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void join(EntityJoinLevelEvent event) {
