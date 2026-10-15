@@ -1079,13 +1079,163 @@
         ],
         "Yaw": 21.752277,
         "Pitch": 90.27319
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          101,
+          12,
+          60
+        ],
+        "Yaw": 21.752277,
+        "Pitch": 90.27319
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          101,
+          12,
+          62
+        ],
+        "Yaw": 21.752277,
+        "Pitch": 90.27319
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          103,
+          12,
+          62
+        ],
+        "Yaw": 21.752277,
+        "Pitch": 90.27319
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          102,
+          12,
+          64
+        ],
+        "Yaw": 21.752277,
+        "Pitch": 90.27319
       }
     ],
     "t": [
       {
         "Dimension": "minecraft:overworld",
         "Position": [
+          -1,
+          18,
+          32
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          1,
+          18,
+          32
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
           3,
+          18,
+          32
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          5,
+          18,
+          32
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -1,
+          18,
+          34
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          1,
+          18,
+          34
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          3,
+          18,
+          34
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          5,
+          18,
+          34
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          -1,
+          18,
+          36
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          1,
+          18,
+          36
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          3,
+          18,
+          36
+        ],
+        "Yaw": 60.966812,
+        "Pitch": -92.09827
+      },
+      {
+        "Dimension": "minecraft:overworld",
+        "Position": [
+          5,
           18,
           36
         ],

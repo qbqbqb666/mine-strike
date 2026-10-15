@@ -1,0 +1,106 @@
+{
+  "spawnpoints": {
+    "ct": [
+      [
+        103,
+        12,
+        60
+      ],
+      [
+        101,
+        12,
+        60
+      ],
+      [
+        101,
+        12,
+        62
+      ],
+      [
+        103,
+        12,
+        62
+      ],
+      [
+        102,
+        12,
+        64
+      ]
+    ],
+    "t": [
+      [
+        -1,
+        18,
+        32
+      ],
+      [
+        1,
+        18,
+        32
+      ],
+      [
+        3,
+        18,
+        32
+      ],
+      [
+        5,
+        18,
+        32
+      ],
+      [
+        -1,
+        18,
+        34
+      ],
+      [
+        1,
+        18,
+        34
+      ],
+      [
+        3,
+        18,
+        34
+      ],
+      [
+        5,
+        18,
+        34
+      ],
+      [
+        -1,
+        18,
+        36
+      ],
+      [
+        1,
+        18,
+        36
+      ],
+      [
+        3,
+        18,
+        36
+      ],
+      [
+        5,
+        18,
+        36
+      ]
+    ]
+  },
+  "files": {
+    "repo": {
+      "path": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "old_sha256": "d3f69dd18e2f709f9a50023f3fbdad2274a6e4a05abcf9b344f5a687d4b18f30",
+      "new_sha256": "70dc8e88fefb8b8ab554dbfe5814f0c064f0590f68e46eae3d682e40b750ac8a"
+    },
+    "pcl": {
+      "path": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "old_sha256": "08a591bbfd85e70704b48d9fd39d8b52d5f7e001cf724aff5c9cd9994e0a3d7e",
+      "new_sha256": "cb742ec8ecba02aa39ccfb6db38d8c484c45b04668d176d4b420a683a29bb1aa"
+    }
+  },
+  "validation": "All 17 unique points: floor and 2-block headroom at all four integer-edge footprint cells match baseline and saved world; minimum separation 2 blocks; only spawnpoints JSON changed."
+}
