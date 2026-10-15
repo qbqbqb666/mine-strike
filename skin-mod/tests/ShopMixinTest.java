@@ -131,6 +131,66 @@ public class ShopMixinTest {
         for(String target:targets){String name=prefix+target;byte[] before=resource(name),after=transformer.transformClassBytes(name,name,before);
             if(Arrays.equals(before,after))throw new AssertionError("Mixin did not apply: "+name);transformed.put(name,after);
         }
+        String containerTarget = "com.atsuishio.superbwarfare.block.ContainerBlock";
+        ClassNode originalContainer = new ClassNode(), actualContainer = new ClassNode();
+        new ClassReader(resource(containerTarget)).accept(originalContainer, 0);
+        new ClassReader(transformer.transformClassBytes(containerTarget, containerTarget, resource(containerTarget))).accept(actualContainer, 0);
+        for (MethodNode method : originalContainer.methods) {
+            MethodNode actual = actualContainer.methods.stream().filter(m -> m.name.equals(method.name) && m.desc.equals(method.desc)).findFirst().orElseThrow();
+            if (!method.name.equals("m_6227_")) {
+                if (!methodCode(method).equals(methodCode(actual))) throw new AssertionError("Crowbar fix changed unrelated container method: " + method.name);
+                continue;
+            }
+            List<String> originalCalls = new ArrayList<>(), actualCalls = new ArrayList<>(); int redirects = 0, offhandHooks = 0;
+            for (AbstractInsnNode instruction : method.instructions) if (instruction instanceof MethodInsnNode call)
+                originalCalls.add(call.owner + "." + call.name + call.desc);
+            for (AbstractInsnNode instruction : actual.instructions) if (instruction instanceof MethodInsnNode call) {
+                if (call.name.contains("minestrike$crowbar")) {
+                    redirects++;
+                    actualCalls.add("net/minecraft/world/item/ItemStack.m_204117_(Lnet/minecraft/tags/TagKey;)Z");
+                } else if (call.name.contains("minestrike$offhand")) offhandHooks++;
+                else if (!call.owner.startsWith("org/spongepowered/asm/mixin/injection/callback/"))
+                    actualCalls.add(call.owner + "." + call.name + call.desc);
+            }
+            if (redirects != 1 || offhandHooks != 1 || !originalCalls.equals(actualCalls))
+                throw new AssertionError("Crowbar fix must retain native container space/content/opening checks");
+        }
+        MethodNode crowbarHook = actualContainer.methods.stream().filter(m -> m.name.contains("minestrike$crowbar")).findFirst().orElseThrow();
+        boolean originalTag = false, nativeItem = false, intendedTag = false, diagnostics = false;
+        for (AbstractInsnNode instruction : crowbarHook.instructions) {
+            if (instruction instanceof MethodInsnNode call && call.owner.equals("net/minecraft/world/item/ItemStack") && call.name.equals("m_204117_")) originalTag = true;
+            if (instruction instanceof FieldInsnNode field && field.owner.equals("com/atsuishio/superbwarfare/init/ModItems") && field.name.equals("CROWBAR")) nativeItem = true;
+            if (instruction instanceof FieldInsnNode field && field.name.equals("TOOLS_CROWBAR")) intendedTag = true;
+        }
+        MethodNode toolLog = actualContainer.methods.stream().filter(m -> m.name.contains("minestrike$log")).findFirst().orElseThrow();
+        for (AbstractInsnNode instruction : toolLog.instructions) if (instruction instanceof LdcInsnNode value && value.cst instanceof String text
+                && text.contains("hand={}") && text.contains("item={}") && text.contains("mode={}")) diagnostics = true;
+        if (!originalTag || !nativeItem || !intendedTag || !diagnostics) throw new AssertionError("Crowbar fallback must preserve tags, use exact native item and record failed interaction context");
+        ClassNode skins = new ClassNode(); new ClassReader(resource("dev.minestrike.skins.MineStrikeSkins")).accept(skins, 0);
+        MethodNode equip = skins.methods.stream().filter(m -> m.name.equals("equipIssuedArmor")).findFirst().orElseThrow();
+        Set<String> equipmentSlots = new HashSet<>(); int transfers = 0, equips = 0, emptyChecks = 0;
+        for (AbstractInsnNode instruction : equip.instructions) {
+            if (instruction instanceof FieldInsnNode field && field.owner.equals("net/minecraft/world/entity/EquipmentSlot")) equipmentSlots.add(field.name);
+            if (instruction instanceof MethodInsnNode call) {
+                if (call.name.equals("m_41620_")) {
+                    if (call.getPrevious().getOpcode() != Opcodes.ICONST_1) throw new AssertionError("Auto-equip must split exactly one item");
+                    transfers++;
+                }
+                if (call.name.equals("m_8061_")) equips++;
+                if (call.name.equals("m_41619_")) emptyChecks++;
+                if (call.name.equals("m_41777_")) throw new AssertionError("Auto-equip must transfer the issued item, not duplicate a copy");
+            }
+        }
+        if (!equipmentSlots.equals(Set.of("LEGS", "FEET")) || transfers != 1 || equips != 1 || emptyChecks < 2)
+            throw new AssertionError("Only issued leggings/boots may fill empty equipment slots");
+        MethodNode issued = skins.methods.stream().filter(m -> m.name.equals("applyIssuedKits")).findFirst().orElseThrow();
+        boolean equipped = false, synced = false;
+        for (AbstractInsnNode instruction : issued.instructions) if (instruction instanceof MethodInsnNode call) {
+            if (call.name.equals("equipIssuedArmor")) equipped = true;
+            if (call.name.equals("m_6199_")) { if (!equipped) throw new AssertionError("Armor must be equipped before inventory sync"); synced = true; }
+        }
+        if (!equipped || !synced) throw new AssertionError("Respawn issued armor integration/sync missing");
+        System.out.println("PASS: native container crowbar Mixin and space checks; issued leggings/boots empty-slot transfer before sync");
         String itemName = "net.minecraft.world.item.ItemStack";
         byte[] itemBefore = resource(itemName), itemAfter = transformer.transformClassBytes(itemName, itemName, itemBefore);
         if (Arrays.equals(itemBefore, itemAfter)) throw new AssertionError("Adventure placement Mixin did not apply");

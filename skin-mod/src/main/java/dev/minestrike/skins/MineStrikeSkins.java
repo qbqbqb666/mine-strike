@@ -7,6 +7,8 @@ import com.phasetranscrystal.fpsmatch.core.event.PlayerGetShopDataEvent;
 import com.phasetranscrystal.fpsmatch.core.shop.slot.ShopSlot;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -215,8 +217,21 @@ public final class MineStrikeSkins {
             ItemStack original = inventory.m_8020_(slot);
             if (!original.m_41619_()) inventory.m_6836_(slot, apply(original, chosen));
         }
+        equipIssuedArmor(player);
         player.f_36095_.m_6199_(inventory);
         player.f_36095_.m_38946_();
+    }
+
+    private static void equipIssuedArmor(ServerPlayer player) {
+        var inventory = player.m_150109_();
+        for (int slot = 0; slot < inventory.f_35974_.size(); slot++) {
+            ItemStack item = inventory.f_35974_.get(slot);
+            if (item.m_41619_() || !(item.m_41720_() instanceof ArmorItem armor)) continue;
+            EquipmentSlot equipment = armor.m_40402_();
+            if ((equipment == EquipmentSlot.LEGS || equipment == EquipmentSlot.FEET)
+                    && player.m_6844_(equipment).m_41619_())
+                player.m_8061_(equipment, item.m_41620_(1));
+        }
     }
 
     public static boolean available(SkinCatalog.Group group, String id) {
