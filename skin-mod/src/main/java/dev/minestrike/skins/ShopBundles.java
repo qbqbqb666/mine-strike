@@ -29,7 +29,7 @@ public final class ShopBundles {
         ItemStack item = source.m_41777_();
         CompoundTag tag = item.m_41783_();
         if (tag != null) {
-            tag.m_128473_(ITEMS); tag.m_128473_(RECEIPT); tag.m_128473_(PART); tag.m_128473_(RoundItems.EPOCH);
+            tag.m_128473_(ITEMS); tag.m_128473_(RECEIPT); tag.m_128473_(PART); tag.m_128473_(RoundItems.EPOCH); tag.m_128473_(ShopDeployments.ISSUED);
             if (tag.m_128456_()) item.m_41751_(null);
         }
         return item;

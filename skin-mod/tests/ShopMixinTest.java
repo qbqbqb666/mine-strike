@@ -71,6 +71,15 @@ public class ShopMixinTest {
         for(String target:targets){String name=prefix+target;byte[] before=resource(name),after=transformer.transformClassBytes(name,name,before);
             if(Arrays.equals(before,after))throw new AssertionError("Mixin did not apply: "+name);transformed.put(name,after);
         }
+        String itemName = "net.minecraft.world.item.ItemStack";
+        byte[] itemBefore = resource(itemName), itemAfter = transformer.transformClassBytes(itemName, itemName, itemBefore);
+        if (Arrays.equals(itemBefore, itemAfter)) throw new AssertionError("Adventure placement Mixin did not apply");
+        ClassNode itemNode = new ClassNode(); new ClassReader(itemAfter).accept(itemNode, 0);
+        for (MethodNode method : itemNode.methods) if (method.name.equals("m_204128_")) {
+            // Destruction permissions must remain byte-for-byte original at the instruction level.
+            for (AbstractInsnNode instruction : method.instructions) if (instruction instanceof MethodInsnNode call
+                    && call.owner.startsWith("dev/minestrike")) throw new AssertionError("Deployment must not grant block destruction");
+        }
         ClassNode slotNode = new ClassNode();
         new ClassReader(transformed.get(prefix + "fpsmatch.core.shop.slot.ShopSlot")).accept(slotNode, 0);
         if (!slotNode.interfaces.contains("dev/minestrike/skins/ShopBundles$SlotState")) throw new AssertionError("Receipt state interface missing");
@@ -103,6 +112,6 @@ public class ShopMixinTest {
             throw new AssertionError("Existing goods, order and independent lengths must remain intact");
         expansion.getMethod("validate",Map.class,int.class).invoke(null,legacy,6);
         System.out.println("PASS: legacy five-category upgrade preserves existing goods and independent lengths; new category starts empty");
-        System.out.println("PASS: real Mixin application on eleven shop/round targets; sixth enum initialization and valueOf persistence key");
+        System.out.println("PASS: real Mixin application on twelve shop/round/adventure targets; sixth enum initialization and valueOf persistence key");
     }
 }

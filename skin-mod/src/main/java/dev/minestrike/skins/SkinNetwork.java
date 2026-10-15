@@ -15,7 +15,7 @@ import java.util.function.Supplier;
 public final class SkinNetwork {
     private static final int MAX_JSON = 65536;
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "6", "6"::equals, "6"::equals);
+            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "7", "7"::equals, "7"::equals);
 
     public record Request(boolean save, String choices) {
         public static void encode(Request value, FriendlyByteBuf buf) {
@@ -138,6 +138,13 @@ public final class SkinNetwork {
             var c = supplier.get(); c.enqueueWork(() -> { if (c.getSender() != null) ShopExpansion.roundOnly(c.getSender(), v.menu, v.index, v.enabled); }); c.setPacketHandled(true);
         }
     }
+    public record ShopDeployable(int menu, int index, boolean enabled) {
+        public static void encode(ShopDeployable v, FriendlyByteBuf b) { b.writeInt(v.menu); b.writeInt(v.index); b.writeBoolean(v.enabled); }
+        public static ShopDeployable decode(FriendlyByteBuf b) { return new ShopDeployable(b.readInt(), b.readInt(), b.readBoolean()); }
+        public static void handle(ShopDeployable v, Supplier<NetworkEvent.Context> supplier) {
+            var c = supplier.get(); c.enqueueWork(() -> { if (c.getSender() != null) ShopExpansion.deployable(c.getSender(), v.menu, v.index, v.enabled); }); c.setPacketHandled(true);
+        }
+    }
     public record ShopBundleState(int menu, List<ItemStack> items) {
         public static void encode(ShopBundleState v, FriendlyByteBuf b) {
             b.writeInt(v.menu); b.writeInt(v.items.size());
@@ -177,6 +184,7 @@ public final class SkinNetwork {
         CHANNEL.registerMessage(11, ShopBundleState.class, ShopBundleState::encode, ShopBundleState::decode, ShopBundleState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
         CHANNEL.registerMessage(12, ShopBundleView.class, ShopBundleView::encode, ShopBundleView::decode, ShopBundleView::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
         CHANNEL.registerMessage(13, ShopRoundOnly.class, ShopRoundOnly::encode, ShopRoundOnly::decode, ShopRoundOnly::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        CHANNEL.registerMessage(14, ShopDeployable.class, ShopDeployable::encode, ShopDeployable::decode, ShopDeployable::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
     }
 
     public static void sendShopShape(ServerPlayer player, int[] counts) {

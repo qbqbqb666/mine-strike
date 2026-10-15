@@ -13,7 +13,7 @@ import com.tacz.guns.api.item.IGun;
 import java.util.List;
 
 public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuAccess<EditShopSlotMenu> {
-    private static final int ITEM_COLUMNS = 4, ITEM_CELL = 58, ITEM_ROW = 65, VISIBLE_ROWS = 2;
+    private static final int ITEM_COLUMNS = 4, ITEM_CELL = 58, ITEM_ROW = 82, VISIBLE_ROWS = 2;
     private final EditShopSlotMenu menu;
     private final Inventory inventory;
     private EditBox name, price, ammo, group, maxBuy;
@@ -85,8 +85,8 @@ public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuA
             int index = (offset + visible) * ITEM_COLUMNS + col;
             if (index >= items.size()) continue;
             int x = left + 20 + col * ITEM_CELL, y = top + 44 + visible * ITEM_ROW;
-            boolean hover = mx >= x && mx < x + 54 && my >= y && my < y + 60;
-            ShopVisuals.card(g, x, y, 54, 60, ct, hover || index == 0);
+            boolean hover = mx >= x && mx < x + 54 && my >= y && my < y + 78;
+            ShopVisuals.card(g, x, y, 54, 78, ct, hover || index == 0);
             ShopVisuals.text(g, index == 0 ? "主" : "副", x + 4, y + 4, index == 0 ? ShopVisuals.accent(ct) : ShopVisuals.MUTED);
             ShopVisuals.icon(g, items.get(index), x + 7, y + 14, 39, 24);
             if (items.get(index).m_41613_() > 1) ShopVisuals.text(g, "×" + items.get(index).m_41613_(), x + 4, y + 33, ShopVisuals.TEXT);
@@ -94,7 +94,12 @@ public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuA
             boolean only = RoundItems.enabled(items.get(index));
             g.m_280509_(x + 3, y + 44, x + 51, y + 57, only ? 0x805D7751 : 0x603C4147);
             ShopVisuals.text(g, only ? "仅本小局" : "原有规则", x + 5, y + 46, only ? ShopVisuals.accent(ct) : ShopVisuals.MUTED);
-            if (hover) ShopVisuals.fitText(g, items.get(index).m_41611_().getString(), left + 20, top + 194, 248, ShopVisuals.MUTED);
+            if (items.get(index).m_41720_() instanceof net.minecraft.world.item.BlockItem) {
+                boolean deploy = ShopDeployments.enabled(items.get(index));
+                g.m_280509_(x + 3, y + 60, x + 51, y + 73, deploy ? 0x805D7751 : 0x603C4147);
+                ShopVisuals.text(g, deploy ? "允许部署" : "禁止部署", x + 5, y + 62, deploy ? ShopVisuals.accent(ct) : ShopVisuals.MUTED);
+            }
+            if (hover) ShopVisuals.fitText(g, items.get(index).m_41611_().getString(), left + 20, top + 313, 248, ShopVisuals.MUTED);
         }
         if ((items.size() + ITEM_COLUMNS - 1) / ITEM_COLUMNS > VISIBLE_ROWS)
             ShopVisuals.text(g, "↕", left + 263, top + 111, ShopVisuals.accent(ct));
@@ -133,6 +138,15 @@ public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuA
                 SkinNetwork.CHANNEL.sendToServer(new SkinNetwork.ShopRoundOnly(menu.f_38840_, index, !RoundItems.enabled(items.get(index)))); return true;
             }
         }
+        for (int visible = 0; visible < VISIBLE_ROWS; visible++) for (int col = 0; col < ITEM_COLUMNS; col++) {
+            int index = (offset + visible) * ITEM_COLUMNS + col;
+            int sx = left + 20 + col * ITEM_CELL, sy = top + 44 + visible * ITEM_ROW;
+            if (index < items.size() && items.get(index).m_41720_() instanceof net.minecraft.world.item.BlockItem
+                    && x >= sx + 3 && x < sx + 51 && y >= sy + 60 && y < sy + 73) {
+                pending = true;
+                SkinNetwork.CHANNEL.sendToServer(new SkinNetwork.ShopDeployable(menu.f_38840_, index, !ShopDeployments.enabled(items.get(index)))); return true;
+            }
+        }
         for (int r = 0; r < 4; r++) for (int c = 0; c < 9; c++) {
             int sx = left + 20 + c * 24, sy = top + 224 + r * 20 + (r == 3 ? 5 : 0), index = r == 3 ? c : 9 + r * 9 + c;
             if (x >= sx && x < sx + 18 && y >= sy && y < sy + 18) {
@@ -145,7 +159,7 @@ public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuA
         return false;
     }
     @Override public boolean m_6050_(double x, double y, double delta) {
-        if (x / scale < left + 20 || x / scale >= left + 275 || y / scale < top + 44 || y / scale >= top + 190) return false;
+        if (x / scale < left + 20 || x / scale >= left + 275 || y / scale < top + 44 || y / scale >= top + 208) return false;
         int max = Math.max(0, (items().size() + ITEM_COLUMNS - 1) / ITEM_COLUMNS - VISIBLE_ROWS);
         if (!pending) offset = Math.max(0, Math.min(max, offset + (delta < 0 ? 1 : -1)));
         return true;

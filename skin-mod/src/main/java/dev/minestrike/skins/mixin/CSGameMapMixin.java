@@ -4,6 +4,7 @@ import dev.minestrike.skins.MineStrikeSkins;
 import dev.minestrike.skins.MatchLobby;
 import dev.minestrike.skins.MapBaseline;
 import dev.minestrike.skins.RoundItems;
+import dev.minestrike.skins.ShopDeployments;
 import com.phasetranscrystal.blockoffensive.map.CSGameMap;
 import com.phasetranscrystal.fpsmatch.core.map.BaseTeam;
 import net.minecraft.server.level.ServerPlayer;
@@ -28,14 +29,15 @@ public abstract class CSGameMapMixin {
     @Inject(method = "startNewRound", at = @At("HEAD"), cancellable = true, remap = false)
     private void baselineRound(CallbackInfo ci) {
         CSGameMap map = (CSGameMap) (Object) this;
+        ShopDeployments.end(map);
         if (!map.isStart || !MapBaseline.before(map, true)) ci.cancel();
     }
 
     @Inject(method = {"roundVictory", "cleanupMap"}, at = @At("HEAD"), remap = false)
-    private void expireRoundItems(CallbackInfo ci) { RoundItems.end((CSGameMap) (Object) this); }
+    private void expireRoundItems(CallbackInfo ci) { ShopDeployments.end((CSGameMap) (Object) this); RoundItems.end((CSGameMap) (Object) this); }
 
     @Inject(method = "resetGame", at = @At("HEAD"), remap = false)
-    private void baselineCancel(CallbackInfo ci) { RoundItems.end((CSGameMap) (Object) this); MapBaseline.cancel((CSGameMap) (Object) this); }
+    private void baselineCancel(CallbackInfo ci) { ShopDeployments.end((CSGameMap) (Object) this); RoundItems.end((CSGameMap) (Object) this); MapBaseline.cancel((CSGameMap) (Object) this); }
 
     @Inject(method = "resetGame", at = @At("TAIL"), remap = false)
     private void skinsEnd(CallbackInfo ci) { MineStrikeSkins.end((CSGameMap) (Object) this); MatchLobby.reset((CSGameMap) (Object) this); }

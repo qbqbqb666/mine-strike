@@ -214,6 +214,14 @@ public final class ShopExpansion {
         RoundItems.configure(items.get(index).m_41784_(), enabled);
         ShopBundles.syncEditor(player, menu);
     }
+    public static void deployable(ServerPlayer player, int menuId, int index, boolean enabled) {
+        if (!(player.f_36096_ instanceof EditShopSlotMenu menu) || menu.f_38840_ != menuId
+                || !editable(player, menu, menu.getGuiItemStack())) return;
+        List<ItemStack> items = ShopBundles.items(menu);
+        if (index < 0 || index >= items.size() || !(items.get(index).m_41720_() instanceof net.minecraft.world.item.BlockItem)) return;
+        ShopDeployments.configure(items.get(index).m_41784_(), enabled);
+        ShopBundles.syncEditor(player, menu);
+    }
     public static void back(ServerPlayer player, int menuId) {
         if (player.f_36096_ instanceof EditShopSlotMenu menu && menu.f_38840_ == menuId && player.m_20310_(2))
             openEditor(player, menu.getGuiItemStack());

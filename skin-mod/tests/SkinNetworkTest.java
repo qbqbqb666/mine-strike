@@ -60,6 +60,10 @@ public class SkinNetworkTest {
             var roundOnly = new SkinNetwork.ShopRoundOnly(4, 35, true);
             SkinNetwork.ShopRoundOnly.encode(roundOnly, requestBytes);
             if (!roundOnly.equals(SkinNetwork.ShopRoundOnly.decode(requestBytes))) throw new AssertionError("Per-item round-only request round trip");
+            requestBytes.clear();
+            var deployable = new SkinNetwork.ShopDeployable(4, 35, true);
+            SkinNetwork.ShopDeployable.encode(deployable, requestBytes);
+            if (!deployable.equals(SkinNetwork.ShopDeployable.decode(requestBytes))) throw new AssertionError("Per-item deployment request round trip");
             boolean rejected = false;
             try { SkinNetwork.Request.encode(new SkinNetwork.Request(true, "x".repeat(8193)), requestBytes); }
             catch (EncoderException e) { rejected = true; }

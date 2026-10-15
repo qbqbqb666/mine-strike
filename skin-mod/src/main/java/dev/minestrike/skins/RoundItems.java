@@ -39,8 +39,9 @@ public final class RoundItems {
         });
     }
     public static ItemStack issue(ItemStack source, ServerPlayer player) {
-        if (!enabled(source)) return source;
-        ItemStack item = source.m_41777_();
+        ItemStack granted = ShopDeployments.issue(source, player);
+        if (!enabled(granted)) return granted;
+        ItemStack item = granted.m_41777_();
         CSGameMap map = MineStrikeSkins.map(player);
         item.m_41784_().m_128359_(EPOCH, map == null ? "expired" : epoch(map));
         return item;
@@ -50,7 +51,7 @@ public final class RoundItems {
         if (id != null) active.remove(id);
         sweep(map.getServerLevel().m_7654_());
     }
-    private static boolean expired(ItemStack stack) { return !stack.m_41619_() && expired(stack.m_41783_(), active); }
+    public static boolean expired(ItemStack stack) { return !stack.m_41619_() && expired(stack.m_41783_(), active); }
     private static boolean clear(Container container) {
         boolean changed = false;
         for (int i = 0; i < container.m_6643_(); i++) if (expired(container.m_8020_(i))) {
