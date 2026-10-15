@@ -21,7 +21,7 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", []), ("AudioPolicyTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", []), ("AudioPolicyTest", []), ("TrailGeometryTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))

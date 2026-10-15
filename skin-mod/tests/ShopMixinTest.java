@@ -56,6 +56,13 @@ public class ShopMixinTest {
     private static byte[] resource(String name)throws IOException{
         try(var in=ShopMixinTest.class.getClassLoader().getResourceAsStream(name.replace('.','/')+".class")){return in.readAllBytes();}
     }
+    private static String methodCode(MethodNode method) {
+        var printer = new org.objectweb.asm.util.Textifier();
+        var visitor = new org.objectweb.asm.util.TraceMethodVisitor(printer);
+        for (AbstractInsnNode instruction : method.instructions)
+            if (!(instruction instanceof FrameNode)) instruction.accept(visitor);
+        var text = new StringWriter(); printer.print(new PrintWriter(text)); return text.toString();
+    }
     public static void main(String[] args)throws Exception {
         MixinBootstrap.init();
         MixinEnvironment.getDefaultEnvironment().setSide(MixinEnvironment.Side.CLIENT);
@@ -92,6 +99,71 @@ public class ShopMixinTest {
             int expected = radarTarget.endsWith(".RadarRenderer") ? 2 : 1;
             if (filters != expected) throw new AssertionError("Missing radar render/track path: " + radarTarget);
         }
+        for (String bulletTarget : List.of("com.tacz.guns.entity.EntityKineticBullet",
+                "com.atsuishio.superbwarfare.entity.projectile.ProjectileEntity")) {
+            byte[] before = resource(bulletTarget), after = transformer.transformClassBytes(bulletTarget, bulletTarget, before);
+            if (Arrays.equals(before, after)) throw new AssertionError("Bullet trail Mixin did not apply: " + bulletTarget);
+            ClassNode original = new ClassNode(), result = new ClassNode();
+            new ClassReader(before).accept(original, 0); new ClassReader(after).accept(result, 0);
+            MethodNode originalTick = original.methods.stream().filter(m -> m.name.equals("m_8119_")).findFirst().orElseThrow();
+            MethodNode actualTick = result.methods.stream().filter(m -> m.name.equals("m_8119_")).findFirst().orElseThrow();
+            List<String> nativeCalls = new ArrayList<>(), retainedCalls = new ArrayList<>();
+            for (AbstractInsnNode instruction : originalTick.instructions) if (instruction instanceof MethodInsnNode call)
+                nativeCalls.add(call.owner + "." + call.name + call.desc);
+            int hooks = 0;
+            for (AbstractInsnNode instruction : actualTick.instructions) if (instruction instanceof MethodInsnNode call) {
+                if (call.name.contains("minestrike$begin") || call.name.contains("minestrike$end")) hooks++;
+                else if (!call.owner.startsWith("org/spongepowered/asm/mixin/injection/callback/"))
+                    retainedCalls.add(call.owner + "." + call.name + call.desc);
+            }
+            if (hooks < 2 || !nativeCalls.equals(retainedCalls))
+                throw new AssertionError("Trail observation must retain every original tick call: " + bulletTarget);
+        }
+        System.out.println("PASS: TaCZ/Superb trail Mixin injection retains original projectile tick calls");
+        ClassNode trailNode = new ClassNode(); new ClassReader(resource("dev.minestrike.skins.BulletTrails")).accept(trailNode, 0);
+        for (MethodNode method : trailNode.methods) for (AbstractInsnNode instruction : method.instructions)
+            if (instruction instanceof MethodInsnNode call && call.owner.startsWith("net/minecraft/world/")
+                    && Set.of("m_6034_", "m_20256_", "m_146870_", "m_6469_", "m_7731_").contains(call.name))
+                throw new AssertionError("Trail renderer must not move, remove, damage entities or change blocks");
+        for (String bombTarget : List.of(prefix + "blockoffensive.item.CompositionC4",
+                prefix + "blockoffensive.entity.CompositionC4Entity")) {
+            byte[] before = resource(bombTarget), after = transformer.transformClassBytes(bombTarget, bombTarget, before);
+            if (Arrays.equals(before, after)) throw new AssertionError("C4 audio Mixin did not apply: " + bombTarget);
+            ClassNode original = new ClassNode(), result = new ClassNode();
+            new ClassReader(before).accept(original, 0); new ClassReader(after).accept(result, 0);
+            boolean entity = bombTarget.endsWith("Entity");
+            String changed = entity ? "playBeepSound" : "m_5922_";
+            for (MethodNode method : original.methods) {
+                MethodNode actual = result.methods.stream().filter(m -> m.name.equals(method.name) && m.desc.equals(method.desc))
+                        .findFirst().orElseThrow();
+                if (!method.name.equals(changed) && !methodCode(method).equals(methodCode(actual)))
+                    throw new AssertionError("C4 audio changed unrelated method: " + method.name);
+                if (method.name.equals(changed)) {
+                    int hooks = 0, positional = 0;
+                    for (AbstractInsnNode instruction : actual.instructions) if (instruction instanceof MethodInsnNode call) {
+                        if (call.name.contains(entity ? "minestrike$range" : "minestrike$announce")) hooks++;
+                        if (call.owner.equals("net/minecraft/world/level/Level") && call.name.equals("m_6263_")) positional++;
+                    }
+                    if (hooks != 1 || positional != (entity ? 1 : 0))
+                        throw new AssertionError("C4 sound replacement must occur exactly once: " + bombTarget);
+                }
+            }
+        }
+        ClassNode baseMap = new ClassNode(); new ClassReader(resource(prefix + "fpsmatch.core.map.BaseMap")).accept(baseMap, 0);
+        MethodNode broadcast = baseMap.methods.stream().filter(m -> m.name.equals("sendPacketToAllPlayer")).findFirst().orElseThrow();
+        boolean spectators = false;
+        for (AbstractInsnNode instruction : broadcast.instructions) if (instruction instanceof MethodInsnNode call
+                && call.name.equals("getJoinedPlayersWithSpec")) spectators = true;
+        if (!spectators) throw new AssertionError("C4 broadcast must include spectators in the match");
+        for (String asset : List.of("c4_planted_loud", "c4_beep_loud")) {
+            try (var in = ShopMixinTest.class.getClassLoader().getResourceAsStream("assets/minestrike_skins/sounds/" + asset + ".ogg")) {
+                if (in == null) throw new AssertionError("Missing enhanced C4 asset: " + asset);
+                byte[] header = in.readNBytes(40);
+                if (header.length < 40 || header[0] != 'O' || header[1] != 'g' || header[2] != 'g' || header[3] != 'S'
+                        || header[39] != 1) throw new AssertionError("C4 sound must be valid mono Vorbis: " + asset);
+            }
+        }
+        System.out.println("PASS: C4 Mixin replaces each sound once, retains all other bomb methods, includes spectators and mono assets");
         for (String audioTarget : List.of("net.minecraft.client.sounds.SoundEngine", "com.mojang.blaze3d.audio.Channel",
                 "com.mojang.blaze3d.audio.Library", "com.tacz.guns.client.sound.GunSoundInstance",
                 "com.tacz.guns.client.sound.SoundPlayManager",
@@ -99,6 +171,13 @@ public class ShopMixinTest {
             byte[] before = resource(audioTarget), after = transformer.transformClassBytes(audioTarget, audioTarget, before);
             if (Arrays.equals(before, after)) throw new AssertionError("Audio Mixin did not apply: " + audioTarget);
             ClassNode node = new ClassNode(); new ClassReader(after).accept(node, 0);
+            if (audioTarget.endsWith(".SoundPhysics")) {
+                MethodNode environment = node.methods.stream().filter(m -> m.name.equals("evaluateEnvironment")).findFirst().orElseThrow();
+                boolean c4Hook = false;
+                for (AbstractInsnNode instruction : environment.instructions) if (instruction instanceof MethodInsnNode call
+                        && call.name.contains("minestrike$clear")) c4Hook = true;
+                if (!c4Hook) throw new AssertionError("C4 must bypass Sound Physics environment filtering");
+            }
             if (audioTarget.endsWith(".SoundEngine")) {
                 int binds = 0, gains = 0;
                 for (MethodNode method : node.methods) for (AbstractInsnNode instruction : method.instructions)
