@@ -21,7 +21,7 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
@@ -70,6 +70,8 @@ with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
 print("PASS: lobby automatic-start, single-side elimination, shared-spawn and team-capacity integration targets; match background")
 
 assert "public void startNewRound();" in bytecode
+assert "private void roundVictory(com.phasetranscrystal.fpsmatch.core.map.BaseTeam, com.phasetranscrystal.blockoffensive.map.CSGameMap$WinnerReason);" in bytecode
+assert "public void cleanupMap();" in bytecode
 base_code = subprocess.run(["javap", "-classpath", classpath, "-c", "-p",
                            "com.phasetranscrystal.fpsmatch.core.map.BaseMap"], capture_output=True, text=True, check=True).stdout
 assert "public final void mapTick();" in base_code
@@ -113,7 +115,7 @@ registration = inspect_class("com.phasetranscrystal.fpsmatch.common.client.scree
 assert registration.count("Method net/minecraft/client/gui/screens/MenuScreens.m_96206_:") == 2
 with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
     config = json.loads(jar.read("minestrike-skins.mixins.json"))
-    for mixin in ["ShopDataMixin", "FPSMShopMixin", "ShopEditorContainerMixin", "ShopEditorAccess", "ShopOpenEditorMixin", "ShopToolOpenMixin", "ShopCategoryMixin", "ShopSlotMenuAccess", "ShopSlotMenuMixin"]:
+    for mixin in ["ShopDataMixin", "ShopBundleSlotMixin", "FPSMShopMixin", "ShopEditorContainerMixin", "ShopEditorAccess", "ShopOpenEditorMixin", "ShopToolOpenMixin", "ShopCategoryMixin", "ShopSlotMenuAccess", "ShopSlotMenuMixin"]:
         assert mixin in config["mixins"]
     for mixin in ["ShopEditorScreenFactoryMixin", "ShopPurchaseOpenMixin"]:
         assert mixin in config["client"]

@@ -1,0 +1,17 @@
+{
+  "new_sha256": "139c6396c70305082743d1d6b39c30bbc6c71b5253a270cf346ffd2d463082a0",
+  "old": {
+    "repo": {
+      "path": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+      "sha256": "3040aa13791ced076430107ac12536c5eb448f6124785bdcf2583cb0f6b37ae0"
+    },
+    "pcl": {
+      "path": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+      "sha256": "3040aa13791ced076430107ac12536c5eb448f6124785bdcf2583cb0f6b37ae0"
+    }
+  },
+  "protected_file_counts": {
+    "repo": 69,
+    "pcl": 71
+  }
+}

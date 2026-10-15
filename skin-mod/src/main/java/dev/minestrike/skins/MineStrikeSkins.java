@@ -140,6 +140,7 @@ public final class MineStrikeSkins {
 
     public static ItemStack apply(ItemStack source, Map<String, String> choices) {
         ItemStack copy = source.m_41777_();
+        ShopBundles.applyExtraSkins(copy, choices);
         CompoundTag tag = copy.m_41783_();
         if (tag == null || catalog == null) return copy;
         String field = tag.m_128441_("GunId") ? "GunId" : "MeleeWeaponId";

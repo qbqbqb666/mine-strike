@@ -124,6 +124,7 @@ public final class ShopExpansion {
             List<?> list = (List<?>) shop.getDefaultShopDataMap().get(type); return list == null ? 0 : list.size();
         }).toArray();
         SkinNetwork.sendShopShape(player, counts);
+        ShopBundles.sendView(shop, player);
     }
     private static void changed(ItemStack stack) {
         FPSMShop<?> shop = Objects.requireNonNull(shop(stack));
@@ -168,7 +169,8 @@ public final class ShopExpansion {
         if (packet.price() < 0 || packet.price() > 16000 || packet.ammo() < 0 || packet.ammo() > 1000000
                 || packet.maxBuy() < 1 || packet.maxBuy() > 64 || packet.group() < -1 || packet.name().length() > 80) return;
         var access = (ShopSlotMenuAccess) menu;
-        var stack = access.mineStrikeHandler().getStackInSlot(0).m_41777_();
+        List<ItemStack> draft = ShopBundles.items(menu).stream().map(ItemStack::m_41777_).collect(java.util.stream.Collectors.toCollection(ArrayList::new));
+        var stack = draft.isEmpty() ? ItemStack.f_41583_ : draft.get(0);
         if (stack.m_41619_()) { message(player, "请先从下方背包放入商品。"); return; }
         if (packet.name().isBlank()) stack.m_41787_(); else if (!packet.name().strip().equals(stack.m_41611_().getString())) stack.m_41714_(Component.m_237113_(packet.name().strip()));
         access.mineStrikeHandler().setStackInSlot(0, stack);
@@ -176,7 +178,9 @@ public final class ShopExpansion {
         slot.setMaxBuyCount(packet.maxBuy());
         if (packet.ammoChanged() && stack.m_41720_() instanceof com.tacz.guns.api.item.IGun gun)
             com.phasetranscrystal.fpsmatch.util.FPSMUtil.setTotalDummyAmmo(stack, gun, packet.ammo());
-        slot.setItemSupplier(() -> stack.m_41777_());
+        draft.set(0, stack);
+        ItemStack bundle = ShopBundles.pack(draft);
+        slot.setItemSupplier(() -> bundle.m_41777_());
         slot.setDefaultCost(packet.price()); slot.setGroupId(packet.group());
         int index = access.mineStrikeIndex();
         shop(tool).replaceDefaultShopData(ItemType.values()[ShopRows.column(index)].name(), ShopRows.row(index), slot);
@@ -187,10 +191,28 @@ public final class ShopExpansion {
     public static void pick(ServerPlayer player, int menuId, int inventoryIndex) {
         if (!(player.f_36096_ instanceof EditShopSlotMenu menu) || menu.f_38840_ != menuId
                 || inventoryIndex < 0 || inventoryIndex >= 36 || !editable(player, menu, menu.getGuiItemStack())) return;
-        ItemStack item = player.m_150109_().m_8020_(inventoryIndex).m_41777_();
-        if (item.m_41619_()) return;
-        ((ShopSlotMenuAccess) menu).mineStrikeHandler().setStackInSlot(0, item);
-        menu.m_38946_();
+        ItemStack item = ShopBundles.clean(player.m_150109_().m_8020_(inventoryIndex));
+        if (item.m_41619_()) { message(player, "该背包格已为空，请重新选择。"); return; }
+        List<ItemStack> items = ShopBundles.items(menu);
+        if (items.size() >= ShopBundles.MAX_ITEMS) { message(player, "一个商品最多包含 " + ShopBundles.MAX_ITEMS + " 项物品。"); return; }
+        items.add(item);
+        ShopBundles.syncEditor(player, menu);
+    }
+    public static void removeItem(ServerPlayer player, int menuId, int index) {
+        if (!(player.f_36096_ instanceof EditShopSlotMenu menu) || menu.f_38840_ != menuId
+                || !editable(player, menu, menu.getGuiItemStack())) return;
+        List<ItemStack> items = ShopBundles.items(menu);
+        if (index < 0 || index >= items.size()) return;
+        items.remove(index);
+        ShopBundles.syncEditor(player, menu);
+    }
+    public static void roundOnly(ServerPlayer player, int menuId, int index, boolean enabled) {
+        if (!(player.f_36096_ instanceof EditShopSlotMenu menu) || menu.f_38840_ != menuId
+                || !editable(player, menu, menu.getGuiItemStack())) return;
+        List<ItemStack> items = ShopBundles.items(menu);
+        if (index < 0 || index >= items.size()) return;
+        RoundItems.configure(items.get(index).m_41784_(), enabled);
+        ShopBundles.syncEditor(player, menu);
     }
     public static void back(ServerPlayer player, int menuId) {
         if (player.f_36096_ instanceof EditShopSlotMenu menu && menu.f_38840_ == menuId && player.m_20310_(2))

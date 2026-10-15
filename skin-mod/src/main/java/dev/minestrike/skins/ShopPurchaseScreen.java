@@ -38,9 +38,11 @@ public final class ShopPurchaseScreen extends ShopPanelScreen {
                 ShopVisuals.card(g,x,y,CELL-10,ROW-8,ct,hover&&buy);
                 if(slot.boughtCount()>0) g.m_280509_(x+3,y+3,x+CELL-13,y+4,ShopVisuals.accent(ct));
                 ShopVisuals.icon(g,item,x+8,y+17,CELL-26,45);
+                int bundleCount = ExpandedShopClient.bundleCount(col,row);
+                if(bundleCount > 1) ShopVisuals.text(g,"×"+bundleCount,x+CELL-35,y+56,ShopVisuals.accent(ct));
                 ShopVisuals.fitText(g,item.m_41619_()?"未配置商品":item.m_41611_().getString(),x+8,y+7,CELL-26,buy?ShopVisuals.TEXT:ShopVisuals.MUTED);
                 ShopVisuals.text(g,"$ "+slot.cost(),x+8,y+73,buy?ShopVisuals.accent(ct):ShopVisuals.MUTED);
-                if(slot.canReturn()) {
+                if(ExpandedShopClient.canRefund(col,row,slot.canReturn())) {
                     g.m_280509_(x+CELL-62,y+68,x+CELL-16,y+85,0xDD315743);
                     ShopVisuals.text(g,"退款",x+CELL-51,y+73,0xFFBEE5CA);
                 } else if(slot.isLocked()) ShopVisuals.text(g,"已购买",x+CELL-62,y+73,ShopVisuals.MUTED);
@@ -53,7 +55,7 @@ public final class ShopPurchaseScreen extends ShopPanelScreen {
         int col=(int)(x-left-24)/CELL,row=(int)(y-top-106)/ROW;
         if(col<0||col>=6||row<0||row>=ExpandedShopClient.count(col)||x>=left+24+(col+1)*CELL-10||y>=top+106+(row+1)*ROW-8)return false;
         var slot=FPSMClient.getGlobalData().getSlotData(ItemType.values()[col].name(),row);
-        boolean refund=slot.canReturn()&&x>=left+24+col*CELL+CELL-62&&y>=top+106+row*ROW+68;
+        boolean refund=ExpandedShopClient.canRefund(col,row,slot.canReturn())&&x>=left+24+col*CELL+CELL-62&&y>=top+106+row*ROW+68;
         if(!refund&&(slot.itemStack().m_41619_()||slot.isLocked()||CSClientData.getMoney()<slot.cost()))return true;
         NetworkPacketRegister.getChannelFromCache(ShopActionC2SPacket.class).sendToServer(new ShopActionC2SPacket(
                 FPSMClient.getGlobalData().getCurrentMap(),ItemType.values()[col],row,refund?ShopAction.RETURN:ShopAction.BUY));

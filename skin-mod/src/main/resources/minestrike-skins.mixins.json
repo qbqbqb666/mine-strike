@@ -15,7 +15,8 @@
     "ShopToolOpenMixin",
     "ShopCategoryMixin",
     "ShopSlotMenuAccess",
-    "ShopSlotMenuMixin"
+    "ShopSlotMenuMixin",
+    "ShopBundleSlotMixin"
   ],
   "injectors": {
     "defaultRequire": 1

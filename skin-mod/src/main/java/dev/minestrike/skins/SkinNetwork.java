@@ -9,12 +9,13 @@ import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.network.*;
 import net.minecraftforge.network.simple.SimpleChannel;
 import java.util.*;
+import net.minecraft.world.item.ItemStack;
 import java.util.function.Supplier;
 
 public final class SkinNetwork {
     private static final int MAX_JSON = 65536;
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
-            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "4", "4"::equals, "4"::equals);
+            new ResourceLocation(MineStrikeSkins.ID, "main"), () -> "6", "6"::equals, "6"::equals);
 
     public record Request(boolean save, String choices) {
         public static void encode(Request value, FriendlyByteBuf buf) {
@@ -123,6 +124,44 @@ public final class SkinNetwork {
         }
     }
 
+    public record ShopRemoveItem(int menu, int index) {
+        public static void encode(ShopRemoveItem v, FriendlyByteBuf b) { b.writeInt(v.menu); b.writeInt(v.index); }
+        public static ShopRemoveItem decode(FriendlyByteBuf b) { return new ShopRemoveItem(b.readInt(), b.readInt()); }
+        public static void handle(ShopRemoveItem v, Supplier<NetworkEvent.Context> supplier) {
+            var c = supplier.get(); c.enqueueWork(() -> { if (c.getSender() != null) ShopExpansion.removeItem(c.getSender(), v.menu, v.index); }); c.setPacketHandled(true);
+        }
+    }
+    public record ShopRoundOnly(int menu, int index, boolean enabled) {
+        public static void encode(ShopRoundOnly v, FriendlyByteBuf b) { b.writeInt(v.menu); b.writeInt(v.index); b.writeBoolean(v.enabled); }
+        public static ShopRoundOnly decode(FriendlyByteBuf b) { return new ShopRoundOnly(b.readInt(), b.readInt(), b.readBoolean()); }
+        public static void handle(ShopRoundOnly v, Supplier<NetworkEvent.Context> supplier) {
+            var c = supplier.get(); c.enqueueWork(() -> { if (c.getSender() != null) ShopExpansion.roundOnly(c.getSender(), v.menu, v.index, v.enabled); }); c.setPacketHandled(true);
+        }
+    }
+    public record ShopBundleState(int menu, List<ItemStack> items) {
+        public static void encode(ShopBundleState v, FriendlyByteBuf b) {
+            b.writeInt(v.menu); b.writeInt(v.items.size());
+            for (ItemStack item : v.items) b.writeItemStack(item, false);
+        }
+        public static ShopBundleState decode(FriendlyByteBuf b) {
+            int menu = b.readInt(), count = b.readInt();
+            if (count < 0 || count > ShopBundles.MAX_ITEMS) throw new IllegalArgumentException("商品物品数量无效。");
+            List<ItemStack> items = new ArrayList<>();
+            for (int i = 0; i < count; i++) items.add(b.m_130267_());
+            return new ShopBundleState(menu, items);
+        }
+        public static void handle(ShopBundleState v, Supplier<NetworkEvent.Context> supplier) {
+            var c = supplier.get(); c.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExpandedShopClient.bundleState(v))); c.setPacketHandled(true);
+        }
+    }
+    public record ShopBundleView(String json) {
+        public static void encode(ShopBundleView v, FriendlyByteBuf b) { b.m_130072_(v.json, 32768); }
+        public static ShopBundleView decode(FriendlyByteBuf b) { return new ShopBundleView(b.m_130136_(32768)); }
+        public static void handle(ShopBundleView v, Supplier<NetworkEvent.Context> supplier) {
+            var c = supplier.get(); c.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> ExpandedShopClient.bundleView(v))); c.setPacketHandled(true);
+        }
+    }
+
     public static void init() {
         CHANNEL.registerMessage(0, Request.class, Request::encode, Request::decode, Request::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(1, State.class, State::encode, State::decode, State::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
@@ -134,6 +173,10 @@ public final class SkinNetwork {
         CHANNEL.registerMessage(7, ShopBack.class, ShopBack::encode, ShopBack::decode, ShopBack::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(8, ShopPick.class, ShopPick::encode, ShopPick::decode, ShopPick::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(9, ShopFeedback.class, ShopFeedback::encode, ShopFeedback::decode, ShopFeedback::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        CHANNEL.registerMessage(10, ShopRemoveItem.class, ShopRemoveItem::encode, ShopRemoveItem::decode, ShopRemoveItem::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
+        CHANNEL.registerMessage(11, ShopBundleState.class, ShopBundleState::encode, ShopBundleState::decode, ShopBundleState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        CHANNEL.registerMessage(12, ShopBundleView.class, ShopBundleView::encode, ShopBundleView::decode, ShopBundleView::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        CHANNEL.registerMessage(13, ShopRoundOnly.class, ShopRoundOnly::encode, ShopRoundOnly::decode, ShopRoundOnly::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
     }
 
     public static void sendShopShape(ServerPlayer player, int[] counts) {

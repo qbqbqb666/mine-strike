@@ -40,6 +40,26 @@ public class SkinNetworkTest {
             var back = new SkinNetwork.ShopBack(4);
             SkinNetwork.ShopBack.encode(back,requestBytes);
             if (!back.equals(SkinNetwork.ShopBack.decode(requestBytes))) throw new AssertionError("Back request round trip");
+            requestBytes.clear();
+            var remove = new SkinNetwork.ShopRemoveItem(4, 35);
+            SkinNetwork.ShopRemoveItem.encode(remove, requestBytes);
+            if (!remove.equals(SkinNetwork.ShopRemoveItem.decode(requestBytes))) throw new AssertionError("Bundle removal round trip");
+            stateBytes.clear();
+            var bundle = new SkinNetwork.ShopBundleState(4, java.util.List.of());
+            SkinNetwork.ShopBundleState.encode(bundle, stateBytes);
+            if (!bundle.equals(SkinNetwork.ShopBundleState.decode(stateBytes))) throw new AssertionError("Empty draft round trip");
+            stateBytes.clear(); stateBytes.writeInt(4); stateBytes.writeInt(37);
+            boolean invalidCount = false;
+            try { SkinNetwork.ShopBundleState.decode(stateBytes); } catch (IllegalArgumentException e) { invalidCount = true; }
+            if (!invalidCount) throw new AssertionError("Reject oversized bundle before reading items");
+            stateBytes.clear();
+            var view = new SkinNetwork.ShopBundleView("[{\"column\":5,\"row\":0,\"count\":3,\"refundable\":false}]");
+            SkinNetwork.ShopBundleView.encode(view, stateBytes);
+            if (!view.equals(SkinNetwork.ShopBundleView.decode(stateBytes))) throw new AssertionError("Bundle refund view round trip");
+            requestBytes.clear();
+            var roundOnly = new SkinNetwork.ShopRoundOnly(4, 35, true);
+            SkinNetwork.ShopRoundOnly.encode(roundOnly, requestBytes);
+            if (!roundOnly.equals(SkinNetwork.ShopRoundOnly.decode(requestBytes))) throw new AssertionError("Per-item round-only request round trip");
             boolean rejected = false;
             try { SkinNetwork.Request.encode(new SkinNetwork.Request(true, "x".repeat(8193)), requestBytes); }
             catch (EncoderException e) { rejected = true; }

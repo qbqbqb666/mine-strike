@@ -64,13 +64,22 @@ public class ShopMixinTest {
         var constructor=Class.forName("org.spongepowered.asm.mixin.transformer.MixinTransformer").getDeclaredConstructor();constructor.setAccessible(true);
         IMixinTransformer transformer=(IMixinTransformer)constructor.newInstance();
         String prefix="com.phasetranscrystal.";
-        String[] targets={"blockoffensive.map.shop.ItemType","fpsmatch.core.shop.ShopData","fpsmatch.core.shop.FPSMShop",
+        String[] targets={"blockoffensive.map.shop.ItemType","blockoffensive.map.CSGameMap","fpsmatch.core.shop.ShopData","fpsmatch.core.shop.FPSMShop","fpsmatch.core.shop.slot.ShopSlot",
                 "fpsmatch.common.client.screen.EditorShopContainer","fpsmatch.common.client.screen.EditShopSlotMenu",
                 "fpsmatch.common.client.screen.VanillaGuiRegister","fpsmatch.common.packet.shop.OpenEditorC2SPacket","fpsmatch.common.item.ShopEditTool", "blockoffensive.client.key.OpenShopKey"};
         Map<String,byte[]> transformed=new HashMap<>();
         for(String target:targets){String name=prefix+target;byte[] before=resource(name),after=transformer.transformClassBytes(name,name,before);
             if(Arrays.equals(before,after))throw new AssertionError("Mixin did not apply: "+name);transformed.put(name,after);
         }
+        ClassNode slotNode = new ClassNode();
+        new ClassReader(transformed.get(prefix + "fpsmatch.core.shop.slot.ShopSlot")).accept(slotNode, 0);
+        if (!slotNode.interfaces.contains("dev/minestrike/skins/ShopBundles$SlotState")) throw new AssertionError("Receipt state interface missing");
+        boolean constructorInitializesReceipts = false;
+        for (MethodNode method : slotNode.methods) if (method.name.equals("<init>")) {
+            for (AbstractInsnNode instruction : method.instructions) if (instruction instanceof FieldInsnNode field
+                    && field.getOpcode() == Opcodes.PUTFIELD && field.name.contains("mineStrikeReceipts")) constructorInitializesReceipts = true;
+        }
+        if (!constructorInitializesReceipts) throw new AssertionError("Receipt list must initialize on real ShopSlot constructors");
         ClassLoader loader=new ClassLoader(ShopMixinTest.class.getClassLoader()){
             @Override protected Class<?> loadClass(String name,boolean resolve)throws ClassNotFoundException {
                 boolean own=name.equals(prefix+"blockoffensive.map.shop.ItemType")||name.equals(prefix+"fpsmatch.core.shop.ShopData")
@@ -94,6 +103,6 @@ public class ShopMixinTest {
             throw new AssertionError("Existing goods, order and independent lengths must remain intact");
         expansion.getMethod("validate",Map.class,int.class).invoke(null,legacy,6);
         System.out.println("PASS: legacy five-category upgrade preserves existing goods and independent lengths; new category starts empty");
-        System.out.println("PASS: real Mixin application on nine shop targets; sixth enum initialization and valueOf persistence key");
+        System.out.println("PASS: real Mixin application on eleven shop/round targets; sixth enum initialization and valueOf persistence key");
     }
 }
