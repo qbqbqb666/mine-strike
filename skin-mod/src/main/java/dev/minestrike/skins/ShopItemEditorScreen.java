@@ -9,7 +9,6 @@ import net.minecraft.client.gui.screens.inventory.MenuAccess;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
-import com.tacz.guns.api.item.IGun;
 import java.util.List;
 
 public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuAccess<EditShopSlotMenu> {
@@ -41,7 +40,7 @@ public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuA
         String[] old = name == null ? null : new String[]{name.m_94155_(), price.m_94155_(), ammo.m_94155_(), group.m_94155_(), maxBuy.m_94155_()};
         name = field("商品名称", 300, 60, 220, old == null ? (item().m_41619_() ? "" : item().m_41611_().getString()) : old[0], false);
         price = field("价格", 300, 108, 104, old == null ? "" + menu.getPrice() : old[1], true);
-        ammo = field("虚拟弹药", 416, 108, 104, old == null ? "" + menu.getAmmo() : old[2], true);
+        ammo = field("主武器总弹量", 416, 108, 104, old == null ? "" + ShopAmmo.total(item()) : old[2], true);
         if (old == null) initialAmmo = ammo.m_94155_();
         group = field("组 ID", 300, 156, 104, old == null ? "" + menu.getGroupId() : old[3], true);
         maxBuy = field("购买上限", 416, 156, 104, old == null ? "" + access.mineStrikeSlot().getMaxBuyCount() : old[4], true);
@@ -57,7 +56,7 @@ public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuA
         if (mainChanged) {
             ItemStack main = item();
             name.m_94144_(main.m_41619_() ? "" : main.m_41611_().getString());
-            ammo.m_94144_("" + (main.m_41720_() instanceof IGun gun ? gun.getMaxDummyAmmoAmount(main) : 0));
+            ammo.m_94144_("" + ShopAmmo.total(main));
             initialAmmo = ammo.m_94155_();
         }
         int max = Math.max(0, (items.size() + ITEM_COLUMNS - 1) / ITEM_COLUMNS - VISIBLE_ROWS);
@@ -112,7 +111,7 @@ public final class ShopItemEditorScreen extends ShopPanelScreen implements MenuA
             if (inventory.m_8020_(index).m_41613_() > 1) g.m_280370_(f_96547_, inventory.m_8020_(index), x, y);
             if (hover && !inventory.m_8020_(index).m_41619_()) ShopVisuals.fitText(g, inventory.m_8020_(index).m_41611_().getString(), left + 20, top + 313, 248, ShopVisuals.MUTED);
         }
-        String[] labels = {"商品名称", "套餐价格", "主物品弹药", "组 ID", "购买上限"};
+        String[] labels = {"商品名称", "套餐价格", "主武器总弹量", "组 ID", "购买上限"};
         int[] xs = {300, 300, 416, 300, 416}, ys = {46, 94, 94, 142, 142};
         for (int i = 0; i < labels.length; i++) ShopVisuals.text(g, labels[i], left + xs[i], top + ys[i], ShopVisuals.MUTED);
         ShopVisuals.text(g, "监听模块", left + 300, top + 192, ShopVisuals.MUTED);

@@ -127,7 +127,7 @@ public class ShopMixinTest {
         AgentTest.mixins(transformer);
         MusicBoxesTest.mixins(transformer);
         String prefix="com.phasetranscrystal.";
-        String[] targets={"blockoffensive.map.shop.ItemType","blockoffensive.map.CSGameMap","fpsmatch.core.shop.ShopData","fpsmatch.core.shop.FPSMShop","fpsmatch.core.shop.slot.ShopSlot",
+        String[] targets={"blockoffensive.map.shop.ItemType","blockoffensive.map.CSGameMap","fpsmatch.core.shop.ShopData","fpsmatch.core.shop.FPSMShop","fpsmatch.core.shop.slot.ShopSlot","fpsmatch.util.FPSMUtil",
                 "fpsmatch.common.client.screen.EditorShopContainer","fpsmatch.common.client.screen.EditShopSlotMenu",
                 "fpsmatch.common.client.screen.VanillaGuiRegister","fpsmatch.common.packet.shop.OpenEditorC2SPacket","fpsmatch.common.item.ShopEditTool", "blockoffensive.client.key.OpenShopKey"};
         Map<String,byte[]> transformed=new HashMap<>();
@@ -502,6 +502,20 @@ public class ShopMixinTest {
         System.out.println("PASS: real audio Mixin transformation, first-sample setup, streaming and tick gain paths");
         ClassNode slotNode = new ClassNode();
         new ClassReader(transformed.get(prefix + "fpsmatch.core.shop.slot.ShopSlot")).accept(slotNode, 0);
+        for (String target : List.of("process", "getAmmoCount")) {
+            MethodNode ammoMethod = slotNode.methods.stream().filter(m -> m.name.equals(target)).findFirst().orElseThrow();
+            boolean hooked = false;
+            for (AbstractInsnNode ins : ammoMethod.instructions) if (ins instanceof MethodInsnNode call
+                    && (call.name.contains("prepareAmmo") || call.name.contains("totalAmmo"))) hooked = true;
+            if (!hooked) throw new AssertionError("Unified ammo hook missing from real ShopSlot." + target);
+        }
+        ClassNode utilNode = new ClassNode();
+        new ClassReader(transformed.get(prefix + "fpsmatch.util.FPSMUtil")).accept(utilNode, 0);
+        MethodNode resetAmmo = utilNode.methods.stream().filter(m -> m.name.equals("resetGunAmmo")).findFirst().orElseThrow();
+        boolean resetsConfiguredTotal = false;
+        for (AbstractInsnNode ins : resetAmmo.instructions) if (ins instanceof MethodInsnNode call && call.name.contains("configuredTotal")) resetsConfiguredTotal = true;
+        if (!resetsConfiguredTotal) throw new AssertionError("Native round ammo reset must restore configured total");
+        System.out.println("PASS: real ShopSlot template/readback and native round ammo reset Mixin hooks");
         if (!slotNode.interfaces.contains("dev/minestrike/skins/ShopBundles$SlotState")) throw new AssertionError("Receipt state interface missing");
         boolean constructorInitializesReceipts = false;
         for (MethodNode method : slotNode.methods) if (method.name.equals("<init>")) {

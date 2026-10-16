@@ -151,7 +151,8 @@
                   "Ammo": 1,
                   "VirtualAmmo": 1
                 },
-                "Attachments": {}
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 2
               }
             },
             "defaultCost": 8000
@@ -173,9 +174,11 @@
                     -1822524182,
                     -1078851242
                   ],
-                  "Ammo": 1
+                  "Ammo": 1,
+                  "VirtualAmmo": 14
                 },
-                "Attachments": {}
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 15
               }
             },
             "defaultCost": 2000
@@ -746,7 +749,8 @@
                   "Ammo": 1,
                   "VirtualAmmo": 1
                 },
-                "Attachments": {}
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 2
               }
             },
             "defaultCost": 8000
@@ -768,9 +772,11 @@
                     -1822524182,
                     -1078851242
                   ],
-                  "Ammo": 1
+                  "Ammo": 1,
+                  "VirtualAmmo": 14
                 },
-                "Attachments": {}
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 15
               }
             },
             "defaultCost": 1500

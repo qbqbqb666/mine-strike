@@ -18,6 +18,7 @@
     "ShopSlotMenuAccess",
     "ShopSlotMenuMixin",
     "ShopBundleSlotMixin",
+    "ShopAmmoResetMixin",
     "ShopDeployItemMixin",
     "BombAudioMixin$Plant",
     "BombAudioMixin$Beep",

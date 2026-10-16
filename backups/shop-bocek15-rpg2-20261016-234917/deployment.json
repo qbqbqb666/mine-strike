@@ -1,0 +1,94 @@
+{
+  "time": "2026-10-16T23:49:17.690400+08:00",
+  "status": "saved and verified; in-game test pending",
+  "targets": [
+    {
+      "file": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/shop-bocek15-rpg2-20261016-234917/repository/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "beforeSha256": "b36e942c31df63cdb10b4b43042de71d0b71edceaf065cb4f4548253b28ce89a",
+      "afterSha256": "c42caa2b60f3f877201f07da29c6d84cebf5a50547623dee24ec3aaaa33c2647",
+      "items": [
+        {
+          "team": "t",
+          "item": "superbwarfare:rpg",
+          "total": 2,
+          "loaded": 1,
+          "reserve": 1,
+          "price": 8000
+        },
+        {
+          "team": "t",
+          "item": "superbwarfare:bocek",
+          "total": 15,
+          "loaded": 1,
+          "reserve": 14,
+          "price": 1500
+        },
+        {
+          "team": "ct",
+          "item": "superbwarfare:rpg",
+          "total": 2,
+          "loaded": 1,
+          "reserve": 1,
+          "price": 8000
+        },
+        {
+          "team": "ct",
+          "item": "superbwarfare:bocek",
+          "total": 15,
+          "loaded": 1,
+          "reserve": 14,
+          "price": 2000
+        }
+      ]
+    },
+    {
+      "file": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/shop-bocek15-rpg2-20261016-234917/pcl/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "beforeSha256": "ad275e52501d5eabdc672cd3877e803841b0dfb3aac19940ce391d21ad9686d3",
+      "afterSha256": "13b7c24459849e8c00749924279b1d7a3ca54617f3ff08fcba634be6184d2abe",
+      "items": [
+        {
+          "team": "t",
+          "item": "superbwarfare:rpg",
+          "total": 2,
+          "loaded": 1,
+          "reserve": 1,
+          "price": 8000
+        },
+        {
+          "team": "t",
+          "item": "superbwarfare:bocek",
+          "total": 15,
+          "loaded": 1,
+          "reserve": 14,
+          "price": 1500
+        },
+        {
+          "team": "ct",
+          "item": "superbwarfare:rpg",
+          "total": 2,
+          "loaded": 1,
+          "reserve": 1,
+          "price": 8000
+        },
+        {
+          "team": "ct",
+          "item": "superbwarfare:bocek",
+          "total": 15,
+          "loaded": 1,
+          "reserve": 14,
+          "price": 2000
+        }
+      ]
+    }
+  ],
+  "unchangedJarHashes": {
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar": "14971af6f391434dbb28a0919b4b6f222bfb5125b9eb130d24138fa82fc3ce08",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar": "14971af6f391434dbb28a0919b4b6f222bfb5125b9eb130d24138fa82fc3ce08"
+  },
+  "otherJsonValuesPreserved": true,
+  "inGameTest": false,
+  "committed": false,
+  "pushed": false
+}

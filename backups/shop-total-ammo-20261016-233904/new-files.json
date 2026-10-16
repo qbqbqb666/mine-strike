@@ -1,0 +1,5 @@
+[
+  "skin-mod/src/main/java/dev/minestrike/skins/ShopAmmo.java",
+  "skin-mod/src/main/java/dev/minestrike/skins/mixin/ShopAmmoResetMixin.java",
+  "skin-mod/tests/ShopAmmoTest.java"
+]

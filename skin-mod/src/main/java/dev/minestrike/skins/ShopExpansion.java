@@ -176,8 +176,9 @@ public final class ShopExpansion {
         access.mineStrikeHandler().setStackInSlot(0, stack);
         ShopSlot slot = copyForEdit(access.mineStrikeSlot());
         slot.setMaxBuyCount(packet.maxBuy());
-        if (packet.ammoChanged() && stack.m_41720_() instanceof com.tacz.guns.api.item.IGun gun)
-            com.phasetranscrystal.fpsmatch.util.FPSMUtil.setTotalDummyAmmo(stack, gun, packet.ammo());
+        if (packet.ammoChanged() && !ShopAmmo.configure(stack, packet.ammo())) {
+            message(player, "该物品不支持弹药设置，或武器资源尚未加载。"); return;
+        }
         draft.set(0, stack);
         ItemStack bundle = ShopBundles.pack(draft);
         slot.setItemSupplier(() -> bundle.m_41777_());

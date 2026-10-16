@@ -3,6 +3,7 @@ package dev.minestrike.skins.mixin;
 import com.phasetranscrystal.fpsmatch.core.shop.slot.ShopSlot;
 import dev.minestrike.skins.ShopBundles;
 import dev.minestrike.skins.RoundItems;
+import dev.minestrike.skins.ShopAmmo;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +17,15 @@ public abstract class ShopBundleSlotMixin implements ShopBundles.SlotState {
     @Shadow private int boughtCount;
     @Unique private final List<ShopBundles.Receipt> mineStrikeReceipts = new ArrayList<>();
     @Override public List<ShopBundles.Receipt> mineStrikeReceipts() { return mineStrikeReceipts; }
+    @Inject(method = "process", at = @At("RETURN"), cancellable = true, remap = false)
+    private void prepareAmmo(CallbackInfoReturnable<ItemStack> ci) {
+        ci.setReturnValue(ShopAmmo.prepare(ci.getReturnValue()));
+    }
+    @Inject(method = "getAmmoCount", at = @At("HEAD"), cancellable = true, remap = false)
+    private void totalAmmo(CallbackInfoReturnable<Integer> ci) {
+        ItemStack stack = ((ShopSlot) (Object) this).process();
+        if (ShopAmmo.supported(stack)) ci.setReturnValue(ShopAmmo.total(stack));
+    }
     @Inject(method = "buy", at = @At("HEAD"), cancellable = true, remap = false)
     private void buyBundle(ServerPlayer player, int money, CallbackInfoReturnable<Integer> ci) {
         ShopSlot slot = (ShopSlot) (Object) this;
