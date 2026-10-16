@@ -365,6 +365,11 @@ public class ShopMixinTest {
         int vertices = 0;
         for (AbstractInsnNode instruction : quad.instructions) if (instruction instanceof MethodInsnNode call && call.name.equals("vertex")) vertices++;
         if (vertices != 4) throw new AssertionError("Each continuous tracer side must have four vertex calls, without a separate square head");
+        MethodNode headDraw = trailNode.methods.stream().filter(m -> m.name.equals("drawHead")).findFirst().orElseThrow();
+        boolean closedMesh = false;
+        for (AbstractInsnNode instruction : headDraw.instructions) if (instruction instanceof MethodInsnNode call
+                && call.owner.equals("dev/minestrike/skins/TrailGeometry") && call.name.equals("head")) closedMesh = true;
+        if (!closedMesh) throw new AssertionError("Head rendering must use the tested closed triangle mesh, not a rectangular billboard");
         for (String path : List.of("replacesNative", "render")) {
             MethodNode method = trailNode.methods.stream().filter(m -> m.name.equals(path)).findFirst().orElseThrow();
             boolean sameFrame = false;

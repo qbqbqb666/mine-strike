@@ -1,6 +1,7 @@
 package dev.minestrike.skins;
 
 public final class TrailGeometry {
+    public record Triangle(Point a, Point b, Point c) {}
     public record Point(double x, double y, double z) {
         public Point add(Point p) { return new Point(x + p.x, y + p.y, z + p.z); }
         public Point sub(Point p) { return new Point(x - p.x, y - p.y, z - p.z); }
@@ -35,6 +36,22 @@ public final class TrailGeometry {
         Point from = segment.from().add(muzzleOffset.scale(Math.max(0, 1 - segment.from().sub(origin).length() / 50)));
         Point to = segment.to().add(muzzleOffset.scale(Math.max(0, 1 - segment.to().sub(origin).length() / 50)));
         return new Segment(from, to, segment.born(), segment.own());
+    }
+
+    public static java.util.List<Triangle> head(Ribbon ribbon, Point eye, double focalPixels) {
+        double pixel = ribbon.head().sub(eye).length() / focalPixels;
+        double radius = clamp(ribbon.width() * .85, pixel, pixel * 1.5);
+        Point delta = ribbon.head().sub(ribbon.tail());
+        Point center = ribbon.head().sub(delta.scale(Math.min(delta.length(), radius * 2) / delta.length()));
+        java.util.List<Triangle> triangles = new java.util.ArrayList<>(12);
+        for (int face = 0; face < 6; face++) {
+            double a = face * Math.PI / 3, b = (face + 1) * Math.PI / 3;
+            Point first = center.add(ribbon.side().scale(radius * Math.cos(a))).add(ribbon.up().scale(radius * Math.sin(a)));
+            Point second = center.add(ribbon.side().scale(radius * Math.cos(b))).add(ribbon.up().scale(radius * Math.sin(b)));
+            triangles.add(new Triangle(ribbon.head(), first, second));
+            triangles.add(new Triangle(center, second, first));
+        }
+        return triangles;
     }
 
     public static Ribbon frame(Segment s, Point eye, double now, double lifeTicks,

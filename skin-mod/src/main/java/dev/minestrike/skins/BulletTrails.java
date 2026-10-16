@@ -28,7 +28,7 @@ public final class BulletTrails {
     private record Settings(double life, double width, double near, double boost, double distance,
                             int budget, boolean own, boolean tacz, boolean superb) {}
     private record FrameKey(TrailGeometry.Point eye, double now, long revision, Settings settings, boolean firstPerson) {}
-    private record Visible(Entity bullet, TrailGeometry.Ribbon ribbon, double distance) {}
+    private record Visible(Entity bullet, TrailGeometry.Ribbon ribbon, double distance, boolean head) {}
     private record VisiblePath(Entity bullet, List<Visible> pieces, double distance) {}
     private static final Map<Entity, TrailPath> paths = new LinkedHashMap<>();
     private static Object level;
@@ -133,18 +133,22 @@ public final class BulletTrails {
             if (!managed(entry.getKey())) continue;
             List<Visible> pieces = new ArrayList<>();
             double distance = Double.POSITIVE_INFINITY;
-            for (TrailGeometry.Segment segment : entry.getValue().segments(firstPerson)) {
+            for (TrailGeometry.Segment segment : entry.getValue().segments(firstPerson, now)) {
                 if (TrailGeometry.distance(segment, eye) > settings.distance()) continue;
                 TrailGeometry.Ribbon ribbon = TrailGeometry.frame(segment, eye, now, settings.life(),
                         settings.width(), settings.near(), settings.boost());
                 if (ribbon == null) continue;
                 double visibleDistance = TrailGeometry.closest(ribbon.tail(), ribbon.head(), eye).sub(eye).length();
                 if (visibleDistance <= settings.distance()) {
-                    pieces.add(new Visible(entry.getKey(), ribbon, visibleDistance));
+                    pieces.add(new Visible(entry.getKey(), ribbon, visibleDistance, false));
                     distance = Math.min(distance, visibleDistance);
                 }
             }
-            if (!pieces.isEmpty()) candidates.add(new VisiblePath(entry.getKey(), pieces, distance));
+            if (!pieces.isEmpty()) {
+                Visible last = pieces.get(pieces.size() - 1);
+                pieces.set(pieces.size() - 1, new Visible(last.bullet(), last.ribbon(), last.distance(), true));
+                candidates.add(new VisiblePath(entry.getKey(), pieces, distance));
+            }
         }
         candidates.sort(Comparator.comparingDouble(VisiblePath::distance));
         List<Visible> selectedPieces = new ArrayList<>();
@@ -201,7 +205,7 @@ public final class BulletTrails {
                 firstPerson = new TrailGeometry.Segment(firstPerson.from(), point(visualHit.m_82450_()), original.born(), true);
         }
         TrailPath path = paths.computeIfAbsent(bullet, ignored -> new TrailPath());
-        if (!path.append(segment, firstPerson, preview, TracerConfig.DISTANCE.get())) return blocked;
+        if (!path.append(segment, firstPerson, preview, TracerConfig.DISTANCE.get(), original.to().sub(original.from()).length())) return blocked;
         if (probe != null) {
             probe.recorded = true;
             if (preview) probe.spawnRecorded = true;
@@ -237,8 +241,10 @@ public final class BulletTrails {
         try {
             for (Visible visible : prepared) {
                 TrailGeometry.Ribbon ribbon = visible.ribbon();
-                quad(vertices, matrix, ribbon, eye, 2.8, .18);
-                quad(vertices, matrix, ribbon, eye, 1, 1);
+                quad(vertices, matrix, ribbon, eye, 1.8, .06);
+                quad(vertices, matrix, ribbon, eye, .85, .55);
+                if (visible.head()) drawHead(vertices, matrix, ribbon, eye,
+                        Math.abs(RenderSystem.getProjectionMatrix().m11()) * mc.m_91268_().m_85442_() * .5);
                 Probe probe = probes.get(visible.bullet());
                 if (probe != null) {
                     probe.submissions++;
@@ -267,14 +273,23 @@ public final class BulletTrails {
             TrailGeometry.Point second = side.scale(Math.cos(b)).add(up.scale(Math.sin(b)));
             TrailGeometry.Point tailFirst = tailSide.scale(Math.cos(a)).add(tailUp.scale(Math.sin(a)));
             TrailGeometry.Point tailSecond = tailSide.scale(Math.cos(b)).add(tailUp.scale(Math.sin(b)));
-            vertex(out, matrix, tail.add(tailFirst), (int)(headAlpha * .6));
+            vertex(out, matrix, tail.add(tailFirst), (int)(headAlpha * .4));
             vertex(out, matrix, head.add(first), headAlpha);
             vertex(out, matrix, head.add(second), headAlpha);
-            vertex(out, matrix, tail.add(tailSecond), (int)(headAlpha * .6));
+            vertex(out, matrix, tail.add(tailSecond), (int)(headAlpha * .4));
         }
     }
     private static void vertex(VertexConsumer out, Matrix4f matrix, TrailGeometry.Point p, int alpha) {
         out.m_252986_(matrix, (float)p.x(), (float)p.y(), (float)p.z()).m_6122_(255, 237, 190, alpha).m_5752_();
+    }
+    private static void drawHead(VertexConsumer out, Matrix4f matrix, TrailGeometry.Ribbon ribbon, TrailGeometry.Point eye, double focalPixels) {
+        int alpha = (int)(255 * ribbon.alpha() * .65);
+        for (TrailGeometry.Triangle triangle : TrailGeometry.head(ribbon, eye, focalPixels)) {
+            vertex(out, matrix, triangle.a().sub(eye), alpha);
+            vertex(out, matrix, triangle.b().sub(eye), alpha);
+            vertex(out, matrix, triangle.c().sub(eye), alpha);
+            vertex(out, matrix, triangle.c().sub(eye), alpha);
+        }
     }
     private static TrailGeometry.Point point(Vec3 p) { return new TrailGeometry.Point(p.f_82479_, p.f_82480_, p.f_82481_); }
     private static Vec3 vec(TrailGeometry.Point p) { return new Vec3(p.x(), p.y(), p.z()); }

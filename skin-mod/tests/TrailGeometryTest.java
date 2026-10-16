@@ -98,37 +98,90 @@ public class TrailGeometryTest {
             TrailPath path = new TrailPath();
             Segment physical = new Segment(origin, new Point(0, 0, 100), 10, true);
             Segment visual = TrailGeometry.firstPerson(physical, origin, new Point(.3, -.2, -.5));
-            assert path.append(physical, visual, true, 128);
-            assert path.segments(true).size() == 1;
-            Ribbon complete = frame(path.segments(true).get(0), origin, 10);
-            assert complete != null && complete.head().sub(complete.tail()).length() > 98;
-            assert projectedLength(complete, focal) > 100 : "Long shots must retain the muzzle-side path";
-            assert !path.expired(12.99, 3) && path.expired(13, 3);
+            assert path.append(physical, visual, true, 128, 100);
+            double firstFrame = 10.95, duration = 2.4 + 1.2 * 100 / 128;
+            close(path.segments(false, firstFrame).get(0).to().z(), 2.1);
+            for (int fps : new int[]{30, 60}) {
+                double previous = 2.1; int movingFrames = 0;
+                for (double now = firstFrame; now < firstFrame + duration; now += 20.0 / fps) {
+                    var moving = path.segments(false, now);
+                    assert !moving.isEmpty();
+                    Segment light = moving.get(moving.size() - 1);
+                    close(light.to().z(), 2.1 + 97.9 * (now - firstFrame) / duration);
+                    assert light.to().z() >= previous && light.to().z() < 100;
+                    assert light.from().z() >= 2 - 1e-6;
+                    assert light.to().sub(light.from()).length() <= 6 + 1e-6;
+                    previous = light.to().z(); movingFrames++;
+                }
+                assert movingFrames >= 4 : "Flight must advance across multiple rendered frames";
+            }
+            double flightEnd = firstFrame + duration;
+            close(path.segments(false, flightEnd).get(0).to().z(), 100);
+            close(path.segments(false, flightEnd).get(0).from().z(), 94);
+            assert !path.expired(flightEnd + 2.99, 3) && path.expired(flightEnd + 3.01, 3);
+            assert frame(path.segments(true, flightEnd + 1).get(0), origin, flightEnd + 1).alpha()
+                    < frame(path.segments(true, flightEnd).get(0), origin, flightEnd).alpha();
         }
+        TrailPath impactPath = new TrailPath();
+        Segment clippedShot = new Segment(origin, new Point(9, 0, 0), 10, false);
+        assert impactPath.append(clippedShot, clippedShot, true, 128, 12.5);
+        close(impactPath.segments(false, 10.95).get(0).to().x(), 2.1);
+        double impactDuration = 2.4 + 1.2 * 9 / 128;
+        close(impactPath.segments(false, 10.95 + impactDuration / 2).get(0).to().x(), 5.55);
+        double impactTime = 10.95 + impactDuration;
+        close(impactPath.segments(false, impactTime).get(0).to().x(), 9);
+        close(impactPath.segments(false, impactTime + .1).get(0).born(), impactTime);
+        assert impactPath.expired(impactTime + 3.01, 3);
+
         TrailPath curve = new TrailPath();
         Segment preview = new Segment(origin, new Point(12, 0, 0), 10, false);
-        assert curve.append(preview, preview, true, 128);
-        assert !curve.append(preview, preview, true, 128);
-        Segment first = new Segment(origin, new Point(10, -1, 0), 10, false);
-        assert curve.append(first, first, false, 128);
-        assert curve.segments(false).size() == 1 && curve.segments(false).get(0).to().equals(first.to());
-        Segment second = new Segment(first.to(), new Point(20, -3, 0), 12, false);
-        assert curve.append(second, second, false, 128);
-        assert curve.segments(false).size() == 2;
-        assert curve.segments(false).get(0).from().equals(origin);
-        assert curve.segments(false).get(0).to().equals(curve.segments(false).get(1).from());
-        close(curve.segments(false).get(0).born(), 12);
-        assert !curve.expired(14.99, 3) && curve.expired(15, 3);
-        TrailPath advanced = new TrailPath();
-        assert advanced.append(first, first, true, 128);
-        assert advanced.append(second, second, false, 128);
-        assert advanced.segments(false).size() == 2 : "A first tick starting at the preview endpoint must preserve the confirmed prefix";
+        assert curve.append(preview, preview, true, 128, 12);
+        assert !curve.append(preview, preview, true, 128, 12);
+        close(curve.segments(false, 10.95).get(0).to().x(), 2.1);
+        Segment first = new Segment(origin, new Point(10, -1, 0), 11, false);
+        assert curve.append(first, first, false, 128, first.to().length());
+        assert curve.segments(false, 11.1).get(0).to().length() > 2.1 : "Preview replacement must preserve the first-frame clock";
+        Segment second = new Segment(first.to(), new Point(20, -3, 0), 11, false);
+        assert curve.append(second, second, false, 128, second.to().sub(second.from()).length());
+        double jointTime = 10.95 + 2.4 + 1.2 * first.to().length() / 128;
+        var bent = curve.segments(false, jointTime + .2);
+        assert bent.size() == 2 && bent.get(0).to().equals(bent.get(1).from());
+        close(bent.get(1).to().x(), 12); close(bent.get(1).to().y(), -1.4);
+        close(bent.stream().mapToDouble(piece -> piece.to().sub(piece.from()).length()).sum(), 6);
+        assert !curve.expired(jointTime + 3.99, 3) && curve.expired(jointTime + 4.01, 3);
         TrailPath bounded = new TrailPath();
         Segment longShot = new Segment(origin, new Point(200, 0, 0), 10, false);
-        assert bounded.append(longShot, longShot, true, 128);
-        close(bounded.segments(false).get(0).to().x(), 128);
-        assert !bounded.append(new Segment(new Point(200, 0, 0), new Point(210, 0, 0), 11), longShot, true, 128);
-        System.out.println("PASS: all 30 no-tick shots retain full 100-block paths; curved joints, preview replacement, confirmed prefix, shared fade and 128-block bound");
+        assert bounded.append(longShot, longShot, true, 128, 200);
+        bounded.segments(false, 10.95);
+        close(bounded.segments(false, 14.55).get(0).to().x(), 128);
+        assert !bounded.append(longShot, longShot, true, 128);
+        TrailPath closeImpact = new TrailPath();
+        Segment shortShot = new Segment(origin, new Point(1.5, 0, 0), 10);
+        assert closeImpact.append(shortShot, shortShot, true, 128);
+        assert closeImpact.segments(false, 11).isEmpty();
+
+        for (int height : new int[]{720, 1080, 2160}) for (int fov : new int[]{45, 70, 100}) {
+            double lens = height / (2 * Math.tan(Math.toRadians(fov) / 2));
+            for (int range : new int[]{4, 32, 64, 128}) {
+                Ribbon r = frame(new Segment(new Point(0, 0, Math.max(2, range - 6)), new Point(0, 0, range), 10, true), origin, 10);
+                var mesh = TrailGeometry.head(r, origin, lens);
+                assert mesh.size() == 12;
+                double area = 0, radiusPixels = 0;
+                for (TrailGeometry.Triangle triangle : mesh) {
+                    Point x = triangle.a(), y = triangle.b(), z = triangle.c();
+                    area += Math.abs((y.x()/y.z()-x.x()/x.z())*(z.y()/z.z()-x.y()/x.z())
+                            - (y.y()/y.z()-x.y()/x.z())*(z.x()/z.z()-x.x()/x.z())) * lens * lens / 2;
+                    for (Point vertex : new Point[]{x, y, z}) {
+                        assert vertex.z() <= range + 1e-8 : "Head must not extend past the clipped endpoint";
+                        radiusPixels = Math.max(radiusPixels, lens * Math.hypot(vertex.x()/vertex.z(), vertex.y()/vertex.z()));
+                    }
+                }
+                assert area > 4 : "Closed head must remain visible directly along the shot axis";
+                assert radiusPixels >= 1 && radiusPixels <= 1.6 : "Keep head near two to three pixels, without a large patch";
+            }
+        }
+        System.out.println("PASS: 30 no-tick shots begin on the first fractional render frame, advance across 30/60fps frames, keep six-block tails and fade after arrival");
+        System.out.println("PASS: preview clock, curved joints, muzzle gap, wall endpoints and 128-block bound; closed head has positive axial area at 720/1080/2160p and 45/70/100 FOV");
         System.out.println("PASS: first-person eye-ray projection reproduces invisible streak; native muzzle offset restores >10px hip-fire length, ADS core >=1px");
         System.out.println("PASS: nonzero birth-frame trails, no replay from zero, own-shot camera exclusion without near-pass amplification");
         System.out.println("PASS: full path direction, fade, near-pass emphasis without cropping, collision-end bounds and degenerate views");

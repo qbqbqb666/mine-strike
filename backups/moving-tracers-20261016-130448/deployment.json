@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-10-16T13:06:26.510944+08:00",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/moving-tracers-20261016-130448",
+  "sha256": "92f9dac6c63c0cf17177008784fe8ad04e5ea496301c45710e299e3ebbe21c22",
+  "previous_sha256": "5132d084edd62b9212cbb2cba0694dbf9f7ffaac694aa3c111bda524f2a3f4b8",
+  "behavior": "Moving light head at original per-tick displacement, maximum six-block trailing section, two-block muzzle gap; unknown future route hidden; wall and distance clipping shorten travel duration proportionally; tail fades after arrival. Replaces full-route simultaneous rendering.",
+  "retained": "Subtle color/opacity, reduced glow, preview generation for no-client-tick bullets, real projectile physics and damage unchanged.",
+  "verification_exit_code": 0,
+  "verification": "30 no-tick shot simulations: monotone near-to-far head, no future geometry, six-block tail; clipped arrival speed, preview clock continuity, curved joints, 128-block bounds; full verify.py passed.",
+  "synced_pcl": true,
+  "pcl_configuration_changed": false,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "gameplay_verified": false,
+  "changed_jar_entries": [
+    "dev/minestrike/skins/BulletTrails.class",
+    "dev/minestrike/skins/TrailPath$Part.class",
+    "dev/minestrike/skins/TrailPath.class"
+  ]
+}

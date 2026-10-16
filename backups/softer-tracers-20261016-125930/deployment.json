@@ -1,0 +1,26 @@
+{
+  "timestamp": "2026-10-16T12:59:55.047310+08:00",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/softer-tracers-20261016-125930",
+  "sha256": "5132d084edd62b9212cbb2cba0694dbf9f7ffaac694aa3c111bda524f2a3f4b8",
+  "previous_sha256": "ccc4812f07f3532be318862f3278205b2dc902223957e24fb77e48dfb868c6ed",
+  "visual_changes": {
+    "start_gap_blocks": 2,
+    "core_alpha_multiplier": 0.55,
+    "core_width_multiplier": 0.85,
+    "halo_width_multiplier": 1.8,
+    "halo_alpha_multiplier": 0.06,
+    "tail_alpha_fraction": 0.4
+  },
+  "verification_exit_code": 0,
+  "synced_pcl": true,
+  "pcl_configuration_changed": false,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "gameplay_verified": false,
+  "changed_jar_entries": [
+    "dev/minestrike/skins/BulletTrails.class",
+    "dev/minestrike/skins/TrailPath.class"
+  ]
+}
