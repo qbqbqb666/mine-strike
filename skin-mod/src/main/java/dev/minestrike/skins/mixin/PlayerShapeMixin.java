@@ -59,8 +59,8 @@ public final class PlayerShapeMixin {
             if (!f_104207_ || (f_104212_.isEmpty() && f_104213_.isEmpty())) return;
             if ((minestrike$logged & (1 << minestrike$shape)) == 0) {
                 minestrike$logged |= 1 << minestrike$shape;
-                org.slf4j.LoggerFactory.getLogger("minestrike_skins").info("[player-shape] shape={} route=scoped-modelpart bodyScale={} armScale={} bodyHeight={} headScale={} head=cube",
-                        minestrike$shape, PlayerShape.BODY_WIDTH, PlayerShape.ARM_WIDTH, PlayerShape.BODY_HEIGHT, PlayerShape.HEAD_SCALE);
+                org.slf4j.LoggerFactory.getLogger("minestrike_skins").info("[player-shape] shape={} route=scoped-modelpart bodyScale={} torsoWidth={} armScale={} bodyHeight={} headScale={} head=cube",
+                        minestrike$shape, PlayerShape.BODY_WIDTH, PlayerShape.TORSO_WIDTH, PlayerShape.ARM_WIDTH, PlayerShape.BODY_HEIGHT, PlayerShape.HEAD_SCALE);
             }
             pose.m_85836_();
             try {

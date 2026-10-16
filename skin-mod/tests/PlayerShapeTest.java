@@ -41,23 +41,23 @@ public class PlayerShapeTest {
             Files.write(configs.resolve("shape-combined-ModelPart.class"),changed.get("net.minecraft.client.model.geom.ModelPart"));
             runtime(changed,true);
             System.out.println("PASS: joint real Mixin transformation with installed PlayerAnimator and TaCZ model/armor hooks");
-            System.out.println("PASS: Oculus fast-render + Embeddium writer still emits the scaled cube head and 75 percent arms at restored total height through the scoped path");
+            System.out.println("PASS: Oculus fast-render + Embeddium writer still emits the scaled cube head and 75 percent arms at original limb length through the scoped path");
             return;
         }
         check(PlayerShape.BODY_WIDTH==.75f && PlayerShape.ARM_WIDTH==.75f && PlayerShape.BODY_HEIGHT==PlayerMetrics.LENGTH && PlayerShape.HEAD_SCALE==.65f,"Approved appearance ratios");
-        check(Math.abs(24*PlayerMetrics.LENGTH+8*PlayerMetrics.HEAD-32)<.00001,"Full foot-to-head height restored");
+        check(Math.abs(24*PlayerMetrics.LENGTH+8*PlayerMetrics.HEAD-29.2)<.00001,"Original limb length, retained small head");
         for(float shoulder:new float[]{-5,5}) {
             float pivot=shoulder+PlayerShape.pivotOffset(shoulder,PlayerShape.ARM);
             float inner=pivot-Math.signum(shoulder)*PlayerShape.ARM_WIDTH;
-            check(Math.abs(inner-Math.signum(shoulder)*4*PlayerShape.BODY_WIDTH)<.000001,"Arm must meet torso without a shoulder gap");
+            check(Math.abs(inner-Math.signum(shoulder)*4*PlayerShape.TORSO_WIDTH)<.000001,"Arm must meet torso without a shoulder gap");
         }
-        check(Math.abs(PlayerShape.verticalOffset(0)+2.8)<.00001 && Math.abs(PlayerShape.verticalOffset(12)+1.4)<.000001,"Neck and hip move together");
+        check(Math.abs(PlayerShape.verticalOffset(0))<.00001 && Math.abs(PlayerShape.verticalOffset(12))<.000001,"Neck and hip move together");
         check(Math.abs(12+PlayerShape.verticalOffset(12)+12*PlayerShape.BODY_HEIGHT-24)<.000001,"Resized legs retain standing foot height");
         var hand=new PoseStack();PlayerShape.hand(hand);
         check(Math.abs(hand.m_85850_().m_252922_().m31()-10*(PlayerMetrics.LENGTH-1)/16)<.000001 && hand.m_85850_().m_252922_().m11()==1,"Hand anchor moves without scaling weapon geometry");
         if(args.length>0)Files.writeString(Path.of(args[0]),new Gson().toJson(Map.of(
-                "body",PlayerShape.BODY_WIDTH,"arm",PlayerShape.ARM_WIDTH,"head",PlayerShape.HEAD_SCALE,"height",PlayerShape.BODY_HEIGHT,"headShape","cube")));
-        System.out.println("PASS: retained torso/head ratios, 75 percent arms at restored total height and attached shoulder pivots");
+                "body",PlayerShape.BODY_WIDTH,"arm",PlayerShape.ARM_WIDTH,"head",PlayerShape.HEAD_SCALE,"height",PlayerShape.BODY_HEIGHT,"headShape","cube","torsoWidth",PlayerShape.TORSO_WIDTH)));
+        System.out.println("PASS: retained torso/head ratios, 75 percent arms at original limb length and attached shoulder pivots");
     }
     private static byte[] resource(String name)throws Exception {
         try(var in=PlayerShapeTest.class.getClassLoader().getResourceAsStream(name.replace('.','/')+".class")){return in.readAllBytes();}
@@ -153,11 +153,16 @@ public class PlayerShapeTest {
         check(emitted.size()==24,"Slim body must retain the six native cube faces");
         double width=emitted.stream().mapToDouble(v->v[0]).max().orElseThrow()-emitted.stream().mapToDouble(v->v[0]).min().orElseThrow();
         check(Math.abs(width-8*.75/16)<.000001,"Actual rendered body width");
+        part.getMethod("minestrike$shape",int.class).invoke(drawable,6);emitted.clear();
+        draw.invoke(drawable,renderPose,vertices,0,0,1f,1f,1f,1f);
+        double torsoWidth=emitted.stream().mapToDouble(v->v[0]).max().orElseThrow()-emitted.stream().mapToDouble(v->v[0]).min().orElseThrow();
+        double torsoDepth=emitted.stream().mapToDouble(v->v[2]).max().orElseThrow()-emitted.stream().mapToDouble(v->v[2]).min().orElseThrow();
+        check(Math.abs(torsoWidth-8*.85/16)<.000001&&Math.abs(torsoDepth-8*.75/16)<.000001,"Torso only widens sideways, depth retained");
         part.getMethod("minestrike$shape",int.class).invoke(drawable,5);emitted.clear();
         draw.invoke(drawable,renderPose,vertices,0,0,1f,1f,1f,1f);
         width=emitted.stream().mapToDouble(v->v[0]).max().orElseThrow()-emitted.stream().mapToDouble(v->v[0]).min().orElseThrow();
         double height=emitted.stream().mapToDouble(v->v[1]).max().orElseThrow()-emitted.stream().mapToDouble(v->v[1]).min().orElseThrow();
-        check(emitted.size()==24 && Math.abs(width-8*.75/16)<.000001 && Math.abs(height-8*PlayerMetrics.LENGTH/16)<.000001,"75 percent arm width and restored total height");
+        check(emitted.size()==24 && Math.abs(width-8*.75/16)<.000001 && Math.abs(height-8*PlayerMetrics.LENGTH/16)<.000001,"75 percent arm width and original limb length");
         for(float shoulder:new float[]{-5,5}) {
             part.getField("f_104200_").setFloat(drawable,shoulder);
             var attachment=new PoseStack();part.getMethod("m_104299_",PoseStack.class).invoke(drawable,attachment);
@@ -170,20 +175,20 @@ public class PlayerShapeTest {
         emitted.clear();draw.invoke(leg,renderPose,vertices,0,0,1f,1f,1f,1f);
         double foot=emitted.stream().mapToDouble(v->v[1]).max().orElseThrow();
         double hip=emitted.stream().mapToDouble(v->v[1]).min().orElseThrow();
-        check(Math.abs(foot-24f/16)<.000001 && Math.abs(hip-10.6/16)<.000001,"Actual resized leg remains grounded");
+        check(Math.abs(foot-24f/16)<.000001 && Math.abs(hip-12f/16)<.000001,"Original-length leg remains grounded");
         Object torsoCube=cube.getConstructors()[0].newInstance(16,16,-4f,0f,-2f,8f,12f,4f,0f,0f,0f,false,64f,64f,EnumSet.allOf(Direction.class));
         Object torso=part.getConstructor(List.class,Map.class).newInstance(List.of(torsoCube),Map.of());
-        part.getMethod("minestrike$shape",int.class).invoke(torso,1);emitted.clear();
+        part.getMethod("minestrike$shape",int.class).invoke(torso,6);emitted.clear();
         draw.invoke(torso,renderPose,vertices,0,0,1f,1f,1f,1f);
         check(Math.abs(emitted.stream().mapToDouble(v->v[1]).max().orElseThrow()-hip)<.000001,"Torso and leg join at the same resized hip");
-        check(Math.abs(emitted.stream().mapToDouble(v->v[1]).min().orElseThrow()+2.8/16)<.000001,"Torso meets shifted neck");
+        check(Math.abs(emitted.stream().mapToDouble(v->v[1]).min().orElseThrow())<.000001,"Torso meets shifted neck");
         Map<String,Object> children=new HashMap<>();
         for(String name:List.of("head","hat","body","jacket","right_arm","left_arm","right_sleeve","left_sleeve","right_leg","left_leg","right_pants","left_pants"))
             children.put(name,part.getConstructor(List.class,Map.class).newInstance(List.of(),Map.of()));
         Object root=part.getConstructor(List.class,Map.class).newInstance(List.of(),children);
         loader.loadClass("dev.minestrike.skins.PlayerShape").getMethod("tag",part).invoke(null,root);
         for(var entry:children.entrySet()) {
-            int expected=entry.getKey().contains("arm") || entry.getKey().contains("sleeve")?5:entry.getKey().equals("head")?2:entry.getKey().equals("hat")?3:1;
+            int expected=entry.getKey().contains("arm") || entry.getKey().contains("sleeve")?5:entry.getKey().equals("head")?2:entry.getKey().equals("hat")?3:entry.getKey().equals("body")||entry.getKey().equals("jacket")?6:1;
             check((int)part.getMethod("minestrike$shape").invoke(entry.getValue())==expected,"Correct player/outer-layer classification: "+entry.getKey());
         }
         part.getField("f_104207_").setBoolean(drawable,false);emitted.clear();

@@ -1,0 +1,6 @@
+{
+  "tool": "built-in imagegen",
+  "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-1d5f61ff-f2f1-4ad4-8065-98929dd94a36.png",
+  "prompt": "Use case: stylized-concept. Create ONE compact pixel-art icon for a Minecraft Counter-Strike MVP music kit HUD. A small square wooden music box / jukebox with dark charcoal speaker front, a simple gold musical note on the front and a gold record slightly protruding at top. Straight-on clear readable silhouette, tiny game inventory icon, hard square pixel clusters on a logical 32x32 grid, no smooth gradients or antialiasing, restrained warm wood brown, charcoal and gold palette, light tan single-pixel edge highlights. Center the object large with even narrow transparent padding. No text, no letters, no labels, no scene, no shadow beyond the icon, no decorative extra objects. True transparent background. Output a square PNG; designed to remain legible displayed 16-24 pixels wide beside Chinese HUD text.",
+  "destination": "src/main/resources/assets/minestrike_skins/textures/gui/mvp-music-box.png"
+}

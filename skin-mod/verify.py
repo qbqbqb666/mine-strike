@@ -27,6 +27,8 @@ for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-ski
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "AgentTest",
                 str(root / "src/main/resources/default-skins.json")], cwd=runtime, check=True)
+subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "MusicBoxesTest",
+                str(root / "src/main/resources/default-skins.json")], cwd=runtime, check=True)
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "PlayerShapeTest",
                 str(root / "build/player-shape-mesh.json")], cwd=runtime, check=True)
 ids = {s["id"] for group in catalog["groups"] for s in group["skins"]}
@@ -42,6 +44,10 @@ with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
             assert asset.startswith(b"\x89PNG\r\n\x1a\n")
             assert (int.from_bytes(asset[16:20], "big"), int.from_bytes(asset[20:24], "big")) == expected
     assert "AgentSkinMixin" in json.loads(jar.read("minestrike-skins.mixins.json"))["client"]
+    logo = jar.read("assets/minestrike_skins/textures/gui/mvp-music-box.png")
+    assert logo.startswith(b"\x89PNG\r\n\x1a\n") and logo[25] == 6, "MVP logo must have RGBA transparency"
+    for hook in ["MvpMusicMixin$Player", "MvpMusicMixin$Panel"]:
+        assert hook in json.loads(jar.read("minestrike-skins.mixins.json"))["client"]
     assert json.loads(jar.read("pack.mcmeta"))["pack"]["pack_format"] == 15
     assert json.loads(jar.read("assets/minestrike_skins/font/pixel.json"))["providers"][1]["id"] == "minecraft:include/unifont"
     assert b"MixinConfigs: minestrike-skins.mixins.json" in jar.read("META-INF/MANIFEST.MF")

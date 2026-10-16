@@ -36,10 +36,10 @@ public class AgentTest {
             check(SkinNetwork.Agents.decode(bytes).players().isEmpty(),"Match end clears all skins");
         } finally {bytes.release();}
         var standing=PlayerVolumes.model(Vec3.f_82478_,0,0,0,false,false,0,0,false);
-        var head=PlayerVolumes.clip(standing,new Vec3(0,1.72,3),new Vec3(0,1.72,-3));
+        var head=PlayerVolumes.clip(standing,new Vec3(0,1.56,3),new Vec3(0,1.56,-3));
         check(head!=null&&head.head(),"Head interior hit");
         check(Math.abs(head.point().f_82481_-.15234375)<.000001,"Head boundary follows rendered 65 percent head");
-        check(PlayerVolumes.clip(standing,new Vec3(.2,1.72,3),new Vec3(.2,1.72,-3))==null,"Old large head edge must miss");
+        check(PlayerVolumes.clip(standing,new Vec3(.2,1.56,3),new Vec3(.2,1.56,-3))==null,"Old large head edge must miss");
         var torso=PlayerVolumes.clip(standing,new Vec3(0,1.3,3),new Vec3(0,1.3,-3));
         check(torso!=null&&!torso.head()&&!torso.leg(),"Torso remains body hit");
         check(PlayerVolumes.clip(standing,new Vec3(.30,1.3,3),new Vec3(.30,1.3,-3))!=null,"Arm outside movement box can be hit");
@@ -47,13 +47,13 @@ public class AgentTest {
         var leg=PlayerVolumes.clip(standing,new Vec3(.08,.3,3),new Vec3(.08,.3,-3));
         check(leg!=null&&leg.leg(),"Keep Superb leg classification");
         var crouch=PlayerVolumes.model(Vec3.f_82478_,0,0,0,true,false,0,0,false);
-        check(PlayerVolumes.clip(crouch,new Vec3(0,1.72,3),new Vec3(0,1.72,-3))==null,"Crouch has no standing head hit");
+        check(PlayerVolumes.clip(crouch,new Vec3(0,1.56,3),new Vec3(0,1.56,-3))==null,"Crouch has no standing head hit");
         var prone=PlayerVolumes.model(Vec3.f_82478_,0,0,0,false,true,0,0,false);
-        check(PlayerVolumes.clip(prone,new Vec3(0,1.72,3),new Vec3(0,1.72,-3))==null,"Prone has no standing head hit");
+        check(PlayerVolumes.clip(prone,new Vec3(0,1.56,3),new Vec3(0,1.56,-3))==null,"Prone has no standing head hit");
         var turned=PlayerVolumes.model(Vec3.f_82478_,Math.PI/2,Math.PI/2,0,false,false,0,0,false);
         var side=PlayerVolumes.clip(turned,new Vec3(3,1.3,0),new Vec3(-3,1.3,0));
         check(side!=null&&!side.head(),"Rotated model clip");
-        check(Math.abs(24*PlayerMetrics.LENGTH+8*PlayerMetrics.HEAD-32)<.00001,"Original total model height");
+        check(Math.abs(24*PlayerMetrics.LENGTH+8*PlayerMetrics.HEAD-29.2)<.00001,"Original limb length and retained head scale");
         System.out.println("PASS: agent catalog, persistence, team defaults, packet bounds, rotated head/body/arm/leg rays and stance exclusions");
     }
     public static void mixins(IMixinTransformer transformer)throws Exception {

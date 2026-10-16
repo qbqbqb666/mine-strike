@@ -7,8 +7,8 @@ import java.util.List;
 
 public final class PlayerShape {
     public static final float BODY_WIDTH = PlayerMetrics.WIDTH, ARM_WIDTH = PlayerMetrics.WIDTH,
-            BODY_HEIGHT = PlayerMetrics.LENGTH, HEAD_SCALE = PlayerMetrics.HEAD;
-    public static final int NONE = 0, BODY = 1, HEAD = 2, HAT = 3, ARMOR_HEAD = 4, ARM = 5;
+            BODY_HEIGHT = PlayerMetrics.LENGTH, HEAD_SCALE = PlayerMetrics.HEAD, TORSO_WIDTH = PlayerMetrics.TORSO_WIDTH;
+    public static final int NONE = 0, BODY = 1, HEAD = 2, HAT = 3, ARMOR_HEAD = 4, ARM = 5, TORSO = 6;
 
     public interface Part {
         int minestrike$shape();
@@ -16,8 +16,9 @@ public final class PlayerShape {
     }
 
     public static void tag(ModelPart root) {
-        for (String name : List.of("body", "jacket", "right_leg", "left_leg", "right_pants", "left_pants"))
+        for (String name : List.of("right_leg", "left_leg", "right_pants", "left_pants"))
             set(root.m_171324_(name), BODY);
+        for (String name : List.of("body", "jacket")) set(root.m_171324_(name), TORSO);
         for (String name : List.of("right_arm", "left_arm", "right_sleeve", "left_sleeve"))
             set(root.m_171324_(name), ARM);
         set(root.m_171324_("head"), HEAD);
@@ -25,8 +26,9 @@ public final class PlayerShape {
     }
 
     public static void armor(HumanoidModel<?> model, boolean player) {
-        for (ModelPart part : List.of(model.f_102810_, model.f_102813_, model.f_102814_))
+        for (ModelPart part : List.of(model.f_102813_, model.f_102814_))
             set(part, player ? BODY : NONE);
+        set(model.f_102810_, player ? TORSO : NONE);
         set(model.f_102811_, player ? ARM : NONE);
         set(model.f_102812_, player ? ARM : NONE);
         set(model.f_102808_, player ? ARMOR_HEAD : NONE);
@@ -42,7 +44,8 @@ public final class PlayerShape {
     }
 
     public static float pivotOffset(float x, int shape) {
-        return x * (BODY_WIDTH - 1) - (shape == ARM ? Math.signum(x) * (BODY_WIDTH - ARM_WIDTH) : 0);
+        return shape == ARM ? x * (TORSO_WIDTH - 1) - Math.signum(x) * (TORSO_WIDTH - ARM_WIDTH)
+                : x * (BODY_WIDTH - 1);
     }
 
     public static float verticalOffset(float y) {
@@ -54,7 +57,8 @@ public final class PlayerShape {
     }
 
     public static void scale(PoseStack pose, int shape) {
-        if (shape == BODY) pose.m_85841_(BODY_WIDTH, BODY_HEIGHT, BODY_WIDTH);
+        if (shape == TORSO) pose.m_85841_(TORSO_WIDTH, BODY_HEIGHT, BODY_WIDTH);
+        else if (shape == BODY) pose.m_85841_(BODY_WIDTH, BODY_HEIGHT, BODY_WIDTH);
         else if (shape == ARM) pose.m_85841_(ARM_WIDTH, BODY_HEIGHT, ARM_WIDTH);
         else if (shape != NONE) pose.m_85841_(HEAD_SCALE, HEAD_SCALE, HEAD_SCALE);
     }

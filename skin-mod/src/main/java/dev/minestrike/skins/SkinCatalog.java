@@ -27,7 +27,7 @@ public final class SkinCatalog {
         Set<String> keys = new HashSet<>();
         for (Group g : groups) {
             if (g.key == null || !keys.add(g.key) || g.name == null || g.name.length() > 100
-                    || !validId(g.item) || !("GunId".equals(g.tag) || "MeleeWeaponId".equals(g.tag) || "AgentTeam".equals(g.tag))
+                    || !validId(g.item) || !("GunId".equals(g.tag) || "MeleeWeaponId".equals(g.tag) || "AgentTeam".equals(g.tag) || "MvpMusic".equals(g.tag))
                     || g.baseIds == null || g.baseIds.isEmpty() || g.skins == null || g.skins.size() > 128) {
                 throw new IllegalArgumentException("Invalid skin group: " + g.key);
             }

@@ -93,7 +93,7 @@ public final class SkinSelectionFragment extends Fragment {
         left.addView(cardsViewport, scrollParams);
         body.addView(left, new LinearLayout.LayoutParams(0, -1, 3));
         LinearLayout right = column(context);
-        right.addView(tile(context, "已选装备", null, false, null), new LinearLayout.LayoutParams(-1, right.dp(30)));
+        right.addView(tile(context, "已选内容", null, false, null), new LinearLayout.LayoutParams(-1, right.dp(30)));
         summaryViewport = new ScrollView(context);
         summary = column(context);
         summaryViewport.addView(summary, new ViewGroup.LayoutParams(-1, -2));
@@ -283,14 +283,16 @@ public final class SkinSelectionFragment extends Fragment {
 
     private String selectionName(SkinCatalog.Group group) { return skinName(group, selected.get(group.key)); }
     private static String skinName(SkinCatalog.Group group, String id) {
+        if (MusicBoxes.group(group) && id == null) return "沿用原设置";
         return group.skins.stream().filter(s -> s.id.equals(id)).map(s -> s.name).findFirst().orElse("默认");
     }
     private static ItemStack item(SkinCatalog.Group group, String selectedId) {
-        if (AgentSkins.group(group)) return null;
+        if (AgentSkins.group(group) || MusicBoxes.group(group)) return null;
         String id = selectedId == null ? group.baseIds.get(0) : selectedId;
         return MineStrikeSkins.available(group, id) ? MineStrikeSkins.preview(group, id) : ItemStack.f_41583_;
     }
     private static ResourceLocation portrait(SkinCatalog.Group group, String selectedId) {
+        if (MusicBoxes.group(group)) return new ResourceLocation(MineStrikeSkins.ID, "textures/gui/mvp-music-box.png");
         return AgentSkins.group(group) ? AgentSkins.portrait(selectedId == null ? group.baseIds.get(0) : selectedId) : null;
     }
     private static LinearLayout column(Context context) {
@@ -363,7 +365,9 @@ public final class SkinSelectionFragment extends Fragment {
                 ResourceLocation portrait = agentPortrait;
                 if (portrait != null) {
                     int imageH = Math.max(1, Math.round(h - dp(26) / (float)guiScale - edge * 4));
-                    int imageW = Math.max(1, Math.round(Math.min(w - edge * 6, imageH * 260f / 540)));
+                    boolean music = portrait.m_135815_().endsWith("mvp-music-box.png");
+                    if (music) imageH = Math.min(imageH, Math.max(1,Math.round(w - edge * 6)));
+                    int imageW = Math.max(1, Math.round(Math.min(w - edge * 6, imageH * (music ? 1 : 260f / 540))));
                     graphics.m_280163_(portrait, Math.round((w - imageW) / 2), edge * 2, 0, 0, imageW, imageH, imageW, imageH);
                     graphics.m_280262_();
                 }

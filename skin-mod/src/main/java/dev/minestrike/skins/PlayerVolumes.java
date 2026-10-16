@@ -22,25 +22,26 @@ public final class PlayerVolumes {
         root.translate(0, 24 * unit, 0).scale(unit, -unit, -unit);
         List<Box> parts = new ArrayList<>();
         part(parts, root, 0, crouch ? 4.2 : 0, 0, -4,-8,-4,8,8,8,
-                0, headYaw-yaw, prone ? 0 : pitch, PlayerMetrics.HEAD, PlayerMetrics.HEAD, 1);
+                0, headYaw-yaw, prone ? 0 : pitch, PlayerMetrics.HEAD, PlayerMetrics.HEAD, PlayerMetrics.HEAD, 1);
         part(parts, root, 0, crouch ? 3.2 : 0, 0, -4,0,-2,8,12,4,
-                0,0,crouch ? .5 : 0,PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,0);
+                0,0,crouch ? .5 : 0,PlayerMetrics.TORSO_WIDTH,PlayerMetrics.LENGTH,PlayerMetrics.WIDTH,0);
         double stride = Math.cos(walk * .6662) * 1.4 * Math.min(1, amount);
         for (int side : new int[]{-1,1}) {
             part(parts,root,side*1.9,crouch ? 12.2 : 12,crouch ? 4 : 0,-2,0,-2,4,12,4,
-                    0,0,side*stride,PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,2);
+                    0,0,side*stride,PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,PlayerMetrics.WIDTH,2);
             part(parts,root,side*5,crouch ? 5.2 : 2,0,side < 0 ? -3 : -1,-2,-2,4,12,4,
                     0,gun ? -side*.1 : 0,gun ? -Math.PI/2+pitch : -side*stride/2+(crouch ? .4 : 0),
-                    PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,0);
+                    PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,PlayerMetrics.WIDTH,0);
         }
         return parts;
     }
     private static void part(List<Box> parts, Matrix4d root, double x,double y,double z,
                              double ox,double oy,double oz,double w,double h,double d,
-                             double rz,double ry,double rx,double width,double height,int region) {
-        Matrix4d transform = new Matrix4d(root).translate(x*PlayerMetrics.WIDTH,
+                             double rz,double ry,double rx,double width,double height,double depth,int region) {
+        double pivotX = x*PlayerMetrics.WIDTH + (Math.abs(x)==5 ? Math.signum(x)*4*(PlayerMetrics.TORSO_WIDTH-PlayerMetrics.WIDTH) : 0);
+        Matrix4d transform = new Matrix4d(root).translate(pivotX,
                 24+(y-24)*PlayerMetrics.LENGTH,z*PlayerMetrics.WIDTH)
-                .rotateZ(rz).rotateY(ry).rotateX(rx).scale(width,height,width);
+                .rotateZ(rz).rotateY(ry).rotateX(rx).scale(width,height,depth);
         parts.add(new Box(new AABB(ox,oy,oz,ox+w,oy+h,oz+d),transform,region));
     }
     public static Hit clip(List<Box> parts, Vec3 start, Vec3 end) {

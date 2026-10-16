@@ -25,6 +25,7 @@ def cube(origin, size, uv_origin, pivot, scale=(1,1,1), inflate=0):
 
 def figure(changed):
     width, head, arm, height = (ratios["body"],ratios["head"],ratios["arm"],ratios["height"]) if changed else (1,1,1,1)
+    torso=ratios.get("torsoWidth",width) if changed else 1
     quads=[]
     for origin,size,uv,pivot in [
         ((-4,0,-2),(8,12,4),(16,16),(0,0,0)),
@@ -34,10 +35,10 @@ def figure(changed):
         ((-2,0,-2),(4,12,4),(16,48),(1.9,12,0)),
     ]:
         is_arm=abs(pivot[0])==5
-        local_width=arm if is_arm else width
-        correction=np.sign(pivot[0])*(width-arm) if is_arm else 0
-        pivot=(pivot[0]*width-correction,24+(pivot[1]-24)*height,pivot[2]*width)
-        quads.extend(cube(origin,size,uv,pivot,(local_width,height,local_width)))
+        local_width=arm if is_arm else torso if pivot[0]==0 else width
+        correction=np.sign(pivot[0])*(torso-arm) if is_arm else 0
+        pivot=(pivot[0]*(torso if is_arm else width)-correction,24+(pivot[1]-24)*height,pivot[2]*width)
+        quads.extend(cube(origin,size,uv,pivot,(local_width,height,width)))
     quads.extend(cube((-4,-8,-4),(8,8,8),(0,0),(0,24*(1-height),0),(head,head,head)))
     quads.extend(cube((-4,-8,-4),(8,8,8),(32,0),(0,24*(1-height),0),(head,head,head),inflate=.5))
     return quads

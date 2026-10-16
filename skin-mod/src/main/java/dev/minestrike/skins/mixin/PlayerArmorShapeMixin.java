@@ -35,13 +35,14 @@ public abstract class PlayerArmorShapeMixin {
                 && bone != leftLeg && bone != rightBoot && bone != leftBoot)) return;
         minestrike$saved.put(bone, new float[]{bone.getPosX(), bone.getPosY(), bone.getPosZ(), bone.getScaleX(), bone.getScaleY(), bone.getScaleZ()});
         boolean arm = bone == rightArm || bone == leftArm;
-        float scale = bone == head ? PlayerShape.HEAD_SCALE : arm ? PlayerShape.ARM_WIDTH : PlayerShape.BODY_WIDTH;
+        float scale = bone == head ? PlayerShape.HEAD_SCALE : bone == body ? PlayerShape.TORSO_WIDTH
+                : arm ? PlayerShape.ARM_WIDTH : PlayerShape.BODY_WIDTH;
         bone.setPosX(bone.getPosX() - PlayerShape.pivotOffset(bone.getPivotX() - bone.getPosX(), arm ? PlayerShape.ARM : PlayerShape.BODY));
         bone.setPosY(bone.getPosY() + (bone.getPivotY() + bone.getPosY()) * (PlayerShape.BODY_HEIGHT - 1));
         bone.setPosZ(bone.getPosZ() + (PlayerShape.BODY_WIDTH - 1) * (bone.getPivotZ() + bone.getPosZ()));
         bone.setScaleX(bone.getScaleX() * scale);
         bone.setScaleY(bone.getScaleY() * (bone == head ? scale : PlayerShape.BODY_HEIGHT));
-        bone.setScaleZ(bone.getScaleZ() * scale);
+        bone.setScaleZ(bone.getScaleZ() * (bone == head ? PlayerShape.HEAD_SCALE : PlayerShape.BODY_WIDTH));
     }
 
     @Inject(method = "renderRecursively(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/world/item/Item;Lsoftware/bernie/geckolib/cache/object/GeoBone;Lnet/minecraft/client/renderer/RenderType;Lnet/minecraft/client/renderer/MultiBufferSource;Lcom/mojang/blaze3d/vertex/VertexConsumer;ZFIIFFFF)V", at = @At("RETURN"))

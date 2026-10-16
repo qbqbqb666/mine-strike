@@ -36,6 +36,7 @@ def cube(origin, size, uv_origin, pivot, scale=(1,1,1), inflate=0):
 
 def figure(changed):
     width, head, arm, height = (ratios["body"],ratios["head"],ratios["arm"],ratios["height"]) if changed else (1,1,1,1)
+    torso=ratios.get("torsoWidth",width) if changed else 1
     quads=[]
     for origin,size,uv,pivot in [
         ((-4,0,-2),(8,12,4),(16,16),(0,0,0)),
@@ -45,10 +46,10 @@ def figure(changed):
         ((-2,0,-2),(4,12,4),(16,48),(1.9,12,0)),
     ]:
         is_arm=abs(pivot[0])==5
-        local_width=arm if is_arm else width
-        correction=np.sign(pivot[0])*(width-arm) if is_arm else 0
-        pivot=(pivot[0]*width-correction,24+(pivot[1]-24)*height,pivot[2]*width)
-        quads.extend(cube(origin,size,uv,pivot,(local_width,height,local_width)))
+        local_width=arm if is_arm else torso if pivot[0]==0 else width
+        correction=np.sign(pivot[0])*(torso-arm) if is_arm else 0
+        pivot=(pivot[0]*(torso if is_arm else width)-correction,24+(pivot[1]-24)*height,pivot[2]*width)
+        quads.extend(cube(origin,size,uv,pivot,(local_width,height,width)))
     quads.extend(cube((-4,-8,-4),(8,8,8),(0,0),(0,24*(1-height),0),(head,head,head)))
     quads.extend(cube((-4,-8,-4),(8,8,8),(32,0),(0,24*(1-height),0),(head,head,head),inflate=.5))
     return quads
@@ -85,7 +86,7 @@ def render(quads, angle):
 
 out=Image.new("RGB",(1560,650),(17,24,34)); draw=ImageDraw.Draw(out)
 font=ImageFont.load_default(size=20); small=ImageFont.load_default(size=16)
-draw.text((28,20),f'PLAYER SHAPE / width {ratios["body"]:.0%} / body length {ratios["height"]:.0%} / head {ratios["head"]:.0%}',font=font,fill="white")
+draw.text((28,20),f'PLAYER SHAPE / torso width {ratios.get("torsoWidth",ratios["body"]):.0%}, depth {ratios["body"]:.0%} / limb length {ratios["height"]:.0%} / head {ratios["head"]:.0%}',font=font,fill="white")
 for col,angle in enumerate((0,45,90)):
     for variant in (0,1):
         x=(col*2+variant)*260

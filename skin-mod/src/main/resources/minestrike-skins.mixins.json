@@ -4,6 +4,7 @@
   "package": "dev.minestrike.skins.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "MvpMusicAccess",
     "CSGameMapMixin",
     "BaseTeamMixin",
     "BaseMapMixin",
@@ -32,6 +33,8 @@
     "defaultRequire": 1
   },
   "client": [
+    "MvpMusicMixin$Player",
+    "MvpMusicMixin$Panel",
     "AgentSkinMixin",
     "PlayerShapeMixin$Model",
     "PlayerShapeMixin$Part",

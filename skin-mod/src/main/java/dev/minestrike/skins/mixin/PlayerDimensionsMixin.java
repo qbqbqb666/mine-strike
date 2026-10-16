@@ -13,6 +13,7 @@ public abstract class PlayerDimensionsMixin {
     @Inject(method = "m_6972_", at = @At("RETURN"), cancellable = true)
     private void minestrike$dimensions(Pose pose, CallbackInfoReturnable<EntityDimensions> cir) {
         if (AgentPlayers.active((Player)(Object)this))
-            cir.setReturnValue(cir.getReturnValue().m_20390_(PlayerMetrics.WIDTH, 1));
+            cir.setReturnValue(cir.getReturnValue().m_20390_(PlayerMetrics.WIDTH,
+                    pose == Pose.STANDING || pose == Pose.CROUCHING ? PlayerMetrics.TOTAL_HEIGHT : 1));
     }
 }

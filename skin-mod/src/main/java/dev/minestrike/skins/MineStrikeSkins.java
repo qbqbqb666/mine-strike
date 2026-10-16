@@ -57,6 +57,7 @@ public final class MineStrikeSkins {
             }
             catalog = SkinCatalog.JSON.fromJson(Files.readString(file, StandardCharsets.UTF_8), SkinCatalog.class);
             AgentSkins.append(catalog);
+            MusicBoxes.append(catalog);
             catalog.validate();
             store = new SkinStore(game.resolve("mine-strike-data/player-skins"), catalog);
             matches.clear();
@@ -103,7 +104,7 @@ public final class MineStrikeSkins {
         if (store == null) return;
         CSGameMap map = map(player);
         SkinNetwork.send(player, new SkinNetwork.State(SkinCatalog.JSON.toJson(catalog),
-                SkinCatalog.JSON.toJson(choices(map, player.m_20148_())), locked(player), open, message));
+                SkinCatalog.JSON.toJson(MusicBoxes.displayed(player.m_20148_(), choices(map, player.m_20148_()))), locked(player), open, message));
     }
 
     public static void save(ServerPlayer player, Map<String, String> choices) {
@@ -120,6 +121,7 @@ public final class MineStrikeSkins {
                 }
             }
             store.save(player.m_20148_(), choices);
+            MusicBoxes.apply(player.m_20148_(), choices);
             CSGameMap map = map(player);
             if (map != null) map.getShop(player).ifPresent(shop -> {
                 shop.getDefaultAndPutData(player.m_20148_());
@@ -134,7 +136,10 @@ public final class MineStrikeSkins {
 
     @SubscribeEvent
     public void login(PlayerEvent.PlayerLoggedInEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player) reply(player, "选择后点击确认保存。", true);
+        if (event.getEntity() instanceof ServerPlayer player) {
+            if (store != null) MusicBoxes.apply(player.m_20148_(), store.load(player.m_20148_()));
+            reply(player, "选择后点击确认保存。", true);
+        }
     }
 
     @SubscribeEvent
@@ -236,6 +241,7 @@ public final class MineStrikeSkins {
     }
 
     public static boolean available(SkinCatalog.Group group, String id) {
+        if (MusicBoxes.group(group)) return MusicBoxes.available(id);
         if (AgentSkins.group(group)) {
             var agent = AgentSkins.find(id);
             return agent != null && group.key.equals("agent_" + agent.team());
