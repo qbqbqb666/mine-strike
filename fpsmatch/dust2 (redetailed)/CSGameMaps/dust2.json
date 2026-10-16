@@ -52,11 +52,7 @@
   "blastTeam": "cs_dust2_t",
   "matchEndPoint": {
     "Dimension": "minecraft:overworld",
-    "Position": [
-      17,
-      6,
-      -81
-    ],
+    "Position": [-161, 7, 59],
     "Yaw": 0.0,
     "Pitch": 0.0
   },
