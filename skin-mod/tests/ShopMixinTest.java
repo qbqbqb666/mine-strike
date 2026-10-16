@@ -258,7 +258,23 @@ public class ShopMixinTest {
             }
             if (hooks < 2 || !nativeCalls.equals(retainedCalls))
                 throw new AssertionError("Trail observation must retain every original tick call: " + bulletTarget);
+            if (bulletTarget.contains("tacz")) {
+                MethodNode spawnBefore = original.methods.stream().filter(m -> m.name.equals("readSpawnData")).findFirst().orElseThrow();
+                MethodNode spawnAfter = result.methods.stream().filter(m -> m.name.equals("readSpawnData")).findFirst().orElseThrow();
+                List<String> beforeCalls = new ArrayList<>(), afterCalls = new ArrayList<>();
+                int spawnHooks = 0;
+                for (AbstractInsnNode instruction : spawnBefore.instructions) if (instruction instanceof MethodInsnNode call)
+                    beforeCalls.add(call.owner + "." + call.name + call.desc);
+                for (AbstractInsnNode instruction : spawnAfter.instructions) if (instruction instanceof MethodInsnNode call) {
+                    if (call.name.contains("minestrike$spawn")) spawnHooks++;
+                    else if (!call.owner.startsWith("org/spongepowered/asm/mixin/injection/callback/"))
+                        afterCalls.add(call.owner + "." + call.name + call.desc);
+                }
+                if (spawnHooks != 1 || !beforeCalls.equals(afterCalls))
+                    throw new AssertionError("Spawn diagnostics must observe every decoded bullet without changing spawn data");
+            }
         }
+        System.out.println("PASS: TaCZ spawn diagnostics preserve all original decoding calls and add exactly one observation hook");
         System.out.println("PASS: TaCZ/Superb trail Mixin injection retains original projectile tick calls");
         for (String renderer : List.of("com.tacz.guns.client.renderer.entity.EntityBulletRenderer",
                 "com.atsuishio.superbwarfare.client.renderer.projectile.ProjectileEntityRenderer")) {
@@ -327,6 +343,40 @@ public class ShopMixinTest {
             throw new AssertionError("C4 damage must be restricted to C4/server players and use one native hurt call");
         System.out.println("PASS: real C4 explosion Mixin, single native damage call, C4/player guards and unchanged explosion flow");
         ClassNode trailNode = new ClassNode(); new ClassReader(resource("dev.minestrike.skins.BulletTrails")).accept(trailNode, 0);
+        MethodNode spawnedTrail = trailNode.methods.stream().filter(m -> m.name.equals("spawned")).findFirst().orElseThrow();
+        Set<String> spawnCalls = new HashSet<>();
+        for (AbstractInsnNode instruction : spawnedTrail.instructions) if (instruction instanceof MethodInsnNode call)
+            spawnCalls.add(call.name);
+        if (!spawnCalls.containsAll(Set.of("m_20182_", "m_20184_", "m_82549_", "recordPath")))
+            throw new AssertionError("Decoded bullets must establish an initial segment from native position/velocity without waiting for a client tick");
+        MethodNode recordTrail = trailNode.methods.stream().filter(m -> m.name.equals("record")).findFirst().orElseThrow();
+        boolean sharedPath = false;
+        for (AbstractInsnNode instruction : recordTrail.instructions) if (instruction instanceof MethodInsnNode call && call.name.equals("recordPath")) sharedPath = true;
+        if (!sharedPath) throw new AssertionError("Spawn and completed movement must use the same wall clipping and recording path");
+        MethodNode recordPath = trailNode.methods.stream().filter(m -> m.name.equals("recordPath")).findFirst().orElseThrow();
+        boolean appendPath = false;
+        for (AbstractInsnNode instruction : recordPath.instructions) if (instruction instanceof MethodInsnNode call) {
+            if (call.owner.equals("dev/minestrike/skins/TrailPath") && call.name.equals("append")) appendPath = true;
+            if (call.name.equals("isTracerAmmo")) throw new AssertionError("Initial and actual segments must not depend on native tracer intervals");
+        }
+        if (!appendPath) throw new AssertionError("Actual movement must update the same full path that owns the initial preview");
+        System.out.println("PASS: decoded bullet creates initial clipped segment without a tick; actual movement replaces preview through shared path");
+        MethodNode quad = trailNode.methods.stream().filter(m -> m.name.equals("quad")).findFirst().orElseThrow();
+        int vertices = 0;
+        for (AbstractInsnNode instruction : quad.instructions) if (instruction instanceof MethodInsnNode call && call.name.equals("vertex")) vertices++;
+        if (vertices != 4) throw new AssertionError("Each continuous tracer side must have four vertex calls, without a separate square head");
+        for (String path : List.of("replacesNative", "render")) {
+            MethodNode method = trailNode.methods.stream().filter(m -> m.name.equals(path)).findFirst().orElseThrow();
+            boolean sameFrame = false;
+            for (AbstractInsnNode instruction : method.instructions) if (instruction instanceof MethodInsnNode call && call.name.equals("prepare")) sameFrame = true;
+            if (!sameFrame) throw new AssertionError("Native takeover and enhanced drawing must use the same visible frame selection");
+        }
+        MethodNode takeover = trailNode.methods.stream().filter(m -> m.name.equals("replacesNative")).findFirst().orElseThrow();
+        boolean selected = false;
+        for (AbstractInsnNode instruction : takeover.instructions) if (instruction instanceof MethodInsnNode call
+                && call.owner.equals("java/util/Set") && call.name.equals("contains")) selected = true;
+        if (!selected) throw new AssertionError("Native tracer must remain unless its actual ribbon was selected for drawing");
+        System.out.println("PASS: no square head quad; native takeover and drawing share visible geometry and budget selection");
         for (MethodNode method : trailNode.methods) for (AbstractInsnNode instruction : method.instructions)
             if (instruction instanceof MethodInsnNode call && call.owner.startsWith("net/minecraft/world/")
                     && Set.of("m_6034_", "m_20256_", "m_146870_", "m_6469_", "m_7731_").contains(call.name))

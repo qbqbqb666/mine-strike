@@ -15,14 +15,11 @@ public abstract class SuperbBulletTrailMixin implements BulletTrails.Source {
     @Shadow private float explosionDamage;
     @Unique private Vec3 minestrike$trailStart;
     @Unique private boolean minestrike$trailBlocked;
-    @Unique private boolean minestrike$hasTrail;
     @Override public boolean minestrike$eligible() { return explosionRadius <= 0 && explosionDamage <= 0 && TracerConfig.SUPERB.get(); }
     @Override public net.minecraft.world.entity.Entity minestrike$owner() {
         Projectile bullet = (Projectile)(Object)this;
         return bullet.m_9236_().m_6815_(shooterId);
     }
-    @Override public boolean minestrike$hasTrail() { return minestrike$hasTrail; }
-    @Override public void minestrike$recorded() { minestrike$hasTrail = true; }
     @Inject(method = "m_8119_", at = @At("HEAD"))
     private void minestrike$begin(CallbackInfo ci) {
         Projectile bullet = (Projectile)(Object)this;

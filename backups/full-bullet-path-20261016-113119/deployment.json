@@ -1,0 +1,30 @@
+{
+  "timestamp": "2026-10-16T11:33:48.894674+08:00",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/full-bullet-path-20261016-113119",
+  "sha256": "ccc4812f07f3532be318862f3278205b2dc902223957e24fb77e48dfb868c6ed",
+  "previous_sha256": "de9582ba0f0010421898680f78cee550b59ee351e4843df97c4cc5c19aabfaa6",
+  "behavior": "Continuous per-bullet path from initial known position to current/clipped impact, no 6-block cropping; keeps actual curve segments and shared fade after last update; visible tail and distance-specific endpoint widths; complete paths selected within budget.",
+  "verification": "Full verify.py exit 0; 30 synthetic no-client-tick shots keep 100-block origin, preview replacement/confirmed prefix, curve joints, 128-block limit, shared fade; original Mixin/physics checks retained.",
+  "verification_exit_code": 0,
+  "synced_pcl": true,
+  "pcl_configuration_changed": false,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "gameplay_verified": false,
+  "changed_jar_entries": [
+    "dev/minestrike/skins/BulletTrails$Draw.class",
+    "dev/minestrike/skins/BulletTrails$FrameKey.class",
+    "dev/minestrike/skins/BulletTrails$Recorded.class",
+    "dev/minestrike/skins/BulletTrails$Settings.class",
+    "dev/minestrike/skins/BulletTrails$Visible.class",
+    "dev/minestrike/skins/BulletTrails$VisiblePath.class",
+    "dev/minestrike/skins/BulletTrails.class",
+    "dev/minestrike/skins/TracerConfig.class",
+    "dev/minestrike/skins/TrailGeometry$Ribbon.class",
+    "dev/minestrike/skins/TrailGeometry.class",
+    "dev/minestrike/skins/TrailPath$Part.class",
+    "dev/minestrike/skins/TrailPath.class"
+  ]
+}

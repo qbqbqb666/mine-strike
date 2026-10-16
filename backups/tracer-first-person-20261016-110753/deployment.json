@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-10-16T11:10:22.022245+08:00",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/tracer-first-person-20261016-110753",
+  "sha256": "d46d92995429345b15aaef8f49ac3e775835b246f0cd0f9a9892abc8ca5d150e",
+  "previous_sha256": "de6cfd68c5c409c4310c6b64f2c5a99d6afb7dde0b9af57ec6130458a799740e",
+  "changed_source_files": [
+    "skin-mod/src/main/java/dev/minestrike/skins/BulletTrails.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/TrailGeometry.java",
+    "skin-mod/tests/TrailGeometryTest.java"
+  ],
+  "changed_jar_entries": [
+    "dev/minestrike/skins/BulletTrails$Draw.class",
+    "dev/minestrike/skins/BulletTrails$FrameKey.class",
+    "dev/minestrike/skins/BulletTrails$Recorded.class",
+    "dev/minestrike/skins/BulletTrails$Settings.class",
+    "dev/minestrike/skins/BulletTrails$Visible.class",
+    "dev/minestrike/skins/BulletTrails.class",
+    "dev/minestrike/skins/TrailGeometry.class"
+  ],
+  "root_cause": "TaCZ eye-origin projectile trajectory lacks native first-person muzzle render offset after custom takeover; forward-facing short streak has negligible screen length.",
+  "fix": "Apply native cached muzzle offset and camera rotations to first-person display only, converge at 50 blocks, separately clip visual path against walls, preserve minimum own-shot angular width.",
+  "verification_exit_code": 0,
+  "projection_check": "1080p/70deg synthetic hip-fire case >10px projected streak; aimed core >=1px at 15/50/100/128 blocks",
+  "synced_pcl": true,
+  "configuration_changed": false,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "gameplay_verified": false
+}

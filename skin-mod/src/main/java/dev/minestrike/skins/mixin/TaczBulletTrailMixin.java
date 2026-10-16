@@ -13,11 +13,12 @@ public abstract class TaczBulletTrailMixin implements BulletTrails.Source {
     @Shadow private boolean explosion;
     @Unique private Vec3 minestrike$trailStart;
     @Unique private boolean minestrike$trailBlocked;
-    @Unique private boolean minestrike$hasTrail;
     @Override public boolean minestrike$eligible() { return !explosion && TracerConfig.TACZ.get(); }
     @Override public net.minecraft.world.entity.Entity minestrike$owner() { return ((Projectile)(Object)this).m_19749_(); }
-    @Override public boolean minestrike$hasTrail() { return minestrike$hasTrail; }
-    @Override public void minestrike$recorded() { minestrike$hasTrail = true; }
+    @Inject(method = "readSpawnData", at = @At("RETURN"))
+    private void minestrike$spawn(net.minecraft.network.FriendlyByteBuf data, CallbackInfo ci) {
+        BulletTrails.spawned((Projectile)(Object)this);
+    }
     @Inject(method = "m_8119_", at = @At("HEAD"))
     private void minestrike$begin(CallbackInfo ci) {
         Projectile bullet = (Projectile)(Object)this;

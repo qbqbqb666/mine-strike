@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-10-16T11:02:22.852242+08:00",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/tracer-visual-fix-20261016-105502",
+  "sha256": "de6cfd68c5c409c4310c6b64f2c5a99d6afb7dde0b9af57ec6130458a799740e",
+  "previous_sha256": "5feaacd51dcb1b68c25eeffbf75d1e1e488ee9f4faf6c13b358be508755e8c04",
+  "synced_pcl": true,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "gameplay_verified": false,
+  "verification_exit_code": 0,
+  "unchanged_config_sha256": "d660759dbbc72803591efccdcb3583093f903c04174f9fcd6a2a917a24d11676",
+  "changed_jar_entries": [
+    "dev/minestrike/skins/BulletTrails.class",
+    "dev/minestrike/skins/TrailGeometry$Ribbon.class",
+    "dev/minestrike/skins/BulletTrails$Draw.class",
+    "dev/minestrike/skins/BulletTrails$Recorded.class",
+    "dev/minestrike/skins/mixin/TaczBulletTrailMixin.class",
+    "dev/minestrike/skins/mixin/SuperbBulletTrailMixin.class",
+    "dev/minestrike/skins/BulletTrails$Settings.class",
+    "dev/minestrike/skins/TrailGeometry.class",
+    "dev/minestrike/skins/BulletTrails$Source.class",
+    "dev/minestrike/skins/TrailGeometry$Segment.class",
+    "dev/minestrike/skins/BulletTrails$FrameKey.class",
+    "dev/minestrike/skins/BulletTrails$Visible.class"
+  ]
+}

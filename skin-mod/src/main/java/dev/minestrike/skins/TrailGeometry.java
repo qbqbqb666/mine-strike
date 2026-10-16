@@ -10,8 +10,15 @@ public final class TrailGeometry {
         public double length() { return Math.sqrt(dot(this)); }
         public boolean finite() { return Double.isFinite(x) && Double.isFinite(y) && Double.isFinite(z); }
     }
-    public record Segment(Point from, Point to, double born) {}
-    public record Ribbon(Point tail, Point head, Point side, double alpha, double width, boolean near) {}
+    public record Segment(Point from, Point to, double born, boolean own) {
+        public Segment(Point from, Point to, double born) { this(from, to, born, false); }
+    }
+    public record Ribbon(Point tail, Point head, Point side, double alpha, double width, double tailWidth, boolean near) {
+        public Point up() {
+            Point direction = head.sub(tail);
+            return direction.scale(1 / direction.length()).cross(side);
+        }
+    }
 
     public static Point closest(Point from, Point to, Point eye) {
         Point delta = to.sub(from);
@@ -24,31 +31,48 @@ public final class TrailGeometry {
         return closest(segment.from(), segment.to(), eye).sub(eye).length();
     }
 
+    public static Segment firstPerson(Segment segment, Point origin, Point muzzleOffset) {
+        Point from = segment.from().add(muzzleOffset.scale(Math.max(0, 1 - segment.from().sub(origin).length() / 50)));
+        Point to = segment.to().add(muzzleOffset.scale(Math.max(0, 1 - segment.to().sub(origin).length() / 50)));
+        return new Segment(from, to, segment.born(), segment.own());
+    }
+
     public static Ribbon frame(Segment s, Point eye, double now, double lifeTicks,
-                               double maxLength, double width, double nearRadius, double nearBoost) {
+                               double width, double nearRadius, double nearBoost) {
         double age = now - s.born();
         if (age < 0 || age >= lifeTicks || !s.from().finite() || !s.to().finite() || !eye.finite()) return null;
         Point delta = s.to().sub(s.from());
         double length = delta.length();
         if (length < 1e-5 || !Double.isFinite(length)) return null;
         Point direction = delta.scale(1 / length);
-        boolean near = distance(s, eye) <= nearRadius;
+        boolean near = !s.own() && distance(s, eye) <= nearRadius;
         Point from = s.from(), to = s.to();
-        if (near) {
-            double center = closest(from, to, eye).sub(from).dot(direction);
-            from = s.from().add(direction.scale(Math.max(0, center - maxLength * .5)));
-            to = s.from().add(direction.scale(Math.min(length, center + maxLength * .5)));
+        if (s.own()) {
+            if (to.sub(eye).length() <= 1) return null;
+            if (distance(s, eye) < 1) {
+                Point offset = from.sub(eye);
+                double b = offset.dot(direction), c = offset.dot(offset) - 1;
+                double exit = -b + Math.sqrt(Math.max(0, b * b - c));
+                from = from.add(direction.scale(clamp(exit, 0, length)));
+            }
         }
-        Point head = from.add(to.sub(from).scale(clamp(age, 0, 1)));
-        Point tail = head.sub(direction.scale(Math.min(maxLength, head.sub(from).length())));
+        Point head = to;
+        Point tail = from;
         if (head.sub(tail).length() < 1e-5) return null;
         Point side = direction.cross(eye.sub(head));
         if (side.length() < 1e-6) side = direction.cross(new Point(0, 1, 0));
         if (side.length() < 1e-6) side = direction.cross(new Point(1, 0, 0));
         side = side.scale(1 / side.length());
         double distanceScale = 1 + Math.min(distance(s, eye), 128) / 128;
+        double coreWidth = width * distanceScale * (near ? nearBoost : 1);
+        double tailWidth = coreWidth;
+        if (s.own()) {
+            double headDistance = head.sub(eye).length(), tailDistance = tail.sub(eye).length();
+            tailWidth = Math.max(tailDistance * .0007, Math.min(coreWidth, tailDistance * .0014));
+            coreWidth = Math.max(headDistance * .0007, Math.min(coreWidth, headDistance * .0014));
+        }
         return new Ribbon(tail, head, side, (1 - age / lifeTicks) * (near ? 1 : .75),
-                width * distanceScale * (near ? nearBoost : 1), near);
+                coreWidth, tailWidth, near);
     }
     private static double clamp(double value, double low, double high) { return Math.max(low, Math.min(high, value)); }
     private TrailGeometry() {}
