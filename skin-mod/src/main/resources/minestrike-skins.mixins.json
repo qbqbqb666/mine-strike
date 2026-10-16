@@ -4,6 +4,7 @@
   "package": "dev.minestrike.skins.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "AimTimingMixin$Server",
     "MvpMusicAccess",
     "CSGameMapMixin",
     "BaseTeamMixin",
@@ -34,6 +35,18 @@
     "defaultRequire": 1
   },
   "client": [
+    "AimActionsMixin$Input",
+    "AimActionsMixin$Key",
+    "AimActionsMixin$Draw",
+    "AimActionsMixin$SuperbShot",
+    "AimActionsMixin$SuperbInput",
+    "AimTimingMixin$Client",
+    "AimTimingMixin$Superb",
+    "TaczReloadViewMixin$Reload",
+    "TaczReloadViewMixin$Tracks",
+    "TaczReloadViewMixin$WorldCamera",
+    "TaczReloadViewMixin$HandCamera",
+    "TaczReloadViewMixin$Alignment",
     "MvpMusicMixin$Player",
     "MvpMusicMixin$Panel",
     "AgentSkinMixin",

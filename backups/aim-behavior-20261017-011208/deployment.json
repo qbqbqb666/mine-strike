@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-17T01:21:51.955355+08:00",
+  "verified": true,
+  "verificationCommand": "python3 skin-mod/verify.py --libraries /Users/qbqb/Library/Application Support/minecraft/libraries",
+  "verificationLog": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/aim-behavior-verification.log",
+  "passChecks": 60,
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/aim-behavior-20261017-011208",
+  "sha256": "6c4279227518276ece942e5d6e3b27d0745ece6a693d417b6e5ec3a6357a9a77",
+  "deployed": {
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar": "6c4279227518276ece942e5d6e3b27d0745ece6a693d417b6e5ec3a6357a9a77",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar": "6c4279227518276ece942e5d6e3b27d0745ece6a693d417b6e5ec3a6357a9a77"
+  },
+  "oneCustomJarEach": true,
+  "protectedFilesUnchanged": 480,
+  "openingSeconds": 0.25,
+  "behavior": {
+    "boltPump": "exit actual ADS after shot, restore after native action and animation tail",
+    "semiAutoSniper": "keep ADS",
+    "reload": "exit ADS; manual re-aim after completion",
+    "cancelRestore": "explicit cancel, reload, draw/slot, death, world/player/view change"
+  },
+  "inGameTest": false,
+  "previousUncommittedChangesPreserved": true,
+  "commitOrPush": false
+}

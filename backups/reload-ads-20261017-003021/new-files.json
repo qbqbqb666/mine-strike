@@ -1,0 +1,7 @@
+[
+  "skin-mod/src/main/java/dev/minestrike/skins/ReloadAlignment.java",
+  "skin-mod/src/main/java/dev/minestrike/skins/ReloadViewState.java",
+  "skin-mod/src/main/java/dev/minestrike/skins/TaczReloadView.java",
+  "skin-mod/src/main/java/dev/minestrike/skins/mixin/TaczReloadViewMixin.java",
+  "skin-mod/tests/ReloadViewTest.java"
+]

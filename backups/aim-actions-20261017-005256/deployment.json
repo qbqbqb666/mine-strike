@@ -1,0 +1,42 @@
+{
+  "time": "2026-10-17T00:59:37.368442+08:00",
+  "status": "full verify passed; repository and PCL synchronized",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/aim-actions-20261017-005256",
+  "jarSha256": "07d983990a7200648e5f2de8695dc57956a9b52cf07e32426afeb1a115cf53eb",
+  "oldTargets": {
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar": "44716533e51aa3cc062cac66c2a956991a3f6f0993405ff4b335bb8667b4d909",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar": "44716533e51aa3cc062cac66c2a956991a3f6f0993405ff4b335bb8667b4d909"
+  },
+  "targets": [
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar"
+  ],
+  "aimBaseline": {
+    "seconds": 0.15,
+    "source": "MCS2 original resource provider, three AWP variants and scope; neutral TaCZ Tweaks config confirmed in repository and PCL",
+    "scope": "TaCZ player guns including skins and Superb Warfare aiming guns; opening only"
+  },
+  "actionFix": "native bolt/draw plus active and transitioning animations; MCS2 AWP open_bolt with positive bolt_action_time uses combined shoot/bolt clip",
+  "verification": {
+    "fullVerifyPassed": true,
+    "log": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/aim-actions-verification.log",
+    "logSha256": "e0f85c4cc213fadc8827799f869130791a21967e94a6d95db9cafd400c427342",
+    "inGameTest": false,
+    "preservedProtectedFiles": 480
+  },
+  "existingChangesPreserved": [
+    "mods/mine-strike-skins-0.1.0.jar",
+    "skin-mod/README.md",
+    "skin-mod/src/main/java/dev/minestrike/skins/ReloadAlignment.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/ReloadViewState.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/TaczReloadView.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/TaczReloadViewMixin.java",
+    "skin-mod/src/main/resources/minestrike-skins.mixins.json",
+    "skin-mod/tests/ReloadViewTest.java",
+    "skin-mod/tests/ShopMixinTest.java",
+    "skin-mod/verify.py"
+  ],
+  "restartRequired": true,
+  "committed": false,
+  "pushed": false
+}

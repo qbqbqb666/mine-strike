@@ -21,8 +21,11 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("ShopAmmoTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", []), ("AudioPolicyTest", []), ("TrailGeometryTest", [])]:
+for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("ShopAmmoTest", []), ("ReloadViewTest", []), ("AimReturnStateTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", []), ("AudioPolicyTest", []), ("TrailGeometryTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
+
+subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "AimTimingTest",
+                str(next((pack / "mods").glob("mcs2_gunpack-*.jar"))), str(pack / "config/tacztweaks.json")], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "AgentTest",
@@ -44,6 +47,10 @@ with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
             asset = jar.read(f"assets/minestrike_skins/textures/{folder}/agents/{agent}.png")
             assert asset.startswith(b"\x89PNG\r\n\x1a\n")
             assert (int.from_bytes(asset[16:20], "big"), int.from_bytes(asset[20:24], "big")) == expected
+    aim_config = json.loads(jar.read("minestrike-skins.mixins.json"))
+    assert "AimTimingMixin$Server" in aim_config["mixins"]
+    for hook in ["AimTimingMixin$Client", "AimTimingMixin$Superb", "TaczReloadViewMixin$Tracks"]:
+        assert hook in aim_config["client"] and hook not in aim_config["mixins"]
     assert "AgentSkinMixin" in json.loads(jar.read("minestrike-skins.mixins.json"))["client"]
     logo = jar.read("assets/minestrike_skins/textures/gui/mvp-music-box.png")
     assert logo.startswith(b"\x89PNG\r\n\x1a\n") and logo[25] == 6, "MVP logo must have RGBA transparency"
@@ -149,6 +156,15 @@ mixin_runtime = [args.libraries / "org/spongepowered/mixin/0.8.5/mixin-0.8.5.jar
 mixin_runtime += sorted((args.libraries / "org/ow2/asm").glob("*/9.7.1/*.jar"))
 mixin_classpath = os.pathsep.join([str(tests), str(root / "src/main/resources"), *map(str, mixin_runtime), classpath])
 subprocess.run(["java", "-ea", "-cp", mixin_classpath, "ShopMixinTest"], cwd=runtime, check=True)
+with zipfile.ZipFile(next((pack / "mods").glob("tacz-tweaks-*.jar"))) as embedded:
+    extras = root / "build/tools/reload-compat-mixinextras.jar"
+    extras.write_bytes(embedded.read(next(n for n in embedded.namelist() if "mixinextras" in n and n.endswith(".jar"))))
+with zipfile.ZipFile(extras) as nested:
+    extras_common = root / "build/tools/reload-compat-mixinextras-common.jar"
+    extras_common.write_bytes(nested.read(next(n for n in nested.namelist() if n.endswith(".jar"))))
+subprocess.run(["java", "-ea", "-cp", str(extras_common) + os.pathsep + str(extras) + os.pathsep + mixin_classpath,
+                "ReloadViewTest", "--compat"], cwd=runtime, check=True)
+
 for filename, package, refmap, selected in [
     ("shape-playeranimator-compat.json", "dev.kosmx.playerAnim.mixin", "player-animation-lib-minecraft_common-refmap.json",
      ["BipedEntityModelMixin", "PlayerModelMixin", "ModelPartMixin", "ArmorFeatureRendererMixin"]),
