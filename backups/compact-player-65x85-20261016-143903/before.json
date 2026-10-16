@@ -1,0 +1,11 @@
+{
+  "sha256": "d59b5b969de3e5fed4b1398055794774f8913f633c02b3caacdc64efdbccab67",
+  "files": [
+    "skin-mod/src/main/java/dev/minestrike/skins/PlayerShape.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/PlayerShapeMixin.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/PlayerArmorShapeMixin.java",
+    "skin-mod/tests/PlayerShapeTest.java",
+    "skin-mod/tests/render_player_shape.py",
+    "skin-mod/README.md"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "sha256": "363ec2d98df1dc409c790481d590b2319552916d157ef1dc6343966b21ee19a1",
+  "files": [
+    "skin-mod/src/main/java/dev/minestrike/skins/PlayerShape.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/RoundHeadMesh.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/PlayerShapeMixin.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/PlayerArmorShapeMixin.java",
+    "skin-mod/tests/PlayerShapeTest.java",
+    "skin-mod/tests/render_player_shape.py",
+    "skin-mod/README.md"
+  ],
+  "git_status": " M skin-mod/README.md\n M skin-mod/src/main/resources/minestrike-skins.mixins.json\n M skin-mod/tests/ShopMixinTest.java\n M skin-mod/verify.py\n?? backups/player-shape-fast-render-20261016-140156/\n?? backups/slender-round-player-20261016-135000/\n?? backups/square-head-slim-arms-20261016-141142/\n?? skin-mod/src/main/java/dev/minestrike/skins/PlayerShape.java\n?? skin-mod/src/main/java/dev/minestrike/skins/RoundHeadMesh.java\n?? skin-mod/src/main/java/dev/minestrike/skins/mixin/PlayerArmorShapeMixin.java\n?? skin-mod/src/main/java/dev/minestrike/skins/mixin/PlayerShapeMixin.java\n?? skin-mod/tests/PlayerShapeTest.java\n?? skin-mod/tests/render_player_shape.py\n"
+}

@@ -25,6 +25,8 @@ for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-ski
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
+subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "PlayerShapeTest",
+                str(root / "build/player-shape-mesh.json")], cwd=runtime, check=True)
 ids = {s["id"] for group in catalog["groups"] for s in group["skins"]}
 original = set(re.findall(r"(?:mcs2|cs2_wt):[a-z0-9_]+", (pack / "skin.txt").read_text(encoding="utf-8")))
 assert ids == original, "Bundled catalog does not match skin.txt"
@@ -129,4 +131,13 @@ mixin_runtime = [args.libraries / "org/spongepowered/mixin/0.8.5/mixin-0.8.5.jar
 mixin_runtime += sorted((args.libraries / "org/ow2/asm").glob("*/9.7.1/*.jar"))
 mixin_classpath = os.pathsep.join([str(tests), str(root / "src/main/resources"), *map(str, mixin_runtime), classpath])
 subprocess.run(["java", "-ea", "-cp", mixin_classpath, "ShopMixinTest"], cwd=runtime, check=True)
+for filename, package, refmap, selected in [
+    ("shape-playeranimator-compat.json", "dev.kosmx.playerAnim.mixin", "player-animation-lib-minecraft_common-refmap.json",
+     ["BipedEntityModelMixin", "PlayerModelMixin", "ModelPartMixin", "ArmorFeatureRendererMixin"]),
+    ("shape-tacz-compat.json", "com.tacz.guns.mixin", "tacz.refmap.json",
+     ["client.HumanoidModelMixin", "client.PlayerModelMixin"]),
+]:
+    (tests / filename).write_text(json.dumps({"required": True, "minVersion": "0.8", "package": package,
+        "compatibilityLevel": "JAVA_17", "refmap": refmap, "client": selected, "injectors": {"defaultRequire": 1}}))
+subprocess.run(["java", "-ea", "-cp", mixin_classpath, "PlayerShapeTest", "--compat"], cwd=runtime, check=True)
 subprocess.run(["python3", str(root / "tests/audio_openal.py"), "--libraries", str(args.libraries)], check=True)

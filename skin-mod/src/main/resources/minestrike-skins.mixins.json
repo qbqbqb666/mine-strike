@@ -29,6 +29,11 @@
     "defaultRequire": 1
   },
   "client": [
+    "PlayerShapeMixin$Model",
+    "PlayerShapeMixin$Part",
+    "PlayerShapeMixin$Armor",
+    "PlayerShapeMixin$HeadItem",
+    "PlayerArmorShapeMixin",
     "ShopEditorScreenFactoryMixin",
     "ShopPurchaseOpenMixin",
     "TeamRadarMixin",

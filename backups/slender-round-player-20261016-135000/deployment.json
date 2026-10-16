@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-10-16T13:58:23.185582+08:00",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/slender-round-player-20261016-135000",
+  "previous_sha256": "409703c3dc6cc61564c2257e03e6eb22b4563ea109a9b7c607a34e32b6f3d04f",
+  "sha256": "e7728d6c984e08d19a1fa6f25cacbeaa572fb277e41765104b1c811cef97e6e8",
+  "verification_exit_code": 0,
+  "gameplay_verified": false,
+  "synced_pcl": true,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "configuration_changed": false,
+  "body_width_depth_scale": 0.78,
+  "head_scale": 0.82,
+  "scope": "all client player models, inside and outside matches",
+  "hitboxes_changed": false,
+  "changed_jar_entries": [
+    "dev/minestrike/skins/PlayerShape$Part.class",
+    "dev/minestrike/skins/PlayerShape.class",
+    "dev/minestrike/skins/RoundHeadMesh$Vertex.class",
+    "dev/minestrike/skins/RoundHeadMesh.class",
+    "dev/minestrike/skins/mixin/PlayerArmorShapeMixin.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Armor.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$HeadItem.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Model.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Part.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin.class",
+    "minestrike-skins.mixins.json"
+  ],
+  "preview": "offline software geometry rendering, not a game capture"
+}

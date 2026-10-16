@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-10-16T14:06:01.610575+08:00",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/player-shape-fast-render-20261016-140156",
+  "previous_sha256": "e7728d6c984e08d19a1fa6f25cacbeaa572fb277e41765104b1c811cef97e6e8",
+  "sha256": "363ec2d98df1dc409c790481d590b2319552916d157ef1dc6343966b21ee19a1",
+  "cause": "Oculus copyEntity.ModelPartMixin.onRender cancels vanilla ModelPart rendering and uses Embeddium cached cuboids; previous internal shape hooks are bypassed. Startup log confirms new JAR and shape Mixins were loaded.",
+  "fix": "Scoped player ModelPart entry executes before the optimizer; original non-player fast path retained.",
+  "changed_jar_entries": [
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Armor.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$HeadItem.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Model.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Part.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin.class"
+  ],
+  "executable_change": "PlayerShapeMixin$Part only; sibling class changes are InnerClasses metadata, verified identical javap executable output",
+  "verification_exit_code": 0,
+  "gameplay_verified": false,
+  "synced_pcl": true,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "configuration_changed": false,
+  "hitboxes_changed": false
+}

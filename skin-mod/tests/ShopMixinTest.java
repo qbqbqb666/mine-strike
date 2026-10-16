@@ -123,6 +123,7 @@ public class ShopMixinTest {
         Mixins.addConfiguration("minestrike-skins.mixins.json");
         var constructor=Class.forName("org.spongepowered.asm.mixin.transformer.MixinTransformer").getDeclaredConstructor();constructor.setAccessible(true);
         IMixinTransformer transformer=(IMixinTransformer)constructor.newInstance();
+        PlayerShapeTest.mixins(transformer);
         String prefix="com.phasetranscrystal.";
         String[] targets={"blockoffensive.map.shop.ItemType","blockoffensive.map.CSGameMap","fpsmatch.core.shop.ShopData","fpsmatch.core.shop.FPSMShop","fpsmatch.core.shop.slot.ShopSlot",
                 "fpsmatch.common.client.screen.EditorShopContainer","fpsmatch.common.client.screen.EditShopSlotMenu",

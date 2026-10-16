@@ -1,0 +1,34 @@
+{
+  "timestamp": "2026-10-16T14:14:46.670419+08:00",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/libs/mine-strike-skins-0.1.0.jar",
+  "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/square-head-slim-arms-20261016-141142",
+  "previous_sha256": "363ec2d98df1dc409c790481d590b2319552916d157ef1dc6343966b21ee19a1",
+  "sha256": "6751dbe160676748d77523f9a62677720bf855ef3c3d7fec3ab15a9484f777bd",
+  "body_width_depth_scale": 0.78,
+  "arm_width_depth_scale": 0.65,
+  "arm_length_scale": 1,
+  "head_scale": 0.82,
+  "head_shape": "native cube",
+  "shoulder_inward_adjustment_model_pixels": 0.13,
+  "changed_jar_entries": [
+    "dev/minestrike/skins/PlayerShape.class",
+    "dev/minestrike/skins/mixin/PlayerArmorShapeMixin.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Armor.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$HeadItem.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin$Part.class",
+    "dev/minestrike/skins/mixin/PlayerShapeMixin.class"
+  ],
+  "removed_jar_entries": [
+    "dev/minestrike/skins/RoundHeadMesh$Vertex.class",
+    "dev/minestrike/skins/RoundHeadMesh.class"
+  ],
+  "verification_exit_code": 0,
+  "gameplay_verified": false,
+  "synced_pcl": true,
+  "repository_installed_jar_updated": false,
+  "release_updated": false,
+  "configuration_changed": false,
+  "hitboxes_changed": false,
+  "preview": "offline native-cube geometry preview, not a game capture"
+}
