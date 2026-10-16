@@ -5,8 +5,10 @@ import com.phasetranscrystal.blockoffensive.sound.MVPMusicManager;
 import com.phasetranscrystal.fpsmatch.core.FPSMCore;
 import dev.minestrike.skins.mixin.MvpMusicAccess;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.fml.ModList;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.*;
 
 public final class MusicBoxes {
@@ -28,9 +30,9 @@ public final class MusicBoxes {
     }
     public static List<Track> tracks() {
         if (tracks == null) {
-            try (InputStream in = MusicBoxes.class.getResourceAsStream("/assets/blockoffensive/sounds.json")) {
-                if (in == null) throw new IllegalStateException("Missing BlockOffensive sounds.json");
-                tracks = parse(JsonParser.parseReader(new InputStreamReader(in, StandardCharsets.UTF_8)).getAsJsonObject());
+            var path = ModList.get().getModFileById("blockoffensive").getFile().findResource("assets", "blockoffensive", "sounds.json");
+            try (var reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+                tracks = parse(JsonParser.parseReader(reader).getAsJsonObject());
             } catch (IOException e) { throw new IllegalStateException("Cannot read MVP sound catalog", e); }
         }
         return tracks;

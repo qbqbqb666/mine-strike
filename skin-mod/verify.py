@@ -27,8 +27,9 @@ for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-ski
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "AgentTest",
                 str(root / "src/main/resources/default-skins.json")], cwd=runtime, check=True)
-subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "MusicBoxesTest",
-                str(root / "src/main/resources/default-skins.json")], cwd=runtime, check=True)
+subprocess.run(["java", "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED", "-ea", "-cp", classpath + os.pathsep + str(tests), "MusicBoxesTest",
+                str(root / "src/main/resources/default-skins.json"),
+                str(next((pack / "mods").glob("blockoffensive-*.jar")))], cwd=runtime, check=True)
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "PlayerShapeTest",
                 str(root / "build/player-shape-mesh.json")], cwd=runtime, check=True)
 ids = {s["id"] for group in catalog["groups"] for s in group["skins"]}

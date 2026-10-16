@@ -2,6 +2,13 @@ import dev.minestrike.skins.*;
 import com.google.gson.JsonParser;
 import com.mojang.serialization.JsonOps;
 import com.phasetranscrystal.blockoffensive.sound.MVPMusicManager;
+import cpw.mods.jarhandling.SecureJar;
+import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLLoader;
+import net.minecraftforge.fml.loading.VersionInfo;
+import net.minecraftforge.fml.loading.moddiscovery.ModFile;
+import net.minecraftforge.fml.loading.moddiscovery.ModFileParser;
+import net.minecraftforge.fml.loading.moddiscovery.ModInfo;
 import net.minecraft.resources.ResourceLocation;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.tree.*;
@@ -12,6 +19,34 @@ import java.util.*;
 public class MusicBoxesTest {
     private static void check(boolean value,String message) {if(!value)throw new AssertionError(message);}
     public static void main(String[] args)throws Exception {
+        // Hide cross-mod class resources as Forge does, while retaining the real mod-file resource provider.
+        var isolated = new ClassLoader(MusicBoxesTest.class.getClassLoader()) {
+            @Override public java.net.URL getResource(String name) {
+                return name.equals("assets/blockoffensive/sounds.json") ? null : super.getResource(name);
+            }
+            @Override protected Class<?> loadClass(String name,boolean resolve)throws ClassNotFoundException {
+                if (!name.equals("dev.minestrike.skins.MusicBoxes") && !name.equals("dev.minestrike.skins.MusicBoxes$Track"))
+                    return super.loadClass(name,resolve);
+                var loaded=findLoadedClass(name);
+                if(loaded==null)try(var in=getParent().getResourceAsStream(name.replace('.','/')+".class")) {
+                    byte[] bytes=in.readAllBytes();loaded=defineClass(name,bytes,0,bytes.length);
+                } catch(java.io.IOException e){throw new ClassNotFoundException(name,e);}
+                if(resolve)resolveClass(loaded);return loaded;
+            }
+        };
+        var isolatedMusic=isolated.loadClass("dev.minestrike.skins.MusicBoxes");
+        check(isolatedMusic.getResourceAsStream("/assets/blockoffensive/sounds.json")==null,"Reproduce Forge cross-mod resource isolation");
+        var version=FMLLoader.class.getDeclaredField("versionInfo");version.setAccessible(true);
+        version.set(null,new VersionInfo("47.4.0","1.20.1","20230612.114412","net.minecraftforge"));
+        var mod=new ModFile(SecureJar.from(Path.of(args[1])),null,ModFileParser::modsTomlParser);
+        ModList.of(List.of(mod),mod.getModInfos().stream().map(info->(ModInfo)info).toList());
+        var loaded=(List<?>)isolatedMusic.getMethod("tracks").invoke(null);
+        check(loaded.size()==7,"Read seven music boxes through real Forge ModFile despite hidden class resource");
+        var node=new ClassNode();
+        try(var in=MusicBoxesTest.class.getResourceAsStream("/dev/minestrike/skins/MusicBoxes.class")){new ClassReader(in).accept(node,0);}
+        var entry=node.methods.stream().filter(m->m.name.equals("tracks")).findFirst().orElseThrow();
+        check(calls(entry,false).stream().anyMatch(c->c.startsWith("net/minecraftforge/fml/ModListgetModFileById")),"Runtime catalog resolves the owning mod through Forge");
+        System.out.println("PASS: Forge-isolated class resource fails as reported; real Forge ModFile resource loading succeeds");
         var tracks=MusicBoxes.tracks();
         check(tracks.stream().map(MusicBoxes.Track::name).toList().containsAll(List.of("organism","withu","jimi","sail","drum","otto","sorrow")),"Selected seven JSON music names are available");
         var added=MusicBoxes.parse(JsonParser.parseString("{\"new_kit\":{\"subtitle\":\"music.for.mvp\",\"sounds\":[\"blockoffensive:new_audio\"]},\"ordinary_sound\":{\"sounds\":[\"blockoffensive:noise\"]}}").getAsJsonObject());
