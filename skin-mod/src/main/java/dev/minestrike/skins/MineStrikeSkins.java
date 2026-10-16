@@ -56,6 +56,7 @@ public final class MineStrikeSkins {
                 }
             }
             catalog = SkinCatalog.JSON.fromJson(Files.readString(file, StandardCharsets.UTF_8), SkinCatalog.class);
+            AgentSkins.append(catalog);
             catalog.validate();
             store = new SkinStore(game.resolve("mine-strike-data/player-skins"), catalog);
             matches.clear();
@@ -235,6 +236,10 @@ public final class MineStrikeSkins {
     }
 
     public static boolean available(SkinCatalog.Group group, String id) {
+        if (AgentSkins.group(group)) {
+            var agent = AgentSkins.find(id);
+            return agent != null && group.key.equals("agent_" + agent.team());
+        }
         if ("GunId".equals(group.tag)) {
             return com.tacz.guns.api.TimelessAPI.getCommonGunIndex(new ResourceLocation(id)).isPresent();
         }

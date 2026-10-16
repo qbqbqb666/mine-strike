@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-10-16T16:46:30.217290+08:00",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/merged-music-spawn-sync-20261016-164630",
+  "repository_commit": "13b61c3",
+  "music_sync": {
+    "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/blockoffensive-1.20.1-forge-official-1.2.5.1.jar",
+    "destination": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/blockoffensive-1.20.1-forge-official-1.2.5.1.jar",
+    "previous_sha256": "dc5047c05de19b8a77c4323f92cb0d22403dcd1dacfdda45ac81cd177fa86327",
+    "sha256": "c87a598e87b9fea9ee6c63de8ba379c35329e4f7e53be5a2cb43188567f7d831",
+    "added_entries": [
+      "assets/blockoffensive/sounds/organism.ogg"
+    ],
+    "changed_entries": [
+      "assets/blockoffensive/sounds.json"
+    ],
+    "class_changes": false
+  },
+  "spawn_schematic_sync": {
+    "source": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/schematics/spawnpoint.litematic",
+    "destination": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/schematics/spawnpoint.litematic",
+    "sha256": "dc0143b61847dff35bcffae10f4f6d1ecff060c38e35900bdfb9a9bf11e9b7e1"
+  },
+  "preserved_pcl_custom_jar_sha256": "ad196579656f7cbea8266efc2b8617a96fe158da29d099bf9a131ef1084f6d5d",
+  "repository_custom_jar_updated": false,
+  "maps_or_spawn_configuration_changed": false,
+  "release_updated": false,
+  "gameplay_verified": false
+}

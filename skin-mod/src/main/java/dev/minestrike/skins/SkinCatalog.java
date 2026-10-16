@@ -27,7 +27,7 @@ public final class SkinCatalog {
         Set<String> keys = new HashSet<>();
         for (Group g : groups) {
             if (g.key == null || !keys.add(g.key) || g.name == null || g.name.length() > 100
-                    || !validId(g.item) || !("GunId".equals(g.tag) || "MeleeWeaponId".equals(g.tag))
+                    || !validId(g.item) || !("GunId".equals(g.tag) || "MeleeWeaponId".equals(g.tag) || "AgentTeam".equals(g.tag))
                     || g.baseIds == null || g.baseIds.isEmpty() || g.skins == null || g.skins.size() > 128) {
                 throw new IllegalArgumentException("Invalid skin group: " + g.key);
             }
@@ -36,6 +36,11 @@ public final class SkinCatalog {
             for (Skin skin : g.skins) {
                 if (skin == null || skin.name == null || skin.name.length() > 100 || !validId(skin.id) || !ids.add(skin.id)) {
                     throw new IllegalArgumentException("Invalid skin in: " + g.key);
+                }
+                if (AgentSkins.group(g)) {
+                    var agent = AgentSkins.find(skin.id);
+                    if (agent == null || !g.key.equals("agent_" + agent.team()))
+                        throw new IllegalArgumentException("Invalid agent team: " + skin.id);
                 }
             }
         }

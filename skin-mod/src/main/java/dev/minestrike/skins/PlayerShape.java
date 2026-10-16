@@ -6,7 +6,8 @@ import net.minecraft.client.model.geom.ModelPart;
 import java.util.List;
 
 public final class PlayerShape {
-    public static final float BODY_WIDTH = .65f, ARM_WIDTH = .65f, BODY_HEIGHT = .85f, HEAD_SCALE = .55f;
+    public static final float BODY_WIDTH = PlayerMetrics.WIDTH, ARM_WIDTH = PlayerMetrics.WIDTH,
+            BODY_HEIGHT = PlayerMetrics.LENGTH, HEAD_SCALE = PlayerMetrics.HEAD;
     public static final int NONE = 0, BODY = 1, HEAD = 2, HAT = 3, ARMOR_HEAD = 4, ARM = 5;
 
     public interface Part {

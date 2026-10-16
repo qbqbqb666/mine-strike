@@ -23,12 +23,16 @@
     "BombHudMixin$Fuse",
     "BombDamageMixin",
     "ContainerToolMixin",
-    "VehicleAmmoMixin"
+    "VehicleAmmoMixin",
+    "PlayerDimensionsMixin",
+    "PlayerHitboxMixin$Tacz",
+    "PlayerHitboxMixin$Superb"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
+    "AgentSkinMixin",
     "PlayerShapeMixin$Model",
     "PlayerShapeMixin$Part",
     "PlayerShapeMixin$Armor",

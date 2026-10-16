@@ -238,6 +238,7 @@ public final class SkinSelectionFragment extends Fragment {
         tabs.forEach((key, tile) -> tile.chosen = key.equals(current.key));
         preview.label = selectionName(current);
         preview.item = item(current, selected.get(current.key));
+        preview.agentPortrait = portrait(current, selected.get(current.key));
         cards.removeAllViews();
         List<String> ids = new ArrayList<>();
         ids.add(null);
@@ -249,6 +250,7 @@ public final class SkinSelectionFragment extends Fragment {
                 String displayId = id == null ? current.baseIds.get(0) : id;
                 boolean available = id == null || MineStrikeSkins.available(current, displayId);
                 PixelTile card = tile(context, skinName(current, id), item(current, id), true, cardsViewport);
+                card.agentPortrait = portrait(current, id);
                 card.chosen = Objects.equals(selected.get(current.key), id);
                 card.setEnabled(!locked && !saving && available);
                 if (!available) card.label = "资源未加载";
@@ -284,8 +286,12 @@ public final class SkinSelectionFragment extends Fragment {
         return group.skins.stream().filter(s -> s.id.equals(id)).map(s -> s.name).findFirst().orElse("默认");
     }
     private static ItemStack item(SkinCatalog.Group group, String selectedId) {
+        if (AgentSkins.group(group)) return null;
         String id = selectedId == null ? group.baseIds.get(0) : selectedId;
         return MineStrikeSkins.available(group, id) ? MineStrikeSkins.preview(group, id) : ItemStack.f_41583_;
+    }
+    private static ResourceLocation portrait(SkinCatalog.Group group, String selectedId) {
+        return AgentSkins.group(group) ? AgentSkins.portrait(selectedId == null ? group.baseIds.get(0) : selectedId) : null;
     }
     private static LinearLayout column(Context context) {
         LinearLayout view = new LinearLayout(context); view.setOrientation(LinearLayout.VERTICAL); return view;
@@ -306,6 +312,7 @@ public final class SkinSelectionFragment extends Fragment {
         private static final ResourceLocation PIXEL_FONT = new ResourceLocation("minestrike_skins", "pixel");
         private volatile String label;
         private volatile ItemStack item;
+        private volatile ResourceLocation agentPortrait;
         private volatile boolean chosen;
         private boolean largeText;
         private boolean framed;
@@ -353,6 +360,13 @@ public final class SkinSelectionFragment extends Fragment {
                 if (button || framed) drawBlock(graphics, Math.round(w), Math.round(h), edge, pressed);
                 if (pressed) pose.m_252880_(0, edge, 0);
                 ItemStack stack = item;
+                ResourceLocation portrait = agentPortrait;
+                if (portrait != null) {
+                    int imageH = Math.max(1, Math.round(h - dp(26) / (float)guiScale - edge * 4));
+                    int imageW = Math.max(1, Math.round(Math.min(w - edge * 6, imageH * 260f / 540)));
+                    graphics.m_280163_(portrait, Math.round((w - imageW) / 2), edge * 2, 0, 0, imageW, imageH, imageW, imageH);
+                    graphics.m_280262_();
+                }
                 if (stack != null && !stack.m_41619_()) {
                     float textSpace = dp(26) / (float) guiScale;
                     float size = Math.max(1, Math.min(w * 0.82f, h - textSpace - edge * 4));
@@ -377,7 +391,7 @@ public final class SkinSelectionFragment extends Fragment {
                 var text = Component.m_237113_(label).m_6270_(Style.f_131099_.m_131150_(PIXEL_FONT));
                 var lines = font.m_92923_(text, Math.max(16, (int) ((w - edge * 6) / textScale)));
                 int count = Math.min(2, lines.size());
-                float y = stack != null ? (h - dp(22) / (float) guiScale) / textScale : h / textScale / 2 - count * 5;
+                float y = stack != null || portrait != null ? (h - dp(22) / (float) guiScale) / textScale : h / textScale / 2 - count * 5;
                 int color = !button && !framed ? 0xFF38352F : !isEnabled() && button ? 0xFFCCCCCC
                         : chosen || button && isHovered() ? 0xFFFFFFA0 : 0xFFF0F0F0;
                 for (int i = 0; i < count; i++) {
@@ -386,7 +400,7 @@ public final class SkinSelectionFragment extends Fragment {
                 }
                 graphics.m_280262_();
                 pose.m_85849_();
-                if (chosen && button && stack != null) {
+                if (chosen && button && (stack != null || portrait != null)) {
                     float badgeScale = dp(10) / (float) guiScale / 9;
                     pose.m_85836_();
                     pose.m_85841_(badgeScale, badgeScale, 1);

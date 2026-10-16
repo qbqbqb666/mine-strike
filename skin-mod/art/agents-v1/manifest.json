@@ -1,0 +1,495 @@
+{
+  "status": "draft-preview",
+  "tool": "built-in imagegen",
+  "atlasSize": 512,
+  "uv": "Java 64x64 layout scaled 8x; wide arms; opaque base; transparent outer layers",
+  "normalization": "pack_uv.py: align generated strips, mirror right arm and left leg into opposite limb UVs, snap opaque base boundaries; no outer layers",
+  "agents": [
+    {
+      "id": "ct1_sas",
+      "label": "CT1 SAS",
+      "name": "SAS B Squadron Officer",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/bsquad.png",
+      "texture": "ct1_sas.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-6c193a66-82f2-4aad-a6bf-beab903996fa.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: SAS B Squadron Officer. Features: Green and grey woodland camouflage fatigues, olive tactical vest and pouches, black rubber gas mask with two large round green glass lenses and central black respirator, close fitting black hood, black gloves and combat boots, small British flag shoulder patch.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8411,
+          "edge_pixels_filled": 3904
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 0.9886,
+          "edge_pixels_filled": 256
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        }
+      ],
+      "sha256": "270894ae727f5f15952a96c86103db2d2877ad69a309879cb2e69987839118da",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "ct3_ava",
+      "label": "CT3 Ava",
+      "name": "FBI Special Agent Ava",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/ava.png",
+      "texture": "ct3_ava.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-aa795b12-4caa-4016-9c54-e132d8f8d669.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: FBI Special Agent Ava. Features: Female light skin face, brown hair pulled back, tan communications headset, navy blue FBI shirt, olive plate carrier and pouches with white FBI letters chest and back, dark blue jeans, black gloves and dark boots.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8,
+          "edge_pixels_filled": 4916
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 0.9943,
+          "edge_pixels_filled": 128
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 0.9844,
+          "edge_pixels_filled": 223
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 0.9844,
+          "edge_pixels_filled": 224
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 0.9844,
+          "edge_pixels_filled": 224
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 0.9844,
+          "edge_pixels_filled": 223
+        }
+      ],
+      "sha256": "e19d580f790ebf42df551a13a432dc4ec2f88e3033ed82c68d26d2d0f03879ed",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "ct4_ksk",
+      "label": "CT4 KSK",
+      "name": "KSK 3rd Commando Company",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/ksk.png",
+      "texture": "ct4_ksk.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-469524a6-b1d5-427d-bb0d-7339478c9972.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: KSK 3rd Commando Company. Features: German woodland camouflage uniform, helmet and tactical vest, olive face scarf covering mouth and nose, blue ballistic goggles hiding eyes, tan scarf collar, black gloves, olive boots, German flag shoulder patch.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8362,
+          "edge_pixels_filled": 4025
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 0.9989,
+          "edge_pixels_filled": 16
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 0.9979,
+          "edge_pixels_filled": 30
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 0.9979,
+          "edge_pixels_filled": 30
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 0.9989,
+          "edge_pixels_filled": 16
+        }
+      ],
+      "sha256": "180b76596d7747bb24db91b10083d3245e9dcf5a01fd170e23e269e39456aab5",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "ct6_ricksaw",
+      "label": "CT6 Ricksaw",
+      "name": "NSWC SEAL Lt. Commander Ricksaw",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/ricksaw.png",
+      "texture": "ct6_ricksaw.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-4a899dd3-4028-460a-ad3b-bbc53b8362db.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: NSWC SEAL Lt. Commander Ricksaw. Features: Middle aged light skinned man, short grey stubble, blue grey baseball cap with yellow small badge, tan headset microphone, olive woodland camouflage fatigues, rolled sleeves with bare forearms, olive plate carrier and magazine pouches, black gloves, brown combat boots, US flag shoulder patch.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.964,
+          "edge_pixels_filled": 885
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 0.9958,
+          "edge_pixels_filled": 95
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 0.9989,
+          "edge_pixels_filled": 16
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 0.9686,
+          "edge_pixels_filled": 450
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 0.9686,
+          "edge_pixels_filled": 450
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 0.9989,
+          "edge_pixels_filled": 16
+        }
+      ],
+      "sha256": "b47b7ad8c54d345e90d7cab0788235171fa1dc25a819bc7750bb4f7b05feb6b2",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "ct8_chemhaz",
+      "label": "CT8 Chem-Haz",
+      "name": "SWAT Chem-Haz Specialist",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/brokenfang/chemhaz.png",
+      "texture": "ct8_chemhaz.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-6a621597-23d4-4cb0-bf4a-b3fcf7425b7c.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: SWAT Chem-Haz Specialist. Features: Black SWAT helmet, large continuous yellow-green ski style goggles, angular black respirator, full dark teal-black protective uniform and tactical vest, yellow SWAT chest and back lettering, black gloves and boots, shoulder SWAT insignia.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8318,
+          "edge_pixels_filled": 4134
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        }
+      ],
+      "sha256": "52b47c8a414d75e24de96bc451d89cd97bcd11f631edfe2bc4e61b54ba03f9fc",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "t1_phoenix",
+      "label": "T1 Phoenix",
+      "name": "Phoenix Soldier",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/phoenix.png",
+      "texture": "t1_phoenix.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-ee311f3f-9f32-46c2-9c7d-d225fb07eab3.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: Phoenix Soldier. Features: Brown ribbed balaclava with exposed tan skin eye and mouth openings, grey short sleeve shirt with red phoenix bird chest motif, reddish brown shoulder harness and waist pouches, dark olive-grey camouflage cargo trousers, bare forearms and black gloves, brown boots.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 0.9951,
+          "edge_pixels_filled": 111
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 0.9338,
+          "edge_pixels_filled": 949
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 0.9464,
+          "edge_pixels_filled": 768
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 0.9464,
+          "edge_pixels_filled": 768
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 0.9338,
+          "edge_pixels_filled": 949
+        }
+      ],
+      "sha256": "67367636daf51d9b1c92535f64b8b185d31478595be9d5ca208bcb2d6b8ab1c9",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "t3_muhlik",
+      "label": "T3 Muhlik",
+      "name": "Elite Crew The Elite Mr. Muhlik",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/muhlik.png",
+      "texture": "t3_muhlik.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-9b60b630-484c-4f72-ba11-e534e4db0bb4.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: Elite Crew The Elite Mr. Muhlik. Features: Tan skinned Middle Eastern man, swept back dark brown hair, dark full beard, red patterned scarf around neck, black shirt with rolled sleeves and red armband, brown shoulder harness and gold ammunition bandolier diagonally across chest, faded dark blue jeans with thigh straps, black gloves, dark brown shoes.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8316,
+          "edge_pixels_filled": 4139
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 0.9999,
+          "edge_pixels_filled": 1
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 0.9999,
+          "edge_pixels_filled": 1
+        }
+      ],
+      "sha256": "aceb3f0e0a7e369d924e0230c6f1340bc00e5f14b54faf262afbbad745cbc43f",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "t4_osiris",
+      "label": "T4 Osiris",
+      "name": "Elite Crew Osiris",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/osiris.png",
+      "texture": "t4_osiris.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-bc136e5c-55d1-41bb-b78c-725dfd147305.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: Elite Crew Osiris. Features: Dark skinned man with very short dark hair, black sunglasses, gold and brown patterned face bandana covering mouth and nose with pointed collar, dark burgundy black plaid shirt rolled sleeves, brown shoulder holster straps, faded grey-blue jeans with black thigh strap, red-brown belt and brown shoes, black gloves.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8313,
+          "edge_pixels_filled": 4146
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        }
+      ],
+      "sha256": "774276d55ab3a1a402701274954824538858cfa64ab4b2ba7acd3ff0a980e4a3",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "t5_romanov",
+      "label": "T5 Romanov",
+      "name": "Sabre The Doctor Romanov",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/operationshatteredweb/romanov.png",
+      "texture": "t5_romanov.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-af2afccd-979c-4856-8f37-86d797afaf5c.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: Sabre The Doctor Romanov. Features: Older light skinned man, tall swept silver grey hair, white moustache and short beard, round dark glasses, dark brown leather coat with cream shearling collar and shoulder patches, red knitted sweater underneath, diagonal gold bullet belt, grey trousers, black gloves and black tall boots.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8065,
+          "edge_pixels_filled": 4756
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 0.9986,
+          "edge_pixels_filled": 31
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 0.98,
+          "edge_pixels_filled": 287
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 0.9929,
+          "edge_pixels_filled": 102
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 0.9929,
+          "edge_pixels_filled": 102
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 0.98,
+          "edge_pixels_filled": 287
+        }
+      ],
+      "sha256": "d37d8cf9cfd118d4aec926c46c319cb69cf5ffa2c71b5f449f6db4e8d4e7735c",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    },
+    {
+      "id": "t7_numberk",
+      "label": "T7 Number K",
+      "name": "The Professionals Number K",
+      "reference": "https://cdn.fastly.steamstatic.com/apps/csgo/images/brokenfang/k.png",
+      "texture": "t7_numberk.png",
+      "source": "/Users/qbqb/.codex/generated_images/01a1432d-ae74-76f1-8e06-49e2b8381f59/exec-579c63e2-f8d7-427c-a4a5-d9d17fdad120.png",
+      "prompt": "Use case: stylized-concept. Make a Minecraft Java WIDE arm player skin UV TEXTURE ATLAS, not a character portrait. Input image 1 is the EXACT 1024x1024 UV layout and transparency edit target. Input image 2 is only the selected CS agent APPEARANCE reference. Retexture only the coloured regions of image 1 into this agent. Keep the output square 1024x1024 and EVERY atlas region at EXACTLY THE SAME COORDINATES. Do not rearrange, enlarge, move or add UV islands. Keep all currently transparent areas completely transparent. This is a full 64x64 logical Minecraft skin atlas upscaled 16 times; head front rectangle x128-256 y128-256, torso front x320-448 y320-512, right arm sides x640-896 y320-512, right leg sides x0-256 y320-512, left leg sides x256-512 y832-1024, left arm sides x512-768 y832-1024. Large empty middle and right bottom areas must stay transparent. Paint flat unwrapped surface details on each face. Flat orthographic pixel-art surfaces, no perspective, no bevels, no cast shadows, no lighting baked into faces. Base islands must completely opaque up to their straight rectangular edges. Coherent seams and correct front/back/sides. No guns, no separate character images, no labels, no grid. Face looks toward viewer in head front UV, with appropriate head sides and back. No external accessories geometry; encode helmet/headset/clothing onto texture only. All details must respect the vanilla Minecraft topology.\nAgent: The Professionals Number K. Features: Man with tight translucent tan stocking mask over face showing subtle face outline, pale blue rolled sleeve dress shirt, charcoal grey waistcoat, blue striped necktie, diagonal dark blue strap across vest, grey suit trousers, dark fingerless gloves, dark leather shoes.",
+      "uvNormalization": [
+        {
+          "part": "head",
+          "source_opaque_coverage": 0.8846,
+          "edge_pixels_filled": 2835
+        },
+        {
+          "part": "body",
+          "source_opaque_coverage": 0.9882,
+          "edge_pixels_filled": 265
+        },
+        {
+          "part": "right_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        },
+        {
+          "part": "right_leg",
+          "source_opaque_coverage": 0.9868,
+          "edge_pixels_filled": 189
+        },
+        {
+          "part": "left_leg",
+          "source_opaque_coverage": 0.9868,
+          "edge_pixels_filled": 189
+        },
+        {
+          "part": "left_arm",
+          "source_opaque_coverage": 1.0,
+          "edge_pixels_filled": 0
+        }
+      ],
+      "sha256": "db1fa52eb4962d5a2818c3b23f5c1bda527d5ab620baa6dab39e814322c0a167",
+      "checks": {
+        "dimensions": "512x512",
+        "format": "RGBA PNG",
+        "native_base_uv_fully_opaque": true,
+        "outer_and_unused_uv_fully_transparent": true
+      }
+    }
+  ],
+  "validation": {
+    "asset_checks": "passed",
+    "preview_inspected": true,
+    "minecraft_game_test": false,
+    "deployed": false
+  }
+}

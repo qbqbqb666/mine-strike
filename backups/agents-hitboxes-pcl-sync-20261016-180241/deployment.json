@@ -1,0 +1,12 @@
+{
+  "time": "2026-10-16T18:02:41.841105",
+  "source": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "target": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/agents-hitboxes-pcl-sync-20261016-180241/mine-strike-skins-0.1.0.jar",
+  "oldSha256": "ad196579656f7cbea8266efc2b8617a96fe158da29d099bf9a131ef1084f6d5d",
+  "newSha256": "686508b0b7c5ffccb347466b27dbadba76a6d4f5ea07901a71a1ec6c923bc02e",
+  "scope": "custom mod only; agent textures and UI portraits included in jar",
+  "verification": "previous full verify passed; source hash matched verified build",
+  "inGameTested": false,
+  "restartRequired": true
+}

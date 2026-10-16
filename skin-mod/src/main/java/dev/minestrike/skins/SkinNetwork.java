@@ -186,6 +186,29 @@ public final class SkinNetwork {
             var c = supplier.get(); c.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> TeamRadarClient.accept(state))); c.setPacketHandled(true);
         }
     }
+    public record Agents(List<AgentPlayers.Appearance> players) {
+        public static void encode(Agents value, FriendlyByteBuf buf) {
+            if (value.players.size() > 1024) throw new IllegalArgumentException("Too many agents");
+            buf.writeInt(value.players.size());
+            for (var player : value.players) {
+                buf.writeLong(player.player().getMostSignificantBits()); buf.writeLong(player.player().getLeastSignificantBits());
+                buf.m_130072_(player.agent(), 80);
+            }
+        }
+        public static Agents decode(FriendlyByteBuf buf) {
+            int count = buf.readInt();
+            if (count < 0 || count > 1024) throw new IllegalArgumentException("Invalid agent count");
+            List<AgentPlayers.Appearance> players = new ArrayList<>();
+            for (int i = 0; i < count; i++) players.add(new AgentPlayers.Appearance(
+                    new UUID(buf.readLong(), buf.readLong()), buf.m_130136_(80)));
+            return new Agents(List.copyOf(players));
+        }
+        public static void handle(Agents value, Supplier<NetworkEvent.Context> supplier) {
+            var context = supplier.get();
+            context.enqueueWork(() -> DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> AgentClient.accept(value.players)));
+            context.setPacketHandled(true);
+        }
+    }
     public static void init() {
         CHANNEL.registerMessage(0, Request.class, Request::encode, Request::decode, Request::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(1, State.class, State::encode, State::decode, State::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
@@ -203,6 +226,7 @@ public final class SkinNetwork {
         CHANNEL.registerMessage(13, ShopRoundOnly.class, ShopRoundOnly::encode, ShopRoundOnly::decode, ShopRoundOnly::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(14, ShopDeployable.class, ShopDeployable::encode, ShopDeployable::decode, ShopDeployable::handle, Optional.of(NetworkDirection.PLAY_TO_SERVER));
         CHANNEL.registerMessage(15, RadarState.class, RadarState::encode, RadarState::decode, RadarState::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
+        CHANNEL.registerMessage(16, Agents.class, Agents::encode, Agents::decode, Agents::handle, Optional.of(NetworkDirection.PLAY_TO_CLIENT));
     }
 
     public static void sendShopShape(ServerPlayer player, int[] counts) {

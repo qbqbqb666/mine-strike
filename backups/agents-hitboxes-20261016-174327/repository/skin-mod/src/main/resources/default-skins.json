@@ -1,0 +1,152 @@
+{
+  "groups": [
+    {
+      "key": "ak",
+      "name": "AK",
+      "item": "tacz:modern_kinetic_gun",
+      "tag": "GunId",
+      "baseIds": [
+        "mcs2:cs_ak"
+      ],
+      "skins": [
+        {
+          "name": "ak精英之作",
+          "id": "mcs2:cs_ak_elite_build"
+        },
+        {
+          "name": "ak火神",
+          "id": "mcs2:cs_ak_vulcan"
+        },
+        {
+          "name": "ak绿色层压板",
+          "id": "mcs2:cs_ak_green_laminate"
+        },
+        {
+          "name": "ak二西莫夫",
+          "id": "mcs2:cs_ak_asiimov"
+        },
+        {
+          "name": "ak幽幻深渊",
+          "id": "mcs2:cs_ak_abyssal_apparition"
+        },
+        {
+          "name": "ak火蛇",
+          "id": "mcs2:cs_ak_fire_serpent"
+        }
+      ]
+    },
+    {
+      "key": "knife",
+      "name": "刀具",
+      "item": "lrtactical:melee",
+      "tag": "MeleeWeaponId",
+      "baseIds": [
+        "mcs2:ct_knife",
+        "mcs2:t_knife"
+      ],
+      "skins": [
+        {
+          "name": "蝴蝶刀",
+          "id": "cs2_wt:butterfly"
+        },
+        {
+          "name": "爪刀A",
+          "id": "cs2_wt:talon"
+        },
+        {
+          "name": "蓝宝石",
+          "id": "cs2_wt:m9"
+        },
+        {
+          "name": "爪刀B",
+          "id": "cs2_wt:karambit"
+        },
+        {
+          "name": "红宝石",
+          "id": "cs2_wt:bayonet"
+        },
+        {
+          "name": "海豹短刀",
+          "id": "cs2_wt:css"
+        }
+      ]
+    },
+    {
+      "key": "m4a1s",
+      "name": "M4A1-S",
+      "item": "tacz:modern_kinetic_gun",
+      "tag": "GunId",
+      "baseIds": [
+        "mcs2:cs_m4a1s"
+      ],
+      "skins": [
+        {
+          "name": "m4a1隐伏帝王龙",
+          "id": "mcs2:cs_m4a1s_emphorosaur_s"
+        },
+        {
+          "name": "澜磷",
+          "id": "mcs2:cs_m4a1s_blue_phosphor"
+        },
+        {
+          "name": "氮化处理",
+          "id": "mcs2:cs_m4a1s_nitro"
+        },
+        {
+          "name": "原子合金",
+          "id": "mcs2:cs_m4a1s_atomic_alloy"
+        },
+        {
+          "name": "印花集",
+          "id": "mcs2:cs_m4a1s_printstream"
+        },
+        {
+          "name": "女火神之炽焰",
+          "id": "mcs2:cs_m4a1s_chantico_fire"
+        },
+        {
+          "name": "骑士",
+          "id": "mcs2:cs_m4a1s_knight"
+        },
+        {
+          "name": "赤红新星",
+          "id": "mcs2:cs_m4a1s_hot_rod"
+        }
+      ]
+    },
+    {
+      "key": "m4a4",
+      "name": "M4A4",
+      "item": "tacz:modern_kinetic_gun",
+      "tag": "GunId",
+      "baseIds": [
+        "mcs2:cs_m4a4"
+      ],
+      "skins": [
+        {
+          "name": "m4a4狂啸飓风",
+          "id": "mcs2:cs_m4a4_tornado"
+        }
+      ]
+    },
+    {
+      "key": "awp",
+      "name": "AWP",
+      "item": "tacz:modern_kinetic_gun",
+      "tag": "GunId",
+      "baseIds": [
+        "mcs2:cs_awp"
+      ],
+      "skins": [
+        {
+          "name": "awp渐变之色",
+          "id": "mcs2:cs_awp_fade"
+        },
+        {
+          "name": "巨龙传说",
+          "id": "mcs2:cs_awp_dragon_lore"
+        }
+      ]
+    }
+  ]
+}

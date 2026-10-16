@@ -25,6 +25,8 @@ for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-ski
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 catalog = json.loads((root / "src/main/resources/default-skins.json").read_text(encoding="utf-8"))
+subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "AgentTest",
+                str(root / "src/main/resources/default-skins.json")], cwd=runtime, check=True)
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "PlayerShapeTest",
                 str(root / "build/player-shape-mesh.json")], cwd=runtime, check=True)
 ids = {s["id"] for group in catalog["groups"] for s in group["skins"]}
@@ -32,6 +34,14 @@ original = set(re.findall(r"(?:mcs2|cs2_wt):[a-z0-9_]+", (pack / "skin.txt").rea
 assert ids == original, "Bundled catalog does not match skin.txt"
 with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
     assert jar.testzip() is None
+    agents = ["ct1_sas", "ct3_ava", "ct4_ksk", "ct6_ricksaw", "ct8_chemhaz",
+              "t1_phoenix", "t3_muhlik", "t4_osiris", "t5_romanov", "t7_numberk"]
+    for agent in agents:
+        for folder, expected in [("entity", (512, 512)), ("gui", (260, 540))]:
+            asset = jar.read(f"assets/minestrike_skins/textures/{folder}/agents/{agent}.png")
+            assert asset.startswith(b"\x89PNG\r\n\x1a\n")
+            assert (int.from_bytes(asset[16:20], "big"), int.from_bytes(asset[20:24], "big")) == expected
+    assert "AgentSkinMixin" in json.loads(jar.read("minestrike-skins.mixins.json"))["client"]
     assert json.loads(jar.read("pack.mcmeta"))["pack"]["pack_format"] == 15
     assert json.loads(jar.read("assets/minestrike_skins/font/pixel.json"))["providers"][1]["id"] == "minecraft:include/unifont"
     assert b"MixinConfigs: minestrike-skins.mixins.json" in jar.read("META-INF/MANIFEST.MF")
@@ -58,6 +68,7 @@ assert single_kit in interface
 single_body = interface.split(single_kit, 1)[1].split("\n  private ", 1)[0]
 assert "Inventory.m_6211_:()V" in single_body, "Kit application must clear inventory before recoloring issued items"
 print("PASS: skin.txt coverage, resources, Java 17, initial/death/team-switch kit integration targets")
+print("PASS: ten packaged agent textures and ten current-proportion UI portraits")
 
 for target in ["private void autoStartLogic();", "public void checkRoundVictory();", "public void checkBlastingVictory();"]:
     assert target in bytecode, "Lobby integration target changed: " + target
