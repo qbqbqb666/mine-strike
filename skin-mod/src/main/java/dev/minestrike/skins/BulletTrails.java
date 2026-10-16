@@ -20,11 +20,28 @@ public final class BulletTrails {
     private static final ArrayDeque<TrailGeometry.Segment> segments = new ArrayDeque<>();
     private static Object level;
 
-    public static Vec3 begin(Entity bullet, Entity owner, boolean supported) {
+    public interface Source {
+        boolean minestrike$eligible();
+        Entity minestrike$owner();
+        boolean minestrike$hasTrail();
+        void minestrike$recorded();
+    }
+
+    private static boolean managed(Entity bullet) {
         Minecraft mc = Minecraft.m_91087_();
-        if (!supported || !TracerConfig.ENABLED.get() || !bullet.m_9236_().f_46443_ || mc.f_91073_ == null) return null;
-        if (owner == mc.f_91074_ && !TracerConfig.OWN.get()) return null;
-        return bullet.m_20182_();
+        if (!(bullet instanceof Source source) || !source.minestrike$eligible() || !TracerConfig.ENABLED.get()
+                || mc.f_91073_ == null || bullet.m_9236_() != mc.f_91073_) return false;
+        return source.minestrike$owner() != mc.f_91074_ || TracerConfig.OWN.get();
+    }
+
+    public static Vec3 begin(Entity bullet, boolean blocked) {
+        return !blocked && managed(bullet) ? bullet.m_20182_() : null;
+    }
+
+    public static boolean replacesNative(Entity bullet) {
+        if (!managed(bullet) || !((Source) bullet).minestrike$hasTrail()) return false;
+        Vec3 camera = Minecraft.m_91087_().f_91063_.m_109153_().m_90583_();
+        return bullet.m_20182_().m_82554_(camera) <= TracerConfig.DISTANCE.get();
     }
 
     // Observe the completed native movement. Never change the bullet or its hit result.
@@ -42,6 +59,7 @@ public final class BulletTrails {
         boolean blocked = hit.m_6662_() != HitResult.Type.MISS;
         if (blocked) to = hit.m_82450_();
         segments.addLast(new TrailGeometry.Segment(point(from), point(to), original.born()));
+        if (bullet instanceof Source source) source.minestrike$recorded();
         while (segments.size() > TracerConfig.BUDGET.get() * 4) segments.removeFirst();
         return blocked;
     }

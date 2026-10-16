@@ -243,6 +243,8 @@ public class ShopMixinTest {
             if (Arrays.equals(before, after)) throw new AssertionError("Bullet trail Mixin did not apply: " + bulletTarget);
             ClassNode original = new ClassNode(), result = new ClassNode();
             new ClassReader(before).accept(original, 0); new ClassReader(after).accept(result, 0);
+            if (!result.interfaces.contains("dev/minestrike/skins/BulletTrails$Source"))
+                throw new AssertionError("Projectile must expose the same tracer ownership/eligibility to recording and rendering");
             MethodNode originalTick = original.methods.stream().filter(m -> m.name.equals("m_8119_")).findFirst().orElseThrow();
             MethodNode actualTick = result.methods.stream().filter(m -> m.name.equals("m_8119_")).findFirst().orElseThrow();
             List<String> nativeCalls = new ArrayList<>(), retainedCalls = new ArrayList<>();
@@ -258,6 +260,36 @@ public class ShopMixinTest {
                 throw new AssertionError("Trail observation must retain every original tick call: " + bulletTarget);
         }
         System.out.println("PASS: TaCZ/Superb trail Mixin injection retains original projectile tick calls");
+        for (String renderer : List.of("com.tacz.guns.client.renderer.entity.EntityBulletRenderer",
+                "com.atsuishio.superbwarfare.client.renderer.projectile.ProjectileEntityRenderer")) {
+            ClassNode original = new ClassNode(), result = new ClassNode();
+            new ClassReader(resource(renderer)).accept(original, 0);
+            new ClassReader(transformer.transformClassBytes(renderer, renderer, resource(renderer))).accept(result, 0);
+            String intercepted = renderer.contains("tacz") ? "renderTracerAmmo" : "render";
+            int hooks = 0;
+            for (MethodNode method : original.methods) {
+                MethodNode actual = result.methods.stream().filter(m -> m.name.equals(method.name) && m.desc.equals(method.desc)).findFirst().orElseThrow();
+                if (!method.name.equals(intercepted)) {
+                    if (!methodCode(method).equals(methodCode(actual))) throw new AssertionError("Tracer replacement changed unrelated rendering: " + method.name);
+                    continue;
+                }
+                List<String> originalCalls = new ArrayList<>(), actualCalls = new ArrayList<>();
+                for (AbstractInsnNode instruction : method.instructions) if (instruction instanceof MethodInsnNode call)
+                    originalCalls.add(call.owner + "." + call.name + call.desc);
+                for (AbstractInsnNode instruction : actual.instructions) if (instruction instanceof MethodInsnNode call) {
+                    if (call.name.contains("minestrike$nativeTracer")) hooks++;
+                    else if (!call.owner.startsWith("org/spongepowered/asm/mixin/injection/callback/"))
+                        actualCalls.add(call.owner + "." + call.name + call.desc);
+                }
+                if (!originalCalls.equals(actualCalls)) throw new AssertionError("Native render fallback must retain original calls: " + renderer);
+            }
+            MethodNode hook = result.methods.stream().filter(m -> m.name.contains("minestrike$nativeTracer")).findFirst().orElseThrow();
+            boolean sharedGate = false;
+            for (AbstractInsnNode instruction : hook.instructions) if (instruction instanceof MethodInsnNode call
+                    && call.owner.equals("dev/minestrike/skins/BulletTrails") && call.name.equals("replacesNative")) sharedGate = true;
+            if (hooks != 1 || !sharedGate) throw new AssertionError("Native tracer must use one shared takeover gate: " + renderer);
+        }
+        System.out.println("PASS: TaCZ/Superb native tracer takeover and unchanged original rendering fallback");
         String explosionTarget = "net.minecraft.world.level.Explosion";
         ClassNode originalExplosion = new ClassNode(), actualExplosion = new ClassNode();
         new ClassReader(resource(explosionTarget)).accept(originalExplosion, 0);

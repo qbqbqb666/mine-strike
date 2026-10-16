@@ -12,7 +12,7 @@ public final class TracerConfig {
         ENABLED = b.define("enabled", true);
         TACZ = b.define("tacz", true);
         SUPERB = b.define("superbWarfare", true);
-        OWN = b.comment("Also enhance the local player's bullets. Off avoids duplicating native first-person tracers.").define("showOwnShots", false);
+        OWN = b.comment("Use the same enhanced trails for the local player. Native tracers are suppressed while enhanced trails take over.").define("showOwnShots", true);
         LENGTH = b.comment("Maximum visible streak length in blocks.").defineInRange("length", 6.0, 0.5, 12.0);
         LIFETIME = b.comment("Fade duration in game seconds; 0.15 is three ticks.").defineInRange("lifetime", 0.15, 0.05, 0.4);
         WIDTH = b.comment("Core streak half-width in world units.").defineInRange("width", 0.025, 0.005, 0.08);

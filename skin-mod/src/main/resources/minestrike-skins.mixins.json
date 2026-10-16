@@ -44,6 +44,8 @@
     "TaczBulletTrailMixin",
     "SuperbBulletTrailMixin",
     "BombAudioMixin$Clear",
-    "BombHudMixin$Overlay"
+    "BombHudMixin$Overlay",
+    "NativeBulletTrailsMixin$Tacz",
+    "NativeBulletTrailsMixin$Superb"
   ]
 }
