@@ -41,9 +41,9 @@
   "matchEndPoint": {
     "Dimension": "minecraft:overworld",
     "Position": [
-      -173,
-      4,
-      -176
+      584,
+      12,
+      381
     ],
     "Yaw": 0.0,
     "Pitch": 0.0
@@ -72,10 +72,16 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "lrarmor:joker_armed_helmet",
+              "id": "lrarmor:armored_chemical_helmet",
               "Count": 1,
               "tag": {
-                "Damage": 0
+                "Damage": 0,
+                "Enchantments": [
+                  {
+                    "lvl": 1,
+                    "id": "bulletarmorenchant:bullet_proof"
+                  }
+                ]
               }
             },
             "defaultCost": 350
@@ -85,15 +91,25 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
+              "id": "superbwarfare:taser",
               "Count": 1,
               "tag": {
-                "DummyAmmo": 0,
-                "HasBulletInBarrel": 1,
-                "GunId": "fallout:x26",
-                "MaxDummyAmmo": 0,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 1
+                "GeckoLibID": 180,
+                "Perks": {},
+                "Energy": 24000,
+                "GunData": {
+                  "UUID": [
+                    -369559945,
+                    -1576845312,
+                    -1673157606,
+                    760827220
+                  ],
+                  "Ammo": 1
+                },
+                "display": {
+                  "Name": "{\"text\":\"[   ǹ]\"}"
+                },
+                "Attachments": {}
               }
             },
             "defaultCost": 200
@@ -113,10 +129,55 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "minecraft:air",
-              "Count": 0
+              "id": "superbwarfare:rpg",
+              "Count": 1,
+              "tag": {
+                "GeckoLibID": 183,
+                "Perks": {},
+                "GunData": {
+                  "IsEmpty": 0,
+                  "Ammo": 1,
+                  "CloseStrike": 1,
+                  "CloseHammer": 0,
+                  "UUID": [
+                    -1533363128,
+                    235683949,
+                    -1777344490,
+                    -1028155844
+                  ],
+                  "VirtualAmmo": 1
+                },
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 2
+              }
             },
-            "defaultCost": 0
+            "defaultCost": 8000
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "superbwarfare:bocek",
+              "Count": 1,
+              "tag": {
+                "GeckoLibID": 187,
+                "Perks": {},
+                "GunData": {
+                  "Ammo": 1,
+                  "UUID": [
+                    2021719446,
+                    329535254,
+                    -1822524182,
+                    -1078851242
+                  ],
+                  "VirtualAmmo": 19
+                },
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 20
+              }
+            },
+            "defaultCost": 2000
           }
         ],
         "MID_RANK": [
@@ -128,28 +189,10 @@
               "id": "tacz:modern_kinetic_gun",
               "Count": 1,
               "tag": {
-                "DummyAmmo": 32,
-                "HasBulletInBarrel": 1,
-                "GunId": "maxstuff:m870t",
-                "MaxDummyAmmo": 32,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 5
-              }
-            },
-            "defaultCost": 1050
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 41,
+                "DummyAmmo": 36,
                 "HasBulletInBarrel": 1,
                 "GunId": "ronmc:m1014",
-                "MaxDummyAmmo": 41,
+                "MaxDummyAmmo": 36,
                 "GunFireMode": "SEMI",
                 "GunCurrentAmmoCount": 7
               }
@@ -209,6 +252,107 @@
               }
             },
             "defaultCost": 2350
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 270,
+                "HasBulletInBarrel": 1,
+                "HeatAmount": 0,
+                "GunId": "tacz:minigun",
+                "MaxDummyAmmo": 270,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 4000
+          }
+        ],
+        "MYSTERY": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "superbwarfare:container",
+              "Count": 1,
+              "tag": {
+                "MineStrikeAllowDeploy": 1,
+                "MineStrikeBundleItems": [
+                  {
+                    "id": "superbwarfare:crowbar",
+                    "Count": 1,
+                    "tag": {
+                      "Damage": 0,
+                      "MineStrikeRoundOnly": 1
+                    }
+                  },
+                  {
+                    "id": "superbwarfare:creative_charging_station",
+                    "Count": 1,
+                    "tag": {
+                      "MineStrikeAllowDeploy": 1,
+                      "MineStrikeRoundOnly": 1
+                    }
+                  },
+                  {
+                    "id": "superbwarfare:small_shell_aa",
+                    "Count": 64,
+                    "tag": {
+                      "MineStrikeRoundOnly": 1
+                    }
+                  },
+                  {
+                    "id": "superbwarfare:medium_anti_air_missile",
+                    "Count": 4,
+                    "tag": {
+                      "MineStrikeRoundOnly": 1
+                    }
+                  }
+                ],
+                "BlockEntityTag": {
+                  "EntityType": "superbwarfare:lav_ad",
+                  "id": "superbwarfare:container"
+                },
+                "display": {
+                  "Name": "{\"text\":\"[LAV-AD    ճ ]\"}"
+                },
+                "MineStrikeRoundOnly": 1
+              }
+            },
+            "defaultCost": 12500
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:scaffolding",
+              "Count": 1,
+              "tag": {
+                "MineStrikeAllowDeploy": 1,
+                "MineStrikeRoundOnly": 1
+              }
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:golden_apple",
+              "Count": 1,
+              "tag": {
+                "MineStrikeRoundOnly": 1
+              }
+            },
+            "defaultCost": 600
           }
         ],
         "PISTOL": [
@@ -296,10 +440,21 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "minecraft:air",
-              "Count": 0
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 18,
+                "HasBulletInBarrel": 1,
+                "GunId": "suffuse:python",
+                "display": {
+                  "Name": "{\"text\":\"[R8      ǹ]\"}"
+                },
+                "MaxDummyAmmo": 18,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 6
+              }
             },
-            "defaultCost": 0
+            "defaultCost": 600
           }
         ],
         "RIFLE": [
@@ -401,7 +556,7 @@
                 "GunCurrentAmmoCount": 5
               }
             },
-            "defaultCost": 1700
+            "defaultCost": 1800
           },
           {
             "maxBuyCount": 1,
@@ -427,11 +582,29 @@
               }
             },
             "defaultCost": 4750
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 90,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_m4a4",
+                "MaxDummyAmmo": 90,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 2900
           }
         ],
         "THROWABLE": [
           {
-            "maxBuyCount": 1,
+            "maxBuyCount": 2,
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
@@ -439,16 +612,6 @@
               "Count": 1
             },
             "defaultCost": 200
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "csgrenades:hegrenade",
-              "Count": 1
-            },
-            "defaultCost": 300
           },
           {
             "maxBuyCount": 1,
@@ -465,10 +628,20 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
+              "id": "csgrenades:hegrenade",
+              "Count": 1
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
               "id": "csgrenades:incendiary",
               "Count": 1
             },
-            "defaultCost": 400
+            "defaultCost": 500
           },
           {
             "maxBuyCount": 1,
@@ -493,7 +666,7 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "lrarmor:attacker_chestplate",
+              "id": "lrarmor:atf_vest_chestplate",
               "Count": 1,
               "tag": {
                 "Damage": 0
@@ -509,6 +682,7 @@
               "id": "lrarmor:sniper_helmet",
               "Count": 1,
               "tag": {
+                "RepairCost": 1,
                 "Damage": 0,
                 "Enchantments": [
                   {
@@ -525,15 +699,25 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
+              "id": "superbwarfare:taser",
               "Count": 1,
               "tag": {
-                "DummyAmmo": 0,
-                "HasBulletInBarrel": 1,
-                "GunId": "fallout:x26",
-                "MaxDummyAmmo": 0,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 1
+                "GeckoLibID": 180,
+                "Perks": {},
+                "Energy": 24000,
+                "GunData": {
+                  "UUID": [
+                    -369559945,
+                    -1576845312,
+                    -1673157606,
+                    760827220
+                  ],
+                  "Ammo": 1
+                },
+                "display": {
+                  "Name": "{\"text\":\"   ǹ\"}"
+                },
+                "Attachments": {}
               }
             },
             "defaultCost": 200
@@ -543,20 +727,55 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "minecraft:air",
-              "Count": 0
+              "id": "superbwarfare:rpg",
+              "Count": 1,
+              "tag": {
+                "GeckoLibID": 183,
+                "Perks": {},
+                "GunData": {
+                  "IsEmpty": 0,
+                  "Ammo": 1,
+                  "CloseStrike": 1,
+                  "CloseHammer": 0,
+                  "UUID": [
+                    -1533363128,
+                    235683949,
+                    -1777344490,
+                    -1028155844
+                  ],
+                  "VirtualAmmo": 1
+                },
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 2
+              }
             },
-            "defaultCost": 0
+            "defaultCost": 8000
           },
           {
             "maxBuyCount": 1,
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "minecraft:air",
-              "Count": 0
+              "id": "superbwarfare:bocek",
+              "Count": 1,
+              "tag": {
+                "GeckoLibID": 187,
+                "Perks": {},
+                "GunData": {
+                  "Ammo": 1,
+                  "UUID": [
+                    2021719446,
+                    329535254,
+                    -1822524182,
+                    -1078851242
+                  ],
+                  "VirtualAmmo": 19
+                },
+                "Attachments": {},
+                "MineStrikeShopTotalAmmo": 20
+              }
             },
-            "defaultCost": 0
+            "defaultCost": 1500
           }
         ],
         "MID_RANK": [
@@ -568,15 +787,15 @@
               "id": "tacz:modern_kinetic_gun",
               "Count": 1,
               "tag": {
-                "DummyAmmo": 37,
+                "DummyAmmo": 36,
                 "HasBulletInBarrel": 1,
                 "GunId": "tacz:m870",
-                "MaxDummyAmmo": 37,
+                "MaxDummyAmmo": 36,
                 "GunFireMode": "SEMI",
                 "GunCurrentAmmoCount": 5
               }
             },
-            "defaultCost": 1050
+            "defaultCost": 1100
           },
           {
             "maxBuyCount": 1,
@@ -586,10 +805,10 @@
               "id": "tacz:modern_kinetic_gun",
               "Count": 1,
               "tag": {
-                "DummyAmmo": 41,
+                "DummyAmmo": 43,
                 "HasBulletInBarrel": 1,
                 "GunId": "ronmc:m1014",
-                "MaxDummyAmmo": 41,
+                "MaxDummyAmmo": 43,
                 "GunFireMode": "SEMI",
                 "GunCurrentAmmoCount": 7
               }
@@ -607,6 +826,7 @@
                 "DummyAmmo": 90,
                 "HasBulletInBarrel": 1,
                 "GunId": "daffas_arsenal:makten_single",
+                "MaxDummyAmmo": 90,
                 "AttachmentMUZZLE": {
                   "id": "tacz:attachment",
                   "Count": 1,
@@ -614,7 +834,6 @@
                     "AttachmentId": "tacz:muzzle_compensator_trident"
                   }
                 },
-                "MaxDummyAmmo": 90,
                 "GunFireMode": "AUTO",
                 "GunCurrentAmmoCount": 30
               }
@@ -629,15 +848,19 @@
               "id": "tacz:modern_kinetic_gun",
               "Count": 1,
               "tag": {
-                "DummyAmmo": 126,
+                "DummyAmmo": 128,
                 "HasBulletInBarrel": 1,
                 "GunId": "suffuse:pp19",
-                "MaxDummyAmmo": 126,
+                "MaxDummyAmmo": 128,
                 "GunFireMode": "AUTO",
-                "GunCurrentAmmoCount": 64
+                "GunCurrentAmmoCount": 64,
+                "AttachmentSTOCK": {
+                  "id": "minecraft:air",
+                  "Count": 0
+                }
               }
             },
-            "defaultCost": 1400
+            "defaultCost": 1300
           },
           {
             "maxBuyCount": 1,
@@ -656,6 +879,107 @@
               }
             },
             "defaultCost": 2350
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 270,
+                "HasBulletInBarrel": 1,
+                "HeatAmount": 0,
+                "GunId": "tacz:minigun",
+                "display": {
+                  "Name": "{\"text\":\"[      ]\"}"
+                },
+                "MaxDummyAmmo": 270,
+                "GunFireMode": "AUTO",
+                "GunCurrentAmmoCount": 30
+              }
+            },
+            "defaultCost": 4000
+          }
+        ],
+        "MYSTERY": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "superbwarfare:container",
+              "Count": 1,
+              "tag": {
+                "MineStrikeAllowDeploy": 1,
+                "MineStrikeBundleItems": [
+                  {
+                    "id": "superbwarfare:crowbar",
+                    "Count": 1,
+                    "tag": {
+                      "Damage": 0,
+                      "MineStrikeRoundOnly": 1
+                    }
+                  },
+                  {
+                    "id": "superbwarfare:creative_charging_station",
+                    "Count": 1,
+                    "tag": {
+                      "MineStrikeAllowDeploy": 1,
+                      "MineStrikeRoundOnly": 1
+                    }
+                  },
+                  {
+                    "id": "superbwarfare:small_shell_aa",
+                    "Count": 64,
+                    "tag": {
+                      "MineStrikeRoundOnly": 1
+                    }
+                  },
+                  {
+                    "id": "superbwarfare:medium_anti_air_missile",
+                    "Count": 4,
+                    "tag": {
+                      "MineStrikeRoundOnly": 1
+                    }
+                  }
+                ],
+                "BlockEntityTag": {
+                  "EntityType": "superbwarfare:lav_ad",
+                  "id": "superbwarfare:container"
+                },
+                "display": {
+                  "Name": "{\"text\":\"[LAV-AD    ճ ]\"}"
+                },
+                "MineStrikeRoundOnly": 1
+              }
+            },
+            "defaultCost": 12500
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:scaffolding",
+              "Count": 1,
+              "tag": {
+                "MineStrikeAllowDeploy": 1,
+                "MineStrikeRoundOnly": 1
+              }
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:golden_apple",
+              "Count": 1
+            },
+            "defaultCost": 600
           }
         ],
         "PISTOL": [
@@ -740,10 +1064,21 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "minecraft:air",
-              "Count": 0
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 18,
+                "HasBulletInBarrel": 1,
+                "GunId": "suffuse:python",
+                "display": {
+                  "Name": "{\"text\":\"[R8       ǹ]\"}"
+                },
+                "MaxDummyAmmo": 18,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 6
+              }
             },
-            "defaultCost": 0
+            "defaultCost": 600
           }
         ],
         "RIFLE": [
@@ -802,7 +1137,14 @@
                   "id": "tacz:attachment",
                   "Count": 1,
                   "tag": {
-                    "AttachmentId": "daffas_arsenal:scope_m2ampon2"
+                    "AttachmentId": "daffas_arsenal:scope_m2ampon"
+                  }
+                },
+                "AttachmentMUZZLE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "tacz:muzzle_brake_cyclone_d2"
                   }
                 },
                 "MaxDummyAmmo": 90,
@@ -872,7 +1214,7 @@
         ],
         "THROWABLE": [
           {
-            "maxBuyCount": 1,
+            "maxBuyCount": 2,
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
@@ -947,26 +1289,10 @@
         }
       },
       {
-        "id": "lrarmor:sniper_leggings",
+        "id": "lrarmor:atf_vest_leggings",
         "Count": 1,
         "tag": {
           "Damage": 0
-        }
-      },
-      {
-        "id": "lrarmor:sniper_boots",
-        "Count": 1,
-        "tag": {
-          "Damage": 0
-        }
-      }
-    ],
-    "cs_nuke_ct": [
-      {
-        "id": "lrtactical:melee",
-        "Count": 1,
-        "tag": {
-          "MeleeWeaponId": "mcs2:ct_knife"
         }
       },
       {
@@ -975,14 +1301,9 @@
         "tag": {
           "Damage": 0
         }
-      },
-      {
-        "id": "lrarmor:atf_vest_leggings",
-        "Count": 1,
-        "tag": {
-          "Damage": 0
-        }
-      },
+      }
+    ],
+    "cs_nuke_ct": [
       {
         "id": "tacz:modern_kinetic_gun",
         "Count": 1,
@@ -1000,6 +1321,27 @@
           "MaxDummyAmmo": 24,
           "GunFireMode": "SEMI",
           "GunCurrentAmmoCount": 12
+        }
+      },
+      {
+        "id": "lrarmor:atf_vest_leggings",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      {
+        "id": "lrarmor:atf_vest_boots",
+        "Count": 1,
+        "tag": {
+          "Damage": 0
+        }
+      },
+      {
+        "id": "lrtactical:melee",
+        "Count": 1,
+        "tag": {
+          "MeleeWeaponId": "mcs2:ct_knife"
         }
       }
     ]
