@@ -30,7 +30,15 @@
     "VehicleAmmoMixin",
     "PlayerDimensionsMixin",
     "PlayerHitboxMixin$Tacz",
-    "PlayerHitboxMixin$Superb"
+    "PlayerHitboxMixin$Superb",
+    "CombatDamageMixin$Region",
+    "CombatDamageMixin$TaczResult",
+    "CombatDamageMixin$SuperbResult",
+    "CombatDamageMixin$Tacz",
+    "CombatDamageMixin$Superb",
+    "WeaponDamageMixin$Tacz",
+    "WeaponDamageMixin$Superb",
+    "WeaponDamageMixin$Taser"
   ],
   "injectors": {
     "defaultRequire": 1

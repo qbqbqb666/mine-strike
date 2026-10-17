@@ -1,0 +1,62 @@
+{
+  "time": "2026-10-17T12:43:57.745286+08:00",
+  "verified": true,
+  "passChecks": 70,
+  "verificationCommand": "python3 skin-mod/verify.py --libraries \"/Users/qbqb/Library/Application Support/minecraft/libraries\"",
+  "verificationLog": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/combat-editor-verification.log",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/combat-editor-20261017-124357",
+  "previousSha256": "135ebc47f8748ef692839bec81ba4d40124e3496034ad769f60de22b085a3b73",
+  "sha256": "90a4c93fd95e2249a4f53b354f201683e3c7dc3a38a682b5163098573560a673",
+  "deployed": {
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar": "90a4c93fd95e2249a4f53b354f201683e3c7dc3a38a682b5163098573560a673",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar": "90a4c93fd95e2249a4f53b354f201683e3c7dc3a38a682b5163098573560a673"
+  },
+  "oneCustomJarEach": true,
+  "protectedFilesUnchanged": 480,
+  "sourceChanges": [
+    "backups/combat-editor-20261017-124357/pcl/mine-strike-skins-0.1.0.jar",
+    "backups/combat-editor-20261017-124357/repository/mine-strike-skins-0.1.0.jar",
+    "mods/mine-strike-skins-0.1.0.jar",
+    "skin-mod/README.md",
+    "skin-mod/src/main/java/dev/minestrike/skins/CombatEditorItem.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/CombatEditorScreen.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/CombatNetwork.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/CombatSettings.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/CombatStats.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/DamageRegion.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/MineStrikeSkins.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/PlayerVolumes.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/CSGameMapMixin.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/CombatDamageMixin.java",
+    "skin-mod/src/main/java/dev/minestrike/skins/mixin/PlayerHitboxMixin.java",
+    "skin-mod/src/main/resources/assets/minestrike_skins/lang/en_us.json",
+    "skin-mod/src/main/resources/assets/minestrike_skins/lang/zh_cn.json",
+    "skin-mod/src/main/resources/assets/minestrike_skins/models/item/combat_editor.json",
+    "skin-mod/src/main/resources/assets/minestrike_skins/textures/item/combat_editor.png",
+    "skin-mod/src/main/resources/minestrike-skins.mixins.json",
+    "skin-mod/tests/CombatEditorLayoutTest.java",
+    "skin-mod/tests/CombatSettingsTest.java",
+    "skin-mod/tests/ShopMixinTest.java",
+    "skin-mod/verify.py"
+  ],
+  "item": "minestrike_skins:combat_editor",
+  "settingsScope": "per save, dimension and CS map; match T/CT only; latch at next round; unsaved maps keep native rules",
+  "defaults": {
+    "health": 20,
+    "armor": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "headTorsoArmsLegs": [
+      4,
+      1,
+      1,
+      1
+    ]
+  },
+  "preview": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/combat-editor-preview.png",
+  "inGameTest": false,
+  "commitOrPush": false
+}

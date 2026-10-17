@@ -21,7 +21,11 @@ runtime = root / "build/test-runtime"
 runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
-for name, extra in [("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("ShopAmmoTest", []), ("ReloadViewTest", []), ("AimReturnStateTest", []), ("MatchMovementTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", []), ("AudioPolicyTest", []), ("TrailGeometryTest", [])]:
+weapon_inputs = root / "build/weapon-damage-inputs.json"
+subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "WeaponDamageTest",
+                str(weapon_inputs) if weapon_inputs.exists() else "--no-workbook",
+                str(next((pack / "mods").glob("mcs2_gunpack-*.jar")))], cwd=runtime, check=True)
+for name, extra in [("CombatSettingsTest", []), ("CombatEditorLayoutTest", [str(root / "build/combat-editor-preview.png")]), ("SkinDataTest", [str(root / "src/main/resources/default-skins.json")]), ("SkinNetworkTest", []), ("ShopAmmoTest", []), ("ReloadViewTest", []), ("AimReturnStateTest", []), ("MatchMovementTest", []), ("PreviewGeometryTest", []), ("MatchVotesTest", []), ("PageVisibilityTest", []), ("BaselineDataTest", []), ("ShopRowsTest", []), ("ShopLifecycleTest", []), ("InventoryPlanTest", []), ("RoundItemsTest", []), ("ShopDeploymentsTest", []), ("RadarPolicyTest", []), ("AudioPolicyTest", []), ("TrailGeometryTest", [])]:
     subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), name, *extra], cwd=runtime, check=True)
 
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "AimTimingTest",
@@ -47,6 +51,11 @@ with zipfile.ZipFile(root / "build/libs/mine-strike-skins-0.1.0.jar") as jar:
             asset = jar.read(f"assets/minestrike_skins/textures/{folder}/agents/{agent}.png")
             assert asset.startswith(b"\x89PNG\r\n\x1a\n")
             assert (int.from_bytes(asset[16:20], "big"), int.from_bytes(asset[20:24], "big")) == expected
+    combat_icon = jar.read("assets/minestrike_skins/textures/item/combat_editor.png")
+    assert combat_icon.startswith(b"\x89PNG\r\n\x1a\n")
+    assert (int.from_bytes(combat_icon[16:20], "big"), int.from_bytes(combat_icon[20:24], "big")) == (16, 16)
+    assert json.loads(jar.read("assets/minestrike_skins/models/item/combat_editor.json"))["textures"]["layer0"] == "minestrike_skins:item/combat_editor"
+    assert json.loads(jar.read("assets/minestrike_skins/lang/zh_cn.json"))["item.minestrike_skins.combat_editor"] == "玩家数值编辑器"
     aim_config = json.loads(jar.read("minestrike-skins.mixins.json"))
     assert "AimTimingMixin$Server" in aim_config["mixins"]
     for hook in ["AimTimingMixin$Client", "AimTimingMixin$Superb", "TaczReloadViewMixin$Tracks"]:
@@ -164,6 +173,9 @@ with zipfile.ZipFile(extras) as nested:
     extras_common.write_bytes(nested.read(next(n for n in nested.namelist() if n.endswith(".jar"))))
 subprocess.run(["java", "-ea", "-cp", str(extras_common) + os.pathsep + str(extras) + os.pathsep + mixin_classpath,
                 "ReloadViewTest", "--compat"], cwd=runtime, check=True)
+
+subprocess.run(["java", "-ea", "-cp", str(extras_common) + os.pathsep + str(extras) + os.pathsep + mixin_classpath,
+                "CombatSettingsTest", "--compat"], cwd=runtime, check=True)
 
 for filename, package, refmap, selected in [
     ("shape-playeranimator-compat.json", "dev.kosmx.playerAnim.mixin", "player-animation-lib-minecraft_common-refmap.json",

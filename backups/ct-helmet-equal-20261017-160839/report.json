@@ -1,0 +1,27 @@
+{
+  "helmet": "lrarmor:armored_chemical_helmet",
+  "armor": 2,
+  "toughness": 0,
+  "cost": 350,
+  "enchantments": [
+    {
+      "lvl": 1,
+      "id": "bulletarmorenchant:bullet_proof"
+    }
+  ],
+  "listenerModule": [],
+  "totalFullArmor": 12,
+  "totalFullToughness": 3,
+  "files": [
+    {
+      "label": "repository",
+      "path": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "sha256": "11069046898f8c642a71019d3a546506957fca3da3ec5351e1821405c1907162"
+    },
+    {
+      "label": "pcl",
+      "path": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/fpsmatch/dust2 (redetailed)/CSGameMaps/dust2.json",
+      "sha256": "6eb5b41a8383d4e20a6990f846201d6208a2abe63ada307a6f4b3ce03f806d37"
+    }
+  ]
+}

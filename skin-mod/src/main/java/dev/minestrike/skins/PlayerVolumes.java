@@ -31,7 +31,7 @@ public final class PlayerVolumes {
                     0,0,side*stride,PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,PlayerMetrics.WIDTH,2);
             part(parts,root,side*5,crouch ? 5.2 : 2,0,side < 0 ? -3 : -1,-2,-2,4,12,4,
                     0,gun ? -side*.1 : 0,gun ? -Math.PI/2+pitch : -side*stride/2+(crouch ? .4 : 0),
-                    PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,PlayerMetrics.WIDTH,0);
+                    PlayerMetrics.WIDTH,PlayerMetrics.LENGTH,PlayerMetrics.WIDTH,3);
         }
         return parts;
     }

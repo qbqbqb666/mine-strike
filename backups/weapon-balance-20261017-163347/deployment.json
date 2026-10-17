@@ -1,0 +1,231 @@
+{
+  "sourceWorkbook": "/Users/qbqb/Desktop/暂时存储/mine-strike/outputs/20261017-weapon-damage/mine-strike_武器伤害对照与试算_头盔同步.xlsx",
+  "sourceWorkbookSha256": "d11d4c9df23b63e017f2a6f5b5566c5974efc160e086c51a40e8adb6a61ecef6",
+  "weapons": [
+    {
+      "id": "mcs2:cs_glock",
+      "name": "格洛克18型",
+      "target": 7,
+      "pellets": 1,
+      "original": 4.5
+    },
+    {
+      "id": "suffuse:qbu191",
+      "name": "Budget Galil",
+      "target": 8,
+      "pellets": 1,
+      "original": 5
+    },
+    {
+      "id": "superbwarfare:taser",
+      "name": "电击枪",
+      "target": 20,
+      "pellets": 1,
+      "original": 5
+    },
+    {
+      "id": "mcs2:cs_ak",
+      "name": "AK-47",
+      "target": 6,
+      "pellets": 1,
+      "original": 5.5
+    },
+    {
+      "id": "ronmc:p90",
+      "name": "P90",
+      "target": 5,
+      "pellets": 1,
+      "original": 5.5
+    },
+    {
+      "id": "suffuse:pp19",
+      "name": "PP19 野牛 冲锋枪",
+      "target": 6.5,
+      "pellets": 1,
+      "original": 6.5
+    },
+    {
+      "id": "ronmc:g36c",
+      "name": "G36C",
+      "target": 7,
+      "pellets": 1,
+      "original": 7
+    },
+    {
+      "id": "daffas_arsenal:makten_single",
+      "name": "MAC10",
+      "target": 5,
+      "pellets": 1,
+      "original": 7
+    },
+    {
+      "id": "mcs2:cs_deagle",
+      "name": "沙漠之鹰",
+      "target": 10,
+      "pellets": 1,
+      "original": 7.2
+    },
+    {
+      "id": "suffuse:tec9",
+      "name": "Tec9",
+      "target": 9,
+      "pellets": 1,
+      "original": 8
+    },
+    {
+      "id": "tacz:minigun",
+      "name": "加特林",
+      "target": 4,
+      "pellets": 1,
+      "original": 8
+    },
+    {
+      "id": "tacz:p320",
+      "name": "P320 手枪",
+      "target": 6,
+      "pellets": 1,
+      "original": 10
+    },
+    {
+      "id": "daffas_arsenal:ssg69",
+      "name": "SSG69",
+      "target": 19,
+      "pellets": 1,
+      "original": 18
+    },
+    {
+      "id": "suffuse:python",
+      "name": "R8 左轮手枪",
+      "target": 20,
+      "pellets": 1,
+      "original": 20
+    },
+    {
+      "id": "ronmc:m1014",
+      "name": "M1014",
+      "target": 36,
+      "pellets": 7,
+      "original": 36
+    },
+    {
+      "id": "tacz:m870",
+      "name": "M870 霰弹枪",
+      "target": 36,
+      "pellets": 9,
+      "original": 36
+    },
+    {
+      "id": "mcs2:cs_awp",
+      "name": "AWP",
+      "target": 40,
+      "pellets": 1,
+      "original": 40
+    },
+    {
+      "id": "superbwarfare:bocek",
+      "name": "BOCEK 复合弓",
+      "target": 10,
+      "pellets": 1,
+      "original": 48
+    },
+    {
+      "id": "superbwarfare:rpg",
+      "name": "RPG（默认温压弹）",
+      "target": 300,
+      "pellets": 1,
+      "original": 300
+    },
+    {
+      "id": "mcs2:cs_m4a4",
+      "name": "M4A4",
+      "target": 6,
+      "pellets": 1,
+      "original": 4.6
+    },
+    {
+      "id": "mcs2:cs_usp",
+      "name": "USP 消音版",
+      "target": 5.2,
+      "pellets": 1,
+      "original": 5.2
+    },
+    {
+      "id": "ronmc:57usg",
+      "name": "57 USG",
+      "target": 6,
+      "pellets": 1,
+      "original": 5.5
+    },
+    {
+      "id": "daffas_arsenal:harpa9",
+      "name": "ARP9",
+      "target": 6,
+      "pellets": 1,
+      "original": 6
+    },
+    {
+      "id": "rainforest:famas",
+      "name": "Famas F1",
+      "target": 6,
+      "pellets": 1,
+      "original": 6
+    },
+    {
+      "id": "maxstuff:hk_mp5sd",
+      "name": "HK-MP5SD",
+      "target": 6,
+      "pellets": 1,
+      "original": 6
+    },
+    {
+      "id": "mcs2:cs_m4a1s",
+      "name": "M4A1 消音版",
+      "target": 6,
+      "pellets": 1,
+      "original": 6
+    },
+    {
+      "id": "maxstuff:aug_a2",
+      "name": "AUG-A2",
+      "target": 6.5,
+      "pellets": 1,
+      "original": 6.5
+    }
+  ],
+  "scope": "weapon base damage global; Dust2 T/CT limbs only",
+  "settings": {
+    "health": 20.0,
+    "armor": [
+      null,
+      null,
+      null,
+      null
+    ],
+    "parts": [
+      4.0,
+      1.0,
+      0.7,
+      0.7
+    ]
+  },
+  "artifactSha256": "857387ce7dbc4a7fd096019a51f9b20cd5c458bceced6d04154f2eec788d0641",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/weapon-balance-20261017-163347",
+  "verificationLog": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/weapon-balance-verification.log",
+  "passCount": 75,
+  "deployments": [
+    {
+      "label": "repository",
+      "jar": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+      "sha256": "857387ce7dbc4a7fd096019a51f9b20cd5c458bceced6d04154f2eec788d0641",
+      "combatSettings": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/saves/dust2/mine-strike-data/combat-settings/bWluZWNyYWZ0Om92ZXJ3b3JsZApkdXN0Mg.json",
+      "combatSettingsSha256": "3aa2de0c4d7d16b5fa763190949880cf532bd70cb8371b17ba545d7108e818c1"
+    },
+    {
+      "label": "pcl",
+      "jar": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+      "sha256": "857387ce7dbc4a7fd096019a51f9b20cd5c458bceced6d04154f2eec788d0641",
+      "combatSettings": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/saves/dust2/mine-strike-data/combat-settings/bWluZWNyYWZ0Om92ZXJ3b3JsZApkdXN0Mg.json",
+      "combatSettingsSha256": "3aa2de0c4d7d16b5fa763190949880cf532bd70cb8371b17ba545d7108e818c1"
+    }
+  ]
+}

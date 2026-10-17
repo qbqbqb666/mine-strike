@@ -28,7 +28,11 @@ public final class PlayerHitboxMixin {
                 CallbackInfoReturnable<com.tacz.guns.entity.EntityKineticBullet.EntityResult> cir) {
             var hit = minestrike$hit.get(); minestrike$hit.remove();
             if (hit != null && cir.getReturnValue() != null && target instanceof Player player && AgentPlayers.active(player))
-                cir.setReturnValue(new com.tacz.guns.entity.EntityKineticBullet.EntityResult(target,hit.point(),hit.head()));
+                {
+                var result=new com.tacz.guns.entity.EntityKineticBullet.EntityResult(target,hit.point(),hit.head());
+                ((DamageRegion)(Object)result).minestrike$region(hit.region());
+                cir.setReturnValue(result);
+            }
         }
     }
     @Mixin(targets = "com.atsuishio.superbwarfare.entity.projectile.ProjectileEntity", remap = false)
@@ -46,7 +50,11 @@ public final class PlayerHitboxMixin {
                 CallbackInfoReturnable<com.atsuishio.superbwarfare.world.phys.EntityResult> cir) {
             var hit = minestrike$hit.get(); minestrike$hit.remove();
             if (hit != null && cir.getReturnValue() != null && target instanceof Player player && AgentPlayers.active(player))
-                cir.setReturnValue(new com.atsuishio.superbwarfare.world.phys.EntityResult(target,hit.point(),hit.head(),hit.leg()));
+                {
+                var result=new com.atsuishio.superbwarfare.world.phys.EntityResult(target,hit.point(),hit.head(),hit.leg());
+                ((DamageRegion)(Object)result).minestrike$region(hit.region());
+                cir.setReturnValue(result);
+            }
         }
     }
     private PlayerHitboxMixin() {}

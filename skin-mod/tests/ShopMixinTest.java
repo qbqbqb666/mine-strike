@@ -129,6 +129,8 @@ public class ShopMixinTest {
         AimActionsTest.mixins(transformer);
         PlayerShapeTest.mixins(transformer);
         AgentTest.mixins(transformer);
+        CombatSettingsTest.mixins(transformer);
+        WeaponDamageTest.mixins(transformer);
         MusicBoxesTest.mixins(transformer);
         String prefix="com.phasetranscrystal.";
         String[] targets={"blockoffensive.map.shop.ItemType","blockoffensive.map.CSGameMap","fpsmatch.core.shop.ShopData","fpsmatch.core.shop.FPSMShop","fpsmatch.core.shop.slot.ShopSlot","fpsmatch.util.FPSMUtil",

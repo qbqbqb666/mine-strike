@@ -43,6 +43,12 @@ public abstract class CSGameMapMixin {
     @Inject(method = "resetGame", at = @At("TAIL"), remap = false)
     private void skinsEnd(CallbackInfo ci) { MineStrikeSkins.end((CSGameMap) (Object) this); MatchLobby.reset((CSGameMap) (Object) this); TeamRadar.sync(); }
 
+    @Inject(method = {"startGame", "startNewRound"}, at = @At("TAIL"), remap = false)
+    private void combatRound(CallbackInfo ci) { dev.minestrike.skins.CombatStats.round((CSGameMap)(Object)this); }
+
+    @Inject(method = "resetGame", at = @At("TAIL"), remap = false)
+    private void combatEnd(CallbackInfo ci) { dev.minestrike.skins.CombatStats.end((CSGameMap)(Object)this); }
+
     @Inject(method = "autoStartLogic", at = @At("HEAD"), cancellable = true, remap = false)
     private void lobbyAutoStart(CallbackInfo ci) { ci.cancel(); }
 

@@ -39,6 +39,8 @@ public final class MineStrikeSkins {
                 net.minecraftforge.fml.config.ModConfig.Type.CLIENT, AudioConfig.SPEC, "mine-strike-audio-client.toml");
         net.minecraftforge.fml.ModLoadingContext.get().registerConfig(
                 net.minecraftforge.fml.config.ModConfig.Type.CLIENT, TracerConfig.SPEC, "mine-strike-tracers-client.toml");
+        CombatEditorItem.register(net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus());
+        CombatNetwork.init();
         SkinNetwork.init();
         MinecraftForge.EVENT_BUS.register(this);
     }

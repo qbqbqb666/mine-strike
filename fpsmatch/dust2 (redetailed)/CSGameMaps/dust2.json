@@ -78,14 +78,13 @@
           {
             "maxBuyCount": 1,
             "groupId": -1,
-            "listenerModule": [
-              "bulletproof_with_helmet"
-            ],
+            "listenerModule": [],
             "ItemStack": {
-              "id": "lrarmor:joker_armed_helmet",
+              "id": "lrarmor:armored_chemical_helmet",
               "Count": 1,
               "tag": {
-                "Damage": 0
+                "Damage": 0,
+                "Enchantments": [{"lvl": 1, "id": "bulletarmorenchant:bullet_proof"}]
               }
             },
             "defaultCost": 350
@@ -670,7 +669,7 @@
             "groupId": -1,
             "listenerModule": [],
             "ItemStack": {
-              "id": "lrarmor:attacker_chestplate",
+              "id": "lrarmor:atf_vest_chestplate",
               "Count": 1,
               "tag": {
                 "Damage": 0
@@ -1335,14 +1334,14 @@
         }
       },
       {
-        "id": "lrarmor:sniper_leggings",
+        "id": "lrarmor:atf_vest_leggings",
         "Count": 1,
         "tag": {
           "Damage": 0
         }
       },
       {
-        "id": "lrarmor:sniper_boots",
+        "id": "lrarmor:atf_vest_boots",
         "Count": 1,
         "tag": {
           "Damage": 0
