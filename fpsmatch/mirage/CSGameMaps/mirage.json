@@ -109,6 +109,98 @@
             "defaultCost": 0
           }
         ],
+        "PISTOL": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 24,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_usp",
+                "AttachmentMUZZLE": {
+                  "id": "tacz:attachment",
+                  "Count": 1,
+                  "tag": {
+                    "AttachmentId": "mcs2:usp_silencer"
+                  }
+                },
+                "MaxDummyAmmo": 24,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 12
+              }
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 26,
+                "HasBulletInBarrel": 1,
+                "GunId": "tacz:p320",
+                "MaxDummyAmmo": 26,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 12
+              }
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 80,
+                "HasBulletInBarrel": 1,
+                "GunId": "ronmc:57usg",
+                "MaxDummyAmmo": 80,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 20
+              }
+            },
+            "defaultCost": 500
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 35,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_deagle",
+                "MaxDummyAmmo": 35,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 7
+              }
+            },
+            "defaultCost": 700
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:air",
+              "Count": 0
+            },
+            "defaultCost": 0
+          }
+        ],
+        "MYSTERY": [],
         "MID_RANK": [
           {
             "maxBuyCount": 1,
@@ -199,97 +291,6 @@
               }
             },
             "defaultCost": 2350
-          }
-        ],
-        "PISTOL": [
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 24,
-                "HasBulletInBarrel": 1,
-                "GunId": "mcs2:cs_usp",
-                "AttachmentMUZZLE": {
-                  "id": "tacz:attachment",
-                  "Count": 1,
-                  "tag": {
-                    "AttachmentId": "mcs2:usp_silencer"
-                  }
-                },
-                "MaxDummyAmmo": 24,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 12
-              }
-            },
-            "defaultCost": 200
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 26,
-                "HasBulletInBarrel": 1,
-                "GunId": "tacz:p320",
-                "MaxDummyAmmo": 26,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 12
-              }
-            },
-            "defaultCost": 300
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 80,
-                "HasBulletInBarrel": 1,
-                "GunId": "ronmc:57usg",
-                "MaxDummyAmmo": 80,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 20
-              }
-            },
-            "defaultCost": 500
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 35,
-                "HasBulletInBarrel": 1,
-                "GunId": "mcs2:cs_deagle",
-                "MaxDummyAmmo": 35,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 7
-              }
-            },
-            "defaultCost": 700
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "minecraft:air",
-              "Count": 0
-            },
-            "defaultCost": 0
           }
         ],
         "RIFLE": [
@@ -550,6 +551,91 @@
             "defaultCost": 0
           }
         ],
+        "PISTOL": [
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 80,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_glock",
+                "MaxDummyAmmo": 80,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 20
+              }
+            },
+            "defaultCost": 200
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 26,
+                "HasBulletInBarrel": 1,
+                "GunId": "tacz:p320",
+                "MaxDummyAmmo": 26,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 12
+              }
+            },
+            "defaultCost": 300
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 65,
+                "HasBulletInBarrel": 1,
+                "GunId": "suffuse:tec9",
+                "MaxDummyAmmo": 65,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 16
+              }
+            },
+            "defaultCost": 500
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "tacz:modern_kinetic_gun",
+              "Count": 1,
+              "tag": {
+                "DummyAmmo": 35,
+                "HasBulletInBarrel": 1,
+                "GunId": "mcs2:cs_deagle",
+                "MaxDummyAmmo": 35,
+                "GunFireMode": "SEMI",
+                "GunCurrentAmmoCount": 7
+              }
+            },
+            "defaultCost": 700
+          },
+          {
+            "maxBuyCount": 1,
+            "groupId": -1,
+            "listenerModule": [],
+            "ItemStack": {
+              "id": "minecraft:air",
+              "Count": 0
+            },
+            "defaultCost": 0
+          }
+        ],
+        "MYSTERY": [],
         "MID_RANK": [
           {
             "maxBuyCount": 1,
@@ -647,90 +733,6 @@
               }
             },
             "defaultCost": 2350
-          }
-        ],
-        "PISTOL": [
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 80,
-                "HasBulletInBarrel": 1,
-                "GunId": "mcs2:cs_glock",
-                "MaxDummyAmmo": 80,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 20
-              }
-            },
-            "defaultCost": 200
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 26,
-                "HasBulletInBarrel": 1,
-                "GunId": "tacz:p320",
-                "MaxDummyAmmo": 26,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 12
-              }
-            },
-            "defaultCost": 300
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 65,
-                "HasBulletInBarrel": 1,
-                "GunId": "suffuse:tec9",
-                "MaxDummyAmmo": 65,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 16
-              }
-            },
-            "defaultCost": 500
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "tacz:modern_kinetic_gun",
-              "Count": 1,
-              "tag": {
-                "DummyAmmo": 35,
-                "HasBulletInBarrel": 1,
-                "GunId": "mcs2:cs_deagle",
-                "MaxDummyAmmo": 35,
-                "GunFireMode": "SEMI",
-                "GunCurrentAmmoCount": 7
-              }
-            },
-            "defaultCost": 700
-          },
-          {
-            "maxBuyCount": 1,
-            "groupId": -1,
-            "listenerModule": [],
-            "ItemStack": {
-              "id": "minecraft:air",
-              "Count": 0
-            },
-            "defaultCost": 0
           }
         ],
         "RIFLE": [
