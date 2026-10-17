@@ -1,3 +1,0 @@
-[mode] MEM_ONLY
-== MEM_ZIPS ==
-MEM: 40ef0d064532b79f-0f36cd7b9080-1a1390d346f-e8861c2c (610391 bytes)

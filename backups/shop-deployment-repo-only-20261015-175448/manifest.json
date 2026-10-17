@@ -1,8 +1,0 @@
-{
-  "new_sha256": "64e1e0d05bc54d51cc96f86bb4f8bf62795175ad0279ea0880493ba2fadca453",
-  "old_repo_sha256": "139c6396c70305082743d1d6b39c30bbc6c71b5253a270cf346ffd2d463082a0",
-  "pcl_unchanged_sha256": "139c6396c70305082743d1d6b39c30bbc6c71b5253a270cf346ffd2d463082a0",
-  "protocol": 7,
-  "protected_repo_files": 69,
-  "protected_pcl_files": 72
-}
