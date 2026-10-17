@@ -15,6 +15,7 @@ public class MatchMovementTest {
     }
     public static void main(String[] args) throws Exception {
         jumps();
+        unlock();
         double speed=MatchMovement.speed(.1,0);
         double vanilla=0;
         for(int i=0;i<400;i++) vanilla=vanilla*(.6f*.91f)+(.13f*.21600002f/(.6f*.6f*.6f))*.98f;
@@ -81,6 +82,49 @@ public class MatchMovementTest {
         near(landing.f_82481_,forward.f_82481_,"Ground handoff never adds another full walking velocity on landing");
         near(landing.f_82480_,-.1,"Landing vertical velocity retained");
         System.out.println("PASS: native sprint baseline, eight equal directions/yaw/diagonal, gun/ADS/crouch reductions, 100ms start/stop/reverse, sustained speed, external impulses, collision restart and landing handoff");
+    }
+    private static void unlock() throws Exception {
+        var state=new MatchMovement.UnlockKeys();
+        check(!state.update("round-1",false,true),"No synthetic keys on ordinary ticks or initial join");
+        boolean physicalW=true,gameW=true;
+        for(int tick=0;tick<100;tick++) {
+            gameW=false;
+            check(!state.update("round-1",true,true),"Countdown keeps native movement lock for every frozen tick");
+        }
+        check(!gameW&&physicalW,"Reproduce native cleared W while physical W remains held");
+        if(state.update("round-1",false,true))gameW=physicalW;
+        check(gameW,"Countdown ends: held W restored without release/repress");
+        check(!state.update("round-1",false,true),"Only one resynchronization, not continuous key override");
+        state.update("round-1",true,true);physicalW=false;gameW=false;
+        if(state.update("round-1",false,true))gameW=physicalW;
+        check(!gameW,"Released key cannot create ghost movement");
+        state.update("round-1",true,true);
+        check(!state.update("round-1",false,false),"No re-arming while screen open, window unfocused or START phase");
+        check(!state.update("round-1",false,false),"Keep deferred restore pending");
+        check(state.update("round-1",false,true),"Resume once focus/gameplay/END phase is ready");
+        state.update("round-1",true,true);state.update("round-1",false,false);
+        check(!state.update("round-1",true,true),"Re-enter freeze cancels pending restore");
+        check(state.update("round-1",false,true),"Second round/pause unlock also recovers keys");
+        state.update("round-1",true,true);
+        check(!state.update("new-player-world",false,true),"Player/world change clears old frozen context");
+        state.update("new-player-world",true,true);
+        check(!state.update(null,false,true)&&!state.update("new-player-world",false,true),"Disconnect/spectator/outside-CS clears old key recovery");
+        var original=new ClassNode();
+        try(var in=MatchMovementTest.class.getClassLoader().getResourceAsStream("com/phasetranscrystal/blockoffensive/client/BOClientEvent.class")){new ClassReader(in).accept(original,0);}
+        var lock=original.methods.stream().filter(m->m.name.equals("lockMove")).findFirst().orElseThrow();
+        var keys=new ArrayList<String>();int clears=0;
+        for(var ins:lock.instructions) {
+            if(ins instanceof FieldInsnNode f&&f.owner.equals("net/minecraft/client/Options"))keys.add(f.name);
+            if(ins instanceof MethodInsnNode c&&c.owner.equals("net/minecraft/client/KeyMapping")&&c.name.equals("m_7249_"))clears++;
+        }
+        check(clears==5&&keys.equals(List.of("f_92085_","f_92086_","f_92087_","f_92088_","f_92089_")),"Actual native freeze clears exactly four movement keys plus jump");
+        var bridge=new ClassNode();
+        try(var in=MatchMovementTest.class.getClassLoader().getResourceAsStream("dev/minestrike/skins/MatchMovement$Client.class")){new ClassReader(in).accept(bridge,0);}
+        var recovery=bridge.methods.stream().filter(m->m.name.equals("unlock")).findFirst().orElseThrow();
+        var restored=new ArrayList<String>();
+        for(var ins:recovery.instructions)if(ins instanceof FieldInsnNode f&&f.owner.equals("net/minecraft/client/Options"))restored.add(f.name);
+        check(restored.equals(keys),"Only original frozen keys are restored; no fire/reload/toggle keys");
+        System.out.println("PASS: native countdown held-W failure reproduced, frozen lock retained, single unlock recovery, released keys, focus/GUI deferral, repeated rounds/pause and player/world/spectator reset");
     }
     private static void jumps() {
         var jump=new MatchMovement.Jumps();

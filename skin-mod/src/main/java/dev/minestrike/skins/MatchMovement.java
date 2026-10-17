@@ -69,6 +69,32 @@ public final class MatchMovement {
     @net.minecraftforge.fml.common.Mod.EventBusSubscriber(modid = MineStrikeSkins.ID,
             value = net.minecraftforge.api.distmarker.Dist.CLIENT)
     public static final class Client {
+        private record InputContext(Object player, Object level) {}
+        private static final UnlockKeys unlockKeys = new UnlockKeys();
+        @net.minecraftforge.eventbus.api.SubscribeEvent(priority = net.minecraftforge.eventbus.api.EventPriority.LOWEST)
+        public static void unlock(net.minecraftforge.event.TickEvent.ClientTickEvent event) {
+            var mc = net.minecraft.client.Minecraft.m_91087_();
+            var global = com.phasetranscrystal.fpsmatch.common.client.FPSMClient.getGlobalData();
+            Object key = mc.f_91074_ != null && mc.f_91073_ != null && global.equalsGame("cs") && !global.isSpectator()
+                    ? new InputContext(mc.f_91074_, mc.f_91073_) : null;
+            boolean frozen = com.phasetranscrystal.blockoffensive.client.data.CSClientData.isWaiting
+                    || com.phasetranscrystal.blockoffensive.client.data.CSClientData.isPause;
+            boolean ready = event.phase == net.minecraftforge.event.TickEvent.Phase.END && mc.m_91302_() && mc.f_91080_ == null;
+            if (!unlockKeys.update(key, frozen, ready)) return;
+            var options = mc.f_91066_;
+            for (var mapping : new net.minecraft.client.KeyMapping[]{options.f_92085_, options.f_92086_, options.f_92087_, options.f_92088_, options.f_92089_})
+                mapping.m_7249_(physical(mapping, mc.m_91268_().m_85439_()));
+        }
+        private static boolean physical(net.minecraft.client.KeyMapping mapping, long window) {
+            if (!mapping.getKeyConflictContext().isActive() || !mapping.getKeyModifier().isActive(mapping.getKeyConflictContext())) return false;
+            var key = mapping.getKey(); int code = key.m_84873_();
+            if (code < 0) return false;
+            return switch (key.m_84868_()) {
+                case KEYSYM -> com.mojang.blaze3d.platform.InputConstants.m_84830_(window, code);
+                case MOUSE -> org.lwjgl.glfw.GLFW.glfwGetMouseButton(window, code) == org.lwjgl.glfw.GLFW.GLFW_PRESS;
+                default -> false;
+            };
+        }
         public static boolean aiming(Player player) {
             var item = player.m_21205_().m_41720_();
             if (player instanceof net.minecraft.client.player.LocalPlayer local && item instanceof com.tacz.guns.api.item.IGun) {
@@ -97,6 +123,18 @@ public final class MatchMovement {
                 unified = movementFov(speed(player), walking);
             }
             event.setNewFovModifier(MatchMovement.fov(event.getNewFovModifier(), original, unified));
+        }
+    }
+    public static final class UnlockKeys {
+        private Object context;
+        private boolean locked, pending;
+        public boolean update(Object key, boolean frozen, boolean ready) {
+            if (!java.util.Objects.equals(context, key)) { context = key; locked = pending = false; }
+            if (key == null) return false;
+            if (frozen) { locked = true; pending = false; return false; }
+            if (locked) { pending = true; locked = false; }
+            if (pending && ready) { pending = false; return true; }
+            return false;
         }
     }
     public static final class State {

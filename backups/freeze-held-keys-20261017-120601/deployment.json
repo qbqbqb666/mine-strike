@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-17T12:08:34.922394+08:00",
+  "verified": true,
+  "passChecks": 65,
+  "verificationCommand": "python3 skin-mod/verify.py --libraries /Users/qbqb/Library/Application Support/minecraft/libraries",
+  "verificationLog": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/freeze-held-keys-verification.log",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/freeze-held-keys-20261017-120601",
+  "sha256": "135ebc47f8748ef692839bec81ba4d40124e3496034ad769f60de22b085a3b73",
+  "deployed": {
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar": "135ebc47f8748ef692839bec81ba4d40124e3496034ad769f60de22b085a3b73",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar": "135ebc47f8748ef692839bec81ba4d40124e3496034ad769f60de22b085a3b73"
+  },
+  "oneCustomJarEach": true,
+  "protectedFilesUnchanged": 480,
+  "sourceChanges": [
+    "skin-mod/src/main/java/dev/minestrike/skins/MatchMovement.java",
+    "skin-mod/tests/MatchMovementTest.java",
+    "skin-mod/README.md"
+  ],
+  "rootCause": "native BOClientEvent.lockMove clears five KeyMapping held states during waiting/pause; unlock does not poll held hardware keys",
+  "behavior": "single physical-key resync for original four movement keys and jump on same-context freeze-to-unlocked transition; defer while unfocused or GUI open; context reset cancels pending recovery",
+  "gameplayChanges": "none to freeze duration, movement speeds, jump, FOV, weapon or combat values",
+  "inGameTest": false,
+  "commitOrPush": false
+}
