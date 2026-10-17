@@ -12,6 +12,6 @@ public final class FallDamage {
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void damage(LivingDamageEvent event) {
         if (event.getEntity() instanceof ServerPlayer && event.getSource().m_276093_(DamageTypes.f_268671_))
-            event.setAmount(event.getAmount() * 0.5f);
+            event.setAmount(event.getAmount() * 0.25f);
     }
 }

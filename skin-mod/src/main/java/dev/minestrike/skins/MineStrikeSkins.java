@@ -41,7 +41,12 @@ public final class MineStrikeSkins {
                 net.minecraftforge.fml.config.ModConfig.Type.CLIENT, TracerConfig.SPEC, "mine-strike-tracers-client.toml");
         CombatEditorItem.register(net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus());
         CombatNetwork.init();
+        MatchFeedback.init();
         SkinNetwork.init();
+        net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext.get().getModEventBus().addListener(
+                (net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent event) -> event.enqueueWork(() ->
+                        com.phasetranscrystal.fpsmatch.util.FPSMUtil.addMainWeaponPredicate(stack ->
+                                new ResourceLocation("superbwarfare", "bocek").equals(ForgeRegistries.ITEMS.getKey(stack.m_41720_())))));
         MinecraftForge.EVENT_BUS.register(this);
     }
 

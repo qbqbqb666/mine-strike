@@ -131,6 +131,7 @@ public class ShopMixinTest {
         AgentTest.mixins(transformer);
         CombatSettingsTest.mixins(transformer);
         WeaponDamageTest.mixins(transformer);
+        MatchFeedbackTest.mixins(transformer);
         armorHud(transformer);
         MusicBoxesTest.mixins(transformer);
         String prefix="com.phasetranscrystal.";

@@ -3,7 +3,7 @@ package dev.minestrike.skins.mixin;
 import static dev.minestrike.skins.BombAudio.*;
 import com.phasetranscrystal.blockoffensive.entity.CompositionC4Entity;
 import com.phasetranscrystal.blockoffensive.item.CompositionC4;
-import com.phasetranscrystal.fpsmatch.common.packet.FPSMSoundPlayS2CPacket;
+import dev.minestrike.skins.MatchFeedback;
 import com.phasetranscrystal.fpsmatch.core.FPSMCore;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.*;
@@ -26,7 +26,7 @@ public final class BombAudioMixin {
             if (actor instanceof Player player && PLANTED.equals(event.m_11660_().toString())) {
                 var map = FPSMCore.getInstance().getMapByPlayer(player);
                 if (map.isPresent()) {
-                    map.get().sendPacketToAllPlayer(new FPSMSoundPlayS2CPacket(event.m_11660_()));
+                    MatchFeedback.announce(map.get());
                     return;
                 }
             }

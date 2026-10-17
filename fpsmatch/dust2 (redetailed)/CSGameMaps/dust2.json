@@ -174,10 +174,10 @@
                     -1078851242
                   ],
                   "Ammo": 1,
-                  "VirtualAmmo": 14
+                  "VirtualAmmo": 19
                 },
                 "Attachments": {},
-                "MineStrikeShopTotalAmmo": 15
+                "MineStrikeShopTotalAmmo": 20
               }
             },
             "defaultCost": 2000
@@ -772,10 +772,10 @@
                     -1078851242
                   ],
                   "Ammo": 1,
-                  "VirtualAmmo": 14
+                  "VirtualAmmo": 19
                 },
                 "Attachments": {},
-                "MineStrikeShopTotalAmmo": 15
+                "MineStrikeShopTotalAmmo": 20
               }
             },
             "defaultCost": 1500

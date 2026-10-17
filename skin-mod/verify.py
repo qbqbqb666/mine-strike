@@ -22,6 +22,7 @@ runtime.mkdir(parents=True, exist_ok=True)
 subprocess.run(["javac", "--release", "17", "-encoding", "UTF-8", "-proc:none", "-cp", classpath,
                 "-d", str(tests), *map(str, sorted((root / "tests").glob("*.java")))], check=True)
 weapon_inputs = root / "build/weapon-damage-inputs.json"
+subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "MatchFeedbackTest"], cwd=runtime, check=True)
 subprocess.run(["java", "-ea", "-cp", classpath + os.pathsep + str(tests), "WeaponDamageTest",
                 str(weapon_inputs) if weapon_inputs.exists() else "--no-workbook",
                 str(next((pack / "mods").glob("mcs2_gunpack-*.jar")))], cwd=runtime, check=True)
