@@ -1,0 +1,18 @@
+{
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/armor-hud-20261017-165827",
+  "passCount": 76,
+  "scope": "client match participant HUD; actual HEAD/CHEST armor slots, no armor/damage/state changes",
+  "preview": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/armor-hud-preview.png",
+  "deployments": [
+    {
+      "path": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+      "oldSha256": "00ac5fdbcd17bb47b82941a585f8a9ed9593cf181c70baab3ae768d65512729c",
+      "sha256": "9ef18ac034514c69695f8321dc567105c27b14442d64983e28833562493cf0c2"
+    },
+    {
+      "path": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar",
+      "oldSha256": "00ac5fdbcd17bb47b82941a585f8a9ed9593cf181c70baab3ae768d65512729c",
+      "sha256": "9ef18ac034514c69695f8321dc567105c27b14442d64983e28833562493cf0c2"
+    }
+  ]
+}

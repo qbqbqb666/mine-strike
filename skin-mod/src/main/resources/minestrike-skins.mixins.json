@@ -44,6 +44,7 @@
     "defaultRequire": 1
   },
   "client": [
+    "ArmorHudMixin",
     "AimActionsMixin$Input",
     "AimActionsMixin$Key",
     "AimActionsMixin$Draw",
