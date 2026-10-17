@@ -487,6 +487,17 @@ public class ShopMixinTest {
                 for (AbstractInsnNode instruction : environment.instructions) if (instruction instanceof MethodInsnNode call
                         && call.name.contains("minestrike$clear")) c4Hook = true;
                 if (!c4Hook) throw new AssertionError("C4 must bypass Sound Physics environment filtering");
+                MethodNode clear = node.methods.stream().filter(m -> m.name.contains("minestrike$clear")).findFirst().orElseThrow();
+                boolean audible = false;
+                for (AbstractInsnNode instruction : clear.instructions) if (instruction instanceof MethodInsnNode call
+                        && call.name.equals("setDefaultEnvironment") && call.desc.equals("(IZ)V")) {
+                    AbstractInsnNode argument = instruction.getPrevious();
+                    while (argument.getOpcode() < 0) argument = argument.getPrevious();
+                    if (argument.getOpcode() != Opcodes.ICONST_0)
+                        throw new AssertionError("C4 default environment must not mute its direct sound as an auxiliary reflection");
+                    audible = true;
+                }
+                if (!audible) throw new AssertionError("C4 direct sound must use the audible default environment");
             }
             if (audioTarget.endsWith(".SoundEngine")) {
                 int binds = 0, gains = 0;

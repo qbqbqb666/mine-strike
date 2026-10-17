@@ -131,6 +131,8 @@ public class ShopMixinTest {
         AgentTest.mixins(transformer);
         CombatSettingsTest.mixins(transformer);
         WeaponDamageTest.mixins(transformer);
+        MatchFeedbackTest.mixins(transformer);
+        armorHud(transformer);
         MusicBoxesTest.mixins(transformer);
         String prefix="com.phasetranscrystal.";
         String[] targets={"blockoffensive.map.shop.ItemType","blockoffensive.map.CSGameMap","fpsmatch.core.shop.ShopData","fpsmatch.core.shop.FPSMShop","fpsmatch.core.shop.slot.ShopSlot","fpsmatch.util.FPSMUtil",
@@ -553,5 +555,71 @@ public class ShopMixinTest {
         expansion.getMethod("validate",Map.class,int.class).invoke(null,legacy,6);
         System.out.println("PASS: legacy five-category upgrade preserves existing goods and independent lengths; new category starts empty");
         System.out.println("PASS: real Mixin application on fifteen shop/round/adventure/radar targets; sixth enum initialization and valueOf persistence key");
+    }
+    private static void armorHud(IMixinTransformer transformer)throws Exception {
+        String name="com.phasetranscrystal.blockoffensive.client.screen.hud.CSGameHud";
+        ClassNode before=new ClassNode(),after=new ClassNode();byte[] raw=resource(name);
+        new ClassReader(raw).accept(before,0);new ClassReader(transformer.transformClassBytes(name,name,raw)).accept(after,0);
+        for(var method:before.methods) {
+            var actual=after.methods.stream().filter(m->m.name.equals(method.name)&&m.desc.equals(method.desc)).findFirst().orElseThrow();
+            if(!method.name.equals("renderArmorBar")&&!methodCode(method).equals(methodCode(actual)))throw new AssertionError("Armor HUD must preserve health, ammo, spectators and other rendering: "+method.name);
+        }
+        var armor=after.methods.stream().filter(m->m.name.equals("renderArmorBar")).findFirst().orElseThrow();
+        if(Arrays.stream(armor.instructions.toArray()).filter(i->i instanceof MethodInsnNode c&&c.name.endsWith("minestrike$armor")).count()!=1)throw new AssertionError("Exactly one HUD hook");
+        var hook=after.methods.stream().filter(m->m.name.endsWith("minestrike$armor")).findFirst().orElseThrow();
+        Set<String> slots=new HashSet<>();int equipmentReads=0,cancels=0;
+        for(var i:hook.instructions) {
+            if(i instanceof FieldInsnNode f) {
+                if(f.owner.equals("net/minecraft/world/entity/EquipmentSlot"))slots.add(f.name);
+                if(f.owner.contains("BulletproofArmorAttribute")||f.getOpcode()==Opcodes.PUTFIELD||f.getOpcode()==Opcodes.PUTSTATIC)throw new AssertionError("HUD must not depend on virtual armor or mutate state");
+            }
+            if(i instanceof MethodInsnNode c){if(c.name.equals("m_6844_"))equipmentReads++;if(c.name.equals("cancel"))cancels++;}
+        }
+        if(!slots.equals(Set.of("HEAD","CHEST"))||equipmentReads!=2||cancels!=1)throw new AssertionError("Read actual helmet/chest slots every render and replace old virtual HUD");
+        var selector=after.methods.stream().filter(m->m.name.endsWith("minestrike$equipped")).findFirst().orElseThrow();
+        Set<String> checks=new HashSet<>();boolean armorType=false;
+        for(var i:selector.instructions) {
+            if(i instanceof MethodInsnNode c)checks.add(c.name);
+            if(i instanceof TypeInsnNode t&&t.getOpcode()==Opcodes.INSTANCEOF&&t.desc.equals("net/minecraft/world/item/ArmorItem"))armorType=true;
+        }
+        if(!armorType||!checks.containsAll(Set.of("m_41619_","m_41720_","m_40402_")))throw new AssertionError("Reject empty slots and non-armor, require correct armor slot");
+        var config=JsonParser.parseString(new String(ShopMixinTest.class.getClassLoader().getResourceAsStream("minestrike-skins.mixins.json").readAllBytes(),java.nio.charset.StandardCharsets.UTF_8)).getAsJsonObject();
+        if(!config.getAsJsonArray("client").toString().contains("ArmorHudMixin")||config.getAsJsonArray("mixins").toString().contains("ArmorHudMixin"))throw new AssertionError("Client-only HUD registration");
+        armorPreview(after);
+        System.out.println("PASS: real armor HUD Mixin, actual HEAD/CHEST slots, no virtual defense/state writes, client-only registration, health/ammo/spectator rendering retained and four-state pixel preview");
+    }
+    public static final class ArmorCanvas extends net.minecraft.client.gui.GuiGraphics {
+        java.awt.image.BufferedImage image;
+        ArmorCanvas(){super(null,null);}
+        @Override public void m_280509_(int x,int y,int x2,int y2,int color) {
+            var draw=image.createGraphics();draw.setColor(new java.awt.Color(color,true));draw.fillRect(x,y,x2-x,y2-y);draw.dispose();
+        }
+    }
+    private static void armorPreview(ClassNode transformed)throws Exception {
+        String name="ArmorHudGeometry";ClassNode harness=new ClassNode();harness.version=Opcodes.V17;harness.access=Opcodes.ACC_PUBLIC;harness.name=name;harness.superName="java/lang/Object";
+        String entry=null;
+        for(var method:transformed.methods)if(method.name.endsWith("minestrike$drawArmor")||method.name.endsWith("minestrike$armorIcon")) {
+            var copy=new MethodNode(Opcodes.ASM9,Opcodes.ACC_PUBLIC|Opcodes.ACC_STATIC,method.name,method.desc,null,null);method.accept(copy);copy.access=Opcodes.ACC_PUBLIC|Opcodes.ACC_STATIC;
+            for(var i:copy.instructions)if(i instanceof MethodInsnNode c&&c.owner.equals(transformed.name))c.owner=name;
+            harness.methods.add(copy);if(method.name.endsWith("minestrike$drawArmor"))entry=method.name;
+        }
+        ClassWriter writer=new ClassWriter(ClassWriter.COMPUTE_FRAMES|ClassWriter.COMPUTE_MAXS);harness.accept(writer);byte[] code=writer.toByteArray();
+        Class<?> type=new ClassLoader(ShopMixinTest.class.getClassLoader()){Class<?> define(){return defineClass(name,code,0,code.length);}}.define();
+        var field=sun.misc.Unsafe.class.getDeclaredField("theUnsafe");field.setAccessible(true);var unsafe=(sun.misc.Unsafe)field.get(null);
+        var canvas=(ArmorCanvas)unsafe.allocateInstance(ArmorCanvas.class);canvas.image=new java.awt.image.BufferedImage(180,125,java.awt.image.BufferedImage.TYPE_INT_ARGB);
+        var background=canvas.image.createGraphics();background.setColor(new java.awt.Color(0xff252a30,true));background.fillRect(0,0,180,125);background.dispose();
+        var draw=type.getMethod(entry,net.minecraft.client.gui.GuiGraphics.class,int.class,int.class,boolean.class,boolean.class);
+        for(int state=0;state<4;state++) {
+            boolean helmet=(state&1)!=0,chest=(state&2)!=0;int y=10+state*28;
+            draw.invoke(null,canvas,50,y,helmet,chest);
+            if(canvas.image.getRGB(25,y+2)!=(helmet?0xFFF1F3F5:0xFF626970)||canvas.image.getRGB(36,y+2)!=(chest?0xFFF1F3F5:0xFF626970))throw new AssertionError("Independent icon brightness for current equipment combination "+state);
+            var text=canvas.image.createGraphics();text.setColor(java.awt.Color.WHITE);text.setFont(new java.awt.Font("Monospaced",java.awt.Font.PLAIN,10));text.drawString("H="+(helmet?1:0)+" C="+(chest?1:0),65,y+11);text.dispose();
+        }
+        for(int width:new int[]{320,480,960,1920})for(int height:new int[]{180,270,540,1080}) {
+            int x=width/2-(int)(width*.26)/2-10-36,y=height-(int)(height*.046)-8;
+            if(x-29<0||x-3>=x||y+13>height)throw new AssertionError("Equipment icons must remain left of health and within scaled screen");
+        }
+        var preview=new java.awt.image.BufferedImage(720,500,java.awt.image.BufferedImage.TYPE_INT_ARGB);var g=preview.createGraphics();g.setRenderingHint(java.awt.RenderingHints.KEY_INTERPOLATION,java.awt.RenderingHints.VALUE_INTERPOLATION_NEAREST_NEIGHBOR);g.drawImage(canvas.image,0,0,720,500,null);g.dispose();
+        javax.imageio.ImageIO.write(preview,"png",java.nio.file.Path.of("../armor-hud-preview.png").toFile());
     }
 }

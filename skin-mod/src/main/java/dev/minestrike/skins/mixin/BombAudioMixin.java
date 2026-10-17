@@ -43,7 +43,7 @@ public final class BombAudioMixin {
     @Pseudo
     @Mixin(targets = "com.sonicether.soundphysics.SoundPhysics", remap = false)
     public static abstract class Clear {
-        @Shadow public static void setDefaultEnvironment(int source, boolean relative) { throw new AssertionError(); }
+        @Shadow public static void setDefaultEnvironment(int source, boolean auxOnly) { throw new AssertionError(); }
         @Inject(method = "evaluateEnvironment(IDDDLnet/minecraft/sounds/SoundSource;Lnet/minecraft/resources/ResourceLocation;Z)Lnet/minecraft/world/phys/Vec3;", at = @At("HEAD"), cancellable = true)
         private static void minestrike$clear(int source, double x, double y, double z, SoundSource category,
                                               ResourceLocation sound, boolean auxiliary, CallbackInfoReturnable<Vec3> ci) {
@@ -51,7 +51,7 @@ public final class BombAudioMixin {
             String id = sound.toString();
             boolean announcement = PLANTED.equals(id) || LOUD_PLANTED.equals(id);
             if (announcement || BEEP.equals(id) || LOUD_BEEP.equals(id)) {
-                setDefaultEnvironment(source, announcement);
+                setDefaultEnvironment(source, false);
                 ci.setReturnValue(null);
             }
         }
