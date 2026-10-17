@@ -1,0 +1,226 @@
+{
+  "scope": "Dust2 only; existing PCL baseline copied, no baseline recapture",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/dust2-pcl-sync-20261017-194244",
+  "worldSpawn": [
+    -161,
+    7,
+    59
+  ],
+  "spawnAngle": 0,
+  "levelName": "dust2 (redetailed)",
+  "personalData": "excluded; embedded level.dat Data.Player removed in project copy",
+  "shopAndRoundSpawns": "semantic equality confirmed; unchanged",
+  "files": [
+    {
+      "path": "saves/dust2/DIM-1/data/raids.dat",
+      "sourceSHA256": "47094b739815e26947a4421a8392906e25d1de57fe8f398a7423d580e178cf97",
+      "beforeSHA256": "76223587d04c517d957c33bcf3fd4237271327c4735e8edd22714d269eb789f2",
+      "afterSHA256": "47094b739815e26947a4421a8392906e25d1de57fe8f398a7423d580e178cf97",
+      "bytes": 90
+    },
+    {
+      "path": "saves/dust2/DIM1/data/raids_end.dat",
+      "sourceSHA256": "47094b739815e26947a4421a8392906e25d1de57fe8f398a7423d580e178cf97",
+      "beforeSHA256": "76223587d04c517d957c33bcf3fd4237271327c4735e8edd22714d269eb789f2",
+      "afterSHA256": "47094b739815e26947a4421a8392906e25d1de57fe8f398a7423d580e178cf97",
+      "bytes": 90
+    },
+    {
+      "path": "saves/dust2/data/raids.dat",
+      "sourceSHA256": "f4f80d6e094c3ed37f3710e9c430c0e4557f9b4fdf8036fc95be51455c3824be",
+      "beforeSHA256": "43f7f2153fa0dd250d8ae70513a82eec5348627e2e212ca79a51f5298b93a784",
+      "afterSHA256": "f4f80d6e094c3ed37f3710e9c430c0e4557f9b4fdf8036fc95be51455c3824be",
+      "bytes": 90
+    },
+    {
+      "path": "saves/dust2/data/random_sequences.dat",
+      "sourceSHA256": "a4d76818435a5b69eb21a295a085dd86b99e5417b84639aaa15abce013fc42ea",
+      "beforeSHA256": "4c0b5e87da8498415799b69d00751694e9c59827a9695abfdac6d47ad2fa69c9",
+      "afterSHA256": "a4d76818435a5b69eb21a295a085dd86b99e5417b84639aaa15abce013fc42ea",
+      "bytes": 3330
+    },
+    {
+      "path": "saves/dust2/data/scoreboard.dat",
+      "sourceSHA256": "e71f98940f10071334b3d9eeab190f4f8b9dcb7e5e566ddc6389f2f5e1f9277a",
+      "beforeSHA256": "394242e8678f2e825907bc1c24c3c4591ff34e09c9fac64f0aeb2a8b81f730f4",
+      "afterSHA256": "e71f98940f10071334b3d9eeab190f4f8b9dcb7e5e566ddc6389f2f5e1f9277a",
+      "bytes": 831
+    },
+    {
+      "path": "saves/dust2/data/superbwarfare_chunk_pos.dat",
+      "sourceSHA256": "1bc9f1971bf9f8e467c0f6271fec635012ae76e75fd9175a02824fe694046570",
+      "beforeSHA256": "88617094b96b4c0d783054605598d40b2d87b3a2bda230caf21a931633eacab4",
+      "afterSHA256": "1bc9f1971bf9f8e467c0f6271fec635012ae76e75fd9175a02824fe694046570",
+      "bytes": 73
+    },
+    {
+      "path": "saves/dust2/entities/r.-1.-1.mca",
+      "sourceSHA256": "6ee42696ab3224981bb937fcf65cc2bf2693b33b2195a9c03153103985ddc2fe",
+      "beforeSHA256": "27564edc629bd2f456d7f333696a1175156ec1680c5e352865d31ad9cf8b98c4",
+      "afterSHA256": "6ee42696ab3224981bb937fcf65cc2bf2693b33b2195a9c03153103985ddc2fe",
+      "bytes": 81920
+    },
+    {
+      "path": "saves/dust2/entities/r.-1.0.mca",
+      "sourceSHA256": "3979e6d8bc7ee1b698e60af7035bc7eebd36ffcde1dad96c9a7d3902bd70c386",
+      "beforeSHA256": "389a79b737ff640a28126e7079a9158bcd15a3be774189a03cef4ab56c8728ca",
+      "afterSHA256": "3979e6d8bc7ee1b698e60af7035bc7eebd36ffcde1dad96c9a7d3902bd70c386",
+      "bytes": 278528
+    },
+    {
+      "path": "saves/dust2/entities/r.-2.-1.mca",
+      "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "beforeSHA256": null,
+      "afterSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "saves/dust2/entities/r.-2.0.mca",
+      "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "beforeSHA256": null,
+      "afterSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "saves/dust2/entities/r.0.-1.mca",
+      "sourceSHA256": "d13d46a46cc91a8af033c428cb785ff86f806ebdf72a388fa672798697d306a7",
+      "beforeSHA256": "bde40b5cc46422a0940db88ac91777855f4b3c77c71b3688ee45e711779f724e",
+      "afterSHA256": "d13d46a46cc91a8af033c428cb785ff86f806ebdf72a388fa672798697d306a7",
+      "bytes": 86016
+    },
+    {
+      "path": "saves/dust2/entities/r.0.0.mca",
+      "sourceSHA256": "f1061a372114b58593b615de6b2d8ef517b374859673115fbbfb027faab401ab",
+      "beforeSHA256": "b3a12084b7d88fd5c1d4eafe7dd2ab07d8f07aab3af7298ce7d7c5ee282b0741",
+      "afterSHA256": "f1061a372114b58593b615de6b2d8ef517b374859673115fbbfb027faab401ab",
+      "bytes": 167936
+    },
+    {
+      "path": "saves/dust2/level.dat",
+      "sourceSHA256": "6dc65c31866e8903dd4d784b5643c7203524ee2b64477e2e918fc349c0eb71a0",
+      "beforeSHA256": "5adcffb08ed3d0c5e616b653dd3c9b78736a9937e3a1a30d079b3913260ca2ba",
+      "afterSHA256": "3fb78605c2e4b9043c7cf88f3b1d4fced7636b21ccf8228b9f094c695546019b",
+      "bytes": 153785
+    },
+    {
+      "path": "saves/dust2/mine-strike-data/map-baselines/ZHVzdDI.nbt",
+      "sourceSHA256": "0cdfb8c21b9702b5b7f3c389b0e9ff6e45eb15d1da5441ef6eedce5d7c8bc787",
+      "beforeSHA256": "8024994e212c54221a75e434cb1766fe746c63d3e1c050fac19e6bd4d41c2913",
+      "afterSHA256": "0cdfb8c21b9702b5b7f3c389b0e9ff6e45eb15d1da5441ef6eedce5d7c8bc787",
+      "bytes": 143568
+    },
+    {
+      "path": "saves/dust2/mine-strike-data/map-baselines/generation.txt",
+      "sourceSHA256": "5f5254112e739f0fd3f7db632bf654a3784d1fc6ed3500d55392dbf7195238dd",
+      "beforeSHA256": "90337f7495b30bf7b340767a111717ec28a9539b1f897f4b91c0c3e304004c9b",
+      "afterSHA256": "5f5254112e739f0fd3f7db632bf654a3784d1fc6ed3500d55392dbf7195238dd",
+      "bytes": 36
+    },
+    {
+      "path": "saves/dust2/poi/r.-1.0.mca",
+      "sourceSHA256": "181a4d5dcc10a00e38896911679b54d4106b32fa5fbff0d46376fe2c0bfcb385",
+      "beforeSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "afterSHA256": "181a4d5dcc10a00e38896911679b54d4106b32fa5fbff0d46376fe2c0bfcb385",
+      "bytes": 69632
+    },
+    {
+      "path": "saves/dust2/poi/r.-2.1.mca",
+      "sourceSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "beforeSHA256": null,
+      "afterSHA256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "saves/dust2/region/r.-1.-1.mca",
+      "sourceSHA256": "99e4ec7a5eb2a84c576f9b8c7244774b8916e13c4a4c2100eb285cf894c5e075",
+      "beforeSHA256": "07d3cdaace019b8f768759db9b125441555f2bc32a6e6351a157ef2ee17ac041",
+      "afterSHA256": "99e4ec7a5eb2a84c576f9b8c7244774b8916e13c4a4c2100eb285cf894c5e075",
+      "bytes": 4206592
+    },
+    {
+      "path": "saves/dust2/region/r.-1.-2.mca",
+      "sourceSHA256": "b5f7e516d8768587960f1c9ac989a6633d297a1adfb60411700237e3aec17c03",
+      "beforeSHA256": "d91faf1f79b7302c718804d2a28657ab120303bd54adca7a980bf927c722ffa5",
+      "afterSHA256": "b5f7e516d8768587960f1c9ac989a6633d297a1adfb60411700237e3aec17c03",
+      "bytes": 1982464
+    },
+    {
+      "path": "saves/dust2/region/r.-1.0.mca",
+      "sourceSHA256": "6d03ec90c03182d1344621440943fa532e35454e5c5c17262cf96f427ede971c",
+      "beforeSHA256": "61e6c7cf63cb241b0fab18385e51f838e33ab265e0c4e5b2713e17257d26ee4f",
+      "afterSHA256": "6d03ec90c03182d1344621440943fa532e35454e5c5c17262cf96f427ede971c",
+      "bytes": 4403200
+    },
+    {
+      "path": "saves/dust2/region/r.-1.1.mca",
+      "sourceSHA256": "2fcc885292dff112b050adade533e67009de19e2a52294b64f6e771648a01449",
+      "beforeSHA256": "ac9ea5a02bd204967e5e9672220da862e1a91c900e60b1b7fa0394f766583b2d",
+      "afterSHA256": "2fcc885292dff112b050adade533e67009de19e2a52294b64f6e771648a01449",
+      "bytes": 843776
+    },
+    {
+      "path": "saves/dust2/region/r.-2.-1.mca",
+      "sourceSHA256": "f3b766b73dc91e098c86e8a06e5aa61cc3deb7028c55e7875841a8065e1a9e47",
+      "beforeSHA256": "5326d88a3bad5ab99c6ca7f221bd3b13fddad1ae26127c2f59b7cb5ebfd822f2",
+      "afterSHA256": "f3b766b73dc91e098c86e8a06e5aa61cc3deb7028c55e7875841a8065e1a9e47",
+      "bytes": 1654784
+    },
+    {
+      "path": "saves/dust2/region/r.-2.-2.mca",
+      "sourceSHA256": "950eaa979bb5b68a111e5469975a1777dcfa0fc557bc20039c2702726c7f6406",
+      "beforeSHA256": null,
+      "afterSHA256": "950eaa979bb5b68a111e5469975a1777dcfa0fc557bc20039c2702726c7f6406",
+      "bytes": 57344
+    },
+    {
+      "path": "saves/dust2/region/r.-2.0.mca",
+      "sourceSHA256": "f1071065aeb618be69944e4ebe72e79270816028b0da6de2a6057f1803861ab2",
+      "beforeSHA256": "ad7c074423ceb84a0cbc8caae770393c65fd57a7d794da4bf40d309d8db370d0",
+      "afterSHA256": "f1071065aeb618be69944e4ebe72e79270816028b0da6de2a6057f1803861ab2",
+      "bytes": 1716224
+    },
+    {
+      "path": "saves/dust2/region/r.-2.1.mca",
+      "sourceSHA256": "2abfe8b9b3425b21c358cb398736f77cccf87f030dbfbcf3bbc9424d417e2610",
+      "beforeSHA256": null,
+      "afterSHA256": "2abfe8b9b3425b21c358cb398736f77cccf87f030dbfbcf3bbc9424d417e2610",
+      "bytes": 172032
+    },
+    {
+      "path": "saves/dust2/region/r.0.-1.mca",
+      "sourceSHA256": "ac3e2f95b16bf5936c40f0d67e7e9e3a1c9c46697690939ddbb25decb5246aec",
+      "beforeSHA256": "25aa58f02ab447fc0144f149c212356ae9cf8a48cf8292a0fef3e04375c8b5fb",
+      "afterSHA256": "ac3e2f95b16bf5936c40f0d67e7e9e3a1c9c46697690939ddbb25decb5246aec",
+      "bytes": 4247552
+    },
+    {
+      "path": "saves/dust2/region/r.0.0.mca",
+      "sourceSHA256": "c77d4373c44761d06ef81b1115676a31f90f63e2c13fa962a91e60c0ccc9320f",
+      "beforeSHA256": "ea43b7a1b235d9e3419327efdc1d51204434f159be88f71aaee495f8e0530920",
+      "afterSHA256": "c77d4373c44761d06ef81b1115676a31f90f63e2c13fa962a91e60c0ccc9320f",
+      "bytes": 4399104
+    },
+    {
+      "path": "saves/dust2/region/r.0.1.mca",
+      "sourceSHA256": "135beab1bc863e1a0c7bee6fa8d6ab9aa0274e9b3045766a810b964458eeae37",
+      "beforeSHA256": "74ae77e99a560009b90933ecba870150dc393d827e7e87f383b59cec361416e2",
+      "afterSHA256": "135beab1bc863e1a0c7bee6fa8d6ab9aa0274e9b3045766a810b964458eeae37",
+      "bytes": 1556480
+    },
+    {
+      "path": "saves/dust2/region/r.1.-1.mca",
+      "sourceSHA256": "c6b82cbc6d4af4e1a210e7943e6b509876f0d8ca653440e3a0ca473cac30716f",
+      "beforeSHA256": "d16be053d3e95559724c33e1a6920175d16417dea1851bad8155a465416ccb29",
+      "afterSHA256": "c6b82cbc6d4af4e1a210e7943e6b509876f0d8ca653440e3a0ca473cac30716f",
+      "bytes": 1191936
+    },
+    {
+      "path": "saves/dust2/region/r.1.0.mca",
+      "sourceSHA256": "8544eef4af7de95f3f09f74224a00a3feaa3892830b20496ab4bc97aa3b0803f",
+      "beforeSHA256": "f25360f1ff2a879b14ac40ba856e07891ca968a8236e63e75f83b1a97ca0e14c",
+      "afterSHA256": "8544eef4af7de95f3f09f74224a00a3feaa3892830b20496ab4bc97aa3b0803f",
+      "bytes": 1191936
+    }
+  ],
+  "sourceFilesChecked": 85
+}
