@@ -123,6 +123,7 @@ public class ShopMixinTest {
         Mixins.addConfiguration("minestrike-skins.mixins.json");
         var constructor=Class.forName("org.spongepowered.asm.mixin.transformer.MixinTransformer").getDeclaredConstructor();constructor.setAccessible(true);
         IMixinTransformer transformer=(IMixinTransformer)constructor.newInstance();
+        MatchMovementTest.mixins(transformer);
         AimTimingTest.mixins(transformer);
         ReloadViewTest.mixins(transformer);
         AimActionsTest.mixins(transformer);

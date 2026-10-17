@@ -1,0 +1,28 @@
+{
+  "time": "2026-10-17T01:49:20.431786+08:00",
+  "verified": true,
+  "verificationCommand": "python3 skin-mod/verify.py --libraries /Users/qbqb/Library/Application Support/minecraft/libraries",
+  "verificationLog": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/match-movement-verification.log",
+  "passChecks": 62,
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/match-movement-20261017-014334",
+  "sha256": "b9a70aaad887d6dad24db98d26b7bfd206d7255fe0cf4855ce9a73f814b6175b",
+  "deployed": {
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar": "b9a70aaad887d6dad24db98d26b7bfd206d7255fe0cf4855ce9a73f814b6175b",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar": "b9a70aaad887d6dad24db98d26b7bfd206d7255fe0cf4855ce9a73f814b6175b"
+  },
+  "oneCustomJarEach": true,
+  "protectedFilesUnchanged": 480,
+  "scope": "started match T/CT participants; ordinary ground travel",
+  "base": "vanilla sprint; native sprint bonus counted once",
+  "responseTicks": 2,
+  "responseSecondsAt20TPS": 0.1,
+  "retained": [
+    "crouch input scaling",
+    "gun/ADS/weight attribute modifiers",
+    "native sprint signals for jump/air/animations",
+    "original collision, gravity and jump/air calls",
+    "existing aim/reload/bolt and all combat values"
+  ],
+  "inGameTest": false,
+  "commitOrPush": false
+}

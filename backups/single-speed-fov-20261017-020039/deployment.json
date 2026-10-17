@@ -1,0 +1,24 @@
+{
+  "time": "2026-10-17T02:02:51.054606+08:00",
+  "verified": true,
+  "passChecks": 63,
+  "verificationLog": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/single-speed-fov-verification.log",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/single-speed-fov-20261017-020039",
+  "sha256": "da08d7cfa4631cbb59974c83bd146a6a457482ea9d59b63fbb2542ada249b888",
+  "deployed": {
+    "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/mods/mine-strike-skins-0.1.0.jar": "da08d7cfa4631cbb59974c83bd146a6a457482ea9d59b63fbb2542ada249b888",
+    "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/mods/mine-strike-skins-0.1.0.jar": "da08d7cfa4631cbb59974c83bd146a6a457482ea9d59b63fbb2542ada249b888"
+  },
+  "oneCustomJarEach": true,
+  "protectedFilesUnchanged": 480,
+  "changedSourceFiles": [
+    "skin-mod/src/main/java/dev/minestrike/skins/MatchMovement.java",
+    "skin-mod/tests/MatchMovementTest.java",
+    "skin-mod/README.md"
+  ],
+  "behavior": "ordinary match-ground movement uses existing double-W fast movement FOV; normalize native and TaCZ override paths",
+  "physicalSpeed": "existing unified vanilla sprint baseline, no additional guessed percentage",
+  "crouchAimAirOutsideMatch": "original FOV handling retained",
+  "inGameTest": false,
+  "commitOrPush": false
+}
