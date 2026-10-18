@@ -1,0 +1,46 @@
+{
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/ah6-health-20261018-131611",
+  "source_before": {
+    "skin-mod/src/main/java/dev/minestrike/skins/LavAdHealth.java": "2a949d1376f0e00b9815d6d4a76f7d97a67e6a92151277d07740352c0fd280fb",
+    "skin-mod/tests/VehicleHealthTest.java": null,
+    "skin-mod/verify.py": "e2daa8b50475f54da5aabe88e369b5dc2c39c16d7a553ca6352d9dfeeb825026",
+    "skin-mod/README.md": "826329eaea34ebd654140e26262d0a52b4ab241260d9ad37de9fcbb7317e86e2",
+    "mods/mine-strike-skins-0.1.0.jar": "9875e16bec8b10b5e556e6b21503d1858270e6e4794092732c85b813ae2b3cff"
+  },
+  "base_commit": "3a37c137d04969902adb2426dca4c437427b8040",
+  "pcl_jar_before": "9875e16bec8b10b5e556e6b21503d1858270e6e4794092732c85b813ae2b3cff",
+  "release081_sha256": "0604fa70da2cdb41d697837766713072e9b87b1691c5a8fe352835bbcbd85d7c",
+  "ah6_max_health": 1000,
+  "lav_ad_max_health": 150,
+  "scope": "All maps and all AH-6 sources, server side entity join; existing damage ratio retained",
+  "rpg_direct_damage_after_native_modifiers": 500.64,
+  "rpg_maximum_blast_damage_after_native_modifiers": 310.8,
+  "first_hit_maximum_total": 811.44,
+  "two_direct_hits_minimum_total": 1001.28,
+  "full_verification_exit_code": 0,
+  "full_verification_pass_lines": 80,
+  "full_verification_log": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/ah6-health-full-verify.log",
+  "jar_sha256": "f5bb7bd0de6dd1ab93cda3ae371b3a0c8ba80035cb8c404c78af54b3d07ca029",
+  "jar_changed_entries": [
+    "dev/minestrike/skins/LavAdHealth.class"
+  ],
+  "repository_and_pcl_deployed_and_hash_equal": true,
+  "source_after": {
+    "skin-mod/src/main/java/dev/minestrike/skins/LavAdHealth.java": "72c24fdd213c5c3f4c69c65b98299628be996ae00fd2a3b74a2fbf374b2a48b9",
+    "skin-mod/tests/VehicleHealthTest.java": "d39e8654e4354722d22993ac4327b8a39dc34c0dc835fe7531c3225e81387996",
+    "skin-mod/verify.py": "7bbf8bade55f1692a66570bb2f31a18181621e8c315659f5082ccb87de3557f0",
+    "skin-mod/README.md": "72e5baf6e346e551b30151b42d0d1c7c8698ae0503605c2ef51bc144be8c3140",
+    "mods/mine-strike-skins-0.1.0.jar": "f5bb7bd0de6dd1ab93cda3ae371b3a0c8ba80035cb8c404c78af54b3d07ca029"
+  },
+  "backup_rotation": {
+    "removed": [
+      "mirage-nuke-sync-20261018-121922"
+    ],
+    "retained": [
+      "ah6-health-20261018-131611",
+      "nuke-shop-pcl-sync-20261018-130331"
+    ]
+  },
+  "release_081_unchanged": true,
+  "game_tested": false
+}
