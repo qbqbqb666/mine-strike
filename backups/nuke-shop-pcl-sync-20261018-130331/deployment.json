@@ -1,0 +1,28 @@
+{
+  "source": "/Users/qbqb/Library/Application Support/minecraft/versions/mine-strike/fpsmatch/nuke/CSGameMaps/nuke.json",
+  "target": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/fpsmatch/nuke/CSGameMaps/nuke.json",
+  "backup": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/backups/nuke-shop-pcl-sync-20261018-130331",
+  "before_sha256": "dbfc1b033911e9db9042cfb63cc568032639e9f0164169f6fcfb0d9cf30ea5cb",
+  "source_sha256": "e66e7264cc584c25ebccee4f2e72d869bdf714ec3a523c08db06f7f776d1df45",
+  "after_sha256": "630c79b39374d8419a0bfb58993cf65eb36095d57f0e2e24ebad9fe9049792a6",
+  "shops_semantically_identical_to_pcl": true,
+  "non_shop_configuration_unchanged": true,
+  "main_change": "T/CT LAV-AD -> AH-6, 12500, crowbar + charging station + 64 small_shell_he + 16 small_rocket",
+  "world_spawn": [
+    584,
+    12,
+    381
+  ],
+  "match_end": [
+    584,
+    12,
+    381
+  ],
+  "round_spawn_preserved": true,
+  "ct_round_spawn_count": 36,
+  "t_round_spawn_count": 35,
+  "removed_old_backups": [
+    "dust2-pcl-sync-20261017-194244"
+  ],
+  "game_tested": false
+}

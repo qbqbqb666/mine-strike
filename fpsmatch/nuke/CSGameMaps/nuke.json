@@ -293,34 +293,34 @@
                     }
                   },
                   {
-                    "id": "superbwarfare:creative_charging_station",
-                    "Count": 1,
-                    "tag": {
-                      "MineStrikeAllowDeploy": 1,
-                      "MineStrikeRoundOnly": 1
-                    }
-                  },
-                  {
-                    "id": "superbwarfare:small_shell_aa",
+                    "id": "superbwarfare:small_shell_he",
                     "Count": 64,
                     "tag": {
                       "MineStrikeRoundOnly": 1
                     }
                   },
                   {
-                    "id": "superbwarfare:medium_anti_air_missile",
-                    "Count": 4,
+                    "id": "superbwarfare:small_rocket",
+                    "Count": 16,
                     "tag": {
                       "MineStrikeRoundOnly": 1
+                    }
+                  },
+                  {
+                    "id": "superbwarfare:creative_charging_station",
+                    "Count": 1,
+                    "tag": {
+                      "MineStrikeRoundOnly": 1,
+                      "MineStrikeAllowDeploy": 1
                     }
                   }
                 ],
                 "BlockEntityTag": {
-                  "EntityType": "superbwarfare:lav_ad",
+                  "EntityType": "superbwarfare:ah_6",
                   "id": "superbwarfare:container"
                 },
                 "display": {
-                  "Name": "{\"text\":\"[LAV-AD \u9632\u7a7a\u8f66]\"}"
+                  "Name": "{\"text\":\"[ AH-6 \u5c0f\u9e1f\u76f4\u5347\u673a]\"}"
                 },
                 "MineStrikeRoundOnly": 1
               }
@@ -931,26 +931,26 @@
                     }
                   },
                   {
-                    "id": "superbwarfare:small_shell_aa",
+                    "id": "superbwarfare:small_shell_he",
                     "Count": 64,
                     "tag": {
                       "MineStrikeRoundOnly": 1
                     }
                   },
                   {
-                    "id": "superbwarfare:medium_anti_air_missile",
-                    "Count": 4,
+                    "id": "superbwarfare:small_rocket",
+                    "Count": 16,
                     "tag": {
                       "MineStrikeRoundOnly": 1
                     }
                   }
                 ],
                 "BlockEntityTag": {
-                  "EntityType": "superbwarfare:lav_ad",
+                  "EntityType": "superbwarfare:ah_6",
                   "id": "superbwarfare:container"
                 },
                 "display": {
-                  "Name": "{\"text\":\"[LAV-AD \u9632\u7a7a\u8f66]\"}"
+                  "Name": "{\"text\":\"[AH-6 \u5c0f\u9e1f\u76f4\u5347\u673a]\"}"
                 },
                 "MineStrikeRoundOnly": 1
               }
