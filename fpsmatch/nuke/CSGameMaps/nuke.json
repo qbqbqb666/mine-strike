@@ -107,7 +107,7 @@
                   "Ammo": 1
                 },
                 "display": {
-                  "Name": "{\"text\":\"[   ǹ]\"}"
+                  "Name": "{\"text\":\"[\u7535\u51fb\u67aa]\"}"
                 },
                 "Attachments": {}
               }
@@ -320,7 +320,7 @@
                   "id": "superbwarfare:container"
                 },
                 "display": {
-                  "Name": "{\"text\":\"[LAV-AD    ճ ]\"}"
+                  "Name": "{\"text\":\"[LAV-AD \u9632\u7a7a\u8f66]\"}"
                 },
                 "MineStrikeRoundOnly": 1
               }
@@ -447,7 +447,7 @@
                 "HasBulletInBarrel": 1,
                 "GunId": "suffuse:python",
                 "display": {
-                  "Name": "{\"text\":\"[R8      ǹ]\"}"
+                  "Name": "{\"text\":\"[R8\u5de6\u8f6e\u624b\u67aa]\"}"
                 },
                 "MaxDummyAmmo": 18,
                 "GunFireMode": "SEMI",
@@ -715,7 +715,7 @@
                   "Ammo": 1
                 },
                 "display": {
-                  "Name": "{\"text\":\"   ǹ\"}"
+                  "Name": "{\"text\":\"\u7535\u51fb\u67aa\"}"
                 },
                 "Attachments": {}
               }
@@ -893,7 +893,7 @@
                 "HeatAmount": 0,
                 "GunId": "tacz:minigun",
                 "display": {
-                  "Name": "{\"text\":\"[      ]\"}"
+                  "Name": "{\"text\":\"[\u52a0\u7279\u6797]\"}"
                 },
                 "MaxDummyAmmo": 270,
                 "GunFireMode": "AUTO",
@@ -950,7 +950,7 @@
                   "id": "superbwarfare:container"
                 },
                 "display": {
-                  "Name": "{\"text\":\"[LAV-AD    ճ ]\"}"
+                  "Name": "{\"text\":\"[LAV-AD \u9632\u7a7a\u8f66]\"}"
                 },
                 "MineStrikeRoundOnly": 1
               }
@@ -1071,7 +1071,7 @@
                 "HasBulletInBarrel": 1,
                 "GunId": "suffuse:python",
                 "display": {
-                  "Name": "{\"text\":\"[R8       ǹ]\"}"
+                  "Name": "{\"text\":\"[R8 \u5de6\u8f6e\u624b\u67aa]\"}"
                 },
                 "MaxDummyAmmo": 18,
                 "GunFireMode": "SEMI",

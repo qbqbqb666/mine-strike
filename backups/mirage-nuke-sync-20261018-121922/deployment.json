@@ -1,0 +1,17 @@
+{
+  "base_commit": "cbb983ec454368786d73a7d724c4d4153f2c2410",
+  "repository_files_changed": 14,
+  "pcl_files_changed": 114,
+  "report": "/Users/qbqb/Desktop/暂时存储/mine-strike/mine-strike/skin-mod/build/mirage-nuke-sync-report.json",
+  "full_verify_pass_lines": 78,
+  "jar_unchanged": true,
+  "backup_rotation": {
+    "removed": [
+      "c4-direct-sound-20261017-181932"
+    ],
+    "retained": [
+      "dust2-pcl-sync-20261017-194244",
+      "mirage-nuke-sync-20261018-121922"
+    ]
+  }
+}
